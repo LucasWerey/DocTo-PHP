@@ -4,7 +4,7 @@ button {
     background-color: rgb(172, 82, 195);
     border-radius: 10px;
     border: 4px double #cccccc;
-    color: #eeeeee;
+    color: #ffffff;
     text-align: center;
     font-size: 20px;
     font-family: Calibri;
@@ -29,7 +29,7 @@ button {
     transition: 0.5s;
   }
   button:hover {
-    background-color: #f7c2f9;
+    background-color: #f48ff8;
   }
   button:hover span {
     padding-right: 25px;
