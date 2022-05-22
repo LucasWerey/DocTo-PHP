@@ -1,19 +1,46 @@
-.wrapper {
-
+#wrapper {
+ background-color: rgb(250, 222, 236);
+ padding-bottom: 10px;
 }
 
-.header{
-
+#header{
+    /*padding-top: -100px;*/
+    margin-top: -100px;
 }
 
-.nav{
-
+#titre1{
+    text-align: center;
+    color: rgb(172, 82, 195);
+    font-family: Calibri;
+    font-size: 90px;
+    font-weight: bold;
 }
 
-.footer{
-
+#navigation{
+    /*padding-top: -100px;*/
+    margin-top: -100px;
+    /*Tous les éléments vont être centrés (il faut prendre les 3 lignes)*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.section{
+#footer{
+    font-family: Calibri;
+    font-size: 15px;
+    font-style: italic;
+    line-height: 30%;
+    text-align: center;
+}
+
+#section{
+    padding-left: 10px;
+    padding-right: 10px;
     
+}
+
+#titre2{
+    color: rgb(113, 56, 128);
+    font-family: Calibri;
+    font-size: 30px;
 }
