@@ -16,6 +16,24 @@ h2{
     margin-bottom: -10px;
 }
 
+.btn-outline {
+    color: rgb(250, 222, 236);
+    background-color: #ffffff;
+    border-color: rgb(250, 222, 236);
+    font-weight: bold;
+    border-radius: 0;
+  }
+  
+  .btn-outline:hover,
+  .btn-outline:active,
+  .btn-outline:focus,
+  .btn-outline.active {
+    background: rgb(250, 222, 236);
+    color: white;
+    border-color: rgb(250, 222, 236);
+    
+  }
+
 .carousel-inner img {
     margin: auto;  
   }
@@ -86,7 +104,7 @@ h2{
 /* Styling the image overlay for the selector. */
 .image_parco{
     position: relative;
-    width: 1900px;
+    width: auto;
 }
 
 .img_parc{
@@ -142,3 +160,4 @@ transition: opacity 1s;
   }
 
  .image_parco a { color: white; }
+
