@@ -112,7 +112,7 @@ h2{
     display: block;
     width: 100%;
     height: 700px;
-    margin-bottom : -300px;
+    padding-bottom : -300px;
 }
 
 .img_overlay{
@@ -171,9 +171,7 @@ transition: opacity 1s;
     border: 1px solid  white;
 }
 
-.arrow {
-    border-right-color: red !important;
-  }
+
 
   /* Popover Body */
 .popover-content {
