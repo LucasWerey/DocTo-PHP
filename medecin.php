@@ -1,8 +1,23 @@
 <?php
-	// Connect to database server
-	mysql_connect("localhost", "root", "root") or die (mysql_error ());
+    echo "<h1>Dans PHP</h1>";
+    $choice = isset ($_POST['choice']) ? $_GET['title'] : '';
+    // Connect to database server
+    $link = mysqli_connect("localhost", "root", "root")
+        or die("Impossible de se connecter : " . mysql_error());
+    echo 'Connexion réussie';
 
 	// Select database
-	mysql_select_db("omnessante") or die(mysql_error());
+	mysqli_select_db("omnessante") or die(mysql_error());
 
+    if (isset($_POST["1"])){
+        $sql = "SELECT * FROM medecins WHERE id=1";
+        $result = mysqli_query($link,$sql);
+        while($data = mysqli_fetch_assoc($result)){
+            echo $data['nom']."<br>";
+        }
+        $result -> free_result();
+    }
+
+    mysql_close($link);
+    
 ?>
