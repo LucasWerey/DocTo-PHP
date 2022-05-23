@@ -17,9 +17,9 @@ h2{
 }
 
 .btn-outline {
-    color: rgb(250, 222, 236);
+    color: rgb(231, 96, 163);
     background-color: #ffffff;
-    border-color: rgb(250, 222, 236);
+    border-color: rgb(231, 96, 163);
     font-weight: bold;
     border-radius: 0;
   }
@@ -28,9 +28,9 @@ h2{
   .btn-outline:active,
   .btn-outline:focus,
   .btn-outline.active {
-    background: rgb(250, 222, 236);
+    background: rgb(231, 96, 163);
     color: white;
-    border-color: rgb(250, 222, 236);
+    border-color: rgb(231, 96, 163);
     
   }
 
