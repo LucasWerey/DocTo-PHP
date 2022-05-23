@@ -161,3 +161,21 @@ transition: opacity 1s;
 
  .image_parco a { color: white; }
 
+
+/* Popover Settings */
+ .popover{
+    max-width: 100%; /* Max Width of the popover (depending on the container!) */
+    border: 1px solid  white;
+}
+
+.arrow {
+    border-right-color: red !important;
+  }
+
+  /* Popover Body */
+.popover-content {
+    background-color: coral;
+    color: #FFFFFF;
+    padding: 25px;
+  }
+  
