@@ -199,7 +199,7 @@ h2{
     height: 36px;
     border-radius: 50%;
     color: #d0f7cd;
-    background-color: rgb(34, 165, 38);
+    background-color:  rgb(34, 165, 38);
     font-family: 'unicons';
     content: '\eb4f';
     z-index: 20;
@@ -412,3 +412,5 @@ h2{
     width: 700px;
 
   }
+
+ 
