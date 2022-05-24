@@ -39,6 +39,10 @@
           <li class="nav-item ">
             <a class="nav-link" href="compte.html">Votre Compte</a>
           </li>
+            </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="testModal.html">TestModal</a>
+          </li>
         </ul>
         <form class="form-inline mt-2 mt-md-0">
           <input class="form-control mr-sm-2 " type="text" placeholder="Votre recherche" aria-label="Search">
@@ -48,10 +52,12 @@
     </nav>
   </header>
 
-  <div class="container marketing">
+
+
+    <div class="container marketing"  style="padding-top:350px;">
     <div class="col">
-      <div class="col-lg-offset-2 col-lg-15">
-          <div class="row box">
+      <div class="col-lg-offset-2 col-lg-15 ">
+          <div class="row boxr">
     <div class="col-lg-4">
 
     <!-- Button -->
@@ -68,8 +74,44 @@
           </div>
           <div class="modal-body">
             <p><img src="Images/Docteur F2.png"></p>
-            <a href="octave.php"></a>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Prendre un RDV</button>
+          <span class="counter pull-right"></span>
+          <table class="table table-hover table-bordered results">
+            <thead>
+              <tr>
+                <th class="col-md-5 col-xs-5">Spécialité</th>
+                <th class="col-md-4 col-xs-4">Médecin</th>
+                <th class="col-md-3 col-xs-3">City</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Vatanay Özbeyli</td>
+                <td>UI & UX</td>
+                <td>Istanbul</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Burak Özkan</td>
+                <td>Software Developer</td>
+                <td>Istanbul</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>Egemen Özbeyli</td>
+                <td>Purchasing</td>
+                <td>Kocaeli</td>
+              </tr>
+              <tr>
+                <th scope="row">4</th>
+                <td>Engin Kızıl</td>
+                <td>Sales</td>
+                <td>Bozuyük</td>
+              </tr> 
+            </tbody>
+          </table>
+
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="window.location.href = 'rendezvous.html';">Prendre un RDV</button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Communiquer avec le médecin</button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Voir son CV</button>
           </div>
@@ -93,12 +135,11 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <p> Dr. Octave Prevot </p>
+          <p> Dr. Clémence Amaladasse </p>
         </div>
         <div class="modal-body">
           <p><img src="Images/Docteur F2.png"></p>
-          <a href="octave.php"></a>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Prendre un RDV</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="window.location.href = 'rendezvous.html';">Prendre un RDV</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Communiquer avec le médecin</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Voir son CV</button>
         </div>
@@ -122,12 +163,11 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <p> Dr. Octave Prevot </p>
+          <p> Dr. Matthieu Vu-Huy-Dat </p>
         </div>
         <div class="modal-body">
-          <p><img src="Images/Docteur F2.png"></p>
-          <a href="octave.php"></a>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Prendre un RDV</button>
+          <p><img src="Images/Docteur H.svg"></p>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="window.location.href = 'rendezvous.html';">Prendre un RDV</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Communiquer avec le médecin</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Voir son CV</button>
         </div>
@@ -151,12 +191,11 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <p> Dr. Octave Prevot </p>
+          <p> Dr. Léna Heurtaux </p>
         </div>
         <div class="modal-body">
-          <p><img src="Images/Docteur F2.png"></p>
-          <a href="octave.php"></a>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Prendre un RDV</button>
+          <p><img src="Images/Docteur F.svg"></p>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="window.location.href = 'rendezvous.html';">Prendre un RDV</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Communiquer avec le médecin</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Voir son CV</button>
         </div>
@@ -180,12 +219,11 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <p> Dr. Octave Prevot </p>
+        <p> Dr. Lucas Werey </p>
       </div>
       <div class="modal-body">
-        <p><img src="Images/Docteur F2.png"></p>
-        <a href="octave.php"></a>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Prendre un RDV</button>
+        <p><img src="Images/Docteur H.svg"></p>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="window.location.href = 'rendezvous.html';">Prendre un RDV</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Communiquer avec le médecin</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Voir son CV</button>
       </div>
@@ -207,12 +245,11 @@
    <div class="modal-dialog modal-dialog-centered">
      <div class="modal-content">
        <div class="modal-header">
-         <p> Dr. Octave Prevot </p>
+         <p> Dr. Baptiste Bernaud </p>
        </div>
        <div class="modal-body">
-         <p><img src="Images/Docteur F2.png"></p>
-         <a href="octave.php"></a>
-         <button type="button" class="btn btn-secondary" data-dismiss="modal">Prendre un RDV</button>
+         <p><img src="Images/Docteur H.svg"></p>
+         <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="window.location.href = 'rendezvous.html';">Prendre un RDV</button>
          <button type="button" class="btn btn-secondary" data-dismiss="modal">Communiquer avec le médecin</button>
          <button type="button" class="btn btn-secondary" data-dismiss="modal">Voir son CV</button>
        </div>
@@ -226,10 +263,10 @@
 </div></div> </div>
  
     <!-- A horizontal line. -->
-    <hr class="featurette-divider">
+    <hr class="featurette-divider" style="margin-top:370px">
   </div>
   <!-- FOOTER -->
-  <footer class="container">
+  <footer class="container fixed-bottom">
     <p class="float-right"><a href="#">Back to top</a></p>
     <p1> Contact OMNES Santé </p1>
     <p> Mail: <a href="mailto:contact@omnessante.fr">contact@omnessante.fr</a>
