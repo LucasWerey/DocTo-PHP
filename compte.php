@@ -37,7 +37,7 @@
             <a class="nav-link" href="rendezvous.html">Rendez-vous </a>
           </li>
           <li class="nav-item active ">
-            <a class="nav-link" href="compte.html">Votre Compte<span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="compte.php">Votre Compte<span class="sr-only">(current)</span></a>
           </li>
         </ul>
         <form class="form-inline mt-2 mt-md-0">
@@ -69,18 +69,23 @@
                       <form action="verification.php" method="POST">
                         <h4 class="mb-4 pb-3">Connexion</h4>
                         <div class="form-group">
-                          <input type="email" name="logemail" class="form-style" placeholder="Email"
+                          <input type="email" id="logemail" name="logemail" class="form-style" placeholder="Email"
                             autocomplete="off" required>
-                          
                           <i class="input-icon uil uil-at"></i>
                         </div>
                         <div class="form-group mt-2">
-                          <input type="password" name="logpass" class="form-style" placeholder="Mot de passe"
+                          <input type="password" id="logpass" name="logpass" class="form-style" placeholder="Mot de passe"
                            autocomplete="off" required>
-                          
                           <i class="input-icon uil uil-lock-alt"></i>
                         </div>
                         <input type="submit" id="submit" class="btn mt-4" value="Se connecter">
+                        <?php 
+                            if(isset($_GET['erreur'])){ 
+                                $err = $_GET['erreur'];
+                                if($err==1 || $err==2)
+                                    echo "<p style='color:red'>Utilisateur ou mot de passe incorrect</p>";
+                            }
+                        ?>
                       </form>
 
                       <p class="mb-0 mt-4 text-center"><a href="#0" class="link">Mot de passe oublié?</a></p>

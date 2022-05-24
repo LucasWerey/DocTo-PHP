@@ -9,8 +9,8 @@
             <!-- tester si l'utilisateur est connecté -->
             <?php
                 session_start();
-                if($_SESSION['username'] !== ""){
-                    $user = $_SESSION['username'];
+                if($_SESSION['logemail'] !== ""){
+                    $user = $_SESSION['logemail'];
                     // afficher un message
                     echo "Bonjour $user, vous êtes connecté";
                 }
