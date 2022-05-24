@@ -28,7 +28,7 @@
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item ">
-            <a class="nav-link" href="acceuil.html">Acceuil</a>
+            <a class="nav-link" href="acceuil.html">Accueil</a>
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="toutParcourir.html">Tout Parcourir <span class="sr-only">(current)</span></a>
@@ -50,58 +50,72 @@
 
   <div class="container">
     <br>
-    <button name="1" value="1" type="button" class="btn btn-outline-primary my-3 my-sm-2" data-container="body"
-      title="Nom Prénom" data-toggle="popover" data-placement="right" data-content="
-      <img src='Images/Docteur F2.png' class='rounded mx-auto d-block w-50'>
-      <div class='container'>
-      <div class='row row-relative'>
-        <div class='col-sm-4'>
-          Dr. Patrice BOURRE
-          <p>Téléphone: +33 01 23 45 67 89</p>
-        </div>
-      <div class='col-sm-4'>
-        Médecin géneraliste
-        <p> Email: patrice.bouree@omnessante.fr</p>
-      </div>
-      <div class='col-sm-4'>
-        Salle: EM-204</div>
-        <button type='submit' id='example' class='btn btn-primary'>example</button>
-      </div>
-    </div>" data-html="true">
-      Medecin 1
-    </button>
-  </div>
 
-  <ul>
-    <div>
-      <li> <a href="">Octave Prevot</li></a>
-      <li> <a href="">Lucas Werey</li></a>
-      <li> <a href="">Léna Heurtaux</li></a>
-      <li> <a href="">Matthieu Vu-Huy-Dat</li></a>
-      <li> <a href="">Baptiste Bernaud</li></a>
-      <li> <a href="">Clémence Amaladasse</li></a>
+    <!-- Button -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#popup">
+      Médecin 1
+    </button>
+
+    <!-- Pop-up -->
+      <div id="popup" class="modal">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <p> Dr. Octave Prevot </p>
+          </div>
+          <div class="modal-body">
+            <p><img src="Images/Docteur F2.png"></p>
+            <a href="octave.php"></a>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Prendre un RDV</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Communiquer avec le médecin</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Voir son CV</button>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+          </div>
+        </div>
+      </div>
     </div>
-  </ul>
+
+    <ul>
+      <div>
+        <li> <a href="">Clémence AMALADASSE</li></a>
+        <li> <a href="">Baptiste BERNAUD</li></a>
+        <li> <a href="">Léna HEURTAUX</li></a>
+        <li> <a href="octave.php">Octave PREVOT</li></a>
+        <li> <a href="">Matthieu VU-HUY-DAT</li></a>
+        <li> <a href="">Lucas WEREY</li></a>
+      </div>
+    </ul>
   </div>
 
   <div class="container marketing">
     <!-- A horizontal line. -->
     <hr class="featurette-divider">
-    </div>
-      <!-- FOOTER -->
-      <footer class="container">
-        <p class="float-right"><a href="#">Back to top</a></p>
-        <p1> Contact OMNES Santé </p1>
-      <p> Mail: <a href="mailto:contact@omnessante.fr">contact@omnessante.fr</a>
-        &emsp;Téléphone: +33 1.69.42.36.80&emsp;Adresse: 
-        <a href="https://www.google.fr/maps/place/37+Quai+de+Grenelle,+75015+Paris/@48.8515039,2.2850437,17z/data=!3m1!4b1!4m5!3m4!1s0x47e6700497ee3ec5:0xdd60f514adcdb346!8m2!3d48.8515004!4d2.2872324">37 Quai de Grenelle 75015
-        </a></p>
-      </footer>
-      <!-- Optional JavaScript -->
-      <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </div>
+  <!-- FOOTER -->
+  <footer class="container">
+    <p class="float-right"><a href="#">Back to top</a></p>
+    <p1> Contact OMNES Santé </p1>
+    <p> Mail: <a href="mailto:contact@omnessante.fr">contact@omnessante.fr</a>
+      &emsp;Téléphone: +33 1.69.42.36.80&emsp;Adresse:
+      <a
+        href="https://www.google.fr/maps/place/37+Quai+de+Grenelle,+75015+Paris/@48.8515039,2.2850437,17z/data=!3m1!4b1!4m5!3m4!1s0x47e6700497ee3ec5:0xdd60f514adcdb346!8m2!3d48.8515004!4d2.2872324">37
+        Quai de Grenelle 75015
+      </a>
+    </p>
+  </footer>
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
 
 </body>
 
