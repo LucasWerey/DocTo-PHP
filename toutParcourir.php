@@ -1,3 +1,5 @@
+<style><?php include 'style.css'; ?></style>
+
 <!doctype html>
 <html lang="fr">
   <head>
@@ -8,7 +10,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+
     <!-- The icon of the website. -->
       <link rel="icon" href="Images/logo.png"> 
 
@@ -17,34 +19,7 @@
 
   <body>
 <!-- NavBar -->
-<header>
-  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <a class="navbar-brand" href="acceuil.html"><img src="Images/logo.png" width="20%"></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item ">
-          <a class="nav-link" href="acceuil.html">Accueil</a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="toutParcourir.html">Tout Parcourir <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item ">
-          <a class="nav-link" href="rendezvous.html">Rendez-vous </a>
-        </li>
-        <li class="nav-item ">
-          <a class="nav-link" href="compte.php">Votre Compte</a>
-        </li>
-      </ul>
-      <form class="form-inline mt-2 mt-md-0">
-        <input class="form-control mr-sm-2 " type="text" placeholder="Votre recherche" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Chercher</button>
-      </form>
-    </div>
-  </nav>
-</header>
+<?php include("header.html"); ?>
 
 
 <main role="main">
@@ -70,14 +45,14 @@
       <p class="lead">Contactez un médecin spécialisé.</p>
       <ul style="color: blue;">
         <div id="col">
-        <li> <a href="addictologie.html">Addictologie</li></a>
-        <li> <a href="andrologie.html">Andrologie</li></a>
-        <li> <a href="cardiologie.html">Cardiologie</li></a>
-        <li> <a href="dermatologie.html">Dermatologie</li></a>
-        <li> <a href="gastro.html">Gastro-Hépato-Entérologie</li></a>
-        <li> <a href="gynecologie.html">Gynécologie</li></a>
-        <li> <a href="ist.html">I.S.T.</li></a>
-        <li> <a href="osteopathie.html">Ostéopathie</li></a>
+        <li> <a href="addictologie.php">Addictologie</li></a>
+        <li> <a href="andrologie.php">Andrologie</li></a>
+        <li> <a href="cardiologie.php">Cardiologie</li></a>
+        <li> <a href="dermatologie.php">Dermatologie</li></a>
+        <li> <a href="gastro.php">Gastro-Hépato-Entérologie</li></a>
+        <li> <a href="gynecologie.php">Gynécologie</li></a>
+        <li> <a href="ist.php">I.S.T.</li></a>
+        <li> <a href="osteopathie.php">Ostéopathie</li></a>
       </div>
         </ul>
       
@@ -91,25 +66,15 @@
 
 <div class="row featurette">
   <div class="col-md-7">
-    <h2 class="featurette-heading"><a href="labo.html" style="color: blue;">Laboratoire de biologie médicale </a></h2>
+    <h2 class="featurette-heading"><a href="labo.php" style="color: blue;">Laboratoire de biologie médicale </a></h2>
     <p class="lead">Informations sur notre laboratoire.</p>
   </div>
   <div class="col-md-5">
     <img class="featurette-image img-fluid mx-auto rounded-circle" style="filter:drop-shadow(5px 10px 4px rgb(144, 144, 167));" src="Images/laboratory-g87594d8b8_640.jpg" alt="Generic placeholder image">
   </div>
-</div>
 
-<hr class="featurette-divider">
-</div>
-    <!-- FOOTER -->
-    <footer class="container">
-      <p class="float-right"><a href="#">Back to top</a></p>
-      <p1> Contact OMNES Santé </p1>
-    <p> Mail: <a href="mailto:contact@omnessante.fr">contact@omnessante.fr</a>
-      &emsp;Téléphone: +33 1.69.42.36.80&emsp;Adresse: 
-      <a href="https://www.google.fr/maps/place/37+Quai+de+Grenelle,+75015+Paris/@48.8515039,2.2850437,17z/data=!3m1!4b1!4m5!3m4!1s0x47e6700497ee3ec5:0xdd60f514adcdb346!8m2!3d48.8515004!4d2.2872324">37 Quai de Grenelle 75015
-      </a></p>
-    </footer>
+<?php include("footer.html"); ?>
+
 
     
 </main>

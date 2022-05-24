@@ -1,3 +1,6 @@
+
+<style><?php include 'style.css'; ?></style>
+
 <!doctype html>
 <html lang="fr">
   <head>
@@ -8,7 +11,6 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
 
   <!-- The icon of the website. -->
     <link rel="icon" href="Images/logo.png">
@@ -17,36 +19,35 @@
  <!-- https://getbootstrap.com/docs/4.0/examples/carousel/ -->
 <body>
   
-
-    <header>
-      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="acceuil.html"><img src="Images/logo.png" width="20%"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="acceuil.html">Accueil <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="toutParcourir.html">Tout Parcourir</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="rendezvous.html">Rendez-vous</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="compte.php">Votre Compte</a>
-            </li>
-          </ul>
-          <form class="form-inline mt-2 mt-md-0">
-            <input class="form-control mr-sm-2 " type="text" placeholder="Votre recherche" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Chercher</button>
-          </form>
-        </div>
-      </nav>
-    </header>
-
+<header>
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-green">
+          <a class="navbar-brand" href="acceuil.php"><img src="Images/logo.png" width="20%"></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active ">
+                <a class="nav-link" href="acceuil.php">Accueil <span class="sr-only">(current)</span> </a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="toutParcourir.php">Tout Parcourir</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="rendezvous.php">Rendez-vous</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="compte.php">Votre Compte</a>
+              </li>
+            </ul>
+            <form class="form-inline mt-2 mt-md-0">
+              <input class="form-control mr-sm-2 " type="text" placeholder="Votre recherche" aria-label="Search">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Chercher</button>
+            </form>
+          </div>
+        </nav>
+      </header>
+    
     <main role="main">
 
       <div id="myCarousel" class="carousel slide carousel-fade" data-ride="carousel">
@@ -157,28 +158,12 @@
           </div>
         </div>
 
-        <hr class="featurette-divider">
-
-
-    
-
+        <!--<hr class="featurette-divider">-->
         <!-- /END THE FEATURETTES -->
-
       </div><!-- /.container -->
 
-
-      <!-- FOOTER -->
-      <footer class="container">
-        <p class="float-right"><a href="#">Back to top</a></p>
-        <p1> Contact OMNES Santé </p1>
-      <p> Mail: <a href="mailto:contact@omnessante.fr">contact@omnessante.fr</a>
-        &emsp;Téléphone: +33 1.69.42.36.80&emsp;Adresse: 
-        <a href="https://www.google.fr/maps/place/37+Quai+de+Grenelle,+75015+Paris/@48.8515039,2.2850437,17z/data=!3m1!4b1!4m5!3m4!1s0x47e6700497ee3ec5:0xdd60f514adcdb346!8m2!3d48.8515004!4d2.2872324">37 Quai de Grenelle 75015
-        </a></p>
-      </footer>
-    </main>
-
-  
+      <?php include("footer.html"); ?>
+      
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

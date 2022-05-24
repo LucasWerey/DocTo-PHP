@@ -1,39 +1,4 @@
 <?php
-/*
-echo '<script src="index.js"></script>';
-
-if(!empty($_GET['id'])){
-  // connexion à la base de données
-  $db_username = 'root';
-  $db_password = 'root';
-  $db_name     = 'omnessante';
-  $db_host     = 'localhost';
-
-
-  $db_handle = mysqli_connect($db_host,  $db_username,  $db_password );
-  $db_found = mysqli_select_db($db_handle, $db_name);
- 
-  if ($db_found) {
-    $sql = "SELECT * FROM medecins where id={$_GET['id']}";
-    $result = mysqli_query($db_handle, $sql);
-    while ($data = mysqli_fetch_assoc($result)) {
-    echo '<h5>''ID: ' . $data['id'] . '</h5>''<br>';    
-    echo '<h5>''Prénom:' . $data['prenom'] . '</h5>''<br>';
-    echo '<h5>''Nom:' . $data['nom'] . '<br>';
-    echo '<h5>''Spécialité: ' . $data['spe'] .'</h5>' '<br>';
-    echo '<h5>''Téléphone: ' . $data['tel'] . '</h5>''<br>';
-    echo '<h5>''Mail: ' . $data['mail'] . '</h5>''<br>';
-    echo '<h5>''Photo: ' . $data['photo'] . '</h5>''<br>';
-    echo'<h5>' 'Salle: ' . $data['salle'] .'</h5>' '<br>';
-}
-  }
-    else {
-        echo "Database not found";
-       }
-       mysqli_close($db_handle);
-    }
-*/
-
 
 if(!empty($_GET['id'])){ 
     // Database configuration 

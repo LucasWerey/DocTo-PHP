@@ -27,7 +27,7 @@ if(isset($_POST['logemail']) && isset($_POST['logpass']))
         if($count!=0) // nom d'utilisateur et mot de passe correctes
         {
            $_SESSION['logemail'] = $username;
-           header('Location: principale.php');
+           header('Location: compteClient.php');
         }
         else
         {

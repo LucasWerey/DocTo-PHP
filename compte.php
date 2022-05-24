@@ -1,3 +1,5 @@
+<style><?php include 'style.css'; ?></style>
+
 <!doctype html>
 <html lang="fr">
 
@@ -10,7 +12,6 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="style.css">
   <!-- The icon of the website. -->
   <link rel="icon" href="Images/logo.png">
 
@@ -19,7 +20,7 @@
 <body>
   <!-- NavBar -->
   <header>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-green">
       <a class="navbar-brand" href="acceuil.html"><img src="Images/logo.png" width="20%"></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
         aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,13 +29,13 @@
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item ">
-            <a class="nav-link" href="acceuil.html">Accueil</a>
+            <a class="nav-link" href="acceuil.php">Accueil</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="toutParcourir.html">Tout Parcourir</a>
+            <a class="nav-link" href="toutParcourir.php">Tout Parcourir</a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="rendezvous.html">Rendez-vous </a>
+            <a class="nav-link" href="rendezvous.php">Rendez-vous </a>
           </li>
           <li class="nav-item active ">
             <a class="nav-link" href="compte.php">Votre Compte<span class="sr-only">(current)</span></a>
@@ -53,7 +54,7 @@
   </a>
 
   <div class="section">
-    <div class="container">
+    <div class="container" >
       <div class="row full-height justify-content-center">
         <div class="col-12 text-center align-self-center py-5">
           <div class="section pb-5 pt-5 pt-sm-2 text-center">
@@ -95,23 +96,47 @@
                 <div class="card-back">
                   <div class="center-wrap">
                     <div class="section text-center">
+
+                    <form action="signin.php" method="POST">
                       <h4 class="mb-4 pb-3">S'inscrire</h4>
                       <div class="form-group">
-                        <input type="text" name="logname" class="form-style" placeholder="Prénom et Nom" id="logname"
-                          autocomplete="off">
+                        <input type="text" name="logfname" class="form-style" placeholder="Nom" id="logfname"
+                          autocomplete="off" required>
+                        <i class="input-icon uil uil-user"></i>
+                      </div>
+                      <div class="form-group">
+                        <input type="text" name="logname" class="form-style" placeholder="Prénom" id="logname"
+                          autocomplete="off" required>
                         <i class="input-icon uil uil-user"></i>
                       </div>
                       <div class="form-group mt-2">
                         <input type="email" name="logemail" class="form-style" placeholder="Email" id="logemail"
-                          autocomplete="off">
+                          autocomplete="off" required>
                         <i class="input-icon uil uil-at"></i>
+                      </div>
+                      <div class="form-group">
+                        <input type="text" name="logaddress" class="form-style" placeholder="Adresse" id="logaddress"
+                          autocomplete="off" required>
+                        <i class="input-icon uil uil-user"></i>
+                      </div>
+                      <div class="form-group">
+                        <input type="text" name="logtel" class="form-style" placeholder="Téléphone" id="logtel"
+                          autocomplete="off" required>
+                        <i class="input-icon uil uil-user"></i>
+                      </div>
+                      <div class="form-group">
+                        <input type="text" name="logcartev" class="form-style" placeholder="Carte Vitale" id="logcartev"
+                          autocomplete="off" required>
+                        <i class="input-icon uil uil-user"></i>
                       </div>
                       <div class="form-group mt-2">
                         <input type="password" name="logpass" class="form-style" placeholder="Mot de passe" id="logpass"
-                          autocomplete="off">
+                          autocomplete="off" required>
                         <i class="input-icon uil uil-lock-alt"></i>
                       </div>
-                      <a href="#" class="btn mt-4">S'inscrire</a>
+                      <input type="submit" id="inscrire" value="S'inscrire" class="btn mt-4">
+                    </form>
+
                     </div>
                   </div>
                 </div>
@@ -123,24 +148,8 @@
     </div>
   </div>
 
-  <div class="container marketing">
+  <?php include("footer.html"); ?>
 
-    <!-- A horizontal line. -->
-    <hr class="featurette-divider">
-
-  </div>
-  <!-- FOOTER -->
-  <footer class="container">
-    <p class="float-right"><a href="#">Back to top</a></p>
-    <p1> Contact OMNES Santé </p1>
-    <p> Mail: <a href="mailto:contact@omnessante.fr">contact@omnessante.fr</a>
-      &emsp;Téléphone: +33 1.69.42.36.80&emsp;Adresse:
-      <a
-        href="https://www.google.fr/maps/place/37+Quai+de+Grenelle,+75015+Paris/@48.8515039,2.2850437,17z/data=!3m1!4b1!4m5!3m4!1s0x47e6700497ee3ec5:0xdd60f514adcdb346!8m2!3d48.8515004!4d2.2872324">37
-        Quai de Grenelle 75015
-      </a>
-    </p>
-  </footer>
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
