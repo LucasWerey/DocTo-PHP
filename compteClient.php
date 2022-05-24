@@ -57,7 +57,7 @@
             <form method="post">
                 <div class="row">
                     <div class="col-md-4">
-                        <div class="profile-img">
+                        <div class="profile-img" >
                             <img src="Images/bonhomme.jpg" alt=""/>
                             
                         </div>
@@ -85,14 +85,12 @@
                 </div>
                 <div class="row">
                     <div class="col-md-4">
-                        <div class="profile-work">
-                           
-                        </div>
+                        
                     </div>
                     <div class="col-md-8">
                         <div class="tab-content profile-tab" id="myTabContent">
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                        <div class="row">
+                                        <div class="row" style="margin-top:-120px">
                                             <div class="col-md-6">
                                                 <label>Votre identifiant</label>
                                             </div>
@@ -184,7 +182,7 @@
                                         </div>
                             </div>
                             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                        <div class="row">
+                                        <div class="row" style="margin-top:-120px">
                                             <div class="col-md-6">
                                                 <label>Experience</label>
                                             </div>
@@ -235,6 +233,7 @@
         </div>
 
 
+       
         <?php include("footer.html"); ?>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
