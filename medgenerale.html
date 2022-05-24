@@ -40,9 +40,6 @@
             <a class="nav-link" href="compte.html">Votre Compte</a>
           </li>
             </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="testModal.html">TestModal</a>
-          </li>
         </ul>
         <form class="form-inline mt-2 mt-md-0">
           <input class="form-control mr-sm-2 " type="text" placeholder="Votre recherche" aria-label="Search">
@@ -54,214 +51,154 @@
 
 
 
-    <div class="container marketing"  style="padding-top:350px;">
+    <div class="container marketing"  style="padding-top:200px;">
     <div class="col">
       <div class="col-lg-offset-2 col-lg-15 ">
           <div class="row boxr">
     <div class="col-lg-4">
-
-    <!-- Button -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#popup" style="font-size: large;">
-      Dr. Octave Prevot
-    </button>
-
-    <!-- Pop-up -->
-      <div id="popup" class="modal">
-      <div class="modal-dialog modal-dialog-centered">
+   <!-- Button -->
+<button type="button" class="btn btn-primary openBtn1" style="font-size: large;">DR. Lucas Werey</button>
+<!-- Modal -->
+<div class="modal fade" id="myModal1" role="dialog">
+    <div class="modal-dialog" >
+        <!-- Modal content-->
         <div class="modal-content">
-          <div class="modal-header">
-            <p> Dr. Octave Prevot </p>
-          </div>
-          <div class="modal-body">
-            <p><img src="Images/Docteur F2.png"></p>
-          <span class="counter pull-right"></span>
-          <table class="table table-hover table-bordered results">
-            <thead>
-              <tr>
-                <th class="col-md-5 col-xs-5">Spécialité</th>
-                <th class="col-md-4 col-xs-4">Médecin</th>
-                <th class="col-md-3 col-xs-3">City</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Vatanay Özbeyli</td>
-                <td>UI & UX</td>
-                <td>Istanbul</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Burak Özkan</td>
-                <td>Software Developer</td>
-                <td>Istanbul</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>Egemen Özbeyli</td>
-                <td>Purchasing</td>
-                <td>Kocaeli</td>
-              </tr>
-              <tr>
-                <th scope="row">4</th>
-                <td>Engin Kızıl</td>
-                <td>Sales</td>
-                <td>Bozuyük</td>
-              </tr> 
-            </tbody>
-          </table>
+            <div class="modal-header">            
+                <h4 class="modal-title"></h4>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer"> 
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="window.location.href = 'rendezvous.html';">Prendre un RDV</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Communiquer avec le médecin</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Voir son CV</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+            </div>
+        </div>
+    </div>
+</div></div>
 
+<div class="col-lg-4">
+  <!-- Button -->
+<button type="button" class="btn btn-primary openBtn2" style="font-size: large;">DR. Octave Prevot</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal2" role="dialog">
+   <div class="modal-dialog">
+       <!-- Modal content-->
+       <div class="modal-content">
+           <div class="modal-header">            
+               <h4 class="modal-title"></h4>
+           </div>
+           <div class="modal-body">
+           </div>
+           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="window.location.href = 'rendezvous.html';">Prendre un RDV</button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Communiquer avec le médecin</button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Voir son CV</button>
-          </div>
-          <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  <div class="col-lg-4">
-   <!-- Button -->
-   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#popup" style="font-size: large;">
-    Dr. Clémence Amaladasse
-  </button>
-
-  <!-- Pop-up -->
-    <div id="popup" class="modal">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <p> Dr. Clémence Amaladasse </p>
-        </div>
-        <div class="modal-body">
-          <p><img src="Images/Docteur F2.png"></p>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="window.location.href = 'rendezvous.html';">Prendre un RDV</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Communiquer avec le médecin</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Voir son CV</button>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<div class="col-lg-4">
-   <!-- Button -->
-   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#popup" style="font-size: large;">
-    Dr. Matthieu Vu-Huy-Dat
-  </button>
-
-  <!-- Pop-up -->
-    <div id="popup" class="modal">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <p> Dr. Matthieu Vu-Huy-Dat </p>
-        </div>
-        <div class="modal-body">
-          <p><img src="Images/Docteur H.svg"></p>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="window.location.href = 'rendezvous.html';">Prendre un RDV</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Communiquer avec le médecin</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Voir son CV</button>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<div class="col-lg-4">
-  <!-- Button -->
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#popup" style="font-size: large; margin-top: 70px;;">
-    Dr. Léna Heurtaux
-  </button>
-
-  <!-- Pop-up -->
-    <div id="popup" class="modal">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <p> Dr. Léna Heurtaux </p>
-        </div>
-        <div class="modal-body">
-          <p><img src="Images/Docteur F.svg"></p>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="window.location.href = 'rendezvous.html';">Prendre un RDV</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Communiquer avec le médecin</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Voir son CV</button>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<div class="col-lg-4">
- <!-- Button -->
- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#popup" style="font-size: large; margin-top: 70px;;">
-  Dr. Lucas Werey
-</button>
-
-<!-- Pop-up -->
-  <div id="popup" class="modal">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <p> Dr. Lucas Werey </p>
-      </div>
-      <div class="modal-body">
-        <p><img src="Images/Docteur H.svg"></p>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="window.location.href = 'rendezvous.html';">Prendre un RDV</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Communiquer avec le médecin</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Voir son CV</button>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-<div class="col-lg-4">
-  <!-- Button -->
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#popup" style="font-size: large;  margin-top: 70px;">
-   Dr. Baptiste Bernaud
- </button>
- 
- <!-- Pop-up -->
-   <div id="popup" class="modal">
-   <div class="modal-dialog modal-dialog-centered">
-     <div class="modal-content">
-       <div class="modal-header">
-         <p> Dr. Baptiste Bernaud </p>
+           </div>
        </div>
-       <div class="modal-body">
-         <p><img src="Images/Docteur H.svg"></p>
-         <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="window.location.href = 'rendezvous.html';">Prendre un RDV</button>
-         <button type="button" class="btn btn-secondary" data-dismiss="modal">Communiquer avec le médecin</button>
-         <button type="button" class="btn btn-secondary" data-dismiss="modal">Voir son CV</button>
-       </div>
-       <div class="modal-footer">
-         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-       </div>
-     </div>
    </div>
- </div>
- </div>
-</div></div> </div>
- 
+</div></div>
+
+<div class="col-lg-4">
+  <!-- Button -->
+<button type="button" class="btn btn-primary openBtn3" style="font-size: large;">Dr Léna Heurtaux</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal3" role="dialog">
+   <div class="modal-dialog">
+       <!-- Modal content-->
+       <div class="modal-content">
+           <div class="modal-header">            
+               <h4 class="modal-title"></h4>
+           </div>
+           <div class="modal-body">
+           </div>
+           <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="window.location.href = 'rendezvous.html';">Prendre un RDV</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Communiquer avec le médecin</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Voir son CV</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+           </div>
+       </div>
+   </div>
+</div></div>
+
+<div class="col-lg-4">
+  <!-- Button -->
+<button type="button" class="btn btn-primary openBtn4" style="font-size: large;">Dr Matthieu Vu-Huy-Dat</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal4" role="dialog">
+   <div class="modal-dialog">
+       <!-- Modal content-->
+       <div class="modal-content">
+           <div class="modal-header">            
+               <h4 class="modal-title"></h4>
+           </div>
+           <div class="modal-body">
+           </div>
+           <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="window.location.href = 'rendezvous.html';">Prendre un RDV</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Communiquer avec le médecin</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Voir son CV</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+           </div>
+       </div>
+   </div>
+</div></div>
+
+<div class="col-lg-4">
+  <!-- Button -->
+<button type="button" class="btn btn-primary openBtn5" style="font-size: large;">Dr Baptiste Bernaud</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal5" role="dialog">
+   <div class="modal-dialog">
+       <!-- Modal content-->
+       <div class="modal-content">
+           <div class="modal-header">            
+               <h4 class="modal-title"></h4>
+           </div>
+           <div class="modal-body">
+           </div>
+           <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="window.location.href = 'rendezvous.html';">Prendre un RDV</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Communiquer avec le médecin</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Voir son CV</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+           </div>
+       </div>
+   </div>
+</div></div>
+
+<div class="col-lg-4">
+  <!-- Button -->
+<button type="button" class="btn btn-primary openBtn6" style="font-size: large;">Dr Clémence Amaladasse</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal6" role="dialog">
+   <div class="modal-dialog">
+       <!-- Modal content-->
+       <div class="modal-content">
+           <div class="modal-header">            
+               <h4 class="modal-title"></h4>
+           </div>
+           <div class="modal-body">
+           </div>
+           <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="window.location.href = 'rendezvous.html';">Prendre un RDV</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Communiquer avec le médecin</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Voir son CV</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+           </div>
+       </div>
+   </div>
+</div></div>
+
+      </div></div>
     <!-- A horizontal line. -->
     <hr class="featurette-divider" style="margin-top:370px">
   </div>
@@ -279,16 +216,76 @@
   </footer>
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
     integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
     crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
+    <script src="index.js"></script>
 
 </body>
 
 </html>
+
+<!--
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#popup" style="font-size: large;">
+  Dr. Octave Prevot
+</button>
+
+  <div id="popup" class="modal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <p> Dr. Octave Prevot </p>
+      </div>
+      <div class="modal-body">
+        <p><img src="Images/Docteur F2.png"></p>
+      <span class="counter pull-right"></span>
+      <table class="table table-bordered results">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Lundi</th>
+            <th>Mardi</th>
+            <th>Mercredi</th>
+            <th>Jeudi</th>
+            <th>Vendredi</th>
+            <th>Samedi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">AM</th>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row">PM</th>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="window.location.href = 'rendezvous.html';">Prendre un RDV</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Communiquer avec le médecin</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Voir son CV</button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+-->
