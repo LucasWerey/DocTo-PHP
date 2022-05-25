@@ -34,4 +34,3 @@ if(!empty($_GET['id'])){
     echo 'Content not found....'; 
 } 
 ?>
-   

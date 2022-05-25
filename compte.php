@@ -18,6 +18,7 @@
 </head>
 
 <body>
+
   <!-- NavBar -->
   <header>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-green">
@@ -38,7 +39,7 @@
             <a class="nav-link" href="rendezvous.php">Rendez-vous </a>
           </li>
           <li class="nav-item active ">
-            <a class="nav-link" href="compte.php">Votre Compte<span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="verifcompte.php">Votre Compte<span class="sr-only">(current)</span></a>
           </li>
         </ul>
         <form class="form-inline mt-2 mt-md-0">

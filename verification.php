@@ -26,8 +26,13 @@ if(isset($_POST['logemail']) && isset($_POST['logpass']))
         $count = $reponse['count(*)'];
         if($count!=0) // nom d'utilisateur et mot de passe correctes
         {
-           $_SESSION['logemail'] = $username;
-           header('Location: compteClient.php');
+           $requeteconnexion = "UPDATE `compte` SET `conn`=true WHERE `username`='".$username."' ";
+           if (mysqli_query($db,$requeteconnexion)){
+               $_SESSION['logemail'] = $username;
+               header('Location: compteClient.php');
+           }else{
+               echo "PB de modif de connexion";
+           }
         }
         else
         {
