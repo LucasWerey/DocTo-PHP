@@ -406,12 +406,12 @@ h2{
   }
 
   .modal-body{
-    height:500px;
-    width: 500px;
+    height: 800px;
+    width: 800px;
   }
   .modal-content{
-    width: 700px;
-
+    height: 800px;
+    width: 800px;
   }
 
 

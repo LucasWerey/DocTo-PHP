@@ -1,4 +1,6 @@
+<style><?php include 'style.css'; ?></style>
 <?php
+
 
 if(!empty($_GET['id'])){ 
     // Database configuration 
@@ -20,12 +22,93 @@ if(!empty($_GET['id'])){
     if($query->num_rows > 0){ 
         $cmsData = $query->fetch_assoc(); 
       //  echo '<p>'.$cmsData['photo'].'</p>'; 
-        echo '<img src="data:image/jpeg;base64,' . base64_encode($cmsData['photo']) . '" height="50%" width="50%" alt="IMG Bapt" style="margin-left:200px;"/>';
+        echo '<img src="data:image/jpeg;base64,' . base64_encode($cmsData['photo']) . '" height="25%" width="25%" alt="IMG Bapt" style="margin-left:200px;"/>';
         echo '<p> Nom : '.$cmsData['nom'].'</p>'; 
         echo '<p> Prénom : '.$cmsData['prenom'].'</p>'; 
         echo '<p> Salle : '.$cmsData['salle'].'</p>'; 
         echo '<p> Téléphone : '.$cmsData['tel'].'</p>'; 
-        echo '<p> E-mail : '.$cmsData['mail'].'</p>'; 
+        echo '<p> E-mail : '.$cmsData['mail'].'</p>';
+        echo '<table class="table table-bordered results">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Lundi</th>
+            <th>Mardi</th>
+            <th>Mercredi</th>
+            <th>Jeudi</th>
+            <th>Vendredi</th>
+            <th>Samedi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">AM</th>';
+            if ($cmsData['lundiam']==true){
+                echo '<td bgcolor="white"></td>';
+            }else{
+                echo '<td bgcolor="black"></td>';
+            }
+            if ($cmsData['mardiam']==true){
+                echo '<td bgcolor="white"></td>';
+            }else{
+                echo '<td bgcolor="black"></td>';
+            }
+            if ($cmsData['mercrediam']==1){
+                echo '<td bgcolor="white"></td>';
+            }else{
+                echo '<td bgcolor="black"></td>';
+            }
+            if ($cmsData['jeudiam']==1){
+                echo'<td bgcolor="white"></td>';
+            }else{
+                echo'<td bgcolor="black"></td>';
+            }
+            if ($cmsData['vendrediam']==1){
+                echo'<td bgcolor="white"></td>';
+            }else{
+                echo'<td bgcolor="black"></td>';
+            }
+            if ($cmsData['samediam']==1){
+                echo'<td bgcolor="white"></td>';
+            }else{
+                echo'<td bgcolor="black"></td>';
+            }
+            echo'</tr>
+          <tr>
+            <th scope="row">PM</th>';
+            if ($cmsData['lundipm']==true){
+                echo '<td bgcolor="white"></td>';
+            }else{
+                echo '<td bgcolor="black"></td>';
+            }
+            if ($cmsData['mardipm']==true){
+                echo '<td bgcolor="white"></td>';
+            }else{
+                echo '<td bgcolor="black"></td>';
+            }
+            if ($cmsData['mercredipm']==1){
+                echo '<td bgcolor="white"></td>';
+            }else{
+                echo '<td bgcolor="black"></td>';
+            }
+            if ($cmsData['jeudipm']==1){
+                echo'<td bgcolor="white"></td>';
+            }else{
+                echo'<td bgcolor="black"></td>';
+            }
+            if ($cmsData['vendredipm']==1){
+                echo'<td bgcolor="white"></td>';
+            }else{
+                echo'<td bgcolor="black"></td>';
+            }
+            if ($cmsData['samedipm']==1){
+                echo'<td bgcolor="white"></td>';
+            }else{
+                echo'<td bgcolor="black"></td>';
+            }
+          echo '</tr>
+        </tbody>
+      </table>'; 
     
     }else{ 
         echo 'Content not found....'; 
