@@ -41,6 +41,7 @@
                 <a class="nav-link" href="verifcompte.php">Votre Compte <span class="sr-only">(current)</span> </a>
               </li>
             </ul>
+            <a class="btn btn-outline-success my-2 my-sm-0" href="deconn.php">Déconnexion</a>
             <form class="form-inline mt-2 mt-md-0">
               <input class="form-control mr-sm-2 " type="text" placeholder="Votre recherche" aria-label="Search">
               <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Chercher</button>
