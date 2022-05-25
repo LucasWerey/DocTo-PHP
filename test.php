@@ -1,7 +1,6 @@
 
 <style><?php include 'style.css'; ?></style>
 
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -48,28 +47,64 @@
     </nav>
   </header>
 
-  <div class="container marketing"  style="padding-top:150px;">
+ 
+  <div class="container marketing"  style="padding-top:100px;">
+  
+
   <div class="col">
       <div class="col-lg-offset-2 col-lg-15 ">
           <div class="row boxr">
     <div class="col-lg-4">
-     <img src="Images/Docteur H.svg" width="70%" class="rounded-circle" style=" border : solid black 2px; filter: blur(2px);" />
-<div class="overlay ctr">
-     <button type="button" class="btn1 btn-default1" data-toggle="modal" data-target="#exampleModal" data-whatever="Lucas Werey">Lucas Werey
+      <div class="image">
+     <img src="Images/Docteur H.svg" width="70%" class="image__img"  />
+     <div class="img_overlay">
+       <p class="img_desc">
+    
+    <a  data-toggle="modal" data-target="#exampleModal"  data-whatever="Lucas Werey">Lucas Werey </a>
+</p>
+ </div>
 </div>
-    </button>
-</div><div class="col-lg-4">
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="Clémence Amaladasse">Dr.Clémence Amaladasse</button>
-</div><div class="col-lg-4">
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="Léna Heurtaux">Dr.Léna Heurtaux</button>
-</div><div class="col-lg-4">
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="Octave Prevot">Dr.Octave Prevot</button>
-</div><div class="col-lg-4">
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="Matthieu Vu-Huy-Dat">Dr.Matthieu Vu-Huy-Dat</button>
-</div><div class="col-lg-4">
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="Baptiste Bernaud">Dr. Baptiste Bernaud</button>
-</div>
-</div>
+</div> <div class="col-lg-4">
+      <div class="image">
+     <img src="Images/Docteur H.svg" width="70%" class="image__img"  />
+     <div class="img_overlay">
+       <p class="img_desc">
+     <a  data-toggle="modal" data-target="#exampleModal" data-whatever="Clémence Amaladasse">Clémence Amaladasse</a>
+      </p>
+    </div></div></div>
+    <div class="col-lg-4">
+      <div class="image">
+     <img src="Images/Docteur H.svg" width="70%" class="image__img"  />
+     <div class="img_overlay">
+       <p class="img_desc">
+     <a  data-toggle="modal" data-target="#exampleModal" data-whatever="Octave Prévot">Octave Prévot </a>
+</p>
+    </div></div></div>
+    <div class="col-lg-4">
+      <div class="image">
+     <img src="Images/Docteur H.svg" width="70%" class="image__img"  />
+     <div class="img_overlay">
+       <p class="img_desc">
+     <a  data-toggle="modal" data-target="#exampleModal" data-whatever="Léna Heurtaux">Léna Heurtaux </a>
+</p>
+    </div></div></div>
+    <div class="col-lg-4">
+      <div class="image">
+     <img src="Images/Docteur H.svg" width="70%" class="image__img"  />
+     <div class="img_overlay">
+       <p class="img_desc">
+     <a data-toggle="modal" data-target="#exampleModal" data-whatever="Matthieu Vu-Huy-Dat">Matthieu Vu-Huy-Dat </a>
+</p>
+    </div></div></div>
+    <div class="col-lg-4">
+      <div class="image">
+     <img src="Images/Docteur H.svg" width="70%" class="image__img"  />
+     <div class="img_overlay">
+       <p class="img_desc">
+     <a data-toggle="modal" data-target="#exampleModal" name="lien"  value="5" data-whatever="Baptiste Bernaud">Baptiste Bernaud</a>
+</p>
+    </div></div></div>
+
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -81,8 +116,121 @@
         </button>
       </div>
       <div class="modal-body">
-        <form>
-         
+        
+
+         <?php // Database configuration 
+  // Database configuration 
+         $db_username = 'root';
+         $db_password = 'root';
+         $db_name     = 'omnessante';
+         $db_host     = 'localhost'; 
+   
+  // Create connection and select database 
+         $db = new mysqli($db_host, $db_username, $db_password, $db_name); 
+  
+  if ($db->connect_error) { 
+      die("Unable to connect database: " . $db->connect_error); 
+      
+  } 
+  // Get content from the database 
+  $query = $db->query("SELECT * FROM medecins WHERE id = '1'"); 
+   
+  if($query->num_rows > 0){ 
+      $cmsData = $query->fetch_assoc(); 
+
+        echo '<img src="data:image/jpeg;base64,' . base64_encode($cmsData['photo']) . '" height="25%" width="25%" alt="IMG Bapt" style="margin-left:200px;"/>';
+        echo '<p> Nom : '.$cmsData['nom'].'</p>'; 
+        echo '<p> Prénom : '.$cmsData['prenom'].'</p>'; 
+        echo '<p> Salle : '.$cmsData['salle'].'</p>'; 
+        echo '<p> Téléphone : '.$cmsData['tel'].'</p>'; 
+        echo '<p> E-mail : '.$cmsData['mail'].'</p>';
+        echo '<table class="table table-bordered results">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Lundi</th>
+            <th>Mardi</th>
+            <th>Mercredi</th>
+            <th>Jeudi</th>
+            <th>Vendredi</th>
+            <th>Samedi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">AM</th>';
+            if ($cmsData['lundiam']==true){
+                echo '<td bgcolor="white"></td>';
+            }else{
+                echo '<td bgcolor="black"></td>';
+            }
+            if ($cmsData['mardiam']==true){
+                echo '<td bgcolor="white"></td>';
+            }else{
+                echo '<td bgcolor="black"></td>';
+            }
+            if ($cmsData['mercrediam']==1){
+                echo '<td bgcolor="white"></td>';
+            }else{
+                echo '<td bgcolor="black"></td>';
+            }
+            if ($cmsData['jeudiam']==1){
+                echo'<td bgcolor="white"></td>';
+            }else{
+                echo'<td bgcolor="black"></td>';
+            }
+            if ($cmsData['vendrediam']==1){
+                echo'<td bgcolor="white"></td>';
+            }else{
+                echo'<td bgcolor="black"></td>';
+            }
+            if ($cmsData['samediam']==1){
+                echo'<td bgcolor="white"></td>';
+            }else{
+                echo'<td bgcolor="black"></td>';
+            }
+            echo'</tr>
+          <tr>
+            <th scope="row">PM</th>';
+            if ($cmsData['lundipm']==true){
+                echo '<td bgcolor="white"></td>';
+            }else{
+                echo '<td bgcolor="black"></td>';
+            }
+            if ($cmsData['mardipm']==true){
+                echo '<td bgcolor="white"></td>';
+            }else{
+                echo '<td bgcolor="black"></td>';
+            }
+            if ($cmsData['mercredipm']==1){
+                echo '<td bgcolor="white"></td>';
+            }else{
+                echo '<td bgcolor="black"></td>';
+            }
+            if ($cmsData['jeudipm']==1){
+                echo'<td bgcolor="white"></td>';
+            }else{
+                echo'<td bgcolor="black"></td>';
+            }
+            if ($cmsData['vendredipm']==1){
+                echo'<td bgcolor="white"></td>';
+            }else{
+                echo'<td bgcolor="black"></td>';
+            }
+            if ($cmsData['samedipm']==1){
+                echo'<td bgcolor="white"></td>';
+            }else{
+                echo'<td bgcolor="black"></td>';
+            }
+          echo '</tr>
+        </tbody>
+      </table>'; 
+    
+    }else{ 
+        echo 'Content not found....'; 
+    } 
+ 
+    ?>
         </form>
       </div>
       
@@ -91,15 +239,13 @@
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Communiquer avec le médecin</button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Voir son CV</button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-           
-        </div>
-     
+                  </div>
     </div>
   </div>
 </div>
 </div>
 
-      
+<?php include("footer.html"); ?>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
