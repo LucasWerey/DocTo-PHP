@@ -1,30 +1,6 @@
 
 <style><?php include 'style.css'; ?></style>
 
-<?php 
- // Database configuration 
- $db_username = 'root';
- $db_password = 'root';
- $db_name     = 'omnessante';
- $db_host     = 'localhost'; 
-  
- // Create connection and select database 
- $db = new mysqli($db_host, $db_username, $db_password, $db_name); 
-  
- if ($db->connect_error) { 
-     die("Unable to connect database: " . $db->connect_error); 
- } 
-  
- // Get content from the database 
- $query = $db->query("SELECT * FROM compte WHERE conn=1"); 
-  
- if($query->num_rows > 0){ 
-     $cmsData = $query->fetch_assoc(); 
-    
-   $prenom=$cmsData['username'];
-     }
-?>
-
 
 
 <!doctype html>
@@ -95,7 +71,8 @@
       <div class="col-md-6">
       <div class="profile-head">
                    
-                                               <?php // Database configuration 
+                                              
+<?php // Database configuration 
   // Database configuration 
   $db_username = 'root';
   $db_password = 'root';
