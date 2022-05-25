@@ -48,7 +48,7 @@
               </form>
 
             <form class="form-inline mt-2 mt-md-0" style="margin-right:-150px;">
-            <a href="deconn.php"><img src="Images/logo.png" width="20%"></a>
+            <a href="deconn.php"><img src="Images/unplugged.png" width="20%"></a>
             </form>
           </div>
         </nav>
