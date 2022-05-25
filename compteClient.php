@@ -65,11 +65,10 @@
               <li class="nav-item active">
                 <a class="nav-link" href="verifcompte.php">Votre Compte <span class="sr-only">(current)</span> </a>
               </li>
-             
             </ul>
-              <form class="form-inline mt-2 mt-md-0" style="padding-right: 100px">
-              <input class="form-control mr-sm-2" type="text" placeholder="Votre recherche" aria-label="Search">
-              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Chercher</button>
+              <form action="search.php" method="GET" class="form-inline mt-2 mt-md-0" style="padding-right: 100px">
+              <input type = "text" name = "terme" class="form-control mr-sm-2" placeholder="Votre recherche" aria-label="Search">
+              <input type = "submit" name = "s" value = "Rechercher" class="btn btn-outline-success my-2 my-sm-0">
               </form>
 
             <form class="form-inline mt-2 mt-md-0" style="margin-right:-400px;">
@@ -92,125 +91,148 @@
                             
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="profile-head">
-                                    <h5>
-                                        Prénom Nom
-                                    </h5>
-                                   
                     
-                            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Votre profil</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Vos rendez-vous</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4">
-                        
-                    </div>
-                    <div class="col-md-8">
-                        <div class="tab-content profile-tab" id="myTabContent">
-                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                        <div class="row" style="margin-top:-120px">
-                                            <div class="col-md-6">
-                                                <label>Votre identifiant</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p><?php echo "{$prenom}"; ?></p>
-                                            </div>
+      <div class="col-md-6">
+      <div class="profile-head">
+                   
+                                               <?php // Database configuration 
+  // Database configuration 
+  $db_username = 'root';
+  $db_password = 'root';
+  $db_name     = 'omnessante';
+  $db_host     = 'localhost'; 
+   
+  // Create connection and select database 
+  $db = new mysqli($db_host, $db_username, $db_password, $db_name); 
+   
+  if ($db->connect_error) { 
+      die("Unable to connect database: " . $db->connect_error); 
+  } 
+   
+  // Get content from the database 
+  $query = $db->query("SELECT * FROM compte WHERE conn = 1"); 
+   
+  if($query->num_rows > 0){ 
+      $cmsData = $query->fetch_assoc(); 
+
+                 echo'<h5>'. $cmsData['password'].' '.$cmsData['password'].'</h5>
+                 
+  
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item">
+                  <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Mon profil</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Mes coordonnées banquaires</a>
+              </li>
+          </ul>
+      </div>
+  </div>
+  <div class="col-md-2">
+      <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4">
+      
+  </div>
+  <div class="col-md-8">
+      <div class="tab-content profile-tab" id="myTabContent">
+          <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                      <div class="row" style="margin-top:-120px">
+                          <div class="col-md-6">
+                              <label>Votre identifiant</label>
+                          </div>
+                          <div class="col-md-6">
+                          <p>'. $cmsData['username'].'</p>
+          </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label>Nom</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>Kshiti Ghelani</p>
+                                                <p>'. $cmsData['username'].'</p>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Prénom</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>kshitighelani@gmail.com</p>
-                                            </div>
+                                        <div class="col-md-6">
+                                            <label>Prénom</label>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Numéro de carte vitale</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>Web Developer and Designer</p>
-                                            </div>
+                                        <div class="col-md-6">
+                                        <p>'. $cmsData['username'].'</p>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>E-mail</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>123 456 7890</p>
-                                            </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Numéro de carte vitale</label>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Téléphone</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>Web Developer and Designer</p>
-                                            </div>
+                                        <div class="col-md-6">
+                                        <p>'. $cmsData['username'].'</p>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Adresse ligne 1</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>Web Developer and Designer</p>
-                                            </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>E-mail</label>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Adresse ligne 2</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>Web Developer and Designer</p>
-                                            </div>
+                                        <div class="col-md-6">
+                                        <p>'. $cmsData['username'].'</p>
                                         </div>
-                                           
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Téléphone</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                        <p>'. $cmsData['username'].'</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Adresse ligne 1</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                        <p>'. $cmsData['username'].'</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Adresse ligne 2</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                        <p>'. $cmsData['username'].'</p>
+                                        </div>
+                                    </div>
                                        
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Ville</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>Web Developer and Designer</p>
-                                            </div>
+                                   
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Ville</label>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Pays</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>Web Developer and Designer</p>
-                                            </div>
+                                        <div class="col-md-6">
+                                        <p>'. $cmsData['username'].'</p>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Code postal</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>Web Developer and Designer</p>
-                                            </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Pays</label>
                                         </div>
-                            </div>
+                                        <div class="col-md-6">
+                                        <p>'. $cmsData['username'].'</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Code postal</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                        <p>'. $cmsData['username'].'</p>
+                                        </div>
+                                    </div>
+                        </div>';
+     }?>
+                                            
+                                      
                             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                         <div class="row" style="margin-top:-120px">
                                             <div class="col-md-6">
