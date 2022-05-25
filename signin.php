@@ -32,14 +32,14 @@ if(isset($_POST['logemail']) && isset($_POST['logpass'])&& isset($_POST['logfnam
         $requete2 = "INSERT INTO `compte`(`username`, `password`, `type`) VALUES ('".$username."','".$password."','".$type."')";
         if (mysqli_query($db,$requete1)){
             echo "Enregistrement 1 realise avec succes";
-            //header('Location: acceuil.php');
+            header('Location: compte.php');
     }else {
             echo "Erreur : " . $sql . "<br>" . mysqli_error($conn);
         }
         
         if (mysqli_query($db,$requete2)){
             echo "Enregistrement 2 realise avec succes";
-            //header('Location: gastro.php');
+            header('Location: compte.php');
         }else {
             echo "Erreur : " . $sql . "<br>" . mysqli_error($conn);
         }
