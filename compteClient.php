@@ -87,12 +87,20 @@
   } 
    
   // Get content from the database 
-  $query = $db->query("SELECT * FROM compte WHERE conn = 1"); 
+  $qry = $db->query("SELECT * from compte where conn=1"); 
+  
+      if($qry->num_rows>0)
+      { 
+        $res = $qry->fetch_assoc(); 
+        $username=$res['username'];
+      }
+  
+  $query = $db->query("SELECT * from clientinf where mail='".$username."'"); 
    
   if($query->num_rows > 0){ 
       $cmsData = $query->fetch_assoc(); 
 
-                 echo'<h5>'. $cmsData['password'].' '.$cmsData['password'].'</h5>
+                 echo'<h5>'. $cmsData['Prenom'].' '.$cmsData['Nom'].'</h5>
                  
   
           <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -121,7 +129,7 @@
                               <label>Votre identifiant</label>
                           </div>
                           <div class="col-md-6">
-                          <p>'. $cmsData['username'].'</p>
+                          <p>'. $cmsData['IdCl'].'</p>
           </div>
                                         </div>
                                         <div class="row">
@@ -129,7 +137,7 @@
                                                 <label>Nom</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>'. $cmsData['username'].'</p>
+                                                <p>'. $cmsData['Nom'].'</p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -137,7 +145,7 @@
                                             <label>Prénom</label>
                                         </div>
                                         <div class="col-md-6">
-                                        <p>'. $cmsData['username'].'</p>
+                                        <p>'. $cmsData['Prenom'].'</p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -145,7 +153,7 @@
                                             <label>Numéro de carte vitale</label>
                                         </div>
                                         <div class="col-md-6">
-                                        <p>'. $cmsData['username'].'</p>
+                                        <p>'. $cmsData['CVClient'].'</p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -153,7 +161,7 @@
                                             <label>E-mail</label>
                                         </div>
                                         <div class="col-md-6">
-                                        <p>'. $cmsData['username'].'</p>
+                                        <p>'. $cmsData['mail'].'</p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -161,7 +169,7 @@
                                             <label>Téléphone</label>
                                         </div>
                                         <div class="col-md-6">
-                                        <p>'. $cmsData['username'].'</p>
+                                        <p>'. $cmsData['Tel'].'</p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -169,7 +177,7 @@
                                             <label>Adresse ligne 1</label>
                                         </div>
                                         <div class="col-md-6">
-                                        <p>'. $cmsData['username'].'</p>
+                                        <p>'. $cmsData['Adresse1'].'</p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -177,7 +185,7 @@
                                             <label>Adresse ligne 2</label>
                                         </div>
                                         <div class="col-md-6">
-                                        <p>'. $cmsData['username'].'</p>
+                                        <p>'. $cmsData['Adresse2'].'</p>
                                         </div>
                                     </div>
                                        
@@ -187,7 +195,7 @@
                                             <label>Ville</label>
                                         </div>
                                         <div class="col-md-6">
-                                        <p>'. $cmsData['username'].'</p>
+                                        <p>'. $cmsData['Ville'].'</p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -195,7 +203,7 @@
                                             <label>Pays</label>
                                         </div>
                                         <div class="col-md-6">
-                                        <p>'. $cmsData['username'].'</p>
+                                        <p>'. $cmsData['Pays'].'</p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -203,7 +211,7 @@
                                             <label>Code postal</label>
                                         </div>
                                         <div class="col-md-6">
-                                        <p>'. $cmsData['username'].'</p>
+                                        <p>'. $cmsData['CodePostal'].'</p>
                                         </div>
                                     </div>
                         </div>';
@@ -213,7 +221,7 @@
                             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                         <div class="row" style="margin-top:-120px">
                                             <div class="col-md-6">
-                                                <label>Experience</label>
+                                                <label>Type de carte</label>
                                             </div>
                                             <div class="col-md-6">
                                                 <p>Expert</p>
@@ -221,7 +229,7 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Hourly Rate</label>
+                                                <label>Numéro de carte</label>
                                             </div>
                                             <div class="col-md-6">
                                                 <p>10$/hr</p>
@@ -229,7 +237,7 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Total Projects</label>
+                                                <label>Nom</label>
                                             </div>
                                             <div class="col-md-6">
                                                 <p>230</p>
@@ -237,7 +245,7 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>English Level</label>
+                                                <label>Date d'expiration</label>
                                             </div>
                                             <div class="col-md-6">
                                                 <p>Expert</p>
@@ -245,7 +253,7 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Availability</label>
+                                                <label>CV</label>
                                             </div>
                                             <div class="col-md-6">
                                                 <p>6 months</p>

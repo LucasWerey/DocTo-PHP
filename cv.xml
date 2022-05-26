@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<medecins>
+    <medecin id="">
+        <titre>Médecin Généréliste</titre>
+        <image>bonhomme.jpg</image>
+        <prenom>Lucas</prenom>
+        <nom>Werey</nom>
+        <age>32</age>
+        <specialite>Généraliste</specialite>
+        <ville>Paris</ville>
+        <pays>France</pays>
+        <formation>
+            <date>2008-2016</date>
+            <detail> Faculté de médecine, specialité généraliste </detail>
+        </formation>
+        <experiences>
+            <experience id="1">
+                <annee>6e annee</annee>
+                <description>Service de Cardiologie, service de Pédiatrie, service de Gynécologie obstétrique, service chirurgie viscérale.</description>
+            </experience>
+            <experience id="2">
+                <annee>5e annee</annee>
+                <description>Service d'ORL, service de Psychiatrie, service de Réanimation, service d'Hématologie.</description>
+            </experience>
+            <experience id="3">
+                <annee>4e annee</annee>
+                <description>Service d'Anatomopathologie, service d'orthopédie traumato-pédiatrique, service de Radiologie, service de Pédiatrie.</description>
+            </experience>
+            <experience id="4">
+                <annee>3e annee</annee>
+                <description>Service de Médecine interne, service de Neurochirurgie, service de Gastro-Enthérologie</description>
+            </experience>
+        </experiences>
+        <Langues>
+		    <Langue niveau="5">Français </Langue>
+		    <Langue niveau="3"> Anglais </Langue>
+	    </Langues>
+	    <Divers>
+		    <Diver>Permis de conduire</Diver>
+	    </Divers>
+    </medecin>
+
+    <!--<medecin id="fr221">
+        <prenom>Matthieu</prenom>
+        <nom>Vu-Huy-Dat</nom>
+        <age>20</age>
+        <majeure>Systèmes d'information et cybersécurité</majeure>
+        <ville>Carrieres-Sur-Seine</ville>
+        <pays>France</pays>
+    </medecin>-->
+</medecins>

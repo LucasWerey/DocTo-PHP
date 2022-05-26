@@ -1,7 +1,7 @@
 <?php
 session_start();
 if(isset($_POST['logemail']) && isset($_POST['logpass'])&& isset($_POST['logfname'])&& isset($_POST['logname'])
-&& isset($_POST['logaddress'])&& isset($_POST['logtel'])&& isset($_POST['logcartev']))
+&& isset($_POST['logaddress1'])&& isset($_POST['logtel'])&& isset($_POST['logcartev']))
 {
     // connexion à la base de données
     $db_username = 'root';
@@ -15,25 +15,29 @@ if(isset($_POST['logemail']) && isset($_POST['logpass'])&& isset($_POST['logfnam
     /*$username = isset($_POST['logemail']) ? $_POST['logemail'] : '';
     $password = isset($_POST['logpass']) ? $_POST['logpass'] : '';*/
     $username = mysqli_real_escape_string($db,htmlspecialchars($_POST['logemail']));
-    $fname = mysqli_real_escape_string($db,htmlspecialchars($_POST['logfname']));;
-    $name = mysqli_real_escape_string($db,htmlspecialchars($_POST['logname']));;
-    $address = mysqli_real_escape_string($db,htmlspecialchars($_POST['logaddress']));;
-    $tel = mysqli_real_escape_string($db,htmlspecialchars($_POST['logtel']));;
-    $cartev = mysqli_real_escape_string($db,htmlspecialchars($_POST['logcartev']));;
+    $fname = mysqli_real_escape_string($db,htmlspecialchars($_POST['logfname']));
+    $name = mysqli_real_escape_string($db,htmlspecialchars($_POST['logname']));
+    $address1 = mysqli_real_escape_string($db,htmlspecialchars($_POST['logaddress1']));
+    $address2 = mysqli_real_escape_string($db,htmlspecialchars($_POST['logaddress2']));
+    $ville = mysqli_real_escape_string($db,htmlspecialchars($_POST['logville']));
+    $cp = mysqli_real_escape_string($db,htmlspecialchars($_POST['logcp']));
+    $pays = mysqli_real_escape_string($db,htmlspecialchars($_POST['logpays']));
+    $tel = mysqli_real_escape_string($db,htmlspecialchars($_POST['logtel']));
+    $cartev = mysqli_real_escape_string($db,htmlspecialchars($_POST['logcartev']));
     $password = mysqli_real_escape_string($db,htmlspecialchars($_POST['logpass']));
     $type = "client";
     
     if($username !== "" && $password !== "" && $fname !== "" && $name !== ""
-    && $address !== "" && $tel !== "" && $cartev !== "")
+    && $address1 !== "" && $tel !== "" && $cartev !== "" && $address2 !== "" && $ville !== "" && $cp !== "" && $pays !== "")
     {
        /*$requete = "SELECT * FROM compte WHERE username = '".$username."' and password = '".$password."'";*/
-        $requete1 = "INSERT INTO `clientinf`(`Nom`, `Prenom`, `Adresse1`, `Ville`, `CodePostal`, `Pays`, `Tel`, `CVClient`, `mail`) 
-        VALUES ('".$fname."','".$name."','".$address."','0',0,'0','".$tel."','".$cartev."','".$username."')";
+        $requete1 = "INSERT INTO `clientinf`(`Nom`, `Prenom`, `Adresse1`, `Adresse2`,`Ville`, `CodePostal`, `Pays`, `Tel`, `CVClient`, `mail`) 
+        VALUES ('".$fname."','".$name."','".$address1."','".$address2."','".$ville."','".$cp."','".$pays."','".$tel."','".$cartev."','".$username."')";
         $requete2 = "INSERT INTO `compte`(`username`, `password`, `type`) VALUES ('".$username."','".$password."','".$type."')";
         if (mysqli_query($db,$requete1)){
             echo "Enregistrement 1 realise avec succes";
             header('Location: compte.php');
-    }else {
+        }else {
             echo "Erreur : " . $sql . "<br>" . mysqli_error($conn);
         }
         

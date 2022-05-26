@@ -55,7 +55,7 @@
   </a>
 
   <div class="section">
-    <div class="container" >
+    <div class="container">
       <div class="row full-height justify-content-center">
         <div class="col-12 text-center align-self-center py-5">
           <div class="section pb-5 pt-5 pt-sm-2 text-center">
@@ -116,7 +116,27 @@
                         <i class="input-icon uil uil-at"></i>
                       </div>
                       <div class="form-group">
-                        <input type="text" name="logaddress" class="form-style" placeholder="Adresse" id="logaddress"
+                        <input type="text" name="logaddress1" class="form-style" placeholder="Adresse 1" id="logaddress1"
+                          autocomplete="off" required>
+                        <i class="input-icon uil uil-user"></i>
+                      </div>
+                      <div class="form-group">
+                        <input type="text" name="logaddress2" class="form-style" placeholder="Adresse 2" id="logaddress2"
+                          autocomplete="off" required>
+                        <i class="input-icon uil uil-user"></i>
+                      </div>
+                      <div class="form-group">
+                        <input type="text" name="logville" class="form-style" placeholder="Ville" id="logville"
+                          autocomplete="off" required>
+                        <i class="input-icon uil uil-user"></i>
+                      </div>
+                      <div class="form-group">
+                        <input type="text" name="logcp" class="form-style" placeholder="Code postale" id="logcp"
+                          autocomplete="off" required>
+                        <i class="input-icon uil uil-user"></i>
+                      </div>
+                      <div class="form-group">
+                        <input type="text" name="logpays" class="form-style" placeholder="Pays" id="logpays"
                           autocomplete="off" required>
                         <i class="input-icon uil uil-user"></i>
                       </div>
@@ -149,8 +169,10 @@
     </div>
   </div>
 
-  <?php include("footer.html"); ?>
+<br><br><br><br><br><br><br><br><br><br><br><br>
 
+  <?php include("footer.html"); ?>
+                          
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

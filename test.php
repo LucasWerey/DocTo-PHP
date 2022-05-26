@@ -101,7 +101,7 @@
      <img src="Images/Docteur H.svg" width="70%" class="image__img"  />
      <div class="img_overlay">
        <p class="img_desc">
-     <a data-toggle="modal" data-target="#exampleModal" name="lien"  value="5" data-whatever="Baptiste Bernaud">Baptiste Bernaud</a>
+     <a data-toggle="modal" data-target="#exampleModal" data-whatever="Baptiste Bernaud">Baptiste Bernaud</a>
 </p>
     </div></div></div>
 
