@@ -47,8 +47,9 @@
               <input type = "submit" name = "s" value = "Rechercher" class="btn btn-outline-success my-2 my-sm-0">
               </form>
 
-            <form class="form-inline mt-2 mt-md-0" style="margin-right:-400px;">
-            <a href="deconn.php"><img src="Images/unplugged.png" width="10%"></a>
+            <form class="form-inline mt-2 mt-md-0" style="margin-right:-70px;">
+            <a href="deconn.php"><img src="Images/deco.png" width="20%"></a>
+        
             </form>
           </div>
         </nav>

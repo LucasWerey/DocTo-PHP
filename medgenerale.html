@@ -39,237 +39,275 @@
           <li class="nav-item ">
             <a class="nav-link" href="verifcompte.php">Votre Compte</a>
           </li>
-            </li>
+          </li>
         </ul>
         <form action="search.php" method="GET" class="form-inline mt-2 mt-md-0" style="padding-right: 100px">
-          <input type = "text" name = "terme" class="form-control mr-sm-2" placeholder="Votre recherche" aria-label="Search">
-          <input type = "submit" name = "s" value = "Rechercher" class="btn btn-outline-success my-2 my-sm-0">
-          </form>
+          <input type="text" name="terme" class="form-control mr-sm-2" placeholder="Votre recherche"
+            aria-label="Search">
+          <input type="submit" name="s" value="Rechercher" class="btn btn-outline-success my-2 my-sm-0">
+        </form>
       </div>
     </nav>
   </header>
 
 
 
-  <div class="container marketing"  style="padding-top:100px;">
+  <div class="container marketing" style="padding-top:100px;">
     <div class="col">
       <div class="col-lg-offset-2 col-lg-15 ">
-          <div class="row boxr">
-    <div class="col-lg-4">
-      <div class="image">
-     <img src="Images/DocteurH.svg" width="75%" class="image__img"  />
-     <div class="img_overlay">
-       <p class="img_desc">
-    
-        <a type="button" class="btn btn-primary openBtn1" style="font-size: 0.8em; background-color: transparent;">Dr. Lucas Werey</a>
-</p>
- </div>
-</div>
-</div>
-<!-- Modal -->
-<div class="modal fade" id="myModal1" role="dialog">
-    <div class="modal-dialog" >
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">            
-                <h4 class="modal-title"></h4>
+        <div class="row boxr">
+          <div class="col-lg-4">
+            <div class="image">
+              <img src="Images/DocteurH.svg" width="75%" class="image__img" />
+              <div class="img_overlay">
+                <p class="img_desc">
+
+                  <a type="button" class="btn btn-primary openBtn1"
+                    style="font-size: 0.8em; background-color: transparent;">Dr. Lucas Werey</a>
+                </p>
+              </div>
             </div>
-            <div class="modal-body">
+          </div>
+          <!-- Modal -->
+          <div class="modal fade" id="myModal1" role="dialog">
+            <div class="modal-dialog">
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body">
+                </div>
+                <div class="modal-footer">
+                  <form action="rdv_med.php" method="POST">
+                    <!--<input type = "submit" name="Nom" value = "Prendre un RDV" class="btn btn-secondary">-->
+                    <input type="text" name="nom" value="Werey" style="opacity: 0;" >
+                    <input class="btn btn-secondary" type="submit" value="Prendre un RDV">
+                  </form>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Communiquer avec le médecin</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="window.location.href = 'cv.html';">Voir son CV</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                </div>
+              </div>
             </div>
-            <div class="modal-footer"> 
-              <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="window.location.href = 'rendezvous.php';">Prendre un RDV</button>
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Communiquer avec le médecin</button>
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Voir son CV</button>
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+          </div>
+          <!-- Button -->
+          <div class="col-lg-4">
+            <div class="image">
+              <img src="Images/DocteurH.svg" class="image__img" />
+              <div class="img_overlay">
+                <p class="img_desc">
+
+                  <a type="button" class="btn btn-primary openBtn2"
+                    style="font-size:0.8em; background-color: transparent;">Dr. Octave Prevot</a>
+                </p>
+              </div>
             </div>
+          </div>
+
+
+          <!-- Modal -->
+          <div class="modal fade" id="myModal2" role="dialog">
+            <div class="modal-dialog">
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body">
+                </div>
+                <div class="modal-footer">
+                  <form action="rdv_med.php" method="POST">
+                    <!--<input type = "submit" name="Nom" value = "Prendre un RDV" class="btn btn-secondary">-->
+                    <input type="text" name="nom" value="Prevot" style="opacity: 0;">
+                    <input class="btn btn-secondary" type="submit" value="Prendre un RDV">
+                  </form>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Communiquer avec le médecin</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="window.location.href = 'cv.html';">Voir son CV</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Button -->
+          <div class="col-lg-4">
+            <div class="image">
+              <img src="Images/DocteurH.svg" class="image__img" />
+              <div class="img_overlay">
+                <p class="img_desc">
+
+                  <a type="button" class="btn btn-primary openBtn3"
+                    style="font-size: 0.8em; background-color: transparent;">Dr. Léna Heurtaux</a>
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+
+          <!-- Modal -->
+          <div class="modal fade" id="myModal3" role="dialog">
+            <div class="modal-dialog">
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body">
+                </div>
+                <div class="modal-footer">
+                  <form action="rdv_med.php" method="POST">
+                    <!--<input type = "submit" name="Nom" value = "Prendre un RDV" class="btn btn-secondary">-->
+                    <input type="text" name="nom" value="Heurtaux" style="opacity: 0;">
+                    <input class="btn btn-secondary" type="submit" value="Prendre un RDV">
+                  </form>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Communiquer avec le médecin</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="window.location.href = 'cv.html';">Voir son CV</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Button -->
+          <div class="col-lg-4">
+            <div class="image">
+              <img src="Images/DocteurH.svg" class="image__img" />
+              <div class="img_overlay">
+                <p class="img_desc">
+
+                  <a type="button" class="btn btn-primary openBtn4"
+                    style="font-size: 0.8em; background-color: transparent;">Dr. Matthieu Vu-Huy-Dat</a>
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+
+          <!-- Modal -->
+          <div class="modal fade" id="myModal4" role="dialog">
+            <div class="modal-dialog">
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body">
+                </div>
+                <div class="modal-footer">
+                  <form action="rdv_med.php" method="POST">
+                    <!--<input type = "submit" name="Nom" value = "Prendre un RDV" class="btn btn-secondary">-->
+                    <input type="text" name="nom" value="Vu-Huy-Dat" style="opacity: 0;">
+                    <input class="btn btn-secondary" type="submit" value="Prendre un RDV">
+                  </form>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Communiquer avec le
+                    médecin</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="window.location.href = 'cv.html';">Voir son CV</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Button -->
+          <div class="col-lg-4">
+            <div class="image">
+              <img src="Images/DocteurH.svg" class="image__img" />
+              <div class="img_overlay">
+                <p class="img_desc">
+
+                  <a type="button" class="btn btn-primary openBtn5"
+                    style="font-size: 0.8em; background-color: transparent;">Dr. Baptiste Bernaud</a>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Modal -->
+          <div class="modal fade" id="myModal5" role="dialog">
+            <div class="modal-dialog">
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body">
+                </div>
+                <div class="modal-footer">
+                  <form action="rdv_med.php" method="POST">
+                    <!--<input type = "submit" name="Nom" value = "Prendre un RDV" class="btn btn-secondary">-->
+                    <input type="text" name="nom" value="Bernaud" style="opacity: 0;">
+                    <input class="btn btn-secondary" type="submit" value="Prendre un RDV">
+                  </form>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Communiquer avec le médecin</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="window.location.href = 'cv.html';">Voir son CV</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Button -->
+          <div class="col-lg-4">
+            <div class="image">
+              <img src="Images/DocteurH.svg" class="image__img" />
+              <div class="img_overlay">
+                <p class="img_desc">
+
+                  <a type="button" class="btn btn-primary openBtn6"
+                    style="font-size: 0.8em; background-color: transparent;">Dr. Clémence Amaladasse</a>
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+
+          <!-- Modal -->
+          <div class="modal fade" id="myModal6" role="dialog">
+            <div class="modal-dialog">
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body">
+                </div>
+                <div class="modal-footer">
+                  <form action="rdv_med.php" method="POST">
+                    <!--<input type = "submit" name="Nom" value = "Prendre un RDV" class="btn btn-secondary">-->
+                    <input type="text" name="nom" value="Amaladasse" style="opacity: 0;">
+                    <input class="btn btn-secondary" type="submit" value="Prendre un RDV">
+                  </form>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Communiquer avec le
+                    médecin</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="window.location.href = 'cv.html';">Voir son CV</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+
+      </div>
     </div>
-</div>
-<!-- Button -->
-<div class="col-lg-4">
-  <div class="image">
- <img src="Images/DocteurH.svg"  class="image__img"  />
- <div class="img_overlay">
-   <p class="img_desc">
-
-    <a type="button" class="btn btn-primary openBtn2" style="font-size:0.8em; background-color: transparent;">Dr. Octave Prevot</a>
-</p>
-</div>
-</div>
-</div>
-         
-
-<!-- Modal -->
-<div class="modal fade" id="myModal2" role="dialog">
-   <div class="modal-dialog">
-       <!-- Modal content-->
-       <div class="modal-content">
-           <div class="modal-header">            
-               <h4 class="modal-title"></h4>
-           </div>
-           <div class="modal-body">
-           </div>
-           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="window.location.href = 'rendezvous.php';">Prendre un RDV</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Communiquer avec le médecin</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Voir son CV</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-           </div>
-       </div>
-   </div>
-</div>
-<!-- Button -->
-<div class="col-lg-4">
-  <div class="image">
- <img src="Images/DocteurH.svg"  class="image__img"  />
- <div class="img_overlay">
-   <p class="img_desc">
-
-    <a type="button" class="btn btn-primary openBtn3" style="font-size: 0.8em; background-color: transparent;">Dr. Léna Heurtaux</a>
-</p>
-</div>
-</div>
-</div>
-         
-
-
-<!-- Modal -->
-<div class="modal fade" id="myModal3" role="dialog">
-   <div class="modal-dialog">
-       <!-- Modal content-->
-       <div class="modal-content">
-           <div class="modal-header">            
-               <h4 class="modal-title"></h4>
-           </div>
-           <div class="modal-body">
-           </div>
-           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="window.location.href = 'rendezvous.php';">Prendre un RDV</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Communiquer avec le médecin</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Voir son CV</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-           </div>
-       </div>
-   </div>
-</div>
-<!-- Button -->
-<div class="col-lg-4">
-  <div class="image">
- <img src="Images/DocteurH.svg"  class="image__img"  />
- <div class="img_overlay">
-   <p class="img_desc">
-
-    <a type="button" class="btn btn-primary openBtn4" style="font-size: 0.8em; background-color: transparent;">Dr. Matthieu Vu-Huy-Dat</a>
-</p>
-</div>
-</div>
-</div>
-       
-
-
-<!-- Modal -->
-<div class="modal fade" id="myModal4" role="dialog">
-   <div class="modal-dialog">
-       <!-- Modal content-->
-       <div class="modal-content">
-           <div class="modal-header">            
-               <h4 class="modal-title"></h4>
-           </div>
-           <div class="modal-body">
-           </div>
-           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="window.location.href = 'rendezvous.php';">Prendre un RDV</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Communiquer avec le médecin</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Voir son CV</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-           </div>
-       </div>
-   </div>
-</div>
-<!-- Button -->
-<div class="col-lg-4">
-  <div class="image">
- <img src="Images/DocteurH.svg"  class="image__img"  />
- <div class="img_overlay">
-   <p class="img_desc">
-
-    <a type="button" class="btn btn-primary openBtn5" style="font-size: 0.8em; background-color: transparent;">Dr. Baptiste Bernaud</a>
-</p>
-</div>
-</div>
-</div>
-       
-<!-- Modal -->
-<div class="modal fade" id="myModal5" role="dialog">
-   <div class="modal-dialog">
-       <!-- Modal content-->
-       <div class="modal-content">
-           <div class="modal-header">            
-               <h4 class="modal-title"></h4>
-           </div>
-           <div class="modal-body">
-           </div>
-           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="window.location.href = 'rendezvous.php';">Prendre un RDV</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Communiquer avec le médecin</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Voir son CV</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-           </div>
-       </div>
-   </div>
-</div>
-
-<!-- Button -->
-<div class="col-lg-4">
-  <div class="image">
- <img src="Images/DocteurH.svg"  class="image__img"  />
- <div class="img_overlay">
-   <p class="img_desc">
-
-    <a type="button" class="btn btn-primary openBtn6" style="font-size: 0.8em; background-color: transparent;">Dr. Clémence Amaladasse</a>
-</p>
-</div>
-</div>
-</div>
-  
-
-
-<!-- Modal -->
-<div class="modal fade" id="myModal6" role="dialog">
-   <div class="modal-dialog">
-       <!-- Modal content-->
-       <div class="modal-content">
-           <div class="modal-header">            
-               <h4 class="modal-title"></h4>
-           </div>
-           <div class="modal-body">
-           </div>
-           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="window.location.href = 'rendezvous.php';">Prendre un RDV</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Communiquer avec le médecin</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Voir son CV</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-           </div>
-       </div>
-   </div>
-</div></div>
-
-      </div></div>
     <!-- A horizontal line. -->
     <hr class="featurette-divider">
   </div>
 
   <!-- FOOTER -->
-<footer class="container">
-  <p class="float-right"><a href="#">Back to top</a></p>
-  <p1> Contact OMNES Santé </p1>
-<p> Mail: <a href="mailto:contact@omnessante.fr">contact@omnessante.fr</a>
-  &emsp;Téléphone: +33 1.69.42.36.80&emsp;Adresse: 
-  <a href="https://www.google.fr/maps/place/37+Quai+de+Grenelle,+75015+Paris/@48.8515039,2.2850437,17z/data=!3m1!4b1!4m5!3m4!1s0x47e6700497ee3ec5:0xdd60f514adcdb346!8m2!3d48.8515004!4d2.2872324">37 Quai de Grenelle 75015
-  </a></p>
-</footer>
-</main>
-  
+  <footer class="container">
+    <p class="float-right"><a href="#">Back to top</a></p>
+    <p1> Contact OMNES Santé </p1>
+    <p> Mail: <a href="mailto:contact@omnessante.fr">contact@omnessante.fr</a>
+      &emsp;Téléphone: +33 1.69.42.36.80&emsp;Adresse:
+      <a
+        href="https://www.google.fr/maps/place/37+Quai+de+Grenelle,+75015+Paris/@48.8515039,2.2850437,17z/data=!3m1!4b1!4m5!3m4!1s0x47e6700497ee3ec5:0xdd60f514adcdb346!8m2!3d48.8515004!4d2.2872324">37
+        Quai de Grenelle 75015
+      </a>
+    </p>
+  </footer>
+  </main>
+
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -279,7 +317,7 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
-    <script src="index.js"></script>
+  <script src="index.js"></script>
 
 </body>
 

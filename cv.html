@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+
+<head>
+    <title>CV</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <!-- The icon of the website. -->
+     <link rel="icon" href="Images/logo.png">
+    <!-- CSS -->
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th,
+        td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #7ce2af
+        }
+
+        th {
+            background-color: #336699;
+            color: white;
+        }
+
+        .button {
+            position: relative;
+            text-align: center;
+            padding: 20px;
+            border: 4px solid rgb(55, 12, 211);
+            background-color: rgba(20, 192, 4, 0.5);
+            color: rgb(230, 36, 78);
+            outline: none;
+            border-radius: 10px;
+            font-size: 30px;
+            width: 500px;
+        }
+
+        .button:hover {
+            color: black;
+            background-color: white;
+        }
+    </style>
+    <!--JavaScript-->
+    <script>
+        function loadXMLDoc() {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function () {
+                // Request finished and response
+                // is ready and Status is "OK"
+                if (this.readyState == 4 && this.status == 200) {
+                    empDetails(this);
+                }
+            };
+            // cv.xml is the external xml file
+            xmlhttp.open("GET", "cv.xml", true);
+            xmlhttp.send();
+        }
+        function empDetails(xml) {
+            var i;
+            var xmlDoc = xml.responseXML;
+            var table =
+                `<tr>
+                <th>titre</th>
+                <th>image</th>
+                <th>prenom</th>
+                <th>nom</th>
+                <th>age</th>
+                <th>specialite</th>
+                <th>ville</th>
+                <th>pays</th>
+                <th>date</th>
+                <th>detail</th>
+                <th>langue1</th>
+                <th>langue2</th>
+                <th>divers</th>
+                </tr>`;
+            var x = xmlDoc.getElementsByTagName("medecin");
+            // Start to fetch the data by using TagName
+            for (i = 0; i < x.length; i++) {
+                table +=
+                    "<tr><td>" +
+                    x[i].getElementsByTagName("titre")[0]
+                        .childNodes[0].nodeValue
+                    + "</td><td>" +
+                    x[i].getElementsByTagName("image")[0]
+                        .childNodes[0].nodeValue
+                    + "</td><td>" +
+                    x[i].getElementsByTagName("prenom")[0]
+                        .childNodes[0].nodeValue
+                    + "</td><td>" +
+                    x[i].getElementsByTagName("nom")[0]
+                        .childNodes[0].nodeValue
+                    + "</td><td>" +
+                    x[i].getElementsByTagName("age")[0]
+                        .childNodes[0].nodeValue
+                    + "</td><td>" +
+                    x[i].getElementsByTagName("specialite")[0]
+                        .childNodes[0].nodeValue
+                    + "</td><td>" +
+                    x[i].getElementsByTagName("ville")[0]
+                        .childNodes[0].nodeValue
+                    + "</td><td>" +
+                    x[i].getElementsByTagName("pays")[0]
+                        .childNodes[0].nodeValue
+                    + "</td><td>" +
+                    x[i].getElementsByTagName("formation")[0].getElementsByTagName("date")[0]
+                        .childNodes[0].nodeValue
+                    + "</td><td>" +
+                    x[i].getElementsByTagName("formation")[0].getElementsByTagName("detail")[0]
+                        .childNodes[0].nodeValue
+                    + "</td><td>" +
+                    x[i].getElementsByTagName("langues")[0].getElementsByTagName("langue1")[0]
+                        .childNodes[0].nodeValue
+                    + "</td><td>" + 
+                        x[i].getElementsByTagName("langues")[0].getElementsByTagName("langue2")[0]
+                        .childNodes[0].nodeValue
+                    + "</td><td>" +
+                        x[i].getElementsByTagName("diver")[0]
+                        .childNodes[0].nodeValue
+                    + "</td></tr>" ;
+            }
+            // Print the xml data in table form
+            document.getElementById("myTable").innerHTML = table;
+        }
+    </script>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+          <a class="navbar-brand" href="acceuil.php"><img src="Images/logo.png" width="20%"></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+            aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item ">
+                <a class="nav-link" href="acceuil.php">Accueil</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="toutParcourir.php">Tout Parcourir <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="rendezvous.php">Rendez-vous </a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="verifcompte.php">Votre Compte</a>
+              </li>
+              </li>
+            </ul>
+            <form action="search.php" method="GET" class="form-inline mt-2 mt-md-0" style="padding-right: 100px">
+              <input type="text" name="terme" class="form-control mr-sm-2" placeholder="Votre recherche"
+                aria-label="Search">
+              <input type="submit" name="s" value="Rechercher" class="btn btn-outline-success my-2 my-sm-0">
+            </form>
+          </div>
+        </nav>
+      </header>
+    <p>
+        <center>
+            <button type="button" class="button" onclick="loadXMLDoc()">
+                Afficher les CV
+            </button>
+        </center>
+    </p>
+    <p>
+    <table id="myTable"></table>
+    </p>
+    </div>
+    <!-- A horizontal line. -->
+    <hr class="featurette-divider">
+    </div>
+    <footer class="container">
+        <p class="float-right"><a href="#">Back to top</a></p>
+        <p1> Contact OMNES Santé </p1>
+        <p> Mail: <a href="mailto:contact@omnessante.fr">contact@omnessante.fr</a>
+          &emsp;Téléphone: +33 1.69.42.36.80&emsp;Adresse:
+          <a
+            href="https://www.google.fr/maps/place/37+Quai+de+Grenelle,+75015+Paris/@48.8515039,2.2850437,17z/data=!3m1!4b1!4m5!3m4!1s0x47e6700497ee3ec5:0xdd60f514adcdb346!8m2!3d48.8515004!4d2.2872324">37
+            Quai de Grenelle 75015
+          </a>
+        </p>
+      </footer>
+</body>
+</html>

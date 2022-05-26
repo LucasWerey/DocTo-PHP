@@ -10,7 +10,7 @@ if (isset($_GET['terme'])) {
     $terme = mysqli_real_escape_string($db, htmlspecialchars($_GET['terme']));
     if ($terme !== "") {
         $requete = "SELECT * FROM medecins WHERE nom LIKE '" . $terme . "' or prenom LIKE '" . $terme . "' or spe LIKE '" . $terme . "' ";
-        $exec_requete = mysqli_query($db, $requete) or die(mysqli_error());
+        $exec_requete = mysqli_query($db, $requete) or die(mysqli_error($db));
         $total = mysqli_num_rows($exec_requete);
 
         if ($total > 0) {
