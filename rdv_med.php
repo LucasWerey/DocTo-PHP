@@ -74,7 +74,7 @@
             $row2 = mysqli_fetch_array($result2); //tableau à 1 ligne
             $id_med=$row2['id'];
 
-            $requete_compte="SELECT * FROM `compte` WHERE `conn`=true";
+            /*$requete_compte="SELECT * FROM `compte` WHERE `conn`=true";
             $result_compte = mysqli_query($db, $requete_compte) or die(mysqli_error($db));
             $row_compte = mysqli_fetch_array($result_compte); //tableau à 1 ligne
             $user_cl=$row_compte['username'];
@@ -82,7 +82,9 @@
             $requete_cl="SELECT * FROM `clientinf` WHERE `Mail`='".$user_cl."'";
             $result_cl= mysqli_query($db, $requete_cl) or die(mysqli_error($db));
             $row_cl=mysqli_fetch_array($result_cl); //tableau à 1 ligne
-            $id_cl=$row_cl['IdCl'];
+            $id_cl=$row_cl['IdCl'];*/
+
+            $id_cl="1";
 
             if ($total > 0) {
                 if ($total2 > 0) {
@@ -152,17 +154,28 @@
                             }
                         }
                     }
-                }else {
+                }
+                }/*else {
                     header('Location: acceuil.php?erreur=2'); //Aucune ligne dans la table médecin
                 }
 
             } else {
                 header('Location: acceuil.php?erreur=1'); //Aucune ligne dans la table horaire
-            }
+            }*/
             mysqli_close($db); // fermer la connexion
             ?>
         </table>
     </div>
+
+    <?php 
+    $rdv=isset($_POST['h']) ? $_POST['h'] : "";
+    echo "<h2>".$rdv."</h2>";
+
+    $db = mysqli_connect('localhost', 'root', 'root', 'omnessante') or die('could not connect to database');
+    $requete = "INSERT INTO `rdv`(`id_cl`, `id_med`, `date`, `heure`, `adresse`, `digicode`, `prix`) VALUES (".$id_cl.",".$id_med.",'2021-05-26','".$rdv."','37 Quai de Grenelle','456A7','25')";
+    $result = mysqli_query($db, $requete) or die(mysqli_error($db));
+    ?>
+
 
     <?php include("footer.html"); ?>
 
