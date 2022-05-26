@@ -50,8 +50,10 @@
     </nav>
   </header>
 
-  
-
+  <div class="container-fluid" style="margin-top:50px;">
+  <p>Cette page ne sert à rien</p>
+  <a style='margin-top:50px;' href='compte.php'>Veuillez vous connecter pour pouvoir prendre un rendez-vous</a>
+  </div>
 
 
   <?php include("footer.html"); ?>

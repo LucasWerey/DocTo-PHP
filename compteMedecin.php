@@ -35,7 +35,7 @@
                 <a class="nav-link" href="toutParcourir.php">Tout Parcourir</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="rendezvous.php">Rendez-vous</a>
+                <a class="nav-link" href="rdv_med.php">Rendez-vous</a>
               </li>
               <li class="nav-item active">
                 <a class="nav-link" href="verifcompte.php">Votre Compte <span class="sr-only">(current)</span> </a>

@@ -36,7 +36,7 @@
                         <a class="nav-link" href="toutParcourir.php">Tout Parcourir</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="rendezvous.php">Rendez-vous <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="rdv_med.php">Rendez-vous <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item ">
                         <a class="nav-link" href="verifcompte.php">Votre Compte</a>
@@ -53,157 +53,169 @@
     <div class="container-fluid" style="margin-top:50px;">
 
         <table align="center" width="45%" class="tabloclem">
-            <tr>
-                <th>LUNDI</th>
-                <th>MARDI</th>
-                <th>MERCREDI</th>
-                <th>JEUDI</th>
-                <th>VENDREDI</th>
-                <th>SAMEDI</th>
-            </tr>
             <?php
             $name = isset($_POST["nom"]) ? $_POST["nom"] : "";
 
             $db = mysqli_connect('localhost', 'root', 'root', 'omnessante') or die('could not connect to database');
-            $requete = "SELECT * FROM `horaire`";
-            $requete2 = "SELECT * FROM `medecins` WHERE `nom`='" . $name . "'";
-            $result = mysqli_query($db, $requete) or die(mysqli_error($db));
-            $result2 = mysqli_query($db, $requete2) or die(mysqli_error($db)); //infos du médecin cliqué
-            $total = mysqli_num_rows($result); //toutes les lignes des horaires
-            $total2 = mysqli_num_rows($result2); //normalement 1 ligne
-            $row2 = mysqli_fetch_array($result2); //tableau à 1 ligne
-            $id_med = $row2['id'];
-            //define('id_med',$id_med);
 
-            /*$requete_compte="SELECT * FROM `compte` WHERE `conn`=true";
+            //On regarde si qlqn est connecté
+            $requete_compte = "SELECT * FROM `compte` WHERE `conn`=true";
             $result_compte = mysqli_query($db, $requete_compte) or die(mysqli_error($db));
-            $row_compte = mysqli_fetch_array($result_compte); //tableau à 1 ligne
-            $user_cl=$row_compte['username'];
+            $num_row_compte = mysqli_num_rows($result_compte); //normalement 1 ligne
+            if ($num_row_compte > 0) {
+                //On récupère l'username (mail) du client
+                $row_compte = mysqli_fetch_array($result_compte); //tableau à 1 ligne
+                $user_cl = $row_compte['username'];
 
-            $requete_cl="SELECT * FROM `clientinf` WHERE `Mail`='".$user_cl."'";
-            $result_cl= mysqli_query($db, $requete_cl) or die(mysqli_error($db));
-            $row_cl=mysqli_fetch_array($result_cl); //tableau à 1 ligne
-            $id_cl=$row_cl['IdCl'];*/
+                //On récupère l'id du client
+                $requete_cl = "SELECT * FROM `clientinf` WHERE `Mail`='" . $user_cl . "'";
+                $result_cl = mysqli_query($db, $requete_cl) or die(mysqli_error($db));
+                $row_cl = mysqli_fetch_array($result_cl); //tableau à 1 ligne
+                $id_cl = $row_cl['IdCl'];
+                //$id_cl = "1"; //Pour les tests d'enregistrements bdd
 
-            $requete_rdv="SELECT * from `rdv`";
-            $result_rdv=mysqli_query($db,$requete_rdv) or die(mysqli_error($db));
-            $total_rdv=mysqli_num_rows($result_rdv);
+                //On récupère les horaires pour créer le tableau
+                $requete = "SELECT * FROM `horaire`";
+                $result = mysqli_query($db, $requete) or die(mysqli_error($db));
+                $total = mysqli_num_rows($result); //toutes les lignes des horaires
 
-            $id_cl = "1";
+                //On récupère l'id du médecin
+                $requete2 = "SELECT * FROM `medecins` WHERE `nom`='" . $name . "'";
+                $result2 = mysqli_query($db, $requete2) or die(mysqli_error($db)); //infos du médecin cliqué
+                $total2 = mysqli_num_rows($result2); //normalement 1 ligne
+                $row2 = mysqli_fetch_array($result2); //tableau à 1 ligne
+                $id_med = $row2['id'];
 
-            if ($total > 0) {
-                if ($total2 > 0) {
-                    while ($row = mysqli_fetch_array($result)) {
-                        $heure = $row['heure'];
-                        if ($heure < "12:00") {
-                            if ($row2['lundiam'] == "1") {
-                                echo "<tr><td><form action='' method='POST'>
-                                <input type='hidden' name='jour' value='lundi' style='opacity: 0;'>
-                                <input type='hidden' name='n' value='" . $name . "' style='opacity: 0;'>
-                                <input type='submit' name='h' value='" . $heure . "'></form></td>";
-                            }
-                            else {
-                                echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
-                            }
-                            if ($row2['mardiam'] == "1") {
-                                echo "<td><form action='' method='POST'>
-                                <input type='hidden' name='jour' value='mardi' style='opacity: 0;'>
-                                <input type='hidden' name='n' value='" . $name . "' style='opacity: 0;'>
-                                <input type='submit' name='h' value='" . $heure . "'></form></td>";
+                //On récupère les rdv du médecin déjà booké
+                $requete_rdv = "SELECT * from `rdv` WHERE `id_med`=" . $id_med;
+                $result_rdv = mysqli_query($db, $requete_rdv) or die(mysqli_error($db));
+                $total_rdv = mysqli_num_rows($result_rdv);
+
+                if ($total > 0) {
+                    if ($total2 > 0) {
+                        echo "<tr>
+                        <th>LUNDI</th>
+                        <th>MARDI</th>
+                        <th>MERCREDI</th>
+                        <th>JEUDI</th>
+                        <th>VENDREDI</th>
+                        <th>SAMEDI</th>
+                        </tr>";
+                        while ($row = mysqli_fetch_array($result)) {
+                            $heure = $row['heure'];
+                            if ($heure < "12:00") {
+                                if ($row2['lundiam'] == "1") {
+                                    echo "<tr><td><form action='' method='POST'>
+                                    <input type='hidden' name='jour' value='lundi' style='opacity: 0;'>
+                                    <input type='hidden' name='n' value='" . $name . "' style='opacity: 0;'>
+                                    <input type='submit' name='h' value='" . $heure . "'></form></td>";
+                                } else {
+                                    echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
+                                }
+                                if ($row2['mardiam'] == "1") {
+                                    echo "<td><form action='' method='POST'>
+                                    <input type='hidden' name='jour' value='mardi' style='opacity: 0;'>
+                                    <input type='hidden' name='n' value='" . $name . "' style='opacity: 0;'>
+                                    <input type='submit' name='h' value='" . $heure . "'></form></td>";
+                                } else {
+                                    echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
+                                }
+                                if ($row2['mercrediam'] == "1") {
+                                    echo "<td><form action='' method='POST'>
+                                    <input type='hidden' name='jour' value='mercredi' style='opacity: 0;'>
+                                    <input type='hidden' name='n' value='" . $name . "' style='opacity: 0;'>
+                                    <input type='submit' name='h' value='" . $heure . "'></form></td>";
+                                } else {
+                                    echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
+                                }
+                                if ($row2['jeudiam'] == "1") {
+                                    echo "<td><form action='' method='POST'>
+                                    <input type='hidden' name='jour' value='jeudi' style='opacity: 0;'>
+                                    <input type='hidden' name='n' value='" . $name . "' style='opacity: 0;'>
+                                    <input type='submit' name='h' value='" . $heure . "'></form></td>";
+                                } else {
+                                    echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
+                                }
+                                if ($row2['vendrediam'] == "1") {
+                                    echo "<td><form action='' method='POST'>
+                                    <input type='hidden' name='jour' value='vendredi' style='opacity: 0;'>
+                                    <input type='hidden' name='n' value='" . $name . "' style='opacity: 0;'>
+                                    <input type='submit' name='h' value='" . $heure . "'></form></td>";
+                                } else {
+                                    echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
+                                }
+                                if ($row2['samediam'] == "1") {
+                                    echo "<td><form action='' method='POST'>
+                                    <input type='hidden' name='jour' value='samedi' style='opacity: 0;'>
+                                    <input type='hidden' name='n' value='" . $name . "' style='opacity: 0;'>
+                                    <input type='submit' name='h' value='" . $heure . "'></form></td></tr>";
+                                } else {
+                                    echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td></tr>";
+                                }
                             } else {
-                                echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
-                            }
-                            if ($row2['mercrediam'] == "1") {
-                                echo "<td><form action='' method='POST'>
-                                <input type='hidden' name='jour' value='mercredi' style='opacity: 0;'>
-                                <input type='hidden' name='n' value='" . $name . "' style='opacity: 0;'>
-                                <input type='submit' name='h' value='" . $heure . "'></form></td>";
-                            } else {
-                                echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
-                            }
-                            if ($row2['jeudiam'] == "1") {
-                                echo "<td><form action='' method='POST'>
-                                <input type='hidden' name='jour' value='jeudi' style='opacity: 0;'>
-                                <input type='hidden' name='n' value='" . $name . "' style='opacity: 0;'>
-                                <input type='submit' name='h' value='" . $heure . "'></form></td>";
-                            } else {
-                                echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
-                            }
-                            if ($row2['vendrediam'] == "1") {
-                                echo "<td><form action='' method='POST'>
-                                <input type='hidden' name='jour' value='vendredi' style='opacity: 0;'>
-                                <input type='hidden' name='n' value='" . $name . "' style='opacity: 0;'>
-                                <input type='submit' name='h' value='" . $heure . "'></form></td>";
-                            } else {
-                                echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
-                            }
-                            if ($row2['samediam'] == "1") {
-                                echo "<td><form action='' method='POST'>
-                                <input type='hidden' name='jour' value='samedi' style='opacity: 0;'>
-                                <input type='hidden' name='n' value='" . $name . "' style='opacity: 0;'>
-                                <input type='submit' name='h' value='" . $heure . "'></form></td></tr>";
-                            } else {
-                                echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td></tr>";
-                            }
-                        } else {
-                            if ($row2['lundipm'] == "1") {
-                                echo "<tr><td><form action='' method='POST'>
-                                <input type='hidden' name='jour' value='lundi' style='opacity: 0;'>
-                                <input type='hidden' name='n' value='" . $name . "' style='opacity: 0;'>
-                                <input type='submit' name='h' value='" . $heure . "'></form></td>";
-                            } else {
-                                echo "<tr><td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
-                            }
-                            if ($row2['mardipm'] == "1") {
-                                echo "<td><form action='' method='POST'>
-                                <input type='hidden' name='jour' value='mardi' style='opacity: 0;'>
-                                <input type='hidden' name='n' value='" . $name . "' style='opacity: 0;'>
-                                <input type='submit' name='h' value='" . $heure . "'></form></td>";
-                            } else {
-                                echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
-                            }
-                            if ($row2['mercredipm'] == "1") {
-                                echo "<td><form action='' method='POST'>
-                                <input type='hidden' name='jour' value='mercredi' style='opacity: 0;'>
-                                <input type='hidden' name='n' value='" . $name . "' style='opacity: 0;'>
-                                <input type='submit' name='h' value='" . $heure . "'></form></td>";
-                            } else {
-                                echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
-                            }
-                            if ($row2['jeudipm'] == "1") {
-                                echo "<td><form action='' method='POST'>
-                                <input type='hidden' name='jour' value='jeudi' style='opacity: 0;'>
-                                <input type='hidden' name='n' value='" . $name . "' style='opacity: 0;'>
-                                <input type='submit' name='h' value='" . $heure . "'></form></td>";
-                            } else {
-                                echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
-                            }
-                            if ($row2['vendredipm'] == "1") {
-                                echo "<td><form action='' method='POST'>
-                                <input type='hidden' name='jour' value='vendredi' style='opacity: 0;'>
-                                <input type='hidden' name='n' value='" . $name . "' style='opacity: 0;'>
-                                <input type='submit' name='h' value='" . $heure . "'></form></td>";
-                            } else {
-                                echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
-                            }
-                            if ($row2['samedipm'] == "1") {
-                                echo "<td><form action='' method='POST'>
-                                <input type='hidden' name='jour' value='samedi' style='opacity: 0;'>
-                                <input type='hidden' name='n' value='" . $name . "' style='opacity: 0;'>
-                                <input type='submit' name='h' value='" . $heure . "'></form></td></tr>";
-                            } else {
-                                echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td></tr>";
+                                if ($row2['lundipm'] == "1") {
+                                    echo "<tr><td><form action='' method='POST'>
+                                    <input type='hidden' name='jour' value='lundi' style='opacity: 0;'>
+                                    <input type='hidden' name='n' value='" . $name . "' style='opacity: 0;'>
+                                    <input type='submit' name='h' value='" . $heure . "'></form></td>";
+                                } else {
+                                    echo "<tr><td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
+                                }
+                                if ($row2['mardipm'] == "1") {
+                                    echo "<td><form action='' method='POST'>
+                                    <input type='hidden' name='jour' value='mardi' style='opacity: 0;'>
+                                    <input type='hidden' name='n' value='" . $name . "' style='opacity: 0;'>
+                                    <input type='submit' name='h' value='" . $heure . "'></form></td>";
+                                } else {
+                                    echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
+                                }
+                                if ($row2['mercredipm'] == "1") {
+                                    echo "<td><form action='' method='POST'>
+                                    <input type='hidden' name='jour' value='mercredi' style='opacity: 0;'>
+                                    <input type='hidden' name='n' value='" . $name . "' style='opacity: 0;'>
+                                    <input type='submit' name='h' value='" . $heure . "'></form></td>";
+                                } else {
+                                    echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
+                                }
+                                if ($row2['jeudipm'] == "1") {
+                                    echo "<td><form action='' method='POST'>
+                                    <input type='hidden' name='jour' value='jeudi' style='opacity: 0;'>
+                                    <input type='hidden' name='n' value='" . $name . "' style='opacity: 0;'>
+                                    <input type='submit' name='h' value='" . $heure . "'></form></td>";
+                                } else {
+                                    echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
+                                }
+                                if ($row2['vendredipm'] == "1") {
+                                    echo "<td><form action='' method='POST'>
+                                    <input type='hidden' name='jour' value='vendredi' style='opacity: 0;'>
+                                    <input type='hidden' name='n' value='" . $name . "' style='opacity: 0;'>
+                                    <input type='submit' name='h' value='" . $heure . "'></form></td>";
+                                } else {
+                                    echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
+                                }
+                                if ($row2['samedipm'] == "1") {
+                                    echo "<td><form action='' method='POST'>
+                                    <input type='hidden' name='jour' value='samedi' style='opacity: 0;'>
+                                    <input type='hidden' name='n' value='" . $name . "' style='opacity: 0;'>
+                                    <input type='submit' name='h' value='" . $heure . "'></form></td></tr>";
+                                } else {
+                                    echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td></tr>";
+                                }
                             }
                         }
                     }
-                }
-            }/*else {
-                    header('Location: acceuil.php?erreur=2'); //Aucune ligne dans la table médecin
-                }
-
+                }/*else {
+                        header('Location: acceuil.php?erreur=2'); //Aucune ligne dans la table médecin
+                    }
+    
+                } else {
+                    header('Location: acceuil.php?erreur=1'); //Aucune ligne dans la table horaire
+                }*/
             } else {
-                header('Location: acceuil.php?erreur=1'); //Aucune ligne dans la table horaire
-            }*/
+                //header('Location: rendezvous.php?'); //On va sur la page rendezvous.php
+                echo "<a style='margin-top:50px;' href='compte.php'>Veuillez vous connecter ou créer un compte pour pouvoir prendre un rendez-vous</a>";
+            }
+
             mysqli_close($db); // fermer la connexion
             ?>
         </table>
