@@ -85,6 +85,10 @@
             $row_cl=mysqli_fetch_array($result_cl); //tableau à 1 ligne
             $id_cl=$row_cl['IdCl'];*/
 
+            $requete_rdv="SELECT * from `rdv`";
+            $result_rdv=mysqli_query($db,$requete_rdv) or die(mysqli_error($db));
+            $total_rdv=mysqli_num_rows($result_rdv);
+
             $id_cl = "1";
 
             if ($total > 0) {
@@ -97,7 +101,8 @@
                                 <input type='hidden' name='jour' value='lundi' style='opacity: 0;'>
                                 <input type='hidden' name='n' value='" . $name . "' style='opacity: 0;'>
                                 <input type='submit' name='h' value='" . $heure . "'></form></td>";
-                            } else {
+                            }
+                            else {
                                 echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
                             }
                             if ($row2['mardiam'] == "1") {
