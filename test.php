@@ -189,8 +189,7 @@
                     }
                     echo '</tr>
         </tbody>
-      </table>';
-                  } else {
+      </table>';]]]]} else {
                     echo 'Content not found....';
                   }
 
