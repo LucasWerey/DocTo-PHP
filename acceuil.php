@@ -18,35 +18,53 @@
 </head>
  <!-- https://getbootstrap.com/docs/4.0/examples/carousel/ -->
 <body>
-  
+<!-- NavBar -->
+
 <header>
-        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-green">
-          <a class="navbar-brand" href="acceuil.php"><img src="Images/logo.png" width="20%"></a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item active ">
-                <a class="nav-link" href="acceuil.php">Accueil <span class="sr-only">(current)</span> </a>
-              </li>
-              <li class="nav-item ">
-                <a class="nav-link" href="toutParcourir.php">Tout Parcourir</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="rdv_med.php">Rendez-vous</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="verifcompte.php">Votre Compte</a>
-              </li>
-            </ul>
-            <form action="search.php" method="GET" class="form-inline mt-2 mt-md-0" style="padding-right: 100px">
-              <input type = "text" name = "terme" class="form-control mr-sm-2" placeholder="Votre recherche" aria-label="Search">
-              <input type = "submit" name = "s" value = "Rechercher" class="btn btn-outline-success my-2 my-sm-0">
-              </form>
-          </div>
-        </nav>
-      </header>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-green">
+      <a class="navbar-brand" href="acceuil.php"><img src="Images/logo.png" width="20%"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="acceuil.php">Accueil </a> <span class="sr-only">(current)</span>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="toutParcourir.php">Tout Parcourir</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="rdv_med.php">Rendez-vous</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="verifcompte.php">Votre Compte</a>
+          </li>
+        </ul>
+        <form action="search.php" method="GET" class="form-inline mt-2 mt-md-0" style="padding-right: 100px">
+          <input type="text" name="terme" class="form-control mr-sm-2" placeholder="Votre recherche" aria-label="Search">
+          <input type="submit" name="s" value="Rechercher" class="btn btn-outline-success my-2 my-sm-0">
+
+        </form>
+        <?php
+
+        $con = mysqli_connect('localhost', 'root', 'root', 'omnessante') or die('could not connect to database');
+        $sql = 'SELECT * FROM compte';
+        $result = mysqli_query($con, $sql);
+        $row = mysqli_fetch_array($result);
+
+        while ($row = mysqli_fetch_array($result)) {
+         if($result->num_rows > 0)
+         { 
+           if($row['conn']==1){
+        echo '<form class="form-inline mt-2 mt-md-0" style="margin-right:-70px;">
+          <a href="deconn.php"><img src="Images/deco.png" width="20%"></a>
+        </form>';}
+         }}
+        ?>
+      </div>
+    </nav>
+  </header>
     
     <main role="main">
 
@@ -87,22 +105,22 @@
         <!-- Three columns of text below the carousel -->
         <div class="row">
           <div class="col-lg-4">
-            <img class="rounded-circle" src="Images/DocteurF.svg" alt="Generic placeholder image" width="140" height="140">
+            <img class="rounded-circle" src="IconesDocteurs/DocteurClemence.png" alt="Generic placeholder image" width="140" height="140">
             <h2>Clémence AMALADASSE</h2>
             <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
-            <p><a class="btn btn-secondary" href="medgenerale.html" role="button">View details &raquo;</a></p>
+            <p><a class="btn btn-secondary" href="medgenerale.php" role="button">View details &raquo;</a></p>
           </div><!-- /.col-lg-4 -->
           <div class="col-lg-4">
-            <img class="rounded-circle" src="Images/DocteurH.svg" alt="Generic placeholder image" width="140" height="140">
+            <img class="rounded-circle" src="IconesDocteurs/DocteurLucas.png" alt="Generic placeholder image" width="140" height="140">
             <h2>Lucas WEREY</h2>
             <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
-            <p><a class="btn btn-secondary" href="medgenerale.html" role="button">View details &raquo;</a></p>
+            <p><a class="btn btn-secondary" href="medgenerale.php" role="button">View details &raquo;</a></p>
           </div><!-- /.col-lg-4 -->
           <div class="col-lg-4">
-            <img class="rounded-circle" src="Images/vecteezy_doctor-female-with-face-mask-isolated-icon_.jpg" alt="Generic placeholder image" width="140" height="140">
+            <img class="rounded-circle" src="IconesDocteurs/DocteurLena.png" alt="Generic placeholder image" width="140" height="140">
             <h2>Léna HEURTAUX</h2>
             <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-            <p><a class="btn btn-secondary" href="medgenerale.html" role="button">View details &raquo;</a></p>
+            <p><a class="btn btn-secondary" href="medgenerale.php" role="button">View details &raquo;</a></p>
           </div><!-- /.col-lg-4 -->
         </div><!-- /.row -->
 

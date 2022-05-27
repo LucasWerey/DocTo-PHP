@@ -21,13 +21,13 @@ if (isset($_GET['terme'])) {
 
                 $terme = strtolower($terme);
                 if ($terme == strtolower("Generaliste") || $terme == strtolower("Généraliste")) {
-                    header('Location: medgenerale.html');
+                    header('Location: medgenerale.php');
                 } elseif (strtolower($spe) == $terme) {
                     header("Location: " . $terme . ".php");
                 } elseif (strtolower($nom) == $terme || strtolower($prenom) == $terme) {
                     $spe = strtolower($spe);
                     if ($spe == strtolower("Generaliste") || $spe == strtolower("Généraliste")) {
-                        header('Location: medgenerale.html');
+                        header('Location: medgenerale.php');
                     } else {
                         header("Location: " . $spe . ".php");
                     }

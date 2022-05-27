@@ -17,7 +17,7 @@
 </head>
   <body>
 <!-- NavBar -->
-<?php include("header.html"); ?>
+<?php include("header.php"); ?>
     
 
 

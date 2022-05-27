@@ -126,6 +126,25 @@ h2{
     column-count: 2;
   }
 
+  /* MODAL 
+  -------------------------------*/
+ 
+
+  .modal>div {
+    width: 800px;
+    max-width: 75vw;
+    max-height: 75vh;
+    text-align: center;
+    position: relative;
+    background: #131418;
+  }
+
+  .img_desc .btn, .img_desc .btn:hover{
+    font-size: large;
+    background-color: transparent;
+    border : none; 
+  }
+
 
     /* Formulaire
   -------------------------------------------------- */
@@ -408,16 +427,8 @@ h2{
     width: auto;
     display: block;
   }
-
-  .modal-body{
-    height: 800px;
-    width: 800px;
-  }
-  .modal-content{
-    height: 800px;
-    width: 800px;
-  }
-
+ 
+ 
 .image{
   position: relative;
   width: 220px;

@@ -20,32 +20,49 @@
 <body>
 
   <!-- NavBar -->
+
   <header>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-green">
-      <a class="navbar-brand" href="acceuil.html"><img src="Images/logo.png" width="20%"></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
-        aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <a class="navbar-brand" href="acceuil.php"><img src="Images/logo.png" width="20%"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item ">
-            <a class="nav-link" href="acceuil.php">Accueil</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="toutParcourir.php">Tout Parcourir</a>
+            <a class="nav-link" href="acceuil.php">Accueil </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="rdv_med.php">Rendez-vous </a>
+            <a class="nav-link" href="toutParcourir.php">Tout Parcourir </a>
           </li>
-          <li class="nav-item active ">
+          <li class="nav-item">
+            <a class="nav-link" href="rdv_med.php">Rendez-vous</a>
+          </li>
+          <li class="nav-item active">
             <a class="nav-link" href="verifcompte.php">Votre Compte<span class="sr-only">(current)</span></a>
           </li>
         </ul>
         <form action="search.php" method="GET" class="form-inline mt-2 mt-md-0" style="padding-right: 100px">
-              <input type = "text" name = "terme" class="form-control mr-sm-2" placeholder="Votre recherche" aria-label="Search">
-              <input type = "submit" name = "s" value = "Rechercher" class="btn btn-outline-success my-2 my-sm-0">
+          <input type="text" name="terme" class="form-control mr-sm-2" placeholder="Votre recherche" aria-label="Search">
+          <input type="submit" name="s" value="Rechercher" class="btn btn-outline-success my-2 my-sm-0">
+
         </form>
+        <?php
+
+        $con = mysqli_connect('localhost', 'root', 'root', 'omnessante') or die('could not connect to database');
+        $sql = 'SELECT * FROM compte';
+        $result = mysqli_query($con, $sql);
+        $row = mysqli_fetch_array($result);
+
+        while ($row = mysqli_fetch_array($result)) {
+         if($result->num_rows > 0)
+         { 
+           if($row['conn']==1){
+        echo '<form class="form-inline mt-2 mt-md-0" style="margin-right:-70px;">
+          <a href="deconn.php"><img src="Images/deco.png" width="20%"></a>
+        </form>';}
+         }}
+        ?>
       </div>
     </nav>
   </header>

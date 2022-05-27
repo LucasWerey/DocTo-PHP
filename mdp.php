@@ -17,34 +17,7 @@
 
 <body>
   <!-- NavBar -->
-  <header>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-green">
-      <a class="navbar-brand" href="acceuil.html"><img src="Images/logo.png" width="20%"></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
-        aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span></button>
-      <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item ">
-            <a class="nav-link" href="acceuil.php">Accueil</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="toutParcourir.php">Tout Parcourir</a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="rdv_med.php">Rendez-vous </a>
-          </li>
-          <li class="nav-item active ">
-            <a class="nav-link" href="verifcompte.php">Votre Compte<span class="sr-only">(current)</span></a>
-          </li>
-        </ul>
-        <form action="search.php" method="GET" class="form-inline mt-2 mt-md-0" style="padding-right: 100px">
-              <input type = "text" name = "terme" class="form-control mr-sm-2" placeholder="Votre recherche" aria-label="Search">
-              <input type = "submit" name = "s" value = "Rechercher" class="btn btn-outline-success my-2 my-sm-0">
-              </form>
-      </div>
-    </nav>
-  </header>
+<?php include("header.php"); ?>
 
   <a href="https://front.codes/" class="logo" target="_blank">
       <img src="https://assets.codepen.io/1462889/fcy.png" alt="">

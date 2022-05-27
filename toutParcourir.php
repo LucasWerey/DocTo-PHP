@@ -19,7 +19,7 @@
 
   <body>
 <!-- NavBar -->
-<?php include("header.html"); ?>
+<?php include("header.php"); ?>
 
 
 <main role="main">
@@ -29,7 +29,7 @@
 
   <div class="row featurette">
     <div class="col-md-7">
-      <h2 class="featurette-heading" ><a href="medgenerale.html" style="color: blue;">Médecins généralistes</a></h2>
+      <h2 class="featurette-heading" ><a href="medgenerale.php" style="color: blue;">Médecins généralistes</a></h2>
       <p class="lead">Contactez un médecin au plus vite.</p>
     </div>
     <div class="col-md-5">

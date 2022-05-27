@@ -69,7 +69,6 @@
             var table =
                 `<tr>
                 <th>titre</th>
-                <th>image</th>
                 <th>prenom</th>
                 <th>nom</th>
                 <th>age</th>
@@ -88,9 +87,6 @@
                 table +=
                     "<tr><td>" +
                     x[i].getElementsByTagName("titre")[0]
-                        .childNodes[0].nodeValue
-                    + "</td><td>" +
-                    x[i].getElementsByTagName("image")[0]
                         .childNodes[0].nodeValue
                     + "</td><td>" +
                     x[i].getElementsByTagName("prenom")[0]
