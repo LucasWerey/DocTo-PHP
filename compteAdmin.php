@@ -98,8 +98,8 @@
 
                 <form action="" method="post">
                     <select name="selector">
+                    <option value="Choisir un médecin"> Choisir un médecin </option>
 
-                        
                         <?php
                         $res = 'SELECT * FROM medecins order by nom asc';
                         $nom = mysqli_query($con, $res);
@@ -170,7 +170,22 @@
                             <div class="row">
                                 <div class="col-12">
                                     <table class="table table-bordered">
-                                        <thead>
+                                      
+                                        <?php 
+
+                                        $selected = "";
+                                        if (isset($_POST['choix'])) {
+                                            if (!empty($_POST['selector'])) {
+                                                $selected = $_POST['selector'];
+                                            }
+                                        }
+                                        $query = $con->query("SELECT * from medecins where nom='" . $selected . "'");
+
+
+                                        if ($query->num_rows > 0) {
+                                            $cmsData = $query->fetch_assoc();
+                                            echo '
+                                            <thead>
                                             <tr align="center">
                                                 <th scope="col"></th>
                                                 <th scope="col">Lundi</th>
@@ -181,110 +196,99 @@
                                                 <th scope="col">Samedi</th>
                                             </tr>
                                         </thead>
-                                        <tbody align="center">
+                                            
+                                            <tbody align="center">
                                             <tr>
                                                 <td>
                                                     AM
                                                 </td>
-                                                <td> <?php
+                                                <td> ';
 
-                                                        $selected="";
-                                                        if (isset($_POST['choix'])) {
-                                                            if (!empty($_POST['selector'])) {
-                                                                $selected = $_POST['selector'];
-                                                            }
-                                                        }
-                                                        $query = $con->query("SELECT * from medecins where nom='" . $selected . "'");
+                                            if ($cmsData['lundiam'] == 1) {
 
-
-                                                        if ($query->num_rows > 0) {
-                                                            $cmsData = $query->fetch_assoc();
-
-                                                            if ($cmsData['lundiam'] == 1) {
-
-                                                                echo '<div class="custom-control custom-checkbox">
+                                                echo '<div class="custom-control custom-checkbox">
                                             <input type="checkbox" class="custom-control-input" id="LundiAM" checked>
                                             <label class="custom-control-label" for="LundiAM">
                                         </div>';
-                                                            } else {
-                                                                echo '<div class="custom-control custom-checkbox">
+                                            } else {
+                                                echo '<div class="custom-control custom-checkbox">
                                             <input type="checkbox" class="custom-control-input" id="LundiAM">
                                             <label class="custom-control-label" for="LundiAM">
                                         </div>';
-                                                            }
-                                                        
+                                            }
 
-                                                        echo  '</td>
+
+                                            echo  '</td>
                                                  <td>';
-                                                        if ($cmsData['mardiam'] == 1) {
+                                            if ($cmsData['mardiam'] == 1) {
 
-                                                            echo '<div class="custom-control custom-checkbox">
+                                                echo '<div class="custom-control custom-checkbox">
                                                                 <input type="checkbox" class="custom-control-input" id="MardiAM" checked>
                                                                 <label class="custom-control-label" for="MardiAM">
                                                                 </div>';
-                                                        } else {
-                                                            echo '<div class="custom-control custom-checkbox">
+                                            } else {
+                                                echo '<div class="custom-control custom-checkbox">
                                                                 <input type="checkbox" class="custom-control-input" id="MardiAM">
                                                                 <label class="custom-control-label" for="MardiAM">
                                                                 </div>';
-                                                        }
-                                                        echo '  </td>
+                                            }
+                                            echo '  </td>
                                             <td>';
-                                                        if ($cmsData['mercrediam'] == 1) {
+                                            if ($cmsData['mercrediam'] == 1) {
 
-                                                            echo '<div class="custom-control custom-checkbox">
+                                                echo '<div class="custom-control custom-checkbox">
                                                         <input type="checkbox" class="custom-control-input" id="MecrediAM" checked>
                                                         <label class="custom-control-label" for="MecrediAM">
                                                         </div>';
-                                                        } else {
-                                                            echo '<div class="custom-control custom-checkbox">
+                                            } else {
+                                                echo '<div class="custom-control custom-checkbox">
                                                         <input type="checkbox" class="custom-control-input" id="MecrediAM">
                                                         <label class="custom-control-label" for="MecrediAM">
                                                         </div>';
-                                                        }
-                                                        echo '</td>
+                                            }
+                                            echo '</td>
                                             <td>';
-                                                        if ($cmsData['jeudiam'] == 1) {
+                                            if ($cmsData['jeudiam'] == 1) {
 
-                                                            echo '<div class="custom-control custom-checkbox">
+                                                echo '<div class="custom-control custom-checkbox">
                                                         <input type="checkbox" class="custom-control-input" id="JeudiAM" checked>
                                                         <label class="custom-control-label" for="JeudiAM">
                                                         </div>';
-                                                        } else {
-                                                            echo '<div class="custom-control custom-checkbox">
+                                            } else {
+                                                echo '<div class="custom-control custom-checkbox">
                                                         <input type="checkbox" class="custom-control-input" id="JeudiAM">
                                                         <label class="custom-control-label" for="JeudiAM">
                                                         </div>';
-                                                        }
-                                                        echo '  </td>
+                                            }
+                                            echo '  </td>
                                             <td>';
-                                                        if ($cmsData['vendrediam'] == 1) {
+                                            if ($cmsData['vendrediam'] == 1) {
 
-                                                            echo '<div class="custom-control custom-checkbox">
+                                                echo '<div class="custom-control custom-checkbox">
                                                         <input type="checkbox" class="custom-control-input" id="VendrediAM" checked>
                                                         <label class="custom-control-label" for="VendrediAM">
                                                         </div>';
-                                                        } else {
-                                                            echo '<div class="custom-control custom-checkbox">
+                                            } else {
+                                                echo '<div class="custom-control custom-checkbox">
                                                         <input type="checkbox" class="custom-control-input" id="VendrediAM">
                                                         <label class="custom-control-label" for="VendrediAM">
                                                         </div>';
-                                                        }
-                                                        echo '</td>
+                                            }
+                                            echo '</td>
                                             <td>';
-                                                        if ($cmsData['samediam'] == 1) {
+                                            if ($cmsData['samediam'] == 1) {
 
-                                                            echo '<div class="custom-control custom-checkbox">
+                                                echo '<div class="custom-control custom-checkbox">
                                                         <input type="checkbox" class="custom-control-input" id="SamediAM" checked>
                                                         <label class="custom-control-label" for="SamediAM">
                                                         </div>';
-                                                        } else {
-                                                            echo '<div class="custom-control custom-checkbox">
+                                            } else {
+                                                echo '<div class="custom-control custom-checkbox">
                                                         <input type="checkbox" class="custom-control-input" id="SamediAM">
                                                         <label class="custom-control-label" for="SamediAM">
                                                         </div>';
-                                                        }
-                                                        echo '  </td>
+                                            }
+                                            echo '  </td>
                                            
 
                                         </tr>
@@ -293,91 +297,91 @@
                                                 PM
                                             </td>
                                             <td>';
-                                                        if ($cmsData['lundipm'] == 1) {
+                                            if ($cmsData['lundipm'] == 1) {
 
-                                                            echo '<div class="custom-control custom-checkbox">
+                                                echo '<div class="custom-control custom-checkbox">
                                                         <input type="checkbox" class="custom-control-input" id="LundiPm" checked>
                                                         <label class="custom-control-label" for="LundiPm">
                                                         </div>';
-                                                        } else {
-                                                            echo '<div class="custom-control custom-checkbox">
+                                            } else {
+                                                echo '<div class="custom-control custom-checkbox">
                                                         <input type="checkbox" class="custom-control-input" id="LundiPm">
                                                         <label class="custom-control-label" for="LundiPm">
                                                         </div>';
-                                                        }
-                                                        echo '  </td>
+                                            }
+                                            echo '  </td>
                                             <td>';
-                                                        if ($cmsData['mardipm'] == 1) {
+                                            if ($cmsData['mardipm'] == 1) {
 
-                                                            echo '<div class="custom-control custom-checkbox">
+                                                echo '<div class="custom-control custom-checkbox">
                                                         <input type="checkbox" class="custom-control-input" id="MardiPM" checked>
                                                         <label class="custom-control-label" for="MardiPM">
                                                         </div>';
-                                                        } else {
-                                                            echo '<div class="custom-control custom-checkbox">
+                                            } else {
+                                                echo '<div class="custom-control custom-checkbox">
                                                         <input type="checkbox" class="custom-control-input" id="MardiPM">
                                                         <label class="custom-control-label" for="MardiPM">
                                                         </div>';
-                                                        }
-                                                        echo '  </td>
+                                            }
+                                            echo '  </td>
                                             <td>';
-                                                        if ($cmsData['mercredipm'] == 1) {
+                                            if ($cmsData['mercredipm'] == 1) {
 
-                                                            echo '<div class="custom-control custom-checkbox">
+                                                echo '<div class="custom-control custom-checkbox">
                                                         <input type="checkbox" class="custom-control-input" id="MercrediPM" checked>
                                                         <label class="custom-control-label" for="MercrediPM">
                                                         </div>';
-                                                        } else {
-                                                            echo '<div class="custom-control custom-checkbox">
+                                            } else {
+                                                echo '<div class="custom-control custom-checkbox">
                                                         <input type="checkbox" class="custom-control-input" id="MercrediPM">
                                                         <label class="custom-control-label" for="MercrediPM">
                                                         </div>';
-                                                        }
-                                                        echo '  </td>
+                                            }
+                                            echo '  </td>
                                             <td>';
-                                                        if ($cmsData['jeudipm'] == 1) {
+                                            if ($cmsData['jeudipm'] == 1) {
 
-                                                            echo '<div class="custom-control custom-checkbox">
+                                                echo '<div class="custom-control custom-checkbox">
                                                         <input type="checkbox" class="custom-control-input" id="JeudiPM" checked>
                                                         <label class="custom-control-label" for="JeudiPM">
                                                         </div>';
-                                                        } else {
-                                                            echo '<div class="custom-control custom-checkbox">
+                                            } else {
+                                                echo '<div class="custom-control custom-checkbox">
                                                         <input type="checkbox" class="custom-control-input" id="JeudiPM">
                                                         <label class="custom-control-label" for="JeudiPM">
                                                         </div>';
-                                                        }
-                                                        echo '  </td>
+                                            }
+                                            echo '  </td>
                                             <td>';
-                                                        if ($cmsData['vendredipm'] == 1) {
+                                            if ($cmsData['vendredipm'] == 1) {
 
-                                                            echo '<div class="custom-control custom-checkbox">
+                                                echo '<div class="custom-control custom-checkbox">
                                                         <input type="checkbox" class="custom-control-input" id="VendrediPM" checked>
                                                         <label class="custom-control-label" for="VendrediPM">
                                                         </div>';
-                                                        } else {
-                                                            echo '<div class="custom-control custom-checkbox">
+                                            } else {
+                                                echo '<div class="custom-control custom-checkbox">
                                                         <input type="checkbox" class="custom-control-input" id="VendrediPM">
                                                         <label class="custom-control-label" for="VendrediPM">
                                                         </div>';
-                                                        }
-                                                        echo '  </td>
+                                            }
+                                            echo '  </td>
                                             <td>';
-                                                        if ($cmsData['samedipm'] == 1) {
+                                            if ($cmsData['samedipm'] == 1) {
 
-                                                            echo '<div class="custom-control custom-checkbox">
+                                                echo '<div class="custom-control custom-checkbox">
                                                         <input type="checkbox" class="custom-control-input" id="SamediPM" checked>
                                                         <label class="custom-control-label" for="SamediPM">
                                                         </div>';
-                                                        } else {
-                                                            echo '<div class="custom-control custom-checkbox">
+                                            } else {
+                                                echo '<div class="custom-control custom-checkbox">
                                                         <input type="checkbox" class="custom-control-input" id="SamediPM">
                                                         <label class="custom-control-label" for="SamediPM">
                                                         </div>';
-                                                        }
-                                                    }
-                                                        echo '  </td>'; ?>
-                                            </tr>
+                                            }
+                                        }
+                                        echo '  </td>'; ?>
+                                        </tr>
 
                                         </tbody>
                                     </table>
@@ -427,13 +431,12 @@
                         $spe = $_POST['spe'];
                         echo '<h5>' . $spe . '</h5>';
                     }
-                    
                 }
 
                 // DELETE  $sql = "DELETE FROM medecins WHERE mail=$mail";
                 // INSERT $sql ="INSERT INTO medecins values()
 
-               
+
                 ?>
 
 
