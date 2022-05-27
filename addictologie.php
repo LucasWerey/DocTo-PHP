@@ -21,7 +21,88 @@
   <!-- NavBar -->
   <?php include("header.html"); ?>
 
+  <div class="container marketing" style="padding-top:100px;">
+    <div class="col">
+      <div class="col-lg-offset-2 col-lg-15 ">
+        <div class="row boxr">
 
+        <!--Premier médecin-->
+          <div class="col-lg-4">
+            <div class="image">
+              <img src="Images/DocteurH.svg" width="75%" class="image__img" />
+              <div class="img_overlay">
+                <p class="img_desc">
+                  <a type="button" class="btn btn-primary openBtn1"
+                    style="font-size: 0.8em; background-color: transparent;">Dr. Lucas Werey</a>
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- Modal -->
+          <div class="modal fade" id="myModal1" role="dialog">
+            <div class="modal-dialog">
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body">
+                </div>
+                <div class="modal-footer">
+                  <form action="rdv_med.php" method="POST">
+                    <!--<input type = "submit" name="Nom" value = "Prendre un RDV" class="btn btn-secondary">-->
+                    <input type="text" name="nom" value="Werey" style="opacity: 0;" >
+                    <input class="btn btn-secondary" type="submit" value="Prendre un RDV">
+                  </form>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Communiquer avec le médecin</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="window.location.href = 'cv.html';">Voir son CV</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--Deuxième médecin-->
+          <!-- Button -->
+          <div class="col-lg-4">
+            <div class="image">
+              <img src="Images/DocteurH.svg" class="image__img" />
+              <div class="img_overlay">
+                <p class="img_desc">
+                  <a type="button" class="btn btn-primary openBtn2"
+                    style="font-size:0.8em; background-color: transparent;">Dr. Octave Prevot</a>
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- Modal -->
+          <div class="modal fade" id="myModal2" role="dialog">
+            <div class="modal-dialog">
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body">
+                </div>
+                <div class="modal-footer">
+                  <form action="rdv_med.php" method="POST">
+                    <!--<input type = "submit" name="Nom" value = "Prendre un RDV" class="btn btn-secondary">-->
+                    <input type="text" name="nom" value="Prevot" style="opacity: 0;">
+                    <input class="btn btn-secondary" type="submit" value="Prendre un RDV">
+                  </form>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Communiquer avec le médecin</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="window.location.href = 'cv.html';">Voir son CV</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
 
   <?php include("footer.html"); ?>
 
