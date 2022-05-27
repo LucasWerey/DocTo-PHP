@@ -1,5 +1,5 @@
 <?php
-session_start();
+//session_start();
 if(isset($_POST['logemail']) && isset($_POST['logpass']))
 {
     // connexion à la base de données

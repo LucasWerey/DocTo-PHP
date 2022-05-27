@@ -162,7 +162,7 @@
                                             <label>E-mail</label>
                                         </div>
                                         <div class="col-md-6">
-                                        <p>'. $cmsData['mail'].'</p>
+                                        <p>'. $cmsData['Mail'].'</p>
                                         </div>
                                     </div>
                                     <div class="row">

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <medecins>
     <medecin id="fr221">
-        <titre>Médecin Généraliste</titre>
+        <titre>Généraliste</titre>
         <image>bonhomme.jpg</image>
         <prenom>Lucas</prenom>
         <nom>Werey</nom>
