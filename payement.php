@@ -1,11 +1,11 @@
 <?php
-    session_start();
-    
-    if (isset($_POST['h']) && isset($_POST['jour'])) {
+session_start();
 
-      $_SESSION['new_hrdv'] = isset($_POST['h']) ? $_POST['h'] : "";
-      $_SESSION['new_jourrdv'] = isset($_POST['jour']) ? $_POST['jour'] : "";
-    }
+if (isset($_POST['h']) && isset($_POST['jour'])) {
+
+  $_SESSION['new_hrdv'] = isset($_POST['h']) ? $_POST['h'] : "";
+  $_SESSION['new_jourrdv'] = isset($_POST['jour']) ? $_POST['jour'] : "";
+}
 
 ?>
 
@@ -13,7 +13,7 @@
 <html lang="en">
 
 <head>
-  <title>Title</title>
+  <title>Payement</title>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -25,10 +25,9 @@
 
 <body>
 
+<!--METTRE LE FORM-->
+<form action='' method='POST'>
   <div class="container d-flex justify-content-center mt-5 mb-5">
-
-
-
     <div class="row g-3">
 
       <div class="col-md-6">
@@ -80,45 +79,56 @@
               <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                 <div class="card-body payment-card-body">
 
-                  <span class="font-weight-normal card-text">Numéro de carte bleue</span>
-                  <div class="input">
+                  <div>
+                    <input type="radio" id="visa" name="carte" value="Visa" checked>
+                    <label><img src="https://i.imgur.com/W1vtnOV.png" width="30"></label>
 
-                    <i class="fa fa-credit-card"></i>
-                    <input type="text" class="form-control" placeholder="0000 0000 0000 0000">
+                    <input type="radio" id="mastercard" name="carte" value="MasterCard">
+                    <label><img src="https://i.imgur.com/2ISgYja.png" width="30"></label>
 
+                    <input type="radio" id="stripe" name="carte" value="Stripe">
+                    <label><img src="https://i.imgur.com/35tC99g.png" width="30"></label>
                   </div>
+                  
+                    <span class="font-weight-normal card-text">Numéro de carte bleue</span>
+                    <div class="input">
 
-                  <div class="row mt-3 mb-3">
-
-                    <div class="col-md-6">
-
-                      <span class="font-weight-normal card-text">Date d'expiration</span>
-                      <div class="input">
-
-                        <i class="fa fa-calendar"></i>
-                        <input type="text" class="form-control" placeholder="MM/YY">
-
-                      </div>
+                      <i class="fa fa-credit-card"></i>
+                      <input type="text" class="form-control" placeholder="0000 0000 0000 0000" required>
 
                     </div>
 
+                    <div class="row mt-3 mb-3">
 
-                    <div class="col-md-6">
+                      <div class="col-md-6">
 
-                      <span class="font-weight-normal card-text">CVV</span>
-                      <div class="input">
+                        <span class="font-weight-normal card-text">Date d'expiration</span>
+                        <div class="input">
 
-                        <i class="fa fa-lock"></i>
-                        <input type="text" class="form-control" placeholder="000">
+                          <i class="fa fa-calendar"></i>
+                          <input type="text" class="form-control" placeholder="MM/YY" required>
+
+                        </div>
 
                       </div>
 
+
+                      <div class="col-md-6">
+
+                        <span class="font-weight-normal card-text">CVV</span>
+                        <div class="input">
+
+                          <i class="fa fa-lock"></i>
+                          <input type="text" class="form-control" placeholder="000" required>
+
+                        </div>
+
+                      </div>
+
+
                     </div>
 
-
-                  </div>
-
-                  <span class="text-muted certificate-text"><i class="fa fa-lock"></i> Votre transaction est sécurisée par P PLUS PRO e-commerce</span>
+                    <span class="text-muted certificate-text"><i class="fa fa-lock"></i> Votre transaction est sécurisée par P PLUS PRO e-commerce</span>
 
                 </div>
               </div>
@@ -185,55 +195,45 @@
 
             <div class="d-flex flex-column">
 
-              <span>Confirmer votre paiem</span>
+              <span>Confirmer votre paiement</span>
               <small>After 30 days $9.59</small>
 
             </div>
             <span>$0</span>
-
-
-
           </div>
 
 
           <div class="p-3">
-            <form action='' method='POST'>
-              <input type='submit' name="pay" class="btn btn-primary btn-block free-button" value='Valider votre paiement'>
-              <!--<button class="btn btn-primary btn-block free-button">Valider votre paiement</button>-->
-            </form>
-
-            <?php
-            if (isset($_POST['pay'])){
-              $db = mysqli_connect('localhost', 'root', 'root', 'omnessante') or die('could not connect to database');
-
-              $requete2 = "SELECT * FROM `medecins` WHERE `nom`='" . $_SESSION['name'] . "'";
-              $result2 = mysqli_query($db, $requete2) or die(mysqli_error($db)); //infos du médecin cliqué
-              $row2 = mysqli_fetch_array($result2); //tableau à 1 ligne
-              $id_med = $row2['id'];
-      
-              //Ajoute le rdv à la table `rdv`
-              $requete = "INSERT INTO `rdv`(`id_cl`, `id_med`, `date`, `heure`, `adresse`, `digicode`, `prix`) VALUES (" . $_SESSION['id_cl'] . "," . $id_med . ",'" . $_SESSION['new_jourrdv'] . "','" . $_SESSION['new_hrdv'] . "','37 Quai de Grenelle','456A7','25')";
-              $result = mysqli_query($db, $requete) or die(mysqli_error($db));
-      
-              mysqli_close($db); // fermer la connexion
-              //IL FAUT ALLER VERS LA PAGE PAYEMENT
-              echo "<script> location.replace('verifcompte.php'); </script>";
-              //session_destroy();
-            }
-            ?>
-              
+            <input type='submit' name="pay" class="btn btn-primary btn-block free-button" value='Valider votre paiement'>
           </div>
-
-
-
-
         </div>
       </div>
-
+      
     </div>
+  </div>
+  </form>
 
+  <?php
+          if (isset($_POST['pay'])) {
+            $db = mysqli_connect('localhost', 'root', 'root', 'omnessante') or die('could not connect to database');
 
-  </div>>
+            $requete2 = "SELECT * FROM `medecins` WHERE `nom`='" . $_SESSION['name'] . "'";
+            $result2 = mysqli_query($db, $requete2) or die(mysqli_error($db)); //infos du médecin cliqué
+            $row2 = mysqli_fetch_array($result2); //tableau à 1 ligne
+            $id_med = $row2['id'];
+
+            //Ajoute le rdv à la table `rdv`
+            $requete = "INSERT INTO `rdv`(`id_cl`, `id_med`, `date`, `heure`, `adresse`, `digicode`, `prix`) VALUES (" . $_SESSION['id_cl'] . "," . $id_med . ",'" . $_SESSION['new_jourrdv'] . "','" . $_SESSION['new_hrdv'] . "','37 Quai de Grenelle','456A7','25')";
+            $result = mysqli_query($db, $requete) or die(mysqli_error($db));
+
+            mysqli_close($db); // fermer la connexion
+
+            //echo "<h2>Enregistrement réalisé avec succès</h2>";
+            //IL FAUT ALLER VERS LA PAGE PAYEMENT
+            echo "<script> location.replace('verifcompte.php'); </script>";
+            //session_destroy();
+          }
+          ?>
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->

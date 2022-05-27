@@ -238,7 +238,7 @@
                                                 <label>Type de carte</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>Expert</p>
+                                                  <p>Expert</p>
                                             </div>
                                         </div>
                                         <div class="row">

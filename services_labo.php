@@ -6,7 +6,7 @@
 <html lang="en">
 
 <head>
-  <title>Laboratoire</title>
+  <title>Services Laboratoire</title>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -68,7 +68,7 @@
 
 
                   <div class="modal-footer">
-                    <form action="services_labo.php" method="POST">
+                    <form action="" method="POST">
                       <!--<input type = "submit" name="Nom" value = "Prendre un RDV" class="btn btn-secondary">-->
                       <input type="text" name="nom" value="<?php echo $row['Nom']; ?>" style="opacity: 0;">
                       <input class="btn btn-secondary" type="submit" value="Nos services">

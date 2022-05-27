@@ -61,6 +61,7 @@
                       <p> Salle : <?php echo $row['salle']; ?></p>
                       <p> Téléphone : <?php echo $row['tel']; ?></p>
                       <p> E-mail : <?php echo $row['mail']; ?></p>
+                      <p> Spécialité : <?php echo $row['spe']; ?></p>
                     </div>
                     <?php echo '<table class="table table-bordered results">
         <thead>
