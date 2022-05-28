@@ -110,7 +110,7 @@
             <p>Médecin Généraliste</p>
             <p>Disponible du Lundi au Vendredi</p>
             <p>Joignable au +33 695784783</p>
-            <p><a class="btn btn-secondary" href="medgenerale.php" role="button">View details &raquo;</a></p>
+            <p><a class="btn btn-secondary" href="medgenerale.php" role="button">Voir détails &raquo;</a></p>
           </div><!-- /.col-lg-4 -->
           <div class="col-lg-4">
             <img class="rounded-circle" src="IconesDocteurs/DocteurLucas.png" alt="Generic placeholder image" width="140" height="140">
@@ -118,7 +118,7 @@
             <p>Médecin Généraliste</p>
             <p>Disponible Lundi/Mercredi-Samedi</p>
             <p>Joignable au +33 615892461</p>
-            <p><a class="btn btn-secondary" href="medgenerale.php" role="button">View details &raquo;</a></p>
+            <p><a class="btn btn-secondary" href="medgenerale.php" role="button">Voir détails &raquo;</a></p>
           </div><!-- /.col-lg-4 -->
           <div class="col-lg-4">
             <img class="rounded-circle" src="IconesDocteurs/DocteurLena.png" alt="Generic placeholder image" width="140" height="140">
@@ -126,7 +126,7 @@
             <p>Médecin Généraliste</p>
             <p>Disponible Lundi-Mardi/Jeudi-Samedi</p>
             <p>Joignable au +33 695784783</p>
-            <p><a class="btn btn-secondary" href="medgenerale.php" role="button">View details &raquo;</a></p>
+            <p><a class="btn btn-secondary" href="medgenerale.php" role="button">Voir détails &raquo;</a></p>
           </div><!-- /.col-lg-4 -->
         </div><!-- /.row -->
 

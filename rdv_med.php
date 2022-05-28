@@ -179,15 +179,15 @@ if ($name !== "") {
                 ) {*/
 
                     if (
-                        $referer == 'http://localhost:62188/ProjetWeb/medgenerale.php' ||
-                        $referer == 'http://localhost:62188/ProjetWeb/addictologie.php' ||
-                        $referer == 'http://localhost:62188/ProjetWeb/andrologie.php' ||
-                        $referer == 'http://localhost:62188/ProjetWeb/cardiologie.php' ||
-                        $referer == 'http://localhost:62188/ProjetWeb/dermatologie.php' ||
-                        $referer == 'http://localhost:62188/ProjetWeb/gastro.php' ||
-                        $referer == 'http://localhost:62188/ProjetWeb/gynecologie.php' ||
-                        $referer == 'http://localhost:62188/ProjetWeb/ist.php' ||
-                        $referer == 'http://localhost:62188/ProjetWeb/osteopathie.php'
+                        $referer == 'http://localhost:56275/projetweb/medgenerale.php' ||
+                        $referer == 'http://localhost:56275/projetweb/addictologie.php' ||
+                        $referer == 'http://localhost:56275/projetweb/andrologie.php' ||
+                        $referer == 'http://localhost:56275/projetweb/cardiologie.php' ||
+                        $referer == 'http://localhost:56275/projetweb/dermatologie.php' ||
+                        $referer == 'http://localhost:56275/projetweb/gastro.php' ||
+                        $referer == 'http://localhost:56275/projetweb/gynecologie.php' ||
+                        $referer == 'http://localhost:56275/projetweb/ist.php' ||
+                        $referer == 'http://localhost:56275/projetweb/osteopathie.php'
                     ) {
 
                         //On récupère les horaires pour créer le tableau

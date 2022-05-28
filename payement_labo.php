@@ -200,51 +200,64 @@ if (isset($_POST['h']) && isset($_POST['jour'])) {
               </div>
 
               <div class="mt-1">
-                <sup class="super-price"># €</sup>
-
+                <?php 
+                $db = mysqli_connect('localhost', 'root', 'root', 'omnessante') or die('could not connect to database');
+                $req = "SELECT * FROM `labo` WHERE `Idlabo`='" . $_SESSION['Idlabo'] . "'";
+                $res = mysqli_query($db,$req);
+                $row = mysqli_fetch_array($res);
+                $nom=$row['Nom'];
+                $service=$_SESSION['service'];
+                $date=$_SESSION['new_jourrdv'];
+                $heure=$_SESSION['new_hrdv'];
+                $prix = "";
+                if ($_SESSION['service'] == "covid") {
+                  $prix = '44';
+                  $service="Dépistage covid";
+                } elseif ($_SESSION['service'] == "bio_prev") {
+                  $prix = '140';
+                  $service="Biologie préventive";
+                } elseif ($_SESSION['service'] == "bio_enc") {
+                  $prix = '43';
+                  $service="Biologie de la femme enceinte";
+                } elseif ($_SESSION['service'] == "bio_rout") {
+                  $prix = '21';
+                  $service="Biologie de routine";
+                } elseif ($_SESSION['service'] == "cancer") {
+                  $prix = '32';
+                  $service="Cancérologie";
+                } elseif ($_SESSION['service'] == "gyneco") {
+                  $prix = '80';
+                  $service="Gynécologie";
+                }
+            
+                echo'<sup class="super-price">'.$prix.' €</sup>
               </div>
-
             </div>
-
             <hr class="mt-0 line">
-
             <div class="p-3">
-
               <div class="d-flex justify-content-between mb-2">
-
-
-
               </div>
-
               <div class="d-flex">
                 <p> Votre rendez-vous : </p>
                 <ul>
-                  <li>Motif</li>
-                  <li>Date</li>
-                  <li>Heure</li>
-                  <li>Digicode</li>
-                  <li>Adresse</li>
-                  <li>Medecin</li>
+                <li>Laboratoire : '.$nom.'</li>
+                  <li>Service : '.$service.'</li>
+                  <li>Date : '.ucfirst($date).'</li>
+                  <li>Heure : '.$heure.'</li>
+                  <li>Digicode : 456A7</li>
+                  <li>Adresse : 37 Quai de Grenelle</li>
                 </ul>
-
-
               </div>
-
-
             </div>
-
             <hr class="mt-0 line">
-
-
             <div class="p-3 d-flex justify-content-between">
-
               <div class="d-flex flex-column">
-
                 <span>Confirmer votre paiement</span>
-                <small>After 30 days $9.59</small>
+                <!--<small>After 30 days $9.59</small>-->
 
               </div>
-              <span>$0</span>
+              <span>'.$prix.' €</span>';
+              ?>
             </div>
 
 

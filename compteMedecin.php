@@ -86,7 +86,6 @@ $query = $con->query("SELECT * from medecins where mail='".$username."'");
 if($query->num_rows > 0){ 
 $cmsData = $query->fetch_assoc(); 
 
-      
 
 ?>
 
@@ -186,14 +185,15 @@ $cmsData = $query->fetch_assoc();
 
                             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                         <div class="row" style="margin-top:-120px">
-                                            <div class="col-md-6">
+                                            <!--<div class="col-md-6">
                                                 <label>Experience</label>
                                             </div>
                                             <div class="col-md-6">
                                                 <p>Expert</p>
-                                            </div>
+                                            </div>-->
+                                            <h5><a href="rdv_med.php">Pour consulter vos rendez-vous à venir, rendez vous sur cette page.</a></h5>
                                         </div>
-                                        <div class="row">
+                                        <!--<div class="row">
                                             <div class="col-md-6">
                                                 <label>Hourly Rate</label>
                                             </div>
@@ -224,7 +224,7 @@ $cmsData = $query->fetch_assoc();
                                             <div class="col-md-6">
                                                 <p>6 months</p>
                                             </div>
-                                        </div>
+                                        </div>-->
                               
                                     </div>
                                 </div>

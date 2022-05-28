@@ -102,8 +102,8 @@ if (isset($_POST['h']) && isset($_POST['jour'])) {
 
                       if ($nbrow > 0) {
                         while ($row = mysqli_fetch_array($result)) {
-                          echo "<input type='text' name='numcard' class='form-control' value='" . 
-                          $row['Num carte'] . "' placeholder='" . $row['Num carte'] . "' maxlength='16' minlength='16' required>";
+                          echo "<input type='text' name='numcard' class='form-control' value='" .
+                            $row['Num carte'] . "' placeholder='" . $row['Num carte'] . "' maxlength='16' minlength='16' required>";
                         }
                       } else {
                         echo '<input type="text" name="numcard" class="form-control" placeholder="0000 0000 0000 0000" maxlength="16" minlength="16" required>';
@@ -130,8 +130,8 @@ if (isset($_POST['h']) && isset($_POST['jour'])) {
                           $nbrow = mysqli_num_rows($result); //tableau à 1 ligne
                           if ($nbrow > 0) {
                             while ($row = mysqli_fetch_array($result)) {
-                              echo '<input type="text" name="exp" class="form-control" value="' . $row['Exp'] . '" placeholder="' 
-                              . $row['Exp'] . '" maxlength="5" minlength="5" required>';
+                              echo '<input type="text" name="exp" class="form-control" value="' . $row['Exp'] . '" placeholder="'
+                                . $row['Exp'] . '" maxlength="5" minlength="5" required>';
                             }
                           } else {
                             echo '<input type="text" name="exp" class="form-control" placeholder="MM/YY" maxlength="5" minlength="5" required>';
@@ -158,8 +158,8 @@ if (isset($_POST['h']) && isset($_POST['jour'])) {
                           $nbrow = mysqli_num_rows($result); //tableau à 1 ligne
                           if ($nbrow > 0) {
                             while ($row = mysqli_fetch_array($result)) {
-                              echo '<input type="text" name="cvv" class="form-control" value="' . $row['CVV'] . '" placeholder="' 
-                              . $row['CVV'] . '" maxlength="3" minlength="3" required>';
+                              echo '<input type="text" name="cvv" class="form-control" value="' . $row['CVV'] . '" placeholder="'
+                                . $row['CVV'] . '" maxlength="3" minlength="3" required>';
                             }
                           } else {
                             echo '<input type="text" name="cvv" class="form-control" placeholder="000" maxlength="3" minlength="3" required>';
@@ -194,32 +194,61 @@ if (isset($_POST['h']) && isset($_POST['jour'])) {
                 <span>Prix à payer<i class="fa fa-caret-down"></i></span>
               </div>
               <div class="mt-1">
-                <sup class="super-price">€</sup>
+              <?php
+                $db = mysqli_connect('localhost', 'root', 'root', 'omnessante') or die('could not connect to database');
+                $requete2 = "SELECT * FROM `medecins` WHERE `nom`='" . $_SESSION['name'] . "'";
+                $result2 = mysqli_query($db, $requete2) or die(mysqli_error($db)); //infos du médecin cliqué
+                $row2 = mysqli_fetch_array($result2); //tableau à 1 ligne
+                $spe_med = $row2['spe'];
+                $prix = "";
+                $date=$_SESSION['new_jourrdv'];
+                $heure=$_SESSION['new_hrdv'];
+                if ($spe_med == "Generaliste") {
+                  $prix = '30';
+                } elseif ($spe_med == "Addictologie") {
+                  $prix = '60';
+                } elseif ($spe_med == "Andrologie") {
+                  $prix = '25';
+                } elseif ($spe_med == "Cardiologie") {
+                  $prix = '51';
+                } elseif ($spe_med == "Dermatologie") {
+                  $prix = '45';
+                } elseif ($spe_med == "Gastro") {
+                  $prix = '60';
+                } elseif ($spe_med == "Gynecologie") {
+                  $prix = '80';
+                } elseif ($spe_med == "IST") {
+                  $prix = '55';
+                } elseif ($spe_med == "Osteopathie") {
+                  $prix = '58';
+                } 
+                echo "
+                <sup class='super-price'>".$prix." €</sup>
               </div>
             </div>
-            <hr class="mt-0 line">
-            <div class="p-3">
-              <div class="d-flex justify-content-between mb-2">
+            <hr class='mt-0 line'>
+            <div class='p-3'>
+              <div class='d-flex justify-content-between mb-2'>
               </div>
-              <div class="d-flex">
+              <div class='d-flex'>
                 <p> Votre rendez-vous : </p>
                 <ul>
-                  <li>Motif</li>
-                  <li>Date</li>
-                  <li>Heure</li>
-                  <li>Digicode</li>
-                  <li>Adresse</li>
-                  <li>Medecin</li>
-                </ul>
+                <li>Medecin : ".$_SESSION['name']."</li>
+                  <li>Spécialité : ".$spe_med."</li>
+                  <li>Date : ".ucfirst($date)."</li>
+                  <li>Heure : ".$heure."</li>
+                  <li>Digicode : 456A7</li>
+                  <li>Adresse : 37 Quai de Grenelle</li>
+                </ul>;
               </div>
             </div>
-            <hr class="mt-0 line">
-            <div class="p-3 d-flex justify-content-between">
-              <div class="d-flex flex-column">
+            <hr class='mt-0 line'>
+            <div class='p-3 d-flex justify-content-between'>
+              <div class='d-flex flex-column'>
                 <span>Confirmer votre paiement</span>
                 <!--<small>After 30 days $9.59</small>-->
               </div>
-              <span>$0</span>
+              <span>".$prix." €</span>" ?>
             </div>
             <div class="p-3">
               <input type='submit' name="pay" class="btn btn-primary btn-block free-button" value='Valider votre paiement'>
@@ -246,7 +275,7 @@ if (isset($_POST['h']) && isset($_POST['jour'])) {
     $nom_cl = $ligne_infocl['Nom'];
 
     if ($nbrow == 0) {
-      
+
       $typecarte = isset($_POST["typecarte"]) ? $_POST["typecarte"] : "";
       $numcard = isset($_POST["numcard"]) ? $_POST["numcard"] : "";
       $exp = isset($_POST["exp"]) ? $_POST["exp"] : "";
@@ -293,23 +322,22 @@ if (isset($_POST['h']) && isset($_POST['jour'])) {
     // ENVOIE DU MAIL 
 
     $to = 'lucas.werey@edu.ece.fr';
-    $subject="test";
-    $message="message";
-   
-    if (mail($to,$subject,$message)) // Envoi du message
+    $subject = "test";
+    $message = "message";
+
+    if (mail($to, $subject, $message)) // Envoi du message
     {
-        echo 'Votre message a bien été envoyé ';
-    }
-    else // Non envoyé
+      echo 'Votre message a bien été envoyé ';
+    } else // Non envoyé
     {
-        echo "Votre message n'a pas pu être envoyé";
+      echo "Votre message n'a pas pu être envoyé";
     }
 
 
     mysqli_close($db); // fermer la connexion
 
     //echo "<h2>Enregistrement réalisé avec succès</h2>";
-  //  echo "<script> location.replace('verifcompte.php'); </script>";
+    //  echo "<script> location.replace('verifcompte.php'); </script>";
     //session_destroy();
   }
   ?>
