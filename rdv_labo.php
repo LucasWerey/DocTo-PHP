@@ -108,8 +108,8 @@ if ($id_labo !== "") {
 
                 //Référence à la page précédente
                 $referer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : 'verifcompte.php';
-                if ($referer == 'http://localhost:62378/projetweb/services_labo.php') {
-                    //if ($referer == 'http://localhost/ProjetWeb/services_labo.php') {
+                //if ($referer == 'http://localhost:62378/projetweb/services_labo.php') {
+                    if ($referer == 'http://localhost/ProjetWeb/services_labo.php') {
                     /*if ($referer == 'http://localhost/projetweb/services_labo.php') {*/
 
                     //On récupère les horaires pour créer le tableau

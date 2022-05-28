@@ -105,7 +105,7 @@ if ($name !== "") {
 
                 //Référence à la page précédente
                 $referer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : 'verifcompte.php';
-                if (
+                /*if (
                     $referer == 'http://localhost:62378/projetweb/medgenerale.php' ||
                     $referer == 'http://localhost:62378/projetweb/addictologie.php' ||
                     $referer == 'http://localhost:62378/projetweb/andrologie.php' ||
@@ -115,19 +115,19 @@ if ($name !== "") {
                     $referer == 'http://localhost:62378/projetweb/gynecologie.php' ||
                     $referer == 'http://localhost:62378/projetweb/ist.php' ||
                     $referer == 'http://localhost:62378/projetweb/osteopathie.php'
-                ) {
-                    //if ($referer == 'http://localhost/ProjetWeb/medgenerale.php') {
-                    /*if (
-                    $referer == 'http://localhost/projetweb/medgenerale.php' ||
-                    $referer == 'http://localhost/projetweb/addictologie.php' ||
-                    $referer == 'http://localhost/projetweb/andrologie.php' ||
-                    $referer == 'http://localhost/projetweb/cardiologie.php' ||
-                    $referer == 'http://localhost/projetweb/dermatologie.php' ||
-                    $referer == 'http://localhost/projetweb/gastro.php' ||
-                    $referer == 'http://localhost/projetweb/gynecologie.php' ||
-                    $referer == 'http://localhost/projetweb/ist.php' ||
-                    $referer == 'http://localhost/projetweb/osteopathie.php'
                 ) {*/
+                    //if ($referer == 'http://localhost/ProjetWeb/medgenerale.php') {
+                    if (
+                    $referer == 'http://localhost/ProjetWeb/medgenerale.php' ||
+                    $referer == 'http://localhost/ProjetWeb/addictologie.php' ||
+                    $referer == 'http://localhost/ProjetWeb/andrologie.php' ||
+                    $referer == 'http://localhost/ProjetWeb/cardiologie.php' ||
+                    $referer == 'http://localhost/ProjetWeb/dermatologie.php' ||
+                    $referer == 'http://localhost/ProjetWeb/gastro.php' ||
+                    $referer == 'http://localhost/ProjetWeb/gynecologie.php' ||
+                    $referer == 'http://localhost/ProjetWeb/ist.php' ||
+                    $referer == 'http://localhost/ProjetWeb/osteopathie.php'
+                ) {
 
                     //On récupère les horaires pour créer le tableau
                     $requete = "SELECT * FROM `horaire`";
@@ -451,18 +451,31 @@ if ($name !== "") {
                                     }
                                 }
                             }
-                        } else {
+                        } if($total_rdv_clabo > 0) {
                             while ($row_rdv_clabo = mysqli_fetch_array($result_rdv_clabo)) {
                                 $id_labo = $row_rdv_clabo['id_labo'];
+                                $spelabo = $row_rdv_clabo['service'];
                                 $reqidlabo = "SELECT * FROM `labo` WHERE `Idlabo`=" . $id_labo;
                                 $residlabo = mysqli_query($db, $reqidlabo) or die(mysqli_error($db));
                                 $totidlabo = mysqli_num_rows($residlabo);
                                 if ($totidlabo > 0) {
                                     $rowidlabo = mysqli_fetch_array($residlabo);
                                     $nomlabo = $rowidlabo['Nom'];
-                                    $spelabo = $_SESSION['service'];
+                                    if ($spelabo == "covid"){
+                                        $spelabo = "Dépistage Covid"; 
+                                    }elseif ($spelabo == "bio_prev"){
+                                        $spelabo = "Biologie préventive";
+                                    }elseif ($spelabo == "bio_enc"){
+                                        $spelabo = "Biologie de la femme enceinte";
+                                    }elseif ($spelabo == "bio_rout"){
+                                        $spelabo = "Biologie de routine";
+                                    }elseif ($spelabo == "cancer"){
+                                        $spelabo = "Cancérologie";
+                                    }elseif ($spelabo == "gyneco"){
+                                        $spelabo = "Gynécologie";
+                                    }
                                     echo "<h4>Vous avez rendez vous au laboratoire : " . $nomlabo . " le " . $row_rdv_clabo['date'] . " à " .
-                                        $row_rdv_clabo['heure'] . ".<br>Specialité : " . $spelabo . "<br>Adresse : " . $row_rdv_clabo['adresse'] . "<br>Digicode : " .
+                                        $row_rdv_clabo['heure'] . ".<br>Service : " . $spelabo . "<br>Adresse : " . $row_rdv_clabo['adresse'] . "<br>Digicode : " .
                                         $row_rdv_clabo['digicode'] . "<br>Prix de la consultation : " . $row_rdv_clabo['prix'] .
                                         " €<br><br>
                                     <form action='' method='POST'>
@@ -470,10 +483,10 @@ if ($name !== "") {
                                     </form></h4>";
                                     if (isset($_POST[$id_labo . $row_rdv_clabo["date"] . $row_rdv_clabo["heure"]])) {
                                         //echo "<h2>DELETE FROM `rdv` WHERE `id_cl`=".$_SESSION['id_cl']." AND `id_med`=".$id_medecin." AND `date`='".$row_rdv_cl['date']."' AND `heure`='".$row_rdv_cl['heure']."'</h2>";
-                                        $requete_annulabo = "DELETE FROM `rdv` WHERE `id_cl`=" . $_SESSION['id_cl'] . " AND `id_labo`=" . $id_labo . " AND `date`='" . $row_rdv_clabo['date'] . "' AND `heure`='"
-                                            . $row_rdv_clabo['heure'] . "' AND `service`='" . $_SESSION['service'] . "'";
+                                        $requete_annulabo = "DELETE FROM `rdv_labo` WHERE `id_cl`=" . $_SESSION['id_cl'] . " AND `id_labo`=" . $id_labo . " AND `date`='" . $row_rdv_clabo['date'] . "' AND `heure`='"
+                                            . $row_rdv_clabo['heure'] . "' AND `service`='" . $row_rdv_clabo['service'] . "'";
                                         $result_annulabo = mysqli_query($db, $requete_annulabo) or die(mysqli_error($db));
-                                        echo "<script> location.replace('rdv_labo.php'); </script>";
+                                        echo "<script> location.replace('rdv_med.php'); </script>";
                                         //echo "<h2>Le rdv a bien été annulé</h2>";
                                     }
                                 }
