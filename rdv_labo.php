@@ -67,7 +67,7 @@ if ($id_labo !== "") {
                 $con = mysqli_connect('localhost', 'root', 'root', 'omnessante') or die('could not connect to database');
                 $sql = 'SELECT * FROM compte';
                 $result = mysqli_query($con, $sql);
-                $row = mysqli_fetch_array($result);
+     
 
                 while ($row = mysqli_fetch_array($result)) {
                     if ($result->num_rows > 0) {
@@ -109,8 +109,10 @@ if ($id_labo !== "") {
                 //Référence à la page précédente
                 $referer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : 'verifcompte.php';
                 //if ($referer == 'http://localhost:62378/projetweb/services_labo.php') {
+                    //Pour clem
                 if ($referer == 'http://localhost/ProjetWeb/services_labo.php') {
-                    /*if ($referer == 'http://localhost/projetweb/services_labo.php') {*/
+                    //Pour lulu
+                /*if ($referer == 'http://localhost/projetweb/services_labo.php') {*/
 
                     //On récupère les horaires pour créer le tableau
                     $requete = "SELECT * FROM `horaire`";

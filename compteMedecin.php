@@ -21,8 +21,8 @@
 </head>
   <body>
   <!-- NavBar -->
-
-  <header>
+ <!-- NavBar -->
+ <header>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-green">
       <a class="navbar-brand" href="acceuil.php"><img src="Images/logo.png" width="20%"></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -53,7 +53,7 @@
         $con = mysqli_connect('localhost', 'root', 'root', 'omnessante') or die('could not connect to database');
         $sql = 'SELECT * FROM compte';
         $result = mysqli_query($con, $sql);
-        $row = mysqli_fetch_array($result);
+     
 
         while ($row = mysqli_fetch_array($result)) {
          if($result->num_rows > 0)
@@ -68,22 +68,41 @@
     </nav>
   </header>
 
+<!------ DOCTOR FORM ---------->
+<?php 
 
-<!------ CLIENT FORM ---------->
+$qry = $con->query("SELECT * from compte where conn=1"); 
+  
+if($qry->num_rows>0)
+{ 
+  $res = $qry->fetch_assoc(); 
+  $username=$res['username'];
+
+}
+
+
+$query = $con->query("SELECT * from medecins where mail='".$username."'"); 
+
+if($query->num_rows > 0){ 
+$cmsData = $query->fetch_assoc(); 
+
+      
+
+?>
+
 
 <div class="container emp-profile">
             <form method="post">
                 <div class="row">
                     <div class="col-md-4">
                         <div class="profile-img" >
-                            <img src="Images/bonhomme.jpg" alt=""/>
-                            
+                        <?php echo '<img src="data:image/jpeg;base64,' .$cmsData['photo'] . '" width="75%" /> '; ?>                
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="profile-head">
                                     <h5>
-                                        Prénom Nom
+                                    <?php echo $cmsData['prenom'].' '.$cmsData['nom']; ?>
                                     </h5>
                                    
                     
@@ -96,9 +115,6 @@
                                 </li>
                             </ul>
                         </div>
-                    </div>
-                    <div class="col-md-2">
-                        <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
                     </div>
                 </div>
                 <div class="row">
@@ -113,7 +129,7 @@
                                                 <label>Votre identifiant</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>Kshiti123</p>
+                                                <p><?php echo $cmsData['id']; ?></p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -121,7 +137,7 @@
                                                 <label>Nom</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>Kshiti Ghelani</p>
+                                            <p><?php echo $cmsData['nom']; ?></p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -129,15 +145,15 @@
                                                 <label>Prénom</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>kshitighelani@gmail.com</p>
+                                            <p><?php echo $cmsData['prenom']; ?></p>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Numéro de carte vitale</label>
+                                                <label>Spécialité</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>Web Developer and Designer</p>
+                                            <p><?php echo $cmsData['spe']; ?></p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -145,7 +161,7 @@
                                                 <label>E-mail</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>123 456 7890</p>
+                                            <p><?php echo $cmsData['mail']; ?></p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -153,52 +169,21 @@
                                                 <label>Téléphone</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>Web Developer and Designer</p>
+                                            <p><?php echo $cmsData['tel']; ?></p>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Adresse ligne 1</label>
+                                                <label>Salle</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>Web Developer and Designer</p>
+                                            <p><?php echo $cmsData['salle']; ?></p>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Adresse ligne 2</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>Web Developer and Designer</p>
-                                            </div>
-                                        </div>
-                                           
                                        
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Ville</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>Web Developer and Designer</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Pays</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>Web Developer and Designer</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Code postal</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>Web Developer and Designer</p>
-                                            </div>
-                                        </div>
-                            </div>
+                            </div> <?php } ?>
+
+
                             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                         <div class="row" style="margin-top:-120px">
                                             <div class="col-md-6">

@@ -63,7 +63,7 @@ if ($name !== "") {
                 $con = mysqli_connect('localhost', 'root', 'root', 'omnessante') or die('could not connect to database');
                 $sql = 'SELECT * FROM compte';
                 $result = mysqli_query($con, $sql);
-                $row = mysqli_fetch_array($result);
+ 
 
                 while ($row = mysqli_fetch_array($result)) {
                     if ($result->num_rows > 0) {
@@ -92,6 +92,8 @@ if ($name !== "") {
             $result_compte = mysqli_query($db, $requete_compte) or die(mysqli_error($db));
             $num_row_compte = mysqli_num_rows($result_compte); //normalement 1 ligne
 
+            
+
             if ($num_row_compte > 0) {
                 //On récupère l'username (mail) du client
                 $row_compte = mysqli_fetch_array($result_compte); //tableau à 1 ligne
@@ -102,22 +104,25 @@ if ($name !== "") {
                 $result_cl = mysqli_query($db, $requete_cl) or die(mysqli_error($db));
                 $row_cl = mysqli_fetch_array($result_cl); //tableau à 1 ligne
                 $_SESSION['id_cl'] = $row_cl['IdCl'];
+                
 
                 //Référence à la page précédente
                 $referer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : 'verifcompte.php';
+                //Pour lulu
                 /*if (
-                    $referer == 'http://localhost:62378/projetweb/medgenerale.php' ||
-                    $referer == 'http://localhost:62378/projetweb/addictologie.php' ||
-                    $referer == 'http://localhost:62378/projetweb/andrologie.php' ||
-                    $referer == 'http://localhost:62378/projetweb/cardiologie.php' ||
-                    $referer == 'http://localhost:62378/projetweb/dermatologie.php' ||
-                    $referer == 'http://localhost:62378/projetweb/gastro.php' ||
-                    $referer == 'http://localhost:62378/projetweb/gynecologie.php' ||
-                    $referer == 'http://localhost:62378/projetweb/ist.php' ||
-                    $referer == 'http://localhost:62378/projetweb/osteopathie.php'
+                    $referer == 'http://localhost/projetweb/medgenerale.php' ||
+                    $referer == 'http://localhost/projetweb/addictologie.php' ||
+                    $referer == 'http://localhost/projetweb/andrologie.php' ||
+                    $referer == 'http://localhost/projetweb/cardiologie.php' ||
+                    $referer == 'http://localhost/projetweb/dermatologie.php' ||
+                    $referer == 'http://localhost/projetweb/gastro.php' ||
+                    $referer == 'http://localhost/projetweb/gynecologie.php' ||
+                    $referer == 'http://localhost/projetweb/ist.php' ||
+                    $referer == 'http://localhost/projetweb/osteopathie.php'
                 ) {*/
-                    //if ($referer == 'http://localhost/ProjetWeb/medgenerale.php') {
-                    if (
+                //Pour clem
+                
+             /*   if (
                     $referer == 'http://localhost/ProjetWeb/medgenerale.php' ||
                     $referer == 'http://localhost/ProjetWeb/addictologie.php' ||
                     $referer == 'http://localhost/ProjetWeb/andrologie.php' ||
@@ -127,6 +132,17 @@ if ($name !== "") {
                     $referer == 'http://localhost/ProjetWeb/gynecologie.php' ||
                     $referer == 'http://localhost/ProjetWeb/ist.php' ||
                     $referer == 'http://localhost/ProjetWeb/osteopathie.php'
+                ) {*/
+                    if (
+                    $referer == 'http://localhost:55007/ProjetWeb/medgenerale.php' ||
+                    $referer == 'http://localhost:55007/ProjetWeb/addictologie.php' ||
+                    $referer == 'http://localhost:55007/ProjetWeb/andrologie.php' ||
+                    $referer == 'http://localhost:55007/ProjetWeb/cardiologie.php' ||
+                    $referer == 'http://localhost:55007/ProjetWeb/dermatologie.php' ||
+                    $referer == 'http://localhost:55007/ProjetWeb/gastro.php' ||
+                    $referer == 'http://localhost:55007/ProjetWeb/gynecologie.php' ||
+                    $referer == 'http://localhost:55007/ProjetWeb/ist.php' ||
+                    $referer == 'http://localhost:55007/ProjetWeb/osteopathie.php'
                 ) {
 
                     //On récupère les horaires pour créer le tableau
@@ -148,7 +164,7 @@ if ($name !== "") {
 
                     if ($total > 0) {
                         if ($total2 > 0) {
-                            echo "<h2 class='nom_med_rdv'>Dr. ".$_SESSION['name']." ".$row2['prenom']."</h2><br>
+                            echo "<h2 class='nom_med_rdv'>Dr. " . $_SESSION['name'] . " " . $row2['prenom'] . "</h2><br>
                             <h5>Pour prendre un rendez-vous, veuillez cliquer sur un rendez-vous disponible (les rendez-vous en rouges ne sont plus disponibles).</h5><br>
                         <tr>
                         <th>LUNDI</th>
@@ -437,11 +453,11 @@ if ($name !== "") {
                                     $nommed = $rowidmed['nom'];
                                     $prenomed = $rowidmed['prenom'];
                                     $spemed = $rowidmed['spe'];
-                                    echo "<table class='aff_rdv'><th>Rendez vous le ".$row_rdv_cl['date']." à ".$row_rdv_cl['heure']."</th>
+                                    echo "<table class='aff_rdv'><th>Rendez vous le " . $row_rdv_cl['date'] . " à " . $row_rdv_cl['heure'] . "</th>
                                     <tr><td>Vous avez rendez vous avec le médecin : " . $nommed . " " . $prenomed . " le " . $row_rdv_cl['date'] . " à " .
-                                    $row_rdv_cl['heure'] . ".<br>Specialité : " . $spemed . "<br>Adresse : " . $row_rdv_cl['adresse'] . "<br>Digicode : " .
-                                    $row_rdv_cl['digicode'] . "<br>Prix de la consultation : " . $row_rdv_cl['prix'] .
-                                    " €</td>
+                                        $row_rdv_cl['heure'] . ".<br>Specialité : " . $spemed . "<br>Adresse : " . $row_rdv_cl['adresse'] . "<br>Digicode : " .
+                                        $row_rdv_cl['digicode'] . "<br>Prix de la consultation : " . $row_rdv_cl['prix'] .
+                                        " €</td>
                                     <td><form action='' method='POST'>
                                     <input class='btn_rdv' type='submit' name='" . $id_medecin . $row_rdv_cl['date'] . $row_rdv_cl['heure'] . "' value='Annuler le rdv'>
                                     </form></td></tr></table><br>";
@@ -454,7 +470,8 @@ if ($name !== "") {
                                     }
                                 }
                             }
-                        } if($total_rdv_clabo > 0) {
+                        }
+                        if ($total_rdv_clabo > 0) {
                             while ($row_rdv_clabo = mysqli_fetch_array($result_rdv_clabo)) {
                                 $id_labo = $row_rdv_clabo['id_labo'];
                                 $spelabo = $row_rdv_clabo['service'];
@@ -464,20 +481,20 @@ if ($name !== "") {
                                 if ($totidlabo > 0) {
                                     $rowidlabo = mysqli_fetch_array($residlabo);
                                     $nomlabo = $rowidlabo['Nom'];
-                                    if ($spelabo == "covid"){
-                                        $spelabo = "Dépistage Covid"; 
-                                    }elseif ($spelabo == "bio_prev"){
+                                    if ($spelabo == "covid") {
+                                        $spelabo = "Dépistage Covid";
+                                    } elseif ($spelabo == "bio_prev") {
                                         $spelabo = "Biologie préventive";
-                                    }elseif ($spelabo == "bio_enc"){
+                                    } elseif ($spelabo == "bio_enc") {
                                         $spelabo = "Biologie de la femme enceinte";
-                                    }elseif ($spelabo == "bio_rout"){
+                                    } elseif ($spelabo == "bio_rout") {
                                         $spelabo = "Biologie de routine";
-                                    }elseif ($spelabo == "cancer"){
+                                    } elseif ($spelabo == "cancer") {
                                         $spelabo = "Cancérologie";
-                                    }elseif ($spelabo == "gyneco"){
+                                    } elseif ($spelabo == "gyneco") {
                                         $spelabo = "Gynécologie";
                                     }
-                                    echo "<table class='aff_rdv'><th>Rendez vous le ".$row_rdv_clabo['date']." à ".$row_rdv_clabo['heure']."</th>
+                                    echo "<table class='aff_rdv'><th>Rendez vous le " . $row_rdv_clabo['date'] . " à " . $row_rdv_clabo['heure'] . "</th>
                                     <tr><td>Vous avez rendez vous au laboratoire : " . $nomlabo . " le " . $row_rdv_clabo['date'] . " à " .
                                         $row_rdv_clabo['heure'] . ".<br>Service : " . $spelabo . "<br>Adresse : " . $row_rdv_clabo['adresse'] . "<br>Digicode : " .
                                         $row_rdv_clabo['digicode'] . "<br>Prix de la consultation : " . $row_rdv_clabo['prix'] .

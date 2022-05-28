@@ -5,4 +5,5 @@
     header('Location: verifcompte.php');
 
     mysqli_close($db); // fermer la connexion
+    session_destroy();
 ?>

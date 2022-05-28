@@ -55,7 +55,6 @@
                 $con = mysqli_connect('localhost', 'root', 'root', 'omnessante') or die('could not connect to database');
                 $sql = 'SELECT * FROM compte';
                 $result = mysqli_query($con, $sql);
-                $row = mysqli_fetch_array($result);
 
                 while ($row = mysqli_fetch_array($result)) {
                     if ($result->num_rows > 0) {
@@ -83,7 +82,7 @@
                                 <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Médecins</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Laboratoires</a>
+                                <a class="nav-link" id="lab-tab" data-toggle="tab" href="#lab" role="tab" aria-controls="lab" aria-selected="false">Laboratoires</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" id="stat-tab" data-toggle="tab" href="#stat" role="tab" aria-controls="stat" aria-selected="false">Statistiques</a>
@@ -101,7 +100,7 @@
 
                 <form action="" method="post" enctype="multipart/form-data">
                     <select name="selector">
-                        <option value="Choisir un médecin"> Choisir un médecin </option>
+
 
                         <?php
                         $res = 'SELECT * FROM medecins order by nom asc';
@@ -132,23 +131,24 @@
 
                                 if ($query->num_rows > 0) {
                                     $cmsData = $query->fetch_assoc();
-                        ?>
 
-                                    <div class="row" style="padding-left:50px;">
+
+                                    echo '    <div class="row" style="padding-left:50px;">
                                         <div class="col-md-6"> <label>Nom </label></div>
-                                        <div class="col-md-6" style="left:-200px;"><input name="nom" type="text" size="50" value="<?php echo $cmsData['nom'] ?>"></div>
+                                        <div class="col-md-6" style="left:-200px;"><input name="nom" type="text" size="50" value="' . $cmsData['nom'] . '"> 
+                                        <input name="id" type="hidden" value = "' . $cmsData['id'] . '"></div>
                                         <div class="col-md-6"> <label>Prénom </label></div>
-                                        <div class="col-md-6" style="left:-200px;"><input name="prenom" type="text" size="50" value="<?php echo $cmsData['prenom'] ?>"></div>
+                                        <div class="col-md-6" style="left:-200px;"><input name="prenom" type="text" size="50" value="' . $cmsData['prenom'] . '"></div>
                                         <div class="col-md-6"> <label>Spécialité </label></div>
-                                        <div class="col-md-6" style="left:-200px;"><input name="spe" type="text" size="50" value="<?php echo $cmsData['spe'] ?>"></div>
+                                        <div class="col-md-6" style="left:-200px;"><input name="spe" type="text" size="50" value="' . $cmsData['spe'] . '"></div>
                                         <div class="col-md-6"> <label>Salle </label></div>
-                                        <div class="col-md-6" style="left:-200px;"><input name="salle" type="text" size="50" value="<?php echo $cmsData['salle'] ?>"></div>
+                                        <div class="col-md-6" style="left:-200px;"><input name="salle" type="text" size="50" value="' . $cmsData['salle'] . '"></div>
                                         <div class="col-md-6"> <label>Téléphone </label></div>
-                                        <div class="col-md-6" style="left:-200px;"><input name="tel" type="text" size="50" value="<?php echo $cmsData['tel'] ?>"></div>
+                                        <div class="col-md-6" style="left:-200px;"><input name="tel" type="text" size="50" value="' . $cmsData['tel'] . '"></div>
                                         <div class="col-md-6"> <label>Mail </label></div>
-                                        <div class="col-md-6" style="left:-200px;"><input name="mail" type="text" size="50" value="<?php echo $cmsData['mail'] ?>"></div>
-                                    </div>
-                        <?php  }
+                                        <div class="col-md-6" style="left:-200px;"><input name="mail" type="text" size="50" value="' . $cmsData['mail'] . '"></div>
+                                    </div>';
+                                }
                             } else {
                                 echo '<div class="row" style="padding-left:50px;">';
                                 echo '<div class="col-md-6"> <label>Nom  </label></div> <div class="col-md-6" style="left:-200px;"><input id="nom" type="text" placeholder="Nom" size="50"></div>';
@@ -176,7 +176,7 @@
 
                                         <?php
 
-                                        $selected = "";
+                                        $selected = "Amaladasse";
                                         if (isset($_POST['choix'])) {
                                             if (!empty($_POST['selector'])) {
                                                 $selected = $_POST['selector'];
@@ -401,59 +401,76 @@
                         </div>
                 </form>
             </div>
-        </div>
 
 
 
-        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 
-            <div class="row" style="padding-left:50px;">
-                <div class="col-md-6"> <label>Nom du laboratoire</label></div>
-                <div class="col-md-6" style="left:-200px;"><input name="nomlab" type="text" size="50" value=""></div>
-                <div class="col-md-6"> <label>Salle</label></div>
-                <div class="col-md-6" style="left:-200px;"><input name="sallelab" type="text" size="50" value=""></div>
-                <div class="col-md-6"> <label>Télephone </label></div>
-                <div class="col-md-6" style="left:-200px;"><input name="tellab" type="text" size="50" value=""></div>
-                <div class="col-md-6"> <label>Email </label></div>
-                <div class="col-md-6" style="left:-200px;"><input name="mail" type="text" size="50" value=""></div>
+
+
+
+            <div class="tab-pane fade" id="lab" role="tabpanel" aria-labelledby="lab-tab">
+                <form action="" method="post" enctype="multipart/form-data">
+                    <select name="selectorlab">
+
+
+                        <?php
+                        $reslab = 'SELECT * FROM labo order by Nom asc';
+                        $nomlab = mysqli_query($con, $reslab);
+
+                        while ($row1 = mysqli_fetch_array($nomlab)) {
+                            echo '<option value=' . $row1['Nom'] . '> ' . $row1['Nom'] . '</option>';
+                        }
+                        ?>
+
+
+                    </select>
+
+                    <input type="submit" name="choixlab" value="Voir">
+
+
             </div>
 
 
         </div>
-        <div class="tab-pane fade" id="stat" role="tabpanel" aria-labelledby="stat-tab">
-
-            <?php
-
-            $sql4 = "SELECT * from medecins";
-            $sql5 = "SELECT * from labo";
-            $sql6 = "SELECT * from clientinf";
-            $sql7 = "SELECT * from rdv";
-            $sql8 = "SELECT * from rdv_labo";
-
-            if ($nbm = mysqli_query($con, $sql4)) {
-                $nbmed = mysqli_num_rows($nbm);
-            }
-
-            if ($nbl = mysqli_query($con, $sql5)) {
-                $nblab = mysqli_num_rows($nbl);
-            }
-
-            if ($nbc = mysqli_query($con, $sql6)) {
-                $nbclient = mysqli_num_rows($nbc);
-            }
-
-            if ($nbr = mysqli_query($con, $sql7)) {
-                $nbrdv = mysqli_num_rows($nbr);
-            }
-
-            if ($nbrl = mysqli_query($con, $sql8)) {
-                $nbrdvl = mysqli_num_rows($nbrl);
-            }
-
-            $nbrdvtot = $nbrdvl + $nbrdv;
+    </div>
 
 
-            echo '
+
+    </form>
+    <div class="tab-pane fade" id="stat" role="tabpanel" aria-labelledby="stat-tab">
+
+        <?php
+
+        $sql4 = "SELECT * from medecins";
+        $sql5 = "SELECT * from labo";
+        $sql6 = "SELECT * from clientinf";
+        $sql7 = "SELECT * from rdv";
+        $sql8 = "SELECT * from rdv_labo";
+
+        if ($nbm = mysqli_query($con, $sql4)) {
+            $nbmed = mysqli_num_rows($nbm);
+        }
+
+        if ($nbl = mysqli_query($con, $sql5)) {
+            $nblab = mysqli_num_rows($nbl);
+        }
+
+        if ($nbc = mysqli_query($con, $sql6)) {
+            $nbclient = mysqli_num_rows($nbc);
+        }
+
+        if ($nbr = mysqli_query($con, $sql7)) {
+            $nbrdv = mysqli_num_rows($nbr);
+        }
+
+        if ($nbrl = mysqli_query($con, $sql8)) {
+            $nbrdvl = mysqli_num_rows($nbrl);
+        }
+
+        $nbrdvtot = $nbrdvl + $nbrdv;
+
+
+        echo '
                              
         
         <div class="row" style="padding-left:50px;">
@@ -464,192 +481,193 @@
                                         <div class="col-md-6"> <label>Nombre de clients actuellement</label></div>
                                         <div class="col-md-6" style="left:-200px;"><label>' . $nbclient . '</label></div>
                                         <div class="col-md-6"> <label>Nombre de rdv actuellement</label></div>
-                                        <div class="col-md-6" style="left:-200px;"><label>' . $nbrdvtot . '</label></div>
-                               
-                                    </div>
-        </div>';
+                                        <div class="col-md-6" style="left:-200px;"><label>' . $nbrdvtot . '</label></div>'; ?>
 
-            ?>
+    </div>
+    </div>
 
-            <?php
 
-            // RECUPERER INFO DOCTEURS 
 
-            if (isset($_POST['aj'])) {
+    <?php
 
-                if (!empty($_POST['nom'])) {
-                    $name = $_POST['nom'];
-                }
-                if (!empty($_POST['prenom'])) {
-                    $prenom = $_POST['prenom'];
-                }
-                if (!empty($_POST['tel'])) {
-                    $tel = $_POST['tel'];
-                }
-                if (!empty($_POST['salle'])) {
-                    $salle = $_POST['salle'];
-                }
-                if (!empty($_POST['mail'])) {
-                    $mail = $_POST['mail'];
-                }
-                if (!empty($_POST['spe'])) {
-                    $spe = $_POST['spe'];
-                }
+    // RECUPERER INFO DOCTEURS 
 
-                // RECUPERER EMPLOI DU TEMPS 
+    if (isset($_POST['aj'])) {
 
-                if (isset($_POST['LundiAM'])) {
-                    $LundiAM = 1;
-                } else $LundiAM = 0;
-                if (isset($_POST['MardiAM'])) {
-                    $MardiAM = 1;
-                } else $MardiAM = 0;
-                if (isset($_POST['MercrediAM'])) {
-                    $MercrediAM = 1;
-                } else $MercrediAM = 0;
-                if (isset($_POST['JeudiAM'])) {
-                    $JeudiAM = 1;
-                } else $JeudiAM = 0;
-                if (isset($_POST['VendrediAM'])) {
-                    $VendrediAM = 1;
-                } else $VendrediAM = 0;
-                if (isset($_POST['SamediAM'])) {
-                    $SamediAM = 1;
-                } else $SamediAM = 0;
-                if (isset($_POST['LundiPM'])) {
-                    $LundiPM = 1;
-                } else $LundiPM = 0;
-                if (isset($_POST['MardiPM'])) {
-                    $MardiPM = 1;
-                } else $MardiPM = 0;
-                if (isset($_POST['MercrediPM'])) {
-                    $MercrediPM = 1;
-                } else $MercrediPM = 0;
-                if (isset($_POST['JeudiPM'])) {
-                    $JeudiPM = 1;
-                } else $JeudiPM = 0;
-                if (isset($_POST['VendrediPM'])) {
-                    $VendrediPM = 1;
-                } else $VendrediPM = 0;
-                if (isset($_POST['SamediPM'])) {
-                    $SamediPM = 1;
-                } else $SamediPM = 0;
+        if (!empty($_POST['nom'])) {
+            $name = $_POST['nom'];
+        }
+        if (!empty($_POST['prenom'])) {
+            $prenom = $_POST['prenom'];
+        }
+        if (!empty($_POST['tel'])) {
+            $tel = $_POST['tel'];
+        }
+        if (!empty($_POST['salle'])) {
+            $salle = $_POST['salle'];
+        }
+        if (!empty($_POST['mail'])) {
+            $mail = $_POST['mail'];
+        }
+        if (!empty($_POST['spe'])) {
+            $spe = $_POST['spe'];
+        }
 
-                // RECUPERER IMAGE DOCTEUR 
+        // RECUPERER EMPLOI DU TEMPS 
 
-                if (getimagesize($_FILES['imagefile']['tmp_name']) == false) {
-                    echo "echec image";
-                } else {
-                    $image = $_FILES['imagefile']['tmp_name'];
-                    $image = base64_encode(file_get_contents(addslashes($image)));
-                }
+        if (isset($_POST['LundiAM'])) {
+            $LundiAM = 1;
+        } else $LundiAM = 0;
+        if (isset($_POST['MardiAM'])) {
+            $MardiAM = 1;
+        } else $MardiAM = 0;
+        if (isset($_POST['MercrediAM'])) {
+            $MercrediAM = 1;
+        } else $MercrediAM = 0;
+        if (isset($_POST['JeudiAM'])) {
+            $JeudiAM = 1;
+        } else $JeudiAM = 0;
+        if (isset($_POST['VendrediAM'])) {
+            $VendrediAM = 1;
+        } else $VendrediAM = 0;
+        if (isset($_POST['SamediAM'])) {
+            $SamediAM = 1;
+        } else $SamediAM = 0;
+        if (isset($_POST['LundiPM'])) {
+            $LundiPM = 1;
+        } else $LundiPM = 0;
+        if (isset($_POST['MardiPM'])) {
+            $MardiPM = 1;
+        } else $MardiPM = 0;
+        if (isset($_POST['MercrediPM'])) {
+            $MercrediPM = 1;
+        } else $MercrediPM = 0;
+        if (isset($_POST['JeudiPM'])) {
+            $JeudiPM = 1;
+        } else $JeudiPM = 0;
+        if (isset($_POST['VendrediPM'])) {
+            $VendrediPM = 1;
+        } else $VendrediPM = 0;
+        if (isset($_POST['SamediPM'])) {
+            $SamediPM = 1;
+        } else $SamediPM = 0;
 
-                $requete1 = $con->query("INSERT INTO medecins(`nom`, `prenom`, `spe`, `salle`, `tel`, `mail`, `photo`, `lundiam`, `lundipm`, `mardiam`, `mardipm`, `mercrediam`, `mercredipm`, `jeudiam`, `jeudipm`, `vendrediam`, `vendredipm`, `samediam`, `samedipm`) 
+        // RECUPERER IMAGE DOCTEUR 
+
+        if (getimagesize($_FILES['imagefile']['tmp_name']) == false) {
+            echo "echec image";
+        } else {
+            $image = $_FILES['imagefile']['tmp_name'];
+            $image = base64_encode(file_get_contents(addslashes($image)));
+        }
+
+        $requete1 = $con->query("INSERT INTO medecins(`nom`, `prenom`, `spe`, `salle`, `tel`, `mail`, `photo`, `lundiam`, `lundipm`, `mardiam`, `mardipm`, `mercrediam`, `mercredipm`, `jeudiam`, `jeudipm`, `vendrediam`, `vendredipm`, `samediam`, `samedipm`) 
                 VALUES  ('" . $name . "','" . $prenom . "','" . $spe . "','" . $salle . "','" . $tel . "','" . $mail . "','" . $image . "','" . $LundiAM . "','" . $LundiPM . "','" . $MardiAM . "','" . $MardiPM . "','" . $MercrediAM . "','" . $MercrediPM . "','" . $JeudiAM . "','" . $JeudiPM . "','" . $VendrediAM . "','" . $VendrediPM . "','" . $SamediAM . "','" . $SamediPM . "')");
-            }
+    }
 
 
-            // RECUPERER DONNEES DOCTEURS 
+    // RECUPERER DONNEES DOCTEURS 
 
-            if (isset($_POST['maj'])) {
+    if (isset($_POST['maj'])) {
 
-                if (!empty($_POST['nom'])) {
-                    $name = $_POST['nom'];
-                }
-                if (!empty($_POST['prenom'])) {
-                    $prenom = $_POST['prenom'];
-                }
-                if (!empty($_POST['tel'])) {
-                    $tel = $_POST['tel'];
-                }
-                if (!empty($_POST['salle'])) {
-                    $salle = $_POST['salle'];
-                }
-                if (!empty($_POST['mail'])) {
-                    $mail = $_POST['mail'];
-                }
-                if (!empty($_POST['spe'])) {
-                    $spe = $_POST['spe'];
-                }
+        if (!empty($_POST['id'])) {
+            $identifiant = $_POST['id'];
+        }
+        if (!empty($_POST['nom'])) {
+            $name = $_POST['nom'];
+        }
+        if (!empty($_POST['prenom'])) {
+            $prenom = $_POST['prenom'];
+        }
+        if (!empty($_POST['tel'])) {
+            $tel = $_POST['tel'];
+        }
+        if (!empty($_POST['salle'])) {
+            $salle = $_POST['salle'];
+        }
+        if (!empty($_POST['mail'])) {
+            $mail = $_POST['mail'];
+        }
+        if (!empty($_POST['spe'])) {
+            $spe = $_POST['spe'];
+        }
 
-                // RECUPERER EMPLOI DU TEMPS 
+        // RECUPERER EMPLOI DU TEMPS 
 
-                if (isset($_POST['LundiAM'])) {
-                    $LundiAM = 1;
-                } else $LundiAM = 0;
-                if (isset($_POST['MardiAM'])) {
-                    $MardiAM = 1;
-                } else $MardiAM = 0;
-                if (isset($_POST['MercrediAM'])) {
-                    $MercrediAM = 1;
-                } else $MercrediAM = 0;
-                if (isset($_POST['JeudiAM'])) {
-                    $JeudiAM = 1;
-                } else $JeudiAM = 0;
-                if (isset($_POST['VendrediAM'])) {
-                    $VendrediAM = 1;
-                } else $VendrediAM = 0;
-                if (isset($_POST['SamediAM'])) {
-                    $SamediAM = 1;
-                } else $SamediAM = 0;
-                if (isset($_POST['LundiPM'])) {
-                    $LundiPM = 1;
-                } else $LundiPM = 0;
-                if (isset($_POST['MardiPM'])) {
-                    $MardiPM = 1;
-                } else $MardiPM = 0;
-                if (isset($_POST['MercrediPM'])) {
-                    $MercrediPM = 1;
-                } else $MercrediPM = 0;
-                if (isset($_POST['JeudiPM'])) {
-                    $JeudiPM = 1;
-                } else $JeudiPM = 0;
-                if (isset($_POST['VendrediPM'])) {
-                    $VendrediPM = 1;
-                } else $VendrediPM = 0;
-                if (isset($_POST['SamediPM'])) {
-                    $SamediPM = 1;
-                } else $SamediPM = 0;
+        if (isset($_POST['LundiAM'])) {
+            $LundiAM = 1;
+        } else $LundiAM = 0;
+        if (isset($_POST['MardiAM'])) {
+            $MardiAM = 1;
+        } else $MardiAM = 0;
+        if (isset($_POST['MercrediAM'])) {
+            $MercrediAM = 1;
+        } else $MercrediAM = 0;
+        if (isset($_POST['JeudiAM'])) {
+            $JeudiAM = 1;
+        } else $JeudiAM = 0;
+        if (isset($_POST['VendrediAM'])) {
+            $VendrediAM = 1;
+        } else $VendrediAM = 0;
+        if (isset($_POST['SamediAM'])) {
+            $SamediAM = 1;
+        } else $SamediAM = 0;
+        if (isset($_POST['LundiPM'])) {
+            $LundiPM = 1;
+        } else $LundiPM = 0;
+        if (isset($_POST['MardiPM'])) {
+            $MardiPM = 1;
+        } else $MardiPM = 0;
+        if (isset($_POST['MercrediPM'])) {
+            $MercrediPM = 1;
+        } else $MercrediPM = 0;
+        if (isset($_POST['JeudiPM'])) {
+            $JeudiPM = 1;
+        } else $JeudiPM = 0;
+        if (isset($_POST['VendrediPM'])) {
+            $VendrediPM = 1;
+        } else $VendrediPM = 0;
+        if (isset($_POST['SamediPM'])) {
+            $SamediPM = 1;
+        } else $SamediPM = 0;
 
 
-                // RECUPERER IMAGE DOCTEUR 
+        // RECUPERER IMAGE DOCTEUR 
 
-                if (getimagesize($_FILES['imagefile']['tmp_name']) == false) {
-                    echo "echec image";
-                } else {
-                    $image = $_FILES['imagefile']['tmp_name'];
-                    $image = base64_encode(file_get_contents(addslashes($image)));
-                }
+        if (getimagesize($_FILES['imagefile']['tmp_name']) == false) {
+            echo "echec image";
+        } else {
+            $image = $_FILES['imagefile']['tmp_name'];
+            $image = base64_encode(file_get_contents(addslashes($image)));
+        }
 
-                $id = $con->query("SELECT * FROM medecins WHERE  mail='" . $mail . "'");
-                if ($id->num_rows > 0) {
-                    $cmsData = $id->fetch_assoc();
-                    $res = $cmsData['id'];
 
-                    $requete2 = $con->query("UPDATE `medecins` SET `nom`='" . $name . "',`prenom`='" . $prenom . "',`spe`='" . $spe . "',`salle`='" . $salle . "',`tel`='" . $tel . "',`mail`='" . $mail . "',`photo`='" . $image . "',`lundiam`='" . $LundiAM . "',
+
+        $requete2 = $con->query("UPDATE `medecins` SET `nom`='" . $name . "',`prenom`='" . $prenom . "',`spe`='" . $spe . "',`salle`='" . $salle . "',`tel`='" . $tel . "',`mail`='" . $mail . "',`photo`='" . $image . "',`lundiam`='" . $LundiAM . "',
             `lundipm`='" . $LundiPM . "',`mardiam`='" . $MardiAM . "',`mardipm`='" . $MardiPM . "',`mercrediam`='" . $MercrediAM . "',`mercredipm`='" . $MercrediPM . "',`jeudiam`='" . $JeudiAM . "',`jeudipm`='" . $JeudiPM . "',`vendrediam`='" . $VendrediAM . "',`vendredipm`='" . $VendrediPM . "',
-            `samediam`='" . $SamediAM . "',`samedipm`='" . $SamediPM . "' WHERE id=" . $res . " ");
-                }
-            }
+            `samediam`='" . $SamediAM . "',`samedipm`='" . $SamediPM . "' WHERE id='" . $identifiant . "'");
+    }
 
 
-            // DELETE  $sql = "DELETE FROM medecins WHERE mail=$mail";
-            if (isset($_POST['supr'])) {
+    // DELETE  $sql = "DELETE FROM medecins WHERE mail=$mail";
+    if (isset($_POST['supr'])) {
 
-                if (!empty($_POST['mail'])) {
-                    $mail = $_POST['mail'];
-                }
+        if (!empty($_POST['id'])) {
+            $iden = $_POST['id'];
+        }
 
-                $del = $con->query("DELETE FROM medecins WHERE mail='" . $mail . "'");
-            }
+        $del = $con->query("DELETE FROM medecins WHERE id='" . $iden . "'");
+        $delr = $con->query("DELETE FROM rdv WHERE id='" . $iden . "'");
+    }
+
+    mysqli_close($con);
+
+    ?>
 
 
-            ?>
 
 
-
-
-        </div>
+    </div>
 
 
 

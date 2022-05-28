@@ -53,7 +53,6 @@
         $con = mysqli_connect('localhost', 'root', 'root', 'omnessante') or die('could not connect to database');
         $sql = 'SELECT * FROM compte';
         $result = mysqli_query($con, $sql);
-        $row = mysqli_fetch_array($result);
 
         while ($row = mysqli_fetch_array($result)) {
          if($result->num_rows > 0)
@@ -126,9 +125,6 @@
               </li>
           </ul>
       </div>
-  </div>
-  <div class="col-md-2">
-      <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
   </div>
 </div>
 <div class="row">
