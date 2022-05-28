@@ -406,192 +406,250 @@
 
 
         <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+
+            <div class="row" style="padding-left:50px;">
+                <div class="col-md-6"> <label>Nom du laboratoire</label></div>
+                <div class="col-md-6" style="left:-200px;"><input name="nomlab" type="text" size="50" value=""></div>
+                <div class="col-md-6"> <label>Salle</label></div>
+                <div class="col-md-6" style="left:-200px;"><input name="sallelab" type="text" size="50" value=""></div>
+                <div class="col-md-6"> <label>Télephone </label></div>
+                <div class="col-md-6" style="left:-200px;"><input name="tellab" type="text" size="50" value=""></div>
+                <div class="col-md-6"> <label>Email </label></div>
+                <div class="col-md-6" style="left:-200px;"><input name="mail" type="text" size="50" value=""></div>
+            </div>
+
+
         </div>
         <div class="tab-pane fade" id="stat" role="tabpanel" aria-labelledby="stat-tab">
 
-        </div>
+            <?php
 
+            $sql4 = "SELECT * from medecins";
+            $sql5 = "SELECT * from labo";
+            $sql6 = "SELECT * from clientinf";
+            $sql7 = "SELECT * from rdv";
+            $sql8 = "SELECT * from rdv_labo";
 
-        <?php
-
-        // RECUPERER INFO DOCTEURS 
-
-        if (isset($_POST['aj'])) {
-
-            if (!empty($_POST['nom'])) {
-                $name = $_POST['nom'];
-            }
-            if (!empty($_POST['prenom'])) {
-                $prenom = $_POST['prenom'];
-            }
-            if (!empty($_POST['tel'])) {
-                $tel = $_POST['tel'];
-            }
-            if (!empty($_POST['salle'])) {
-                $salle = $_POST['salle'];
-            }
-            if (!empty($_POST['mail'])) {
-                $mail = $_POST['mail'];
-            }
-            if (!empty($_POST['spe'])) {
-                $spe = $_POST['spe'];
+            if ($nbm = mysqli_query($con, $sql4)) {
+                $nbmed = mysqli_num_rows($nbm);
             }
 
-            // RECUPERER EMPLOI DU TEMPS 
-
-            if (isset($_POST['LundiAM'])) {
-                $LundiAM = 1;
-            } else $LundiAM = 0;
-            if (isset($_POST['MardiAM'])) {
-                $MardiAM = 1;
-            } else $MardiAM = 0;
-            if (isset($_POST['MercrediAM'])) {
-                $MercrediAM = 1;
-            } else $MercrediAM = 0;
-            if (isset($_POST['JeudiAM'])) {
-                $JeudiAM = 1;
-            } else $JeudiAM = 0;
-            if (isset($_POST['VendrediAM'])) {
-                $VendrediAM = 1;
-            } else $VendrediAM = 0;
-            if (isset($_POST['SamediAM'])) {
-                $SamediAM = 1;
-            } else $SamediAM = 0;
-            if (isset($_POST['LundiPM'])) {
-                $LundiPM = 1;
-            } else $LundiPM = 0;
-            if (isset($_POST['MardiPM'])) {
-                $MardiPM = 1;
-            } else $MardiPM = 0;
-            if (isset($_POST['MercrediPM'])) {
-                $MercrediPM = 1;
-            } else $MercrediPM = 0;
-            if (isset($_POST['JeudiPM'])) {
-                $JeudiPM = 1;
-            } else $JeudiPM = 0;
-            if (isset($_POST['VendrediPM'])) {
-                $VendrediPM = 1;
-            } else $VendrediPM = 0;
-            if (isset($_POST['SamediPM'])) {
-                $SamediPM = 1;
-            } else $SamediPM = 0;
-
-            // RECUPERER IMAGE DOCTEUR 
-
-            if (getimagesize($_FILES['imagefile']['tmp_name']) == false) {
-                echo "echec image";
-            } else {
-                $image = $_FILES['imagefile']['tmp_name'];
-                $image = base64_encode(file_get_contents(addslashes($image)));
+            if ($nbl = mysqli_query($con, $sql5)) {
+                $nblab = mysqli_num_rows($nbl);
             }
 
-            $requete1 = $con->query("INSERT INTO medecins(`nom`, `prenom`, `spe`, `salle`, `tel`, `mail`, `photo`, `lundiam`, `lundipm`, `mardiam`, `mardipm`, `mercrediam`, `mercredipm`, `jeudiam`, `jeudipm`, `vendrediam`, `vendredipm`, `samediam`, `samedipm`) 
+            if ($nbc = mysqli_query($con, $sql6)) {
+                $nbclient = mysqli_num_rows($nbc);
+            }
+
+            if ($nbr = mysqli_query($con, $sql7)) {
+                $nbrdv = mysqli_num_rows($nbr);
+            }
+
+            if ($nbrl = mysqli_query($con, $sql8)) {
+                $nbrdvl = mysqli_num_rows($nbrl);
+            }
+
+            $nbrdvtot = $nbrdvl + $nbrdv;
+
+
+            echo '
+                             
+        
+        <div class="row" style="padding-left:50px;">
+                                        <div class="col-md-6"> <label>Nombre de médecins actuellement</label></div>
+                                        <div class="col-md-6" style="left:-200px;"><label>' . $nbmed . '</label></div>
+                                        <div class="col-md-6"> <label>Nombre de labo actuellement</label></div>
+                                        <div class="col-md-6" style="left:-200px;"><label>' . $nblab . '</label></div>
+                                        <div class="col-md-6"> <label>Nombre de clients actuellement</label></div>
+                                        <div class="col-md-6" style="left:-200px;"><label>' . $nbclient . '</label></div>
+                                        <div class="col-md-6"> <label>Nombre de rdv actuellement</label></div>
+                                        <div class="col-md-6" style="left:-200px;"><label>' . $nbrdvtot . '</label></div>
+                               
+                                    </div>
+        </div>';
+
+            ?>
+
+            <?php
+
+            // RECUPERER INFO DOCTEURS 
+
+            if (isset($_POST['aj'])) {
+
+                if (!empty($_POST['nom'])) {
+                    $name = $_POST['nom'];
+                }
+                if (!empty($_POST['prenom'])) {
+                    $prenom = $_POST['prenom'];
+                }
+                if (!empty($_POST['tel'])) {
+                    $tel = $_POST['tel'];
+                }
+                if (!empty($_POST['salle'])) {
+                    $salle = $_POST['salle'];
+                }
+                if (!empty($_POST['mail'])) {
+                    $mail = $_POST['mail'];
+                }
+                if (!empty($_POST['spe'])) {
+                    $spe = $_POST['spe'];
+                }
+
+                // RECUPERER EMPLOI DU TEMPS 
+
+                if (isset($_POST['LundiAM'])) {
+                    $LundiAM = 1;
+                } else $LundiAM = 0;
+                if (isset($_POST['MardiAM'])) {
+                    $MardiAM = 1;
+                } else $MardiAM = 0;
+                if (isset($_POST['MercrediAM'])) {
+                    $MercrediAM = 1;
+                } else $MercrediAM = 0;
+                if (isset($_POST['JeudiAM'])) {
+                    $JeudiAM = 1;
+                } else $JeudiAM = 0;
+                if (isset($_POST['VendrediAM'])) {
+                    $VendrediAM = 1;
+                } else $VendrediAM = 0;
+                if (isset($_POST['SamediAM'])) {
+                    $SamediAM = 1;
+                } else $SamediAM = 0;
+                if (isset($_POST['LundiPM'])) {
+                    $LundiPM = 1;
+                } else $LundiPM = 0;
+                if (isset($_POST['MardiPM'])) {
+                    $MardiPM = 1;
+                } else $MardiPM = 0;
+                if (isset($_POST['MercrediPM'])) {
+                    $MercrediPM = 1;
+                } else $MercrediPM = 0;
+                if (isset($_POST['JeudiPM'])) {
+                    $JeudiPM = 1;
+                } else $JeudiPM = 0;
+                if (isset($_POST['VendrediPM'])) {
+                    $VendrediPM = 1;
+                } else $VendrediPM = 0;
+                if (isset($_POST['SamediPM'])) {
+                    $SamediPM = 1;
+                } else $SamediPM = 0;
+
+                // RECUPERER IMAGE DOCTEUR 
+
+                if (getimagesize($_FILES['imagefile']['tmp_name']) == false) {
+                    echo "echec image";
+                } else {
+                    $image = $_FILES['imagefile']['tmp_name'];
+                    $image = base64_encode(file_get_contents(addslashes($image)));
+                }
+
+                $requete1 = $con->query("INSERT INTO medecins(`nom`, `prenom`, `spe`, `salle`, `tel`, `mail`, `photo`, `lundiam`, `lundipm`, `mardiam`, `mardipm`, `mercrediam`, `mercredipm`, `jeudiam`, `jeudipm`, `vendrediam`, `vendredipm`, `samediam`, `samedipm`) 
                 VALUES  ('" . $name . "','" . $prenom . "','" . $spe . "','" . $salle . "','" . $tel . "','" . $mail . "','" . $image . "','" . $LundiAM . "','" . $LundiPM . "','" . $MardiAM . "','" . $MardiPM . "','" . $MercrediAM . "','" . $MercrediPM . "','" . $JeudiAM . "','" . $JeudiPM . "','" . $VendrediAM . "','" . $VendrediPM . "','" . $SamediAM . "','" . $SamediPM . "')");
-        }
-
-
-        // RECUPERER DONNEES DOCTEURS 
-
-        if (isset($_POST['maj'])) {
-
-            if (!empty($_POST['nom'])) {
-                $name = $_POST['nom'];
-            }
-            if (!empty($_POST['prenom'])) {
-                $prenom = $_POST['prenom'];
-            }
-            if (!empty($_POST['tel'])) {
-                $tel = $_POST['tel'];
-            }
-            if (!empty($_POST['salle'])) {
-                $salle = $_POST['salle'];
-            }
-            if (!empty($_POST['mail'])) {
-                $mail = $_POST['mail'];
-            }
-            if (!empty($_POST['spe'])) {
-                $spe = $_POST['spe'];
             }
 
-            // RECUPERER EMPLOI DU TEMPS 
 
-            if (isset($_POST['LundiAM'])) {
-                $LundiAM = 1;
-            } else $LundiAM = 0;
-            if (isset($_POST['MardiAM'])) {
-                $MardiAM = 1;
-            } else $MardiAM = 0;
-            if (isset($_POST['MercrediAM'])) {
-                $MercrediAM = 1;
-            } else $MercrediAM = 0;
-            if (isset($_POST['JeudiAM'])) {
-                $JeudiAM = 1;
-            } else $JeudiAM = 0;
-            if (isset($_POST['VendrediAM'])) {
-                $VendrediAM = 1;
-            } else $VendrediAM = 0;
-            if (isset($_POST['SamediAM'])) {
-                $SamediAM = 1;
-            } else $SamediAM = 0;
-            if (isset($_POST['LundiPM'])) {
-                $LundiPM = 1;
-            } else $LundiPM = 0;
-            if (isset($_POST['MardiPM'])) {
-                $MardiPM = 1;
-            } else $MardiPM = 0;
-            if (isset($_POST['MercrediPM'])) {
-                $MercrediPM = 1;
-            } else $MercrediPM = 0;
-            if (isset($_POST['JeudiPM'])) {
-                $JeudiPM = 1;
-            } else $JeudiPM = 0;
-            if (isset($_POST['VendrediPM'])) {
-                $VendrediPM = 1;
-            } else $VendrediPM = 0;
-            if (isset($_POST['SamediPM'])) {
-                $SamediPM = 1;
-            } else $SamediPM = 0;
+            // RECUPERER DONNEES DOCTEURS 
+
+            if (isset($_POST['maj'])) {
+
+                if (!empty($_POST['nom'])) {
+                    $name = $_POST['nom'];
+                }
+                if (!empty($_POST['prenom'])) {
+                    $prenom = $_POST['prenom'];
+                }
+                if (!empty($_POST['tel'])) {
+                    $tel = $_POST['tel'];
+                }
+                if (!empty($_POST['salle'])) {
+                    $salle = $_POST['salle'];
+                }
+                if (!empty($_POST['mail'])) {
+                    $mail = $_POST['mail'];
+                }
+                if (!empty($_POST['spe'])) {
+                    $spe = $_POST['spe'];
+                }
+
+                // RECUPERER EMPLOI DU TEMPS 
+
+                if (isset($_POST['LundiAM'])) {
+                    $LundiAM = 1;
+                } else $LundiAM = 0;
+                if (isset($_POST['MardiAM'])) {
+                    $MardiAM = 1;
+                } else $MardiAM = 0;
+                if (isset($_POST['MercrediAM'])) {
+                    $MercrediAM = 1;
+                } else $MercrediAM = 0;
+                if (isset($_POST['JeudiAM'])) {
+                    $JeudiAM = 1;
+                } else $JeudiAM = 0;
+                if (isset($_POST['VendrediAM'])) {
+                    $VendrediAM = 1;
+                } else $VendrediAM = 0;
+                if (isset($_POST['SamediAM'])) {
+                    $SamediAM = 1;
+                } else $SamediAM = 0;
+                if (isset($_POST['LundiPM'])) {
+                    $LundiPM = 1;
+                } else $LundiPM = 0;
+                if (isset($_POST['MardiPM'])) {
+                    $MardiPM = 1;
+                } else $MardiPM = 0;
+                if (isset($_POST['MercrediPM'])) {
+                    $MercrediPM = 1;
+                } else $MercrediPM = 0;
+                if (isset($_POST['JeudiPM'])) {
+                    $JeudiPM = 1;
+                } else $JeudiPM = 0;
+                if (isset($_POST['VendrediPM'])) {
+                    $VendrediPM = 1;
+                } else $VendrediPM = 0;
+                if (isset($_POST['SamediPM'])) {
+                    $SamediPM = 1;
+                } else $SamediPM = 0;
 
 
-            // RECUPERER IMAGE DOCTEUR 
+                // RECUPERER IMAGE DOCTEUR 
 
-            if (getimagesize($_FILES['imagefile']['tmp_name']) == false) {
-                echo "echec image";
-            } else {
-                $image = $_FILES['imagefile']['tmp_name'];
-                $image = base64_encode(file_get_contents(addslashes($image)));
+                if (getimagesize($_FILES['imagefile']['tmp_name']) == false) {
+                    echo "echec image";
+                } else {
+                    $image = $_FILES['imagefile']['tmp_name'];
+                    $image = base64_encode(file_get_contents(addslashes($image)));
+                }
+
+                $id = $con->query("SELECT * FROM medecins WHERE  mail='" . $mail . "'");
+                if ($id->num_rows > 0) {
+                    $cmsData = $id->fetch_assoc();
+                    $res = $cmsData['id'];
+
+                    $requete2 = $con->query("UPDATE `medecins` SET `nom`='" . $name . "',`prenom`='" . $prenom . "',`spe`='" . $spe . "',`salle`='" . $salle . "',`tel`='" . $tel . "',`mail`='" . $mail . "',`photo`='" . $image . "',`lundiam`='" . $LundiAM . "',
+            `lundipm`='" . $LundiPM . "',`mardiam`='" . $MardiAM . "',`mardipm`='" . $MardiPM . "',`mercrediam`='" . $MercrediAM . "',`mercredipm`='" . $MercrediPM . "',`jeudiam`='" . $JeudiAM . "',`jeudipm`='" . $JeudiPM . "',`vendrediam`='" . $VendrediAM . "',`vendredipm`='" . $VendrediPM . "',
+            `samediam`='" . $SamediAM . "',`samedipm`='" . $SamediPM . "' WHERE id='" . $res . "' ");
+                }
             }
 
-            $id = $con->query("SELECT * FROM medecins WHERE  mail='".$mail."'");
-            if ($id->num_rows > 0) {
-                $cmsData = $id->fetch_assoc();
-            $res= $cmsData['id'];
 
-            $requete2 = $con->query("UPDATE `medecins` SET `nom`='" . $name . "',`prenom`='" . $prenom . "',`spe`='" . $spe . "',`salle`='" . $salle . "',`tel`='" . $tel . "',`mail`='" . $mail . "',`photo`='" . $image . "',`lundiam`='" . $LundiAM . "',
-            `lundipm`='" . $LundiPM . "',`mardiam`='". $MardiAM ."',`mardipm`='" . $MardiPM . "',`mercrediam`='" . $MercrediAM . "',`mercredipm`='" . $MercrediPM . "',`jeudiam`='" . $JeudiAM . "',`jeudipm`='" . $JeudiPM . "',`vendrediam`='" . $VendrediAM . "',`vendredipm`='" . $VendrediPM . "',
-            `samediam`='" . $SamediAM . "',`samedipm`='" . $SamediPM . "' WHERE id='".$res."' ");
-            }
- 
-        }
+            // DELETE  $sql = "DELETE FROM medecins WHERE mail=$mail";
+            if (isset($_POST['supr'])) {
 
+                if (!empty($_POST['mail'])) {
+                    $mail = $_POST['mail'];
+                }
 
-        // DELETE  $sql = "DELETE FROM medecins WHERE mail=$mail";
-        if (isset($_POST['supr'])){
-            
-            if (!empty($_POST['mail'])) {
-                $mail = $_POST['mail'];
+                $del = $con->query("DELETE FROM medecins WHERE mail='" . $mail . "'");
             }
 
-            $del = $con->query("DELETE FROM medecins WHERE mail='".$mail."'");
-        }
 
-
-        ?>
+            ?>
 
 
 
 
-    </div>
+        </div>
 
 
 
