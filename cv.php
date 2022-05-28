@@ -1,3 +1,6 @@
+<style>
+    <?php include 'style.css'; ?>
+</style>
 <?php   
         include("header.php");
         //include 'style.css';
@@ -37,16 +40,16 @@
         $contenu = simplexml_load_file($fichier);
         foreach($contenu as $cv){
         echo '<br><br><br>
-        <table class="aff_rdv">
+        <table class="cv">
             <th>
-            Nom : '.$cv->nom.'<br> 
+            Nom : '.$cv->nom.'
             </th>
-            <tr>
+            <tr><td>
             Specialite : '.$cv->specialite.'<br> 
             Diplome : '.$cv->diplome.'<br> 
             Formation : '.$cv->formation.' <br>
             Experience : '.$cv->experience.'<br>
-            </tr></table>';
+            </td></tr></table>';
         }
         include("footer.html");
 ?>

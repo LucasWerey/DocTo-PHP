@@ -639,3 +639,9 @@ opacity: 1;
   .pas_de_rdv{
     color: #000000;
   }
+
+  .cv{
+    border : solid 4px black; 
+    text-align: center;
+    margin-left: 500px;
+  }

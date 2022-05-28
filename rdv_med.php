@@ -63,7 +63,7 @@ if ($name !== "") {
                 $con = mysqli_connect('localhost', 'root', 'root', 'omnessante') or die('could not connect to database');
                 $sql = 'SELECT * FROM compte';
                 $result = mysqli_query($con, $sql);
- 
+
 
                 while ($row = mysqli_fetch_array($result)) {
                     if ($result->num_rows > 0) {
@@ -92,24 +92,68 @@ if ($name !== "") {
             $result_compte = mysqli_query($db, $requete_compte) or die(mysqli_error($db));
             $num_row_compte = mysqli_num_rows($result_compte); //normalement 1 ligne
 
-            
-
             if ($num_row_compte > 0) {
                 //On récupère l'username (mail) du client
                 $row_compte = mysqli_fetch_array($result_compte); //tableau à 1 ligne
-                $_SESSION['user_cl'] = $row_compte['username'];
 
-                //On récupère l'id du client
-                $requete_cl = "SELECT * FROM `clientinf` WHERE `Mail`='" . $_SESSION['user_cl'] . "'";
-                $result_cl = mysqli_query($db, $requete_cl) or die(mysqli_error($db));
-                $row_cl = mysqli_fetch_array($result_cl); //tableau à 1 ligne
-                $_SESSION['id_cl'] = $row_cl['IdCl'];
-                
+                if ($row_compte['type'] == "medecin") {
+                    $_SESSION['user_med'] = $row_compte['username'];
 
-                //Référence à la page précédente
-                $referer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : 'verifcompte.php';
-                //Pour lulu
-                /*if (
+                    $req_medecin = "SELECT * FROM `medecins` WHERE mail='" . $row_compte['username'] . "'";
+                    $res_medecin = mysqli_query($db, $req_medecin) or die(mysqli_error($db));
+                    $row_medecin = mysqli_fetch_array($res_medecin);
+                    $id_med = $row_medecin['id'];
+
+                    $req_rdv = "SELECT * FROM rdv WHERE id_med=" . $id_med;
+                    $res_rdv = mysqli_query($db, $req_rdv) or die(mysqli_error($db));
+                    $num_rdv = mysqli_num_rows($res_rdv);
+
+                    if ($num_rdv > 0) {
+                        while ($row_rdv = mysqli_fetch_array($res_rdv)) {
+                            $id_client = $row_rdv['id_cl'];
+                            $req_client = "SELECT * FROM `clientinf` WHERE `IdCl`=" . $id_client;
+                            $res_client = mysqli_query($db, $req_client) or die(mysqli_error($db));
+                            $tot_client = mysqli_num_rows($res_client);
+                            if ($tot_client > 0) {
+                                $row_client = mysqli_fetch_array($res_client);
+                                $nom_client = $row_client['Nom'];
+                                $prenom_client = $row_client['Prenom'];
+                                $mail_client = $row_client['Mail'];
+                                $id_client = $row_client['IdCl'];
+                                echo "<table class='aff_rdv'><th>Rendez vous le " . $row_rdv['date'] . " à " . $row_rdv['heure'] . "</th>
+                                    <tr><td>Vous avez rendez vous avec le client : " . $nom_client . " " . $prenom_client . " le " . $row_rdv['date'] . " à " .
+                                    $row_rdv['heure'] . ".<br>Mail : " . $mail_client . "<br>Adresse : " . $row_rdv['adresse'] . "<br>Digicode : " .
+                                    $row_rdv['digicode'] . "<br>Prix de la consultation : " . $row_rdv['prix'] .
+                                    " €</td>
+                                    <td><form action='' method='POST'>
+                                    <input class='btn_rdv' type='submit' name='" . $id_med . $row_rdv['date'] . $row_rdv['heure'] . "' value='Annuler le rdv'>
+                                    </form></td></tr></table><br>";
+                                if (isset($_POST[$id_med . $row_rdv["date"] . $row_rdv["heure"]])) {
+                                    //echo "<h2>DELETE FROM `rdv` WHERE `id_cl`=".$_SESSION['id_cl']." AND `id_med`=".$id_medecin." AND `date`='".$row_rdv_cl['date']."' AND `heure`='".$row_rdv_cl['heure']."'</h2>";
+                                    $requete_annul = "DELETE FROM `rdv` WHERE `id_cl`=" . $id_client . " AND `id_med`=" . $id_med . " AND `date`='" . $row_rdv['date'] . "' AND `heure`='" . $row_rdv['heure'] . "'";
+                                    $result_annul = mysqli_query($db, $requete_annul) or die(mysqli_error($db));
+                                    echo "<script> location.replace('rdv_med.php'); </script>";
+                                    //echo "<h2>Le rdv a bien été annulé</h2>";
+                                }
+                            }
+                        }
+                    }else{
+                        //PAS DE RDV
+                        echo "<center><h2 class='pas_de_rdv'>Vous n'avez pas de rendez-vous programmé.</h2></center>";
+                    }
+                } elseif ($row_compte['type'] == "client") {
+                    $_SESSION['user_cl'] = $row_compte['username'];
+                    //On récupère l'id du client
+                    $requete_cl = "SELECT * FROM `clientinf` WHERE `Mail`='" . $_SESSION['user_cl'] . "'";
+                    $result_cl = mysqli_query($db, $requete_cl) or die(mysqli_error($db));
+                    $row_cl = mysqli_fetch_array($result_cl); //tableau à 1 ligne
+                    $_SESSION['id_cl'] = $row_cl['IdCl'];
+
+
+                    //Référence à la page précédente
+                    $referer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : 'verifcompte.php';
+                    //Pour lulu
+                    /*if (
                     $referer == 'http://localhost/projetweb/medgenerale.php' ||
                     $referer == 'http://localhost/projetweb/addictologie.php' ||
                     $referer == 'http://localhost/projetweb/andrologie.php' ||
@@ -120,9 +164,9 @@ if ($name !== "") {
                     $referer == 'http://localhost/projetweb/ist.php' ||
                     $referer == 'http://localhost/projetweb/osteopathie.php'
                 ) {*/
-                //Pour clem
-                
-             /*   if (
+                    //Pour clem et lena
+
+                    /*   if (
                     $referer == 'http://localhost/ProjetWeb/medgenerale.php' ||
                     $referer == 'http://localhost/ProjetWeb/addictologie.php' ||
                     $referer == 'http://localhost/ProjetWeb/andrologie.php' ||
@@ -133,38 +177,39 @@ if ($name !== "") {
                     $referer == 'http://localhost/ProjetWeb/ist.php' ||
                     $referer == 'http://localhost/ProjetWeb/osteopathie.php'
                 ) {*/
+
                     if (
-                    $referer == 'http://localhost:55007/ProjetWeb/medgenerale.php' ||
-                    $referer == 'http://localhost:55007/ProjetWeb/addictologie.php' ||
-                    $referer == 'http://localhost:55007/ProjetWeb/andrologie.php' ||
-                    $referer == 'http://localhost:55007/ProjetWeb/cardiologie.php' ||
-                    $referer == 'http://localhost:55007/ProjetWeb/dermatologie.php' ||
-                    $referer == 'http://localhost:55007/ProjetWeb/gastro.php' ||
-                    $referer == 'http://localhost:55007/ProjetWeb/gynecologie.php' ||
-                    $referer == 'http://localhost:55007/ProjetWeb/ist.php' ||
-                    $referer == 'http://localhost:55007/ProjetWeb/osteopathie.php'
-                ) {
+                        $referer == 'http://localhost:62188/ProjetWeb/medgenerale.php' ||
+                        $referer == 'http://localhost:62188/ProjetWeb/addictologie.php' ||
+                        $referer == 'http://localhost:62188/ProjetWeb/andrologie.php' ||
+                        $referer == 'http://localhost:62188/ProjetWeb/cardiologie.php' ||
+                        $referer == 'http://localhost:62188/ProjetWeb/dermatologie.php' ||
+                        $referer == 'http://localhost:62188/ProjetWeb/gastro.php' ||
+                        $referer == 'http://localhost:62188/ProjetWeb/gynecologie.php' ||
+                        $referer == 'http://localhost:62188/ProjetWeb/ist.php' ||
+                        $referer == 'http://localhost:62188/ProjetWeb/osteopathie.php'
+                    ) {
 
-                    //On récupère les horaires pour créer le tableau
-                    $requete = "SELECT * FROM `horaire`";
-                    $result = mysqli_query($db, $requete) or die(mysqli_error($db));
-                    $total = mysqli_num_rows($result); //toutes les lignes des horaires
+                        //On récupère les horaires pour créer le tableau
+                        $requete = "SELECT * FROM `horaire`";
+                        $result = mysqli_query($db, $requete) or die(mysqli_error($db));
+                        $total = mysqli_num_rows($result); //toutes les lignes des horaires
 
 
-                    //On récupère l'id du médecin
-                    $requete2 = "SELECT * FROM `medecins` WHERE `nom`='" . $_SESSION['name'] . "'";
-                    $result2 = mysqli_query($db, $requete2) or die(mysqli_error($db)); //infos du médecin cliqué
-                    $total2 = mysqli_num_rows($result2); //normalement 1 ligne
-                    $row2 = mysqli_fetch_array($result2); //tableau à 1 ligne
-                    $_SESSION['id_med'] = $row2['id'];
+                        //On récupère l'id du médecin
+                        $requete2 = "SELECT * FROM `medecins` WHERE `nom`='" . $_SESSION['name'] . "'";
+                        $result2 = mysqli_query($db, $requete2) or die(mysqli_error($db)); //infos du médecin cliqué
+                        $total2 = mysqli_num_rows($result2); //normalement 1 ligne
+                        $row2 = mysqli_fetch_array($result2); //tableau à 1 ligne
+                        $_SESSION['id_med'] = $row2['id'];
 
-                    //On récupère les rdv du médecin déjà booké
-                    $requete_rdv = "SELECT * from `rdv` WHERE `id_med`=" . $_SESSION['id_med'];
-                    $verif_rdv = false;
+                        //On récupère les rdv du médecin déjà booké
+                        $requete_rdv = "SELECT * from `rdv` WHERE `id_med`=" . $_SESSION['id_med'];
+                        $verif_rdv = false;
 
-                    if ($total > 0) {
-                        if ($total2 > 0) {
-                            echo "<h2 class='nom_med_rdv'>Dr. " . $_SESSION['name'] . " " . $row2['prenom'] . "</h2><br>
+                        if ($total > 0) {
+                            if ($total2 > 0) {
+                                echo "<h2 class='nom_med_rdv'>Dr. " . $_SESSION['name'] . " " . $row2['prenom'] . "</h2><br>
                             <h5>Pour prendre un rendez-vous, veuillez cliquer sur un rendez-vous disponible (les rendez-vous en rouges ne sont plus disponibles).</h5><br>
                         <tr>
                         <th>LUNDI</th>
@@ -174,349 +219,462 @@ if ($name !== "") {
                         <th>VENDREDI</th>
                         <th>SAMEDI</th>
                         </tr>";
-                            while ($row = mysqli_fetch_array($result)) {
-                                $heure = $row['heure'];
-                                if ($heure < "12:00") {
+                                while ($row = mysqli_fetch_array($result)) {
+                                    $heure = $row['heure'];
+                                    if ($heure < "12:00") {
 
-                                    $result_rdv = mysqli_query($db, $requete_rdv) or die(mysqli_error($db));
-                                    $total_rdv = mysqli_num_rows($result_rdv);
-                                    if ($total_rdv > 0) {
-                                        while ($row_rdv = mysqli_fetch_array($result_rdv)) {
-                                            if ($heure == $row_rdv['heure'] && $row_rdv['date'] == "lundi") {
-                                                $verif_rdv = true;
+                                        $result_rdv = mysqli_query($db, $requete_rdv) or die(mysqli_error($db));
+                                        $total_rdv = mysqli_num_rows($result_rdv);
+                                        if ($total_rdv > 0) {
+                                            while ($row_rdv = mysqli_fetch_array($result_rdv)) {
+                                                if ($heure == $row_rdv['heure'] && $row_rdv['date'] == "lundi") {
+                                                    $verif_rdv = true;
+                                                }
                                             }
                                         }
-                                    }
-                                    if ($verif_rdv == true) {
-                                        echo "<tr><td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
-                                        $verif_rdv = false;
-                                    } elseif ($row2['lundiam'] == "1") {
+                                        if ($verif_rdv == true) {
+                                            echo "<tr><td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
+                                            $verif_rdv = false;
+                                        } elseif ($row2['lundiam'] == "1") {
 
-                                        echo "<tr><td><form action='payement.php' method='POST'>
+                                            echo "<tr><td><form action='payement.php' method='POST'>
                                         <input type='hidden' name='jour' value='lundi' style='opacity: 0;'>
                                         <input class='btn_rdv' type='submit' name='h' value='" . $heure . "'></form></td>";
-                                    } else {
-                                        echo "<tr><td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
-                                    }
+                                        } else {
+                                            echo "<tr><td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
+                                        }
 
 
-                                    $result_rdv = mysqli_query($db, $requete_rdv) or die(mysqli_error($db));
-                                    $total_rdv = mysqli_num_rows($result_rdv);
-                                    if ($total_rdv > 0) {
-                                        while ($row_rdv = mysqli_fetch_array($result_rdv)) {
-                                            if ($heure == $row_rdv['heure'] && $row_rdv['date'] == "mardi") {
-                                                $verif_rdv = true;
+                                        $result_rdv = mysqli_query($db, $requete_rdv) or die(mysqli_error($db));
+                                        $total_rdv = mysqli_num_rows($result_rdv);
+                                        if ($total_rdv > 0) {
+                                            while ($row_rdv = mysqli_fetch_array($result_rdv)) {
+                                                if ($heure == $row_rdv['heure'] && $row_rdv['date'] == "mardi") {
+                                                    $verif_rdv = true;
+                                                }
                                             }
                                         }
-                                    }
-                                    if ($verif_rdv == true) {
-                                        echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
-                                        $verif_rdv = false;
-                                    } elseif ($row2['mardiam'] == "1") {
-                                        echo "<td><form action='payement.php' method='POST'>
+                                        if ($verif_rdv == true) {
+                                            echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
+                                            $verif_rdv = false;
+                                        } elseif ($row2['mardiam'] == "1") {
+                                            echo "<td><form action='payement.php' method='POST'>
                                         <input type='hidden' name='jour' value='mardi' style='opacity: 0;'>
                                         <input class='btn_rdv' type='submit' name='h' value='" . $heure . "'></form></td>";
-                                    } else {
-                                        echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
-                                    }
+                                        } else {
+                                            echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
+                                        }
 
-                                    $result_rdv = mysqli_query($db, $requete_rdv) or die(mysqli_error($db));
-                                    $total_rdv = mysqli_num_rows($result_rdv);
-                                    if ($total_rdv > 0) {
-                                        while ($row_rdv = mysqli_fetch_array($result_rdv)) {
-                                            if ($heure == $row_rdv['heure'] && $row_rdv['date'] == "mercredi") {
-                                                $verif_rdv = true;
+                                        $result_rdv = mysqli_query($db, $requete_rdv) or die(mysqli_error($db));
+                                        $total_rdv = mysqli_num_rows($result_rdv);
+                                        if ($total_rdv > 0) {
+                                            while ($row_rdv = mysqli_fetch_array($result_rdv)) {
+                                                if ($heure == $row_rdv['heure'] && $row_rdv['date'] == "mercredi") {
+                                                    $verif_rdv = true;
+                                                }
                                             }
                                         }
-                                    }
-                                    if ($verif_rdv == true) {
-                                        echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
-                                        $verif_rdv = false;
-                                    } elseif ($row2['mercrediam'] == "1") {
+                                        if ($verif_rdv == true) {
+                                            echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
+                                            $verif_rdv = false;
+                                        } elseif ($row2['mercrediam'] == "1") {
 
-                                        echo "<td><form action='payement.php' method='POST'>
+                                            echo "<td><form action='payement.php' method='POST'>
                                         <input type='hidden' name='jour' value='mercredi' style='opacity: 0;'>
                                         <input class='btn_rdv' type='submit' name='h' value='" . $heure . "'></form></td>";
-                                    } else {
-                                        echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
-                                    }
+                                        } else {
+                                            echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
+                                        }
 
-                                    $result_rdv = mysqli_query($db, $requete_rdv) or die(mysqli_error($db));
-                                    $total_rdv = mysqli_num_rows($result_rdv);
-                                    if ($total_rdv > 0) {
-                                        while ($row_rdv = mysqli_fetch_array($result_rdv)) {
-                                            if ($heure == $row_rdv['heure'] && $row_rdv['date'] == "jeudi") {
-                                                $verif_rdv = true;
+                                        $result_rdv = mysqli_query($db, $requete_rdv) or die(mysqli_error($db));
+                                        $total_rdv = mysqli_num_rows($result_rdv);
+                                        if ($total_rdv > 0) {
+                                            while ($row_rdv = mysqli_fetch_array($result_rdv)) {
+                                                if ($heure == $row_rdv['heure'] && $row_rdv['date'] == "jeudi") {
+                                                    $verif_rdv = true;
+                                                }
                                             }
                                         }
-                                    }
-                                    if ($verif_rdv == true) {
-                                        echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
-                                        $verif_rdv = false;
-                                    } elseif ($row2['jeudiam'] == "1") {
+                                        if ($verif_rdv == true) {
+                                            echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
+                                            $verif_rdv = false;
+                                        } elseif ($row2['jeudiam'] == "1") {
 
-                                        echo "<td><form action='payement.php' method='POST'>
+                                            echo "<td><form action='payement.php' method='POST'>
                                         <input type='hidden' name='jour' value='jeudi' style='opacity: 0;'>
                                         <input class='btn_rdv' type='submit' name='h' value='" . $heure . "'></form></td>";
-                                    } else {
-                                        echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
-                                    }
+                                        } else {
+                                            echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
+                                        }
 
-                                    $result_rdv = mysqli_query($db, $requete_rdv) or die(mysqli_error($db));
-                                    $total_rdv = mysqli_num_rows($result_rdv);
-                                    if ($total_rdv > 0) {
-                                        while ($row_rdv = mysqli_fetch_array($result_rdv)) {
-                                            if ($heure == $row_rdv['heure'] && $row_rdv['date'] == "vendredi") {
-                                                $verif_rdv = true;
+                                        $result_rdv = mysqli_query($db, $requete_rdv) or die(mysqli_error($db));
+                                        $total_rdv = mysqli_num_rows($result_rdv);
+                                        if ($total_rdv > 0) {
+                                            while ($row_rdv = mysqli_fetch_array($result_rdv)) {
+                                                if ($heure == $row_rdv['heure'] && $row_rdv['date'] == "vendredi") {
+                                                    $verif_rdv = true;
+                                                }
                                             }
                                         }
-                                    }
-                                    if ($verif_rdv == true) {
-                                        echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
-                                        $verif_rdv = false;
-                                    } elseif ($row2['vendrediam'] == "1") {
+                                        if ($verif_rdv == true) {
+                                            echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
+                                            $verif_rdv = false;
+                                        } elseif ($row2['vendrediam'] == "1") {
 
-                                        echo "<td><form action='payement.php' method='POST'>
+                                            echo "<td><form action='payement.php' method='POST'>
                                         <input type='hidden' name='jour' value='vendredi' style='opacity: 0;'>
                                         <input class='btn_rdv' type='submit' name='h' value='" . $heure . "'></form></td>";
-                                    } else {
-                                        echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
-                                    }
+                                        } else {
+                                            echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
+                                        }
 
-                                    $result_rdv = mysqli_query($db, $requete_rdv) or die(mysqli_error($db));
-                                    $total_rdv = mysqli_num_rows($result_rdv);
-                                    if ($total_rdv > 0) {
-                                        while ($row_rdv = mysqli_fetch_array($result_rdv)) {
-                                            if ($heure == $row_rdv['heure'] && $row_rdv['date'] == "samedi") {
-                                                $verif_rdv = true;
+                                        $result_rdv = mysqli_query($db, $requete_rdv) or die(mysqli_error($db));
+                                        $total_rdv = mysqli_num_rows($result_rdv);
+                                        if ($total_rdv > 0) {
+                                            while ($row_rdv = mysqli_fetch_array($result_rdv)) {
+                                                if ($heure == $row_rdv['heure'] && $row_rdv['date'] == "samedi") {
+                                                    $verif_rdv = true;
+                                                }
                                             }
                                         }
-                                    }
-                                    if ($verif_rdv == true) {
-                                        echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td></tr>";
-                                        $verif_rdv = false;
-                                    } elseif ($row2['samediam'] == "1") {
-                                        echo "<td><form action='payement.php' method='POST'>
+                                        if ($verif_rdv == true) {
+                                            echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td></tr>";
+                                            $verif_rdv = false;
+                                        } elseif ($row2['samediam'] == "1") {
+                                            echo "<td><form action='payement.php' method='POST'>
                                         <input type='hidden' name='jour' value='samedi' style='opacity: 0;'>
                                         <input class='btn_rdv' type='submit' name='h' value='" . $heure . "'></form></td></tr>";
+                                        } else {
+                                            echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td></tr>";
+                                        }
                                     } else {
-                                        echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td></tr>";
-                                    }
-                                } else {
-                                    $result_rdv = mysqli_query($db, $requete_rdv) or die(mysqli_error($db));
-                                    $total_rdv = mysqli_num_rows($result_rdv);
-                                    if ($total_rdv > 0) {
-                                        while ($row_rdv = mysqli_fetch_array($result_rdv)) {
-                                            if ($heure == $row_rdv['heure'] && $row_rdv['date'] == "lundi") {
-                                                $verif_rdv = true;
+                                        $result_rdv = mysqli_query($db, $requete_rdv) or die(mysqli_error($db));
+                                        $total_rdv = mysqli_num_rows($result_rdv);
+                                        if ($total_rdv > 0) {
+                                            while ($row_rdv = mysqli_fetch_array($result_rdv)) {
+                                                if ($heure == $row_rdv['heure'] && $row_rdv['date'] == "lundi") {
+                                                    $verif_rdv = true;
+                                                }
                                             }
                                         }
-                                    }
-                                    if ($verif_rdv == true) {
-                                        echo "<tr><td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
-                                        $verif_rdv = false;
-                                    } elseif ($row2['lundipm'] == "1") {
+                                        if ($verif_rdv == true) {
+                                            echo "<tr><td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
+                                            $verif_rdv = false;
+                                        } elseif ($row2['lundipm'] == "1") {
 
-                                        echo "<tr><td><form action='payement.php' method='POST'>
+                                            echo "<tr><td><form action='payement.php' method='POST'>
                                         <input type='hidden' name='jour' value='lundi' style='opacity: 0;'>
                                         <input class='btn_rdv' type='submit' name='h' value='" . $heure . "'></form></td>";
-                                    } else {
-                                        echo "<tr><td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
-                                    }
+                                        } else {
+                                            echo "<tr><td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
+                                        }
 
-                                    $result_rdv = mysqli_query($db, $requete_rdv) or die(mysqli_error($db));
-                                    $total_rdv = mysqli_num_rows($result_rdv);
-                                    if ($total_rdv > 0) {
-                                        while ($row_rdv = mysqli_fetch_array($result_rdv)) {
-                                            if ($heure == $row_rdv['heure'] && $row_rdv['date'] == "mardi") {
-                                                $verif_rdv = true;
+                                        $result_rdv = mysqli_query($db, $requete_rdv) or die(mysqli_error($db));
+                                        $total_rdv = mysqli_num_rows($result_rdv);
+                                        if ($total_rdv > 0) {
+                                            while ($row_rdv = mysqli_fetch_array($result_rdv)) {
+                                                if ($heure == $row_rdv['heure'] && $row_rdv['date'] == "mardi") {
+                                                    $verif_rdv = true;
+                                                }
                                             }
                                         }
-                                    }
-                                    if ($verif_rdv == true) {
-                                        echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
-                                        $verif_rdv = false;
-                                    } elseif ($row2['mardipm'] == "1") {
+                                        if ($verif_rdv == true) {
+                                            echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
+                                            $verif_rdv = false;
+                                        } elseif ($row2['mardipm'] == "1") {
 
-                                        echo "<td><form action='payement.php' method='POST'>
+                                            echo "<td><form action='payement.php' method='POST'>
                                         <input type='hidden' name='jour' value='mardi' style='opacity: 0;'>
                                         <input class='btn_rdv' type='submit' name='h' value='" . $heure . "'></form></td>";
-                                    } else {
-                                        echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
-                                    }
+                                        } else {
+                                            echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
+                                        }
 
-                                    $result_rdv = mysqli_query($db, $requete_rdv) or die(mysqli_error($db));
-                                    $total_rdv = mysqli_num_rows($result_rdv);
-                                    if ($total_rdv > 0) {
-                                        while ($row_rdv = mysqli_fetch_array($result_rdv)) {
-                                            if ($heure == $row_rdv['heure'] && $row_rdv['date'] == "mercredi") {
-                                                $verif_rdv = true;
+                                        $result_rdv = mysqli_query($db, $requete_rdv) or die(mysqli_error($db));
+                                        $total_rdv = mysqli_num_rows($result_rdv);
+                                        if ($total_rdv > 0) {
+                                            while ($row_rdv = mysqli_fetch_array($result_rdv)) {
+                                                if ($heure == $row_rdv['heure'] && $row_rdv['date'] == "mercredi") {
+                                                    $verif_rdv = true;
+                                                }
                                             }
                                         }
-                                    }
-                                    if ($verif_rdv == true) {
-                                        echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
-                                        $verif_rdv = false;
-                                    } elseif ($row2['mercredipm'] == "1") {
+                                        if ($verif_rdv == true) {
+                                            echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
+                                            $verif_rdv = false;
+                                        } elseif ($row2['mercredipm'] == "1") {
 
-                                        echo "<td><form action='payement.php' method='POST'>
+                                            echo "<td><form action='payement.php' method='POST'>
                                         <input type='hidden' name='jour' value='mercredi' style='opacity: 0;'>
                                         <input class='btn_rdv' type='submit' name='h' value='" . $heure . "'></form></td>";
-                                    } else {
-                                        echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
-                                    }
+                                        } else {
+                                            echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
+                                        }
 
-                                    $result_rdv = mysqli_query($db, $requete_rdv) or die(mysqli_error($db));
-                                    $total_rdv = mysqli_num_rows($result_rdv);
-                                    if ($total_rdv > 0) {
-                                        while ($row_rdv = mysqli_fetch_array($result_rdv)) {
-                                            if ($heure == $row_rdv['heure'] && $row_rdv['date'] == "jeudi") {
-                                                $verif_rdv = true;
+                                        $result_rdv = mysqli_query($db, $requete_rdv) or die(mysqli_error($db));
+                                        $total_rdv = mysqli_num_rows($result_rdv);
+                                        if ($total_rdv > 0) {
+                                            while ($row_rdv = mysqli_fetch_array($result_rdv)) {
+                                                if ($heure == $row_rdv['heure'] && $row_rdv['date'] == "jeudi") {
+                                                    $verif_rdv = true;
+                                                }
                                             }
                                         }
-                                    }
-                                    if ($verif_rdv == true) {
-                                        echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
-                                        $verif_rdv = false;
-                                    } elseif ($row2['jeudipm'] == "1") {
-                                        echo "<td><form action='payement.php' method='POST'>
+                                        if ($verif_rdv == true) {
+                                            echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
+                                            $verif_rdv = false;
+                                        } elseif ($row2['jeudipm'] == "1") {
+                                            echo "<td><form action='payement.php' method='POST'>
                                         <input type='hidden' name='jour' value='jeudi' style='opacity: 0;'>
                                         <input class='btn_rdv' type='submit' name='h' value='" . $heure . "'></form></td>";
-                                    } else {
-                                        echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
-                                    }
+                                        } else {
+                                            echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
+                                        }
 
-                                    $result_rdv = mysqli_query($db, $requete_rdv) or die(mysqli_error($db));
-                                    $total_rdv = mysqli_num_rows($result_rdv);
-                                    if ($total_rdv > 0) {
-                                        while ($row_rdv = mysqli_fetch_array($result_rdv)) {
-                                            if ($heure == $row_rdv['heure'] && $row_rdv['date'] == "vendredi") {
-                                                $verif_rdv = true;
+                                        $result_rdv = mysqli_query($db, $requete_rdv) or die(mysqli_error($db));
+                                        $total_rdv = mysqli_num_rows($result_rdv);
+                                        if ($total_rdv > 0) {
+                                            while ($row_rdv = mysqli_fetch_array($result_rdv)) {
+                                                if ($heure == $row_rdv['heure'] && $row_rdv['date'] == "vendredi") {
+                                                    $verif_rdv = true;
+                                                }
                                             }
                                         }
-                                    }
-                                    if ($verif_rdv == true) {
-                                        echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
-                                        $verif_rdv = false;
-                                    } elseif ($row2['vendredipm'] == "1") {
+                                        if ($verif_rdv == true) {
+                                            echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
+                                            $verif_rdv = false;
+                                        } elseif ($row2['vendredipm'] == "1") {
 
-                                        echo "<td><form action='payement.php' method='POST'>
+                                            echo "<td><form action='payement.php' method='POST'>
                                         <input type='hidden' name='jour' value='vendredi' style='opacity: 0;'>
                                         <input class='btn_rdv' type='submit' name='h' value='" . $heure . "'></form></td>";
-                                    } else {
-                                        echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
-                                    }
+                                        } else {
+                                            echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
+                                        }
 
-                                    $result_rdv = mysqli_query($db, $requete_rdv) or die(mysqli_error($db));
-                                    $total_rdv = mysqli_num_rows($result_rdv);
-                                    if ($total_rdv > 0) {
-                                        while ($row_rdv = mysqli_fetch_array($result_rdv)) {
-                                            if ($heure == $row_rdv['heure'] && $row_rdv['date'] == "samedi") {
-                                                $verif_rdv = true;
+                                        $result_rdv = mysqli_query($db, $requete_rdv) or die(mysqli_error($db));
+                                        $total_rdv = mysqli_num_rows($result_rdv);
+                                        if ($total_rdv > 0) {
+                                            while ($row_rdv = mysqli_fetch_array($result_rdv)) {
+                                                if ($heure == $row_rdv['heure'] && $row_rdv['date'] == "samedi") {
+                                                    $verif_rdv = true;
+                                                }
                                             }
                                         }
-                                    }
-                                    if ($verif_rdv == true) {
-                                        echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td></tr>";
-                                        $verif_rdv = false;
-                                    } elseif ($row2['samedipm'] == "1") {
-                                        $_SESSION['jour'] = 'samedi';
-                                        echo "<td><form action='payement.php' method='POST'>
+                                        if ($verif_rdv == true) {
+                                            echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td></tr>";
+                                            $verif_rdv = false;
+                                        } elseif ($row2['samedipm'] == "1") {
+                                            $_SESSION['jour'] = 'samedi';
+                                            echo "<td><form action='payement.php' method='POST'>
                                         <input type='hidden' name='jour' value='samedi' style='opacity: 0;'>
                                         <input class='btn_rdv' type='submit' name='h' value='" . $heure . "'></form></td></tr>";
-                                    } else {
-                                        echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td></tr>";
+                                        } else {
+                                            echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td></tr>";
+                                        }
                                     }
                                 }
                             }
                         }
-                    }
-                } else {
-                    //Affichage des rdv
-                    $requete_rdv_cl = "SELECT * FROM `rdv` WHERE `id_cl`=" . $_SESSION['id_cl'];
-                    $result_rdv_cl = mysqli_query($db, $requete_rdv_cl) or die(mysqli_error($db));
-                    $total_rdv_cl = mysqli_num_rows($result_rdv_cl);
-                    //Affichage des rdv
-                    $requete_rdv_clabo = "SELECT * FROM `rdv_labo` WHERE `id_cl`=" . $_SESSION['id_cl'];
-                    $result_rdv_clabo = mysqli_query($db, $requete_rdv_clabo) or die(mysqli_error($db));
-                    $total_rdv_clabo = mysqli_num_rows($result_rdv_clabo);
+                    } else {
+                        //Affichage des rdv
+                        $requete_rdv_cl = "SELECT * FROM `rdv` WHERE `id_cl`=" . $_SESSION['id_cl'];
+                        $result_rdv_cl = mysqli_query($db, $requete_rdv_cl) or die(mysqli_error($db));
+                        $total_rdv_cl = mysqli_num_rows($result_rdv_cl);
+                        //Affichage des rdv
+                        $requete_rdv_clabo = "SELECT * FROM `rdv_labo` WHERE `id_cl`=" . $_SESSION['id_cl'];
+                        $result_rdv_clabo = mysqli_query($db, $requete_rdv_clabo) or die(mysqli_error($db));
+                        $total_rdv_clabo = mysqli_num_rows($result_rdv_clabo);
 
-                    if ($total_rdv_cl > 0 || $total_rdv_clabo > 0) {
-                        if ($total_rdv_cl > 0) {
-                            while ($row_rdv_cl = mysqli_fetch_array($result_rdv_cl)) {
-                                $id_medecin = $row_rdv_cl['id_med'];
-                                $ridmed = "SELECT * FROM `medecins` WHERE `id`=" . $id_medecin;
-                                $residmed = mysqli_query($db, $ridmed) or die(mysqli_error($db));
-                                $totidmed = mysqli_num_rows($residmed);
-                                if ($totidmed > 0) {
-                                    $rowidmed = mysqli_fetch_array($residmed);
-                                    $nommed = $rowidmed['nom'];
-                                    $prenomed = $rowidmed['prenom'];
-                                    $spemed = $rowidmed['spe'];
-                                    echo "<table class='aff_rdv'><th>Rendez vous le " . $row_rdv_cl['date'] . " à " . $row_rdv_cl['heure'] . "</th>
+                        if ($total_rdv_cl > 0 || $total_rdv_clabo > 0) {
+                            if ($total_rdv_cl > 0) {
+                                while ($row_rdv_cl = mysqli_fetch_array($result_rdv_cl)) {
+                                    $id_medecin = $row_rdv_cl['id_med'];
+                                    $ridmed = "SELECT * FROM `medecins` WHERE `id`=" . $id_medecin;
+                                    $residmed = mysqli_query($db, $ridmed) or die(mysqli_error($db));
+                                    $totidmed = mysqli_num_rows($residmed);
+                                    if ($totidmed > 0) {
+                                        $rowidmed = mysqli_fetch_array($residmed);
+                                        $nommed = $rowidmed['nom'];
+                                        $prenomed = $rowidmed['prenom'];
+                                        $spemed = $rowidmed['spe'];
+                                        echo "<table class='aff_rdv'><th>Rendez vous le " . $row_rdv_cl['date'] . " à " . $row_rdv_cl['heure'] . "</th>
                                     <tr><td>Vous avez rendez vous avec le médecin : " . $nommed . " " . $prenomed . " le " . $row_rdv_cl['date'] . " à " .
-                                        $row_rdv_cl['heure'] . ".<br>Specialité : " . $spemed . "<br>Adresse : " . $row_rdv_cl['adresse'] . "<br>Digicode : " .
-                                        $row_rdv_cl['digicode'] . "<br>Prix de la consultation : " . $row_rdv_cl['prix'] .
-                                        " €</td>
+                                            $row_rdv_cl['heure'] . ".<br>Specialité : " . $spemed . "<br>Adresse : " . $row_rdv_cl['adresse'] . "<br>Digicode : " .
+                                            $row_rdv_cl['digicode'] . "<br>Prix de la consultation : " . $row_rdv_cl['prix'] .
+                                            " €</td>
                                     <td><form action='' method='POST'>
                                     <input class='btn_rdv' type='submit' name='" . $id_medecin . $row_rdv_cl['date'] . $row_rdv_cl['heure'] . "' value='Annuler le rdv'>
                                     </form></td></tr></table><br>";
-                                    if (isset($_POST[$id_medecin . $row_rdv_cl["date"] . $row_rdv_cl["heure"]])) {
-                                        //echo "<h2>DELETE FROM `rdv` WHERE `id_cl`=".$_SESSION['id_cl']." AND `id_med`=".$id_medecin." AND `date`='".$row_rdv_cl['date']."' AND `heure`='".$row_rdv_cl['heure']."'</h2>";
-                                        $requete_annul = "DELETE FROM `rdv` WHERE `id_cl`=" . $_SESSION['id_cl'] . " AND `id_med`=" . $id_medecin . " AND `date`='" . $row_rdv_cl['date'] . "' AND `heure`='" . $row_rdv_cl['heure'] . "'";
-                                        $result_annul = mysqli_query($db, $requete_annul) or die(mysqli_error($db));
-                                        echo "<script> location.replace('rdv_med.php'); </script>";
-                                        //echo "<h2>Le rdv a bien été annulé</h2>";
+                                        if (isset($_POST[$id_medecin . $row_rdv_cl["date"] . $row_rdv_cl["heure"]])) {
+                                            //echo "<h2>DELETE FROM `rdv` WHERE `id_cl`=".$_SESSION['id_cl']." AND `id_med`=".$id_medecin." AND `date`='".$row_rdv_cl['date']."' AND `heure`='".$row_rdv_cl['heure']."'</h2>";
+                                            $requete_annul = "DELETE FROM `rdv` WHERE `id_cl`=" . $_SESSION['id_cl'] . " AND `id_med`=" . $id_medecin . " AND `date`='" . $row_rdv_cl['date'] . "' AND `heure`='" . $row_rdv_cl['heure'] . "'";
+                                            $result_annul = mysqli_query($db, $requete_annul) or die(mysqli_error($db));
+                                            echo "<script> location.replace('rdv_med.php'); </script>";
+                                            //echo "<h2>Le rdv a bien été annulé</h2>";
+                                        }
                                     }
                                 }
                             }
-                        }
-                        if ($total_rdv_clabo > 0) {
-                            while ($row_rdv_clabo = mysqli_fetch_array($result_rdv_clabo)) {
-                                $id_labo = $row_rdv_clabo['id_labo'];
-                                $spelabo = $row_rdv_clabo['service'];
-                                $reqidlabo = "SELECT * FROM `labo` WHERE `Idlabo`=" . $id_labo;
-                                $residlabo = mysqli_query($db, $reqidlabo) or die(mysqli_error($db));
-                                $totidlabo = mysqli_num_rows($residlabo);
-                                if ($totidlabo > 0) {
-                                    $rowidlabo = mysqli_fetch_array($residlabo);
-                                    $nomlabo = $rowidlabo['Nom'];
-                                    if ($spelabo == "covid") {
-                                        $spelabo = "Dépistage Covid";
-                                    } elseif ($spelabo == "bio_prev") {
-                                        $spelabo = "Biologie préventive";
-                                    } elseif ($spelabo == "bio_enc") {
-                                        $spelabo = "Biologie de la femme enceinte";
-                                    } elseif ($spelabo == "bio_rout") {
-                                        $spelabo = "Biologie de routine";
-                                    } elseif ($spelabo == "cancer") {
-                                        $spelabo = "Cancérologie";
-                                    } elseif ($spelabo == "gyneco") {
-                                        $spelabo = "Gynécologie";
-                                    }
-                                    echo "<table class='aff_rdv'><th>Rendez vous le " . $row_rdv_clabo['date'] . " à " . $row_rdv_clabo['heure'] . "</th>
+                            if ($total_rdv_clabo > 0) {
+                                while ($row_rdv_clabo = mysqli_fetch_array($result_rdv_clabo)) {
+                                    $id_labo = $row_rdv_clabo['id_labo'];
+                                    $spelabo = $row_rdv_clabo['service'];
+                                    $reqidlabo = "SELECT * FROM `labo` WHERE `Idlabo`=" . $id_labo;
+                                    $residlabo = mysqli_query($db, $reqidlabo) or die(mysqli_error($db));
+                                    $totidlabo = mysqli_num_rows($residlabo);
+                                    if ($totidlabo > 0) {
+                                        $rowidlabo = mysqli_fetch_array($residlabo);
+                                        $nomlabo = $rowidlabo['Nom'];
+                                        if ($spelabo == "covid") {
+                                            $spelabo = "Dépistage Covid";
+                                        } elseif ($spelabo == "bio_prev") {
+                                            $spelabo = "Biologie préventive";
+                                        } elseif ($spelabo == "bio_enc") {
+                                            $spelabo = "Biologie de la femme enceinte";
+                                        } elseif ($spelabo == "bio_rout") {
+                                            $spelabo = "Biologie de routine";
+                                        } elseif ($spelabo == "cancer") {
+                                            $spelabo = "Cancérologie";
+                                        } elseif ($spelabo == "gyneco") {
+                                            $spelabo = "Gynécologie";
+                                        }
+                                        echo "<table class='aff_rdv'><th>Rendez vous le " . $row_rdv_clabo['date'] . " à " . $row_rdv_clabo['heure'] . "</th>
                                     <tr><td>Vous avez rendez vous au laboratoire : " . $nomlabo . " le " . $row_rdv_clabo['date'] . " à " .
-                                        $row_rdv_clabo['heure'] . ".<br>Service : " . $spelabo . "<br>Adresse : " . $row_rdv_clabo['adresse'] . "<br>Digicode : " .
-                                        $row_rdv_clabo['digicode'] . "<br>Prix de la consultation : " . $row_rdv_clabo['prix'] .
-                                        " €</td>
+                                            $row_rdv_clabo['heure'] . ".<br>Service : " . $spelabo . "<br>Adresse : " . $row_rdv_clabo['adresse'] . "<br>Digicode : " .
+                                            $row_rdv_clabo['digicode'] . "<br>Prix de la consultation : " . $row_rdv_clabo['prix'] .
+                                            " €</td>
                                     <td><form action='' method='POST'>
                                     <input class='btn_rdv' type='submit' name='" . $id_labo . $row_rdv_clabo['date'] . $row_rdv_clabo['heure'] . "' value='Annuler le rdv'>
-                                    </form></td></tr></table><br><br>";
-                                    if (isset($_POST[$id_labo . $row_rdv_clabo["date"] . $row_rdv_clabo["heure"]])) {
-                                        //echo "<h2>DELETE FROM `rdv` WHERE `id_cl`=".$_SESSION['id_cl']." AND `id_med`=".$id_medecin." AND `date`='".$row_rdv_cl['date']."' AND `heure`='".$row_rdv_cl['heure']."'</h2>";
-                                        $requete_annulabo = "DELETE FROM `rdv_labo` WHERE `id_cl`=" . $_SESSION['id_cl'] . " AND `id_labo`=" . $id_labo . " AND `date`='" . $row_rdv_clabo['date'] . "' AND `heure`='"
-                                            . $row_rdv_clabo['heure'] . "' AND `service`='" . $row_rdv_clabo['service'] . "'";
-                                        $result_annulabo = mysqli_query($db, $requete_annulabo) or die(mysqli_error($db));
-                                        echo "<script> location.replace('rdv_med.php'); </script>";
-                                        //echo "<h2>Le rdv a bien été annulé</h2>";
+                                    </form></td></tr></table><br>";
+                                        if (isset($_POST[$id_labo . $row_rdv_clabo["date"] . $row_rdv_clabo["heure"]])) {
+                                            //echo "<h2>DELETE FROM `rdv` WHERE `id_cl`=".$_SESSION['id_cl']." AND `id_med`=".$id_medecin." AND `date`='".$row_rdv_cl['date']."' AND `heure`='".$row_rdv_cl['heure']."'</h2>";
+                                            $requete_annulabo = "DELETE FROM `rdv_labo` WHERE `id_cl`=" . $_SESSION['id_cl'] . " AND `id_labo`=" . $id_labo . " AND `date`='" . $row_rdv_clabo['date'] . "' AND `heure`='"
+                                                . $row_rdv_clabo['heure'] . "' AND `service`='" . $row_rdv_clabo['service'] . "'";
+                                            $result_annulabo = mysqli_query($db, $requete_annulabo) or die(mysqli_error($db));
+                                            echo "<script> location.replace('rdv_med.php'); </script>";
+                                            //echo "<h2>Le rdv a bien été annulé</h2>";
+                                        }
                                     }
                                 }
                             }
-                        }
-                        echo "<center><a class='take_rdv' href='toutParcourir.php'>Prendre un nouveau rendez-vous</a></center>";
-                    } else {
-                        echo "<center><h2 class='pas_de_rdv'>Vous n'avez pas encore pris de rendez-vous.<br><a href='toutParcourir.php'>
+                            echo "<center><a class='take_rdv' href='toutParcourir.php'>Prendre un nouveau rendez-vous</a></center>";
+                        } else {
+                            echo "<center><h2 class='pas_de_rdv'>Vous n'avez pas encore pris de rendez-vous.<br><a href='toutParcourir.php'>
                         Vous pouvez prendre un rendez vous ici.</a></h2></center>";
+                        }
+                    }
+                } elseif ($row_compte['type'] == "labo") {
+                    $_SESSION['user_lab'] = $row_compte['username'];
+
+                    $req_labo = "SELECT * FROM `labo` WHERE Email='" . $row_compte['username'] . "'";
+                    $res_labo = mysqli_query($db, $req_labo) or die(mysqli_error($db));
+                    $row_labo = mysqli_fetch_array($res_labo);
+                    $id_labo = $row_labo['Idlabo'];
+
+                    $req_rdv = "SELECT * FROM rdv_labo WHERE id_labo=" . $id_labo;
+                    $res_rdv = mysqli_query($db, $req_rdv) or die(mysqli_error($db));
+                    $num_rdv = mysqli_num_rows($res_rdv);
+
+                    if ($num_rdv > 0) {
+                        while ($row_rdv = mysqli_fetch_array($res_rdv)) {
+                            $id_client = $row_rdv['id_cl'];
+                            $req_client = "SELECT * FROM `clientinf` WHERE `IdCl`=" . $id_client;
+                            $res_client = mysqli_query($db, $req_client) or die(mysqli_error($db));
+                            $tot_client = mysqli_num_rows($res_client);
+                            if ($tot_client > 0) {
+                                $row_client = mysqli_fetch_array($res_client);
+                                $nom_client = $row_client['Nom'];
+                                $prenom_client = $row_client['Prenom'];
+                                $mail_client = $row_client['Mail'];
+                                $id_client = $row_client['IdCl'];
+                                echo "<table class='aff_rdv'><th>Rendez vous le " . $row_rdv['date'] . " à " . $row_rdv['heure'] . "</th>
+                                    <tr><td>Vous avez rendez vous avec le client : " . $nom_client . " " . $prenom_client . " le " . $row_rdv['date'] . " à " .
+                                    $row_rdv['heure'] . ".<br>Service : ".$row_rdv['service']."
+                                    <br>Mail : " . $mail_client . "<br>Adresse : " . $row_rdv['adresse'] . "<br>Digicode : " .
+                                    $row_rdv['digicode'] . "<br>Prix de la consultation : " . $row_rdv['prix'] .
+                                    " €</td>
+                                    <td><form action='' method='POST'>
+                                    <input class='btn_rdv' type='submit' name='" . $id_labo . $row_rdv['date'] . $row_rdv['heure'] . "' value='Annuler le rdv'>
+                                    </form></td></tr></table><br>";
+                                if (isset($_POST[$id_labo . $row_rdv["date"] . $row_rdv["heure"]])) {
+                                    //echo "<h2>DELETE FROM `rdv` WHERE `id_cl`=".$_SESSION['id_cl']." AND `id_med`=".$id_medecin." AND `date`='".$row_rdv_cl['date']."' AND `heure`='".$row_rdv_cl['heure']."'</h2>";
+                                    $requete_annul = "DELETE FROM `rdv_labo` WHERE `id_cl`=" . $id_client . " AND `id_labo`=" . $id_labo . " AND `date`='" . $row_rdv['date'] . "' AND `heure`='" . $row_rdv['heure'] . "'";
+                                    $result_annul = mysqli_query($db, $requete_annul) or die(mysqli_error($db));
+                                    echo "<script> location.replace('rdv_med.php'); </script>";
+                                    //echo "<h2>Le rdv a bien été annulé</h2>";
+                                }
+                            }
+                        }
+                    }else{
+                        //PAS DE RDV
+                        echo "<center><h2 class='pas_de_rdv'>Vous n'avez pas de rendez-vous programmé.</h2></center>";
+                    }
+                } else {
+                    //Admin
+                    //Affichage des rdv
+                    $requete_rdv_med = "SELECT * FROM `rdv`";
+                    $result_rdv_med = mysqli_query($db, $requete_rdv_med) or die(mysqli_error($db));
+                    $total_rdv_med = mysqli_num_rows($result_rdv_med);
+
+                    $requete_rdv_labo = "SELECT * FROM `rdv_labo`";
+                    $result_rdv_labo = mysqli_query($db, $requete_rdv_labo) or die(mysqli_error($db));
+                    $total_rdv_labo = mysqli_num_rows($result_rdv_labo);
+
+                    if ($total_rdv_med > 0) {
+                        while ($row_rdv_med = mysqli_fetch_array($result_rdv_med)) {
+                            $id_med=$row_rdv_med['id_med'];
+                            $id_client=$row_rdv_med['id_cl'];
+                            $req_client = "SELECT * FROM `clientinf` WHERE `IdCl`=" . $id_client;
+                            $res_client = mysqli_query($db, $req_client) or die(mysqli_error($db));
+                            $tot_client = mysqli_num_rows($res_client);
+                            $req_med = "SELECT * FROM `medecins` WHERE `id`=" . $id_med;
+                            $res_med = mysqli_query($db, $req_med) or die(mysqli_error($db));
+                            $tot_med = mysqli_num_rows($res_med);
+                            if ($tot_client > 0 && $tot_med > 0) {
+                                $row_client = mysqli_fetch_array($res_client);
+                                $row_med = mysqli_fetch_array($res_med);
+                                $nom_client = $row_client['Nom'];
+                                $prenom_client = $row_client['Prenom'];
+                                $mail_client = $row_client['Mail'];
+                                $nom_med=$row_med['nom'];
+                                $prenom_med=$row_med['prenom'];
+                                $spe_med=$row_med['spe'];
+                                echo "<table class='aff_rdv'><th>Rendez vous le " . $row_rdv_med['date'] . " à " . $row_rdv_med['heure'] . "</th>
+                                    <tr><td>Client : " . $nom_client . " " . $prenom_client . ".<br>Mail : ".$mail_client.
+                                    "<br>Docteur : ".$nom_med." ".$prenom_med."<br>Specialité : ".$spe_med."<br>Adresse : " . 
+                                    $row_rdv_med['adresse'] . "<br>Digicode : " .
+                                    $row_rdv_med['digicode'] . "<br>Prix de la consultation : " . $row_rdv_med['prix'] .
+                                    " €</td></table><br>";
+                                }
+                        }
+                    }
+                    if ($total_rdv_labo > 0) {
+                        while ($row_rdv_labo = mysqli_fetch_array($result_rdv_labo)) {
+                            $id_labo=$row_rdv_labo['id_labo'];
+                            $id_client=$row_rdv_labo['id_cl'];
+                            $req_client = "SELECT * FROM `clientinf` WHERE `IdCl`=" . $id_client;
+                            $res_client = mysqli_query($db, $req_client) or die(mysqli_error($db));
+                            $tot_client = mysqli_num_rows($res_client);
+                            $req_labo = "SELECT * FROM `labo` WHERE `Idlabo`=" . $id_labo;
+                            $res_labo = mysqli_query($db, $req_labo) or die(mysqli_error($db));
+                            $tot_labo = mysqli_num_rows($res_labo);
+                            if ($tot_client > 0 && $tot_labo > 0) {
+                                $row_client = mysqli_fetch_array($res_client);
+                                $row_labo = mysqli_fetch_array($res_labo);
+                                $nom_client = $row_client['Nom'];
+                                $prenom_client = $row_client['Prenom'];
+                                $mail_client = $row_client['Mail'];
+                                $nom_labo=$row_labo['Nom'];
+                                $mail_labo=$row_labo['Email'];
+                                echo "<table class='aff_rdv'><th>Rendez vous le " . $row_rdv_labo['date'] . " à " . $row_rdv_labo['heure'] . "</th>
+                                <tr><td>Client : " . $nom_client . " " . $prenom_client . ".<br>Mail : ".$mail_client.
+                                "<br>Laboratoire : ".$nom_labo."<br>Mail du laboratoire : ".$mail_labo."<br>Service : ".$row_rdv_labo['service'].
+                                "<br>Adresse : " . $row_rdv_labo['adresse'] . "<br>Digicode : " .
+                                $row_rdv_labo['digicode'] . "<br>Prix de la consultation : " . $row_rdv_labo['prix'] .
+                                " €</td></table><br>";
+                                }
+                        }
                     }
                 }
             } else {

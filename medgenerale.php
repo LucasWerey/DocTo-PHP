@@ -155,8 +155,11 @@
                       <input type="text" name="nom" value="<?php echo $row['nom']; ?>" style="opacity: 0;">
                       <input class="btn btn-secondary" type="submit" value="Prendre un RDV">
                     </form>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Communiquer avec le médecin</button>
 
+                    <form action="chat.php" method="POST">
+                    <input type="text" name="nom" value="<?php echo $row['nom']; ?>" style="opacity: 0;">
+                    <input type="submit" class="btn btn-secondary" value="Communiquer avec le médecin">
+                  </form>
                     <form action="cv.php" method="POST">
                     <input type="text" name="nom" value="<?php echo $row['nom']; ?>" style="opacity: 0;"> 
                     <input type="submit" class="btn btn-secondary" value="Voir son CV">

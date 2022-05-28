@@ -188,35 +188,19 @@ if (isset($_POST['h']) && isset($_POST['jour'])) {
 
         <div class="col-md-6">
           <span>Votre rendez-vous</span>
-
           <div class="card">
-
             <div class="d-flex justify-content-between p-3">
-
               <div class="d-flex flex-column">
-
                 <span>Prix à payer<i class="fa fa-caret-down"></i></span>
-
-
               </div>
-
               <div class="mt-1">
-                <sup class="super-price"># €</sup>
-
+                <sup class="super-price">€</sup>
               </div>
-
             </div>
-
             <hr class="mt-0 line">
-
             <div class="p-3">
-
               <div class="d-flex justify-content-between mb-2">
-
-
-
               </div>
-
               <div class="d-flex">
                 <p> Votre rendez-vous : </p>
                 <ul>
@@ -227,34 +211,21 @@ if (isset($_POST['h']) && isset($_POST['jour'])) {
                   <li>Adresse</li>
                   <li>Medecin</li>
                 </ul>
-
-
               </div>
-
-
             </div>
-
             <hr class="mt-0 line">
-
-
             <div class="p-3 d-flex justify-content-between">
-
               <div class="d-flex flex-column">
-
                 <span>Confirmer votre paiement</span>
-                <small>After 30 days $9.59</small>
-
+                <!--<small>After 30 days $9.59</small>-->
               </div>
               <span>$0</span>
             </div>
-
-
             <div class="p-3">
               <input type='submit' name="pay" class="btn btn-primary btn-block free-button" value='Valider votre paiement'>
             </div>
           </div>
         </div>
-
       </div>
     </div>
   </form>

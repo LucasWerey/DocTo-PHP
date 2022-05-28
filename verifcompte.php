@@ -8,7 +8,7 @@
         while($row = mysqli_fetch_array($result)){
             if ($row['conn']==true){
                 $verif=true;
-                if ($row['type']=='medecin'){
+                if ($row['type']=='medecin' || $row['type']=='labo'){
                     header('Location: compteMedecin.php');
                 }elseif ($row['type']=='client'){
                     header('Location: compteClient.php');

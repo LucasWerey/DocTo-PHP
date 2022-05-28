@@ -134,7 +134,7 @@
   <div class="col-md-8">
       <div class="tab-content profile-tab" id="myTabContent">
           <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                      <div class="row" style="margin-top:-120px">
+                      <div class="row" style="margin-top:-140px;">
                           <div class="col-md-6">
                               <label>Votre identifiant</label>
                           </div>
@@ -224,17 +224,31 @@
                                         <p>'. $cmsData['CodePostal'].'</p>
                                         </div>
                                     </div>
+                                    <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Numéro de carte vitale</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>'.$cmsData['CVClient'].'</p>
+                                    </div>
+                                </div>
                         </div>';
-     }?>
+     }
                                             
-                                      
-                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                        <div class="row" style="margin-top:-120px">
+            
+            $compte=$db->query("SELECT * FROM banque where IdClient='".$cmsData['IdCl']."'");
+
+            if($compte->num_rows > 0){ 
+
+                $info = $compte->fetch_assoc(); 
+                                    
+                      echo'      <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                        <div class="row" style="margin-top:-140px">
                                             <div class="col-md-6">
                                                 <label>Type de carte</label>
                                             </div>
                                             <div class="col-md-6">
-                                                  <p>Expert</p>
+                                                  <p>'.$info['typecarte'].'</p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -242,7 +256,7 @@
                                                 <label>Numéro de carte</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>10$/hr</p>
+                                                <p>'.$info['Num carte'].'</p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -250,26 +264,18 @@
                                                 <label>Nom</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>230</p>
+                                                <p>'.$info['Nom'].'</p>
                                             </div>
-                                        </div>
+                                        </div>'; ?>
+                                       
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label>Date d'expiration</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>Expert</p>
+                                                <p> <?php echo $info['Exp']; }?> </p>
                                             </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>CV</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>6 months</p>
-                                            </div>
-                                        </div>
-                              
+                                        </div>                            
                                     </div>
                                 </div>
                             </div>
@@ -277,9 +283,9 @@
                     </div>
                 </div>
             </form>           
-        </div>
-
-
+        </div>';
+        
+<?php mysqli_close($db);?>
        
         <?php include("footer.html"); ?>
     <!-- Optional JavaScript -->

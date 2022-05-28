@@ -86,21 +86,21 @@
     #usermsg {
     flex: 1;
     border-radius: 4px;
-    border: 1px solid #2fff00;
+    border: 1px solid #60635f;
     
    }
     
     #name {
     border-radius: 4px;
-    border: 1px solid #55ff00;
+    border: 1px solid #343735;
     padding: 2px 8px;
     
    }
     
     #submitmsg,
     #enter{
-    background: #00ff37;
-    border: 2px solid #00e67f;
+    background: #2f3330;
+    border: 2px solid #090a0a;
     color: white;
     padding: 4px 10px;
     font-weight: bold;
@@ -159,5 +159,5 @@
     }
     
     .msgln b.user-name-left {
-    background: rgb(10, 117, 26);
+    background: rgb(72, 77, 73);
     }
