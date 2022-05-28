@@ -85,6 +85,9 @@
                             <li class="nav-item">
                                 <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Laboratoires</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="stat-tab" data-toggle="tab" href="#stat" role="tab" aria-controls="stat" aria-selected="false">Statistiques</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -96,9 +99,9 @@
         <div class="tab-content profile-tab" id="myTabContent">
             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
-                <form action="" method="post">
+                <form action="" method="post" enctype="multipart/form-data">
                     <select name="selector">
-                    <option value="Choisir un médecin"> Choisir un médecin </option>
+                        <option value="Choisir un médecin"> Choisir un médecin </option>
 
                         <?php
                         $res = 'SELECT * FROM medecins order by nom asc';
@@ -162,7 +165,7 @@
 
                         <div class="row justify-content-around" style="padding-top:30px;">
                             <div class="col-4"> <input type="submit" value="Ajouter CV"> </div>
-                            <div class="col-4"> <input type="file" name="Ajouter Photo"></div>
+                            <div class="col-4"> <input type="file" name="imagefile"></div>
                         </div>
 
 
@@ -170,8 +173,8 @@
                             <div class="row">
                                 <div class="col-12">
                                     <table class="table table-bordered">
-                                      
-                                        <?php 
+
+                                        <?php
 
                                         $selected = "";
                                         if (isset($_POST['choix'])) {
@@ -207,12 +210,12 @@
                                             if ($cmsData['lundiam'] == 1) {
 
                                                 echo '<div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="LundiAM" checked>
+                                            <input type="checkbox" class="custom-control-input" name="LundiAM" id="LundiAM" checked>
                                             <label class="custom-control-label" for="LundiAM">
                                         </div>';
                                             } else {
                                                 echo '<div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="LundiAM">
+                                            <input type="checkbox" class="custom-control-input" name="LundiAM"  id="LundiAM">
                                             <label class="custom-control-label" for="LundiAM">
                                         </div>';
                                             }
@@ -223,12 +226,12 @@
                                             if ($cmsData['mardiam'] == 1) {
 
                                                 echo '<div class="custom-control custom-checkbox">
-                                                                <input type="checkbox" class="custom-control-input" id="MardiAM" checked>
+                                                                <input type="checkbox" class="custom-control-input" name="MardiAM" id="MardiAM" checked>
                                                                 <label class="custom-control-label" for="MardiAM">
                                                                 </div>';
                                             } else {
                                                 echo '<div class="custom-control custom-checkbox">
-                                                                <input type="checkbox" class="custom-control-input" id="MardiAM">
+                                                                <input type="checkbox" class="custom-control-input" name="MardiAM" id="MardiAM">
                                                                 <label class="custom-control-label" for="MardiAM">
                                                                 </div>';
                                             }
@@ -237,13 +240,13 @@
                                             if ($cmsData['mercrediam'] == 1) {
 
                                                 echo '<div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="MecrediAM" checked>
-                                                        <label class="custom-control-label" for="MecrediAM">
+                                                        <input type="checkbox" class="custom-control-input" name="MercrediAM" id="MercrediAM" checked>
+                                                        <label class="custom-control-label" for="MercrediAM">
                                                         </div>';
                                             } else {
                                                 echo '<div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="MecrediAM">
-                                                        <label class="custom-control-label" for="MecrediAM">
+                                                        <input type="checkbox" class="custom-control-input" name="MercrediAM" id="MercrediAM">
+                                                        <label class="custom-control-label" for="MercrediAM">
                                                         </div>';
                                             }
                                             echo '</td>
@@ -251,12 +254,12 @@
                                             if ($cmsData['jeudiam'] == 1) {
 
                                                 echo '<div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="JeudiAM" checked>
+                                                        <input type="checkbox" class="custom-control-input" name="JeudiAM" id="JeudiAM" checked>
                                                         <label class="custom-control-label" for="JeudiAM">
                                                         </div>';
                                             } else {
                                                 echo '<div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="JeudiAM">
+                                                        <input type="checkbox" class="custom-control-input" name="JeudiAM" id="JeudiAM">
                                                         <label class="custom-control-label" for="JeudiAM">
                                                         </div>';
                                             }
@@ -265,12 +268,12 @@
                                             if ($cmsData['vendrediam'] == 1) {
 
                                                 echo '<div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="VendrediAM" checked>
+                                                        <input type="checkbox" class="custom-control-input" name="VendrediAM" id="VendrediAM" checked>
                                                         <label class="custom-control-label" for="VendrediAM">
                                                         </div>';
                                             } else {
                                                 echo '<div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="VendrediAM">
+                                                        <input type="checkbox" class="custom-control-input" name="VendrediAM" id="VendrediAM">
                                                         <label class="custom-control-label" for="VendrediAM">
                                                         </div>';
                                             }
@@ -279,12 +282,12 @@
                                             if ($cmsData['samediam'] == 1) {
 
                                                 echo '<div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="SamediAM" checked>
+                                                        <input type="checkbox" class="custom-control-input" name="SamediAM"  id="SamediAM" checked>
                                                         <label class="custom-control-label" for="SamediAM">
                                                         </div>';
                                             } else {
                                                 echo '<div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="SamediAM">
+                                                        <input type="checkbox" class="custom-control-input" name="SamediAM"  id="SamediAM">
                                                         <label class="custom-control-label" for="SamediAM">
                                                         </div>';
                                             }
@@ -300,13 +303,13 @@
                                             if ($cmsData['lundipm'] == 1) {
 
                                                 echo '<div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="LundiPm" checked>
-                                                        <label class="custom-control-label" for="LundiPm">
+                                                        <input type="checkbox" class="custom-control-input" name="LundiPM" id="LundiPM" checked>
+                                                        <label class="custom-control-label" for="LundiPM">
                                                         </div>';
                                             } else {
                                                 echo '<div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="LundiPm">
-                                                        <label class="custom-control-label" for="LundiPm">
+                                                        <input type="checkbox" class="custom-control-input" name="LundiPM" id="LundiPM">
+                                                        <label class="custom-control-label" for="LundiPM">
                                                         </div>';
                                             }
                                             echo '  </td>
@@ -314,12 +317,12 @@
                                             if ($cmsData['mardipm'] == 1) {
 
                                                 echo '<div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="MardiPM" checked>
+                                                        <input type="checkbox" class="custom-control-input" name="MardiPM"  id="MardiPM" checked>
                                                         <label class="custom-control-label" for="MardiPM">
                                                         </div>';
                                             } else {
                                                 echo '<div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="MardiPM">
+                                                        <input type="checkbox" class="custom-control-input" name="MardiPM"  id="MardiPM">
                                                         <label class="custom-control-label" for="MardiPM">
                                                         </div>';
                                             }
@@ -328,12 +331,12 @@
                                             if ($cmsData['mercredipm'] == 1) {
 
                                                 echo '<div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="MercrediPM" checked>
+                                                        <input type="checkbox" class="custom-control-input"name="MercrediPM"  id="MercrediPM" checked>
                                                         <label class="custom-control-label" for="MercrediPM">
                                                         </div>';
                                             } else {
                                                 echo '<div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="MercrediPM">
+                                                        <input type="checkbox" class="custom-control-input" name="MercrediPM"  id="MercrediPM">
                                                         <label class="custom-control-label" for="MercrediPM">
                                                         </div>';
                                             }
@@ -342,12 +345,12 @@
                                             if ($cmsData['jeudipm'] == 1) {
 
                                                 echo '<div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="JeudiPM" checked>
+                                                        <input type="checkbox" class="custom-control-input" name="JeudiPM" id="JeudiPM" checked>
                                                         <label class="custom-control-label" for="JeudiPM">
                                                         </div>';
                                             } else {
                                                 echo '<div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="JeudiPM">
+                                                        <input type="checkbox" class="custom-control-input" name="JeudiPM" id="JeudiPM">
                                                         <label class="custom-control-label" for="JeudiPM">
                                                         </div>';
                                             }
@@ -356,12 +359,12 @@
                                             if ($cmsData['vendredipm'] == 1) {
 
                                                 echo '<div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="VendrediPM" checked>
+                                                        <input type="checkbox" class="custom-control-input" name="VendrediPM"  id="VendrediPM" checked>
                                                         <label class="custom-control-label" for="VendrediPM">
                                                         </div>';
                                             } else {
                                                 echo '<div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="VendrediPM">
+                                                        <input type="checkbox" class="custom-control-input" name="VendrediPM" id="VendrediPM">
                                                         <label class="custom-control-label" for="VendrediPM">
                                                         </div>';
                                             }
@@ -370,12 +373,12 @@
                                             if ($cmsData['samedipm'] == 1) {
 
                                                 echo '<div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="SamediPM" checked>
+                                                        <input type="checkbox" class="custom-control-input" name="SamediPM" id="SamediPM" checked>
                                                         <label class="custom-control-label" for="SamediPM">
                                                         </div>';
                                             } else {
                                                 echo '<div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="SamediPM">
+                                                        <input type="checkbox" class="custom-control-input" name="SamediPM" id="SamediPM">
                                                         <label class="custom-control-label" for="SamediPM">
                                                         </div>';
                                             }
@@ -390,73 +393,219 @@
                         </div>
 
 
+
                         <div class="row align-items-start" style="padding-top:50px;">
                             <div class="col"> <input type="submit" value="Supprimer" name="supr"> </div>
                             <div class="col"> <input type="submit" value="Ajouter" name="aj"> </div>
                             <div class="col"> <input type="submit" value="Mettre à jour" name="maj"> </div>
                         </div>
-
-                    </div>
+                </form>
             </div>
-
-            </form>
-
-            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-
-                <?php
-
-                if (isset($_POST['aj'])) {
-
-                    if (!empty($_POST['nom'])) {
-                        $name = $_POST['nom'];
-                        echo '<h5>' . $name . '</h5>';
-                    }
-                    if (!empty($_POST['prenom'])) {
-                        $prenom = $_POST['prenom'];
-                        echo '<h5>' . $prenom . '</h5>';
-                    }
-                    if (!empty($_POST['tel'])) {
-                        $tel = $_POST['tel'];
-                        echo '<h5>' . $tel . '</h5>';
-                    }
-                    if (!empty($_POST['salle'])) {
-                        $salle = $_POST['salle'];
-                        echo '<h5>' . $salle . '</h5>';
-                    }
-                    if (!empty($_POST['mail'])) {
-                        $mail = $_POST['mail'];
-                        echo '<h5>' . $mail . '</h5>';
-                    }
-                    if (!empty($_POST['spe'])) {
-                        $spe = $_POST['spe'];
-                        echo '<h5>' . $spe . '</h5>';
-                    }
-                }
-
-                // DELETE  $sql = "DELETE FROM medecins WHERE mail=$mail";
-                // INSERT $sql ="INSERT INTO medecins values()
-
-
-                ?>
-
-
-
-
-            </div>
-
-
-
         </div>
 
 
 
-        <?php include("footer.html"); ?>
-        <!-- Optional JavaScript -->
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-        <script src="index.js"></script>
+        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+        </div>
+        <div class="tab-pane fade" id="stat" role="tabpanel" aria-labelledby="stat-tab">
+
+        </div>
+
+
+        <?php
+
+        // RECUPERER INFO DOCTEURS 
+
+        if (isset($_POST['aj'])) {
+
+            if (!empty($_POST['nom'])) {
+                $name = $_POST['nom'];
+            }
+            if (!empty($_POST['prenom'])) {
+                $prenom = $_POST['prenom'];
+            }
+            if (!empty($_POST['tel'])) {
+                $tel = $_POST['tel'];
+            }
+            if (!empty($_POST['salle'])) {
+                $salle = $_POST['salle'];
+            }
+            if (!empty($_POST['mail'])) {
+                $mail = $_POST['mail'];
+            }
+            if (!empty($_POST['spe'])) {
+                $spe = $_POST['spe'];
+            }
+
+            // RECUPERER EMPLOI DU TEMPS 
+
+            if (isset($_POST['LundiAM'])) {
+                $LundiAM = 1;
+            } else $LundiAM = 0;
+            if (isset($_POST['MardiAM'])) {
+                $MardiAM = 1;
+            } else $MardiAM = 0;
+            if (isset($_POST['MercrediAM'])) {
+                $MercrediAM = 1;
+            } else $MercrediAM = 0;
+            if (isset($_POST['JeudiAM'])) {
+                $JeudiAM = 1;
+            } else $JeudiAM = 0;
+            if (isset($_POST['VendrediAM'])) {
+                $VendrediAM = 1;
+            } else $VendrediAM = 0;
+            if (isset($_POST['SamediAM'])) {
+                $SamediAM = 1;
+            } else $SamediAM = 0;
+            if (isset($_POST['LundiPM'])) {
+                $LundiPM = 1;
+            } else $LundiPM = 0;
+            if (isset($_POST['MardiPM'])) {
+                $MardiPM = 1;
+            } else $MardiPM = 0;
+            if (isset($_POST['MercrediPM'])) {
+                $MercrediPM = 1;
+            } else $MercrediPM = 0;
+            if (isset($_POST['JeudiPM'])) {
+                $JeudiPM = 1;
+            } else $JeudiPM = 0;
+            if (isset($_POST['VendrediPM'])) {
+                $VendrediPM = 1;
+            } else $VendrediPM = 0;
+            if (isset($_POST['SamediPM'])) {
+                $SamediPM = 1;
+            } else $SamediPM = 0;
+
+            // RECUPERER IMAGE DOCTEUR 
+
+            if (getimagesize($_FILES['imagefile']['tmp_name']) == false) {
+                echo "echec image";
+            } else {
+                $image = $_FILES['imagefile']['tmp_name'];
+                $image = base64_encode(file_get_contents(addslashes($image)));
+            }
+
+            $requete1 = $con->query("INSERT INTO medecins(`nom`, `prenom`, `spe`, `salle`, `tel`, `mail`, `photo`, `lundiam`, `lundipm`, `mardiam`, `mardipm`, `mercrediam`, `mercredipm`, `jeudiam`, `jeudipm`, `vendrediam`, `vendredipm`, `samediam`, `samedipm`) 
+                VALUES  ('" . $name . "','" . $prenom . "','" . $spe . "','" . $salle . "','" . $tel . "','" . $mail . "','" . $image . "','" . $LundiAM . "','" . $LundiPM . "','" . $MardiAM . "','" . $MardiPM . "','" . $MercrediAM . "','" . $MercrediPM . "','" . $JeudiAM . "','" . $JeudiPM . "','" . $VendrediAM . "','" . $VendrediPM . "','" . $SamediAM . "','" . $SamediPM . "')");
+        }
+
+
+        // RECUPERER DONNEES DOCTEURS 
+
+        if (isset($_POST['maj'])) {
+
+            if (!empty($_POST['nom'])) {
+                $name = $_POST['nom'];
+            }
+            if (!empty($_POST['prenom'])) {
+                $prenom = $_POST['prenom'];
+            }
+            if (!empty($_POST['tel'])) {
+                $tel = $_POST['tel'];
+            }
+            if (!empty($_POST['salle'])) {
+                $salle = $_POST['salle'];
+            }
+            if (!empty($_POST['mail'])) {
+                $mail = $_POST['mail'];
+            }
+            if (!empty($_POST['spe'])) {
+                $spe = $_POST['spe'];
+            }
+
+            // RECUPERER EMPLOI DU TEMPS 
+
+            if (isset($_POST['LundiAM'])) {
+                $LundiAM = 1;
+            } else $LundiAM = 0;
+            if (isset($_POST['MardiAM'])) {
+                $MardiAM = 1;
+            } else $MardiAM = 0;
+            if (isset($_POST['MercrediAM'])) {
+                $MercrediAM = 1;
+            } else $MercrediAM = 0;
+            if (isset($_POST['JeudiAM'])) {
+                $JeudiAM = 1;
+            } else $JeudiAM = 0;
+            if (isset($_POST['VendrediAM'])) {
+                $VendrediAM = 1;
+            } else $VendrediAM = 0;
+            if (isset($_POST['SamediAM'])) {
+                $SamediAM = 1;
+            } else $SamediAM = 0;
+            if (isset($_POST['LundiPM'])) {
+                $LundiPM = 1;
+            } else $LundiPM = 0;
+            if (isset($_POST['MardiPM'])) {
+                $MardiPM = 1;
+            } else $MardiPM = 0;
+            if (isset($_POST['MercrediPM'])) {
+                $MercrediPM = 1;
+            } else $MercrediPM = 0;
+            if (isset($_POST['JeudiPM'])) {
+                $JeudiPM = 1;
+            } else $JeudiPM = 0;
+            if (isset($_POST['VendrediPM'])) {
+                $VendrediPM = 1;
+            } else $VendrediPM = 0;
+            if (isset($_POST['SamediPM'])) {
+                $SamediPM = 1;
+            } else $SamediPM = 0;
+
+
+            // RECUPERER IMAGE DOCTEUR 
+
+            if (getimagesize($_FILES['imagefile']['tmp_name']) == false) {
+                echo "echec image";
+            } else {
+                $image = $_FILES['imagefile']['tmp_name'];
+                $image = base64_encode(file_get_contents(addslashes($image)));
+            }
+
+            $id = $con->query("SELECT * FROM medecins WHERE  mail='".$mail."'");
+            if ($id->num_rows > 0) {
+                $cmsData = $id->fetch_assoc();
+            $res= $cmsData['id'];
+
+            $requete2 = $con->query("UPDATE `medecins` SET `nom`='" . $name . "',`prenom`='" . $prenom . "',`spe`='" . $spe . "',`salle`='" . $salle . "',`tel`='" . $tel . "',`mail`='" . $mail . "',`photo`='" . $image . "',`lundiam`='" . $LundiAM . "',
+            `lundipm`='" . $LundiPM . "',`mardiam`='". $MardiAM ."',`mardipm`='" . $MardiPM . "',`mercrediam`='" . $MercrediAM . "',`mercredipm`='" . $MercrediPM . "',`jeudiam`='" . $JeudiAM . "',`jeudipm`='" . $JeudiPM . "',`vendrediam`='" . $VendrediAM . "',`vendredipm`='" . $VendrediPM . "',
+            `samediam`='" . $SamediAM . "',`samedipm`='" . $SamediPM . "' WHERE id='".$res."' ");
+            }
+ 
+        }
+
+
+        // DELETE  $sql = "DELETE FROM medecins WHERE mail=$mail";
+        if (isset($_POST['supr'])){
+            
+            if (!empty($_POST['mail'])) {
+                $mail = $_POST['mail'];
+            }
+
+            $del = $con->query("DELETE FROM medecins WHERE mail='".$mail."'");
+        }
+
+
+        ?>
+
+
+
+
+    </div>
+
+
+
+    </div>
+
+
+
+    <?php include("footer.html"); ?>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="index.js"></script>
 </body>
 
 </html>

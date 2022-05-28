@@ -30,53 +30,54 @@ if ($name !== "") {
 </head>
 
 <body>
-   <!-- NavBar -->
+    <!-- NavBar -->
 
-   <header>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-green">
-      <a class="navbar-brand" href="acceuil.php"><img src="Images/logo.png" width="20%"></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item ">
-            <a class="nav-link" href="acceuil.php">Accueil </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="toutParcourir.php">Tout Parcourir</a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="rdv_med.php">Rendez-vous <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="verifcompte.php">Votre Compte</a>
-          </li>
-        </ul>
-        <form action="search.php" method="GET" class="form-inline mt-2 mt-md-0" style="padding-right: 100px">
-          <input type="text" name="terme" class="form-control mr-sm-2" placeholder="Votre recherche" aria-label="Search">
-          <input type="submit" name="s" value="Rechercher" class="btn btn-outline-success my-2 my-sm-0">
+    <header>
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-green">
+            <a class="navbar-brand" href="acceuil.php"><img src="Images/logo.png" width="20%"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item ">
+                        <a class="nav-link" href="acceuil.php">Accueil </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="toutParcourir.php">Tout Parcourir</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="rdv_med.php">Rendez-vous <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="verifcompte.php">Votre Compte</a>
+                    </li>
+                </ul>
+                <form action="search.php" method="GET" class="form-inline mt-2 mt-md-0" style="padding-right: 100px">
+                    <input type="text" name="terme" class="form-control mr-sm-2" placeholder="Votre recherche" aria-label="Search">
+                    <input type="submit" name="s" value="Rechercher" class="btn btn-outline-success my-2 my-sm-0">
 
-        </form>
-        <?php
+                </form>
+                <?php
 
-        $con = mysqli_connect('localhost', 'root', 'root', 'omnessante') or die('could not connect to database');
-        $sql = 'SELECT * FROM compte';
-        $result = mysqli_query($con, $sql);
-        $row = mysqli_fetch_array($result);
+                $con = mysqli_connect('localhost', 'root', 'root', 'omnessante') or die('could not connect to database');
+                $sql = 'SELECT * FROM compte';
+                $result = mysqli_query($con, $sql);
+                $row = mysqli_fetch_array($result);
 
-        while ($row = mysqli_fetch_array($result)) {
-         if($result->num_rows > 0)
-         { 
-           if($row['conn']==1){
-        echo '<form class="form-inline mt-2 mt-md-0" style="margin-right:-70px;">
+                while ($row = mysqli_fetch_array($result)) {
+                    if ($result->num_rows > 0) {
+                        if ($row['conn'] == 1) {
+                            echo '<form class="form-inline mt-2 mt-md-0" style="margin-right:-70px;">
           <a href="deconn.php"><img src="Images/deco.png" width="20%"></a>
-        </form>';}
-         }}
-        ?>
-      </div>
-    </nav>
-  </header>
+        </form>';
+                        }
+                    }
+                }
+                ?>
+            </div>
+        </nav>
+    </header>
 
     <div class="container-fluid" style="margin-top:50px;">
 
@@ -104,7 +105,8 @@ if ($name !== "") {
 
                 //Référence à la page précédente
                 $referer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : 'verifcompte.php';
-                if ($referer == 'http://localhost:62378/projetweb/medgenerale.php' ||
+                if (
+                    $referer == 'http://localhost:62378/projetweb/medgenerale.php' ||
                     $referer == 'http://localhost:62378/projetweb/addictologie.php' ||
                     $referer == 'http://localhost:62378/projetweb/andrologie.php' ||
                     $referer == 'http://localhost:62378/projetweb/cardiologie.php' ||
@@ -112,9 +114,10 @@ if ($name !== "") {
                     $referer == 'http://localhost:62378/projetweb/gastro.php' ||
                     $referer == 'http://localhost:62378/projetweb/gynecologie.php' ||
                     $referer == 'http://localhost:62378/projetweb/ist.php' ||
-                    $referer == 'http://localhost:62378/projetweb/osteopathie.php'){
-                //if ($referer == 'http://localhost/ProjetWeb/medgenerale.php') {
-                /*if (
+                    $referer == 'http://localhost:62378/projetweb/osteopathie.php'
+                ) {
+                    //if ($referer == 'http://localhost/ProjetWeb/medgenerale.php') {
+                    /*if (
                     $referer == 'http://localhost/projetweb/medgenerale.php' ||
                     $referer == 'http://localhost/projetweb/addictologie.php' ||
                     $referer == 'http://localhost/projetweb/andrologie.php' ||
@@ -415,30 +418,64 @@ if ($name !== "") {
                     $requete_rdv_cl = "SELECT * FROM `rdv` WHERE `id_cl`=" . $_SESSION['id_cl'];
                     $result_rdv_cl = mysqli_query($db, $requete_rdv_cl) or die(mysqli_error($db));
                     $total_rdv_cl = mysqli_num_rows($result_rdv_cl);
-                    if ($total_rdv_cl > 0) {
-                        while ($row_rdv_cl = mysqli_fetch_array($result_rdv_cl)) {
-                            $id_medecin = $row_rdv_cl['id_med'];
-                            $ridmed = "SELECT * FROM `medecins` WHERE `id`=" . $id_medecin;
-                            $residmed = mysqli_query($db, $ridmed) or die(mysqli_error($db));
-                            $totidmed = mysqli_num_rows($residmed);
-                            if ($totidmed > 0) {
-                                $rowidmed = mysqli_fetch_array($residmed);
-                                $nommed = $rowidmed['nom'];
-                                $prenomed = $rowidmed['prenom'];
-                                $spemed = $rowidmed['spe'];
-                                echo "<h4>Vous avez rendez vous avec le médecin : " . $nommed . " " . $prenomed . " le " . $row_rdv_cl['date'] . " à " .
-                                    $row_rdv_cl['heure'] . ".<br>Specialité : ".$spemed."<br>Adresse : " . $row_rdv_cl['adresse'] . "<br>Digicode : " .
-                                    $row_rdv_cl['digicode'] . "<br>Prix de la consultation : " . $row_rdv_cl['prix'] .
-                                    " €<br><br>
+                    //Affichage des rdv
+                    $requete_rdv_clabo = "SELECT * FROM `rdv_labo` WHERE `id_cl`=" . $_SESSION['id_cl'];
+                    $result_rdv_clabo = mysqli_query($db, $requete_rdv_clabo) or die(mysqli_error($db));
+                    $total_rdv_clabo = mysqli_num_rows($result_rdv_clabo);
+
+                    if ($total_rdv_cl > 0 || $total_rdv_clabo > 0) {
+                        if ($total_rdv_cl > 0) {
+                            while ($row_rdv_cl = mysqli_fetch_array($result_rdv_cl)) {
+                                $id_medecin = $row_rdv_cl['id_med'];
+                                $ridmed = "SELECT * FROM `medecins` WHERE `id`=" . $id_medecin;
+                                $residmed = mysqli_query($db, $ridmed) or die(mysqli_error($db));
+                                $totidmed = mysqli_num_rows($residmed);
+                                if ($totidmed > 0) {
+                                    $rowidmed = mysqli_fetch_array($residmed);
+                                    $nommed = $rowidmed['nom'];
+                                    $prenomed = $rowidmed['prenom'];
+                                    $spemed = $rowidmed['spe'];
+                                    echo "<h4>Vous avez rendez vous avec le médecin : " . $nommed . " " . $prenomed . " le " . $row_rdv_cl['date'] . " à " .
+                                        $row_rdv_cl['heure'] . ".<br>Specialité : " . $spemed . "<br>Adresse : " . $row_rdv_cl['adresse'] . "<br>Digicode : " .
+                                        $row_rdv_cl['digicode'] . "<br>Prix de la consultation : " . $row_rdv_cl['prix'] .
+                                        " €<br><br>
                                     <form action='' method='POST'>
-                                    <input type='submit' name='".$id_medecin.$row_rdv_cl['date'].$row_rdv_cl['heure']."' value='Annuler le rdv'>
+                                    <input type='submit' name='" . $id_medecin . $row_rdv_cl['date'] . $row_rdv_cl['heure'] . "' value='Annuler le rdv'>
                                     </form></h4>";
-                                if (isset($_POST[$id_medecin.$row_rdv_cl["date"].$row_rdv_cl["heure"]])){
-                                    //echo "<h2>DELETE FROM `rdv` WHERE `id_cl`=".$_SESSION['id_cl']." AND `id_med`=".$id_medecin." AND `date`='".$row_rdv_cl['date']."' AND `heure`='".$row_rdv_cl['heure']."'</h2>";
-                                    $requete_annul = "DELETE FROM `rdv` WHERE `id_cl`=".$_SESSION['id_cl']." AND `id_med`=".$id_medecin." AND `date`='".$row_rdv_cl['date']."' AND `heure`='".$row_rdv_cl['heure']."'";
-                                    $result_annul = mysqli_query($db, $requete_annul) or die(mysqli_error($db));
-                                    echo "<script> location.replace('rdv_med.php'); </script>";
-                                    //echo "<h2>Le rdv a bien été annulé</h2>";
+                                    if (isset($_POST[$id_medecin . $row_rdv_cl["date"] . $row_rdv_cl["heure"]])) {
+                                        //echo "<h2>DELETE FROM `rdv` WHERE `id_cl`=".$_SESSION['id_cl']." AND `id_med`=".$id_medecin." AND `date`='".$row_rdv_cl['date']."' AND `heure`='".$row_rdv_cl['heure']."'</h2>";
+                                        $requete_annul = "DELETE FROM `rdv` WHERE `id_cl`=" . $_SESSION['id_cl'] . " AND `id_med`=" . $id_medecin . " AND `date`='" . $row_rdv_cl['date'] . "' AND `heure`='" . $row_rdv_cl['heure'] . "'";
+                                        $result_annul = mysqli_query($db, $requete_annul) or die(mysqli_error($db));
+                                        echo "<script> location.replace('rdv_med.php'); </script>";
+                                        //echo "<h2>Le rdv a bien été annulé</h2>";
+                                    }
+                                }
+                            }
+                        } else {
+                            while ($row_rdv_clabo = mysqli_fetch_array($result_rdv_clabo)) {
+                                $id_labo = $row_rdv_clabo['id_labo'];
+                                $reqidlabo = "SELECT * FROM `labo` WHERE `Idlabo`=" . $id_labo;
+                                $residlabo = mysqli_query($db, $reqidlabo) or die(mysqli_error($db));
+                                $totidlabo = mysqli_num_rows($residlabo);
+                                if ($totidlabo > 0) {
+                                    $rowidlabo = mysqli_fetch_array($residlabo);
+                                    $nomlabo = $rowidlabo['Nom'];
+                                    $spelabo = $_SESSION['service'];
+                                    echo "<h4>Vous avez rendez vous au laboratoire : " . $nomlabo . " le " . $row_rdv_clabo['date'] . " à " .
+                                        $row_rdv_clabo['heure'] . ".<br>Specialité : " . $spelabo . "<br>Adresse : " . $row_rdv_clabo['adresse'] . "<br>Digicode : " .
+                                        $row_rdv_clabo['digicode'] . "<br>Prix de la consultation : " . $row_rdv_clabo['prix'] .
+                                        " €<br><br>
+                                    <form action='' method='POST'>
+                                    <input type='submit' name='" . $id_labo . $row_rdv_clabo['date'] . $row_rdv_clabo['heure'] . "' value='Annuler le rdv'>
+                                    </form></h4>";
+                                    if (isset($_POST[$id_labo . $row_rdv_clabo["date"] . $row_rdv_clabo["heure"]])) {
+                                        //echo "<h2>DELETE FROM `rdv` WHERE `id_cl`=".$_SESSION['id_cl']." AND `id_med`=".$id_medecin." AND `date`='".$row_rdv_cl['date']."' AND `heure`='".$row_rdv_cl['heure']."'</h2>";
+                                        $requete_annulabo = "DELETE FROM `rdv` WHERE `id_cl`=" . $_SESSION['id_cl'] . " AND `id_labo`=" . $id_labo . " AND `date`='" . $row_rdv_clabo['date'] . "' AND `heure`='"
+                                            . $row_rdv_clabo['heure'] . "' AND `service`='" . $_SESSION['service'] . "'";
+                                        $result_annulabo = mysqli_query($db, $requete_annulabo) or die(mysqli_error($db));
+                                        echo "<script> location.replace('rdv_labo.php'); </script>";
+                                        //echo "<h2>Le rdv a bien été annulé</h2>";
+                                    }
                                 }
                             }
                         }

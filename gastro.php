@@ -32,7 +32,7 @@
           ?>
             <div class="col-lg-4">
               <div class="image">
-              <?php echo '<img src="data:image/jpeg;base64,' . base64_encode($row['photo']) . '" width="75%" class="image__img "/> '; ?>
+              <?php echo '<img src="data:image/jpeg;base64,' . $row['photo'] . '" width="75%" class="image__img "/> '; ?>
                 <div class="img_overlay">
                   <p class="img_desc">
                     <!-- here i am creating a button to open a modal popup  -->
@@ -52,7 +52,7 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                   </div>
                   <div class="modal-body">
-                    <?php echo '<img src="data:image/jpeg;base64,' . base64_encode($row['photo']) . '" height="25%" width="25%" alt="IMG Bapt" "/>'; ?>
+                    <?php echo '<img src="data:image/jpeg;base64,' . $row['photo'] . '" height="25%" width="25%" alt="IMG Bapt" "/>'; ?>
                     <div id="col" style="margin-top:50px; margin-bottom:50px;">
                       <p> Nom : <?php echo $row['nom']; ?></p>
                       <p> Prénom : <?php echo $row['prenom']; ?></p>

@@ -217,13 +217,14 @@ if (isset($_POST['h']) && isset($_POST['jour'])) {
           if (isset($_POST['pay'])) {
             $db = mysqli_connect('localhost', 'root', 'root', 'omnessante') or die('could not connect to database');
 
-            $requete2 = "SELECT * FROM `medecins` WHERE `nom`='" . $_SESSION['name'] . "'";
+              /*$requete2 = "SELECT * FROM `medecins` WHERE `nom`='" . $_SESSION['name'] . "'";
             $result2 = mysqli_query($db, $requete2) or die(mysqli_error($db)); //infos du médecin cliqué
             $row2 = mysqli_fetch_array($result2); //tableau à 1 ligne
-            $id_med = $row2['id'];
+            $id_med = $row2['id'];*/
 
             //Ajoute le rdv à la table `rdv`
-            $requete = "INSERT INTO `rdv`(`id_cl`, `id_med`, `date`, `heure`, `adresse`, `digicode`, `prix`) VALUES (" . $_SESSION['id_cl'] . "," . $id_med . ",'" . $_SESSION['new_jourrdv'] . "','" . $_SESSION['new_hrdv'] . "','37 Quai de Grenelle','456A7','25')";
+            $requete = "INSERT INTO `rdv_labo`(`id_cl`, `id_labo`,`service` , `date`, `heure`, `adresse`, `digicode`, `prix`) VALUES (" . $_SESSION['id_cl'] . "," . $_SESSION['Idlabo'] . ",'"
+            .$_SESSION['service']."','" . $_SESSION['new_jourrdv'] . "','" . $_SESSION['new_hrdv'] . "','37 Quai de Grenelle','456A7','25')";
             $result = mysqli_query($db, $requete) or die(mysqli_error($db));            
 
             mysqli_close($db); // fermer la connexion

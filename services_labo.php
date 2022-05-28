@@ -153,7 +153,8 @@
                   <div class="modal-footer">
                     <form action="rdv_labo.php" method="POST">
                       <!--<input type = "submit" name="Nom" value = "Prendre un RDV" class="btn btn-secondary">-->
-                      <input type="text" name="service" value="<?php echo $row['service']; ?>" style="opacity: 0;">
+                      <input type="hidden" name="service" value="<?php echo $row['service']; ?>" style="opacity: 0;">
+                      <input type="hidden" name="Idlabo" value="<?php echo $row['Idlabo']; ?>" style="opacity: 0;">
                       <input class="btn btn-secondary" type="submit" value="Prendre un RDV">
                     </form>
 
