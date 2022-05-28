@@ -43,11 +43,26 @@
           ?>
             <div class="col-lg-4">
               <div class="image">
-                <?php echo '<img src="Images/laboratory-g87594d8b8_640.jpg" width="75%" class="image__img "/> '; ?>
+              <?php 
+                    if ($row['service'] == "covid"){
+                        echo '<img src="Images/covid.jpg" width="75%" class="image__img "/> '; 
+                    }elseif ($row['service'] == "bio_prev"){
+                        echo '<img src="Images/bio_prev.jpg" width="75%" class="image__img "/> ';
+                    }elseif ($row['service'] == "bio_enc"){
+                      echo '<img src="Images/bio_enc.jpg" width="75%" class="image__img "/> ';
+                    }elseif ($row['service'] == "bio_rout"){
+                      echo '<img src="Images/bio_rout.jpg" width="75%" class="image__img "/> ';
+                    }elseif ($row['service'] == "cancer"){
+                      echo '<img src="Images/cancer.jpg" width="75%" class="image__img "/> ';
+                    }elseif ($row['service'] == "gyneco"){
+                      echo '<img src="Images/gyneco.jpg" width="75%" class="image__img "/> ';
+                    }
+                    ?>
                 <div class="img_overlay">
                   <p class="img_desc">
                     <!-- here i am creating a button to open a modal popup  -->
-                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal<?php echo $row['Idlabo'].$row['service'] ?>"><?php 
+                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal<?php echo $row['Idlabo'].$row['service'] ?>">
+                    <?php 
                     if ($row['service'] == "covid"){
                         echo "Dépistage Covid"; 
                     }elseif ($row['service'] == "bio_prev"){
@@ -91,15 +106,17 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                   </div>
                   <div class="modal-body">
-                    <?php echo '<img src="Images/laboratory-g87594d8b8_640.jpg" height="25%" width="25%" alt="IMG Bapt" "/>'; ?>
+                    
                     <div style="margin-top:50px; margin-bottom:50px;">
                     <?php 
                     if ($row['service'] == "covid"){
+                        echo '<img src="Images/covid.jpg" height="50%" width="50%" alt="IMG Covid" "/><br>';
                         echo "<h5>La stratégie du triptyque Tester-Alerter–Protéger (T.A.P) doit continuer de s’appliquer :</h5>
                         <p>Je me fais tester en priorité en cas de signes de la maladie ou si je suis identifié comme personne contact. Ainsi, je permets aux laboratoires de se concentrer sur les personnes prioritaires.</p>
                         <p>Je communique la liste de tous mes contacts récents à mon médecin traitant et à l’Assurance maladie si j’ai un test positif, pour qu’ils soient alertés rapidement. Ainsi, je participe à freiner la propagation du virus.</p>
                         <p>Je protège les autres en respectant les règles d'isolement et de quarantaine, selon ma situation.</p>"; 
                     }elseif ($row['service'] == "bio_prev"){
+                      echo '<img src="Images/bio_prev.jpg" height="50%" width="50%" alt="IMG Bio Preventive" "/><br>';
                         echo "<h5>1) Identifier le bilan adapté pour vous</h5>
                         <p>Des bilans pour prévenir les effets du vieillissement, optimiser votre capital santé ou explorer les causes de certains symptômes.</p>
                         <h5>2) Trouver votre laboratoire</h5>
@@ -109,6 +126,7 @@
                         <h5>4) Evaluer l'effet thérapeutique</h5>
                         <p>En fonction de vos résultats, des recommandations médicales ou nutritionnelles seront mises en place avec votre prescripteur.</p>";
                     }elseif ($row['service'] == "bio_enc"){
+                      echo '<img src="Images/bio_enc.jpg" height="50%" width="50%" alt="IMG Bio Enceinte" "/><br>';
                         echo "<h5>1) Connaître votre statut immunitaire</h5>
                         <p>Pour savoir si vous êtes immunisée vis-à-vis de certains micro-organismes, notamment la toxoplasmose et la rubéole.</p>
                         <h5>2) Dépister des pathologies</h5>
@@ -118,6 +136,7 @@
                         <h5>4) Préparer l'accouchement</h5>
                         <p>Un bilan vous sera prescrit par l'anesthésiste avant l'accouchement pour s'assurer qu'il se passera dans les meilleures conditions.</p>";
                     }elseif ($row['service'] == "bio_rout"){
+                      echo '<img src="Images/bio_rout.jpg" height="50%" width="50%" alt="IMG Bio Routine" "/><br>';
                         echo "<p>Il s’agit d’examens couramment prescrits pour la surveillance simple de la santé ou lors du suivi d’un traitement : biochimie clinique, bactériologie par culture des germes, tests d’hémostase, hématologie, sérologies fréquentes, hormonologie, marqueurs de cancers tumoraux, des anémies, de souffrance cardiaque.</p>
                         <ul><li>Hématologie de routine</li>
                         <li>Hémostase de routine</li>
@@ -125,6 +144,7 @@
                         <li>Chromatographie et électrophorèses</li>
                         <li>Microbiologie humaine</li></ul>";
                     }elseif ($row['service'] == "cancer"){
+                      echo '<img src="Images/cancer.jpg" height="50%" width="50%" alt="IMG Cancer" "/><br>';
                         echo "<h4>En cancérologie, le laboratoire est au coeur du parcours de soins du patient et présent à toutes les étapes : dépistage, diagnostic et suivi de la maladie.</h4>
                         <h5>1) Dépistage</h5>
                         <p>PSA, HPV, recherche de sang dans les selles…nous réalisons tous les bilans sanguins permettant de détecter une anomalie.</p>
@@ -135,6 +155,7 @@
                         <h5>4) Détection des rechutes</h5>
                         <p>Nous vous accompagnons après le traitement, en diagnostic précoce grâce à un ensemble d'examens réalisés en surveillance.</p>";
                     }elseif ($row['service'] == "gyneco"){
+                      echo '<img src="Images/gyneco.jpg" height="50%" width="50%" alt="IMG Gyneco" "/><br>';
                         echo "<h4>En France, hors grossesse, le suivi gynécologique n’est pas obligatoire. Il est pourtant recommandé de consulter régulièrement son médecin, un gynécologue ou une sage-femme, et de participer aux campagnes de dépistage organisé.</h4>
                         <h5>Le frottis</h5>
                         <p>Comment ça se passe ? L’examen est réalisé par un médecin généraliste, un gynécologue ou une sage-femme. Après la mise en place d’un spéculum dans le vagin, un prélèvement superficiel de cellules est effectué au niveau du col de l’utérus à l’aide d’une petite brosse ou d’une spatule. Placé sur une plaque de microscope, le prélèvement sera ensuite analysé par un laboratoire.</p>

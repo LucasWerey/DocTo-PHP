@@ -148,7 +148,9 @@ if ($name !== "") {
 
                     if ($total > 0) {
                         if ($total2 > 0) {
-                            echo "<tr>
+                            echo "<h2 class='nom_med_rdv'>Dr. ".$_SESSION['name']." ".$row2['prenom']."</h2><br>
+                            <h5>Pour prendre un rendez-vous, veuillez cliquer sur un rendez-vous disponible (les rendez-vous en rouges ne sont plus disponibles).</h5><br>
+                        <tr>
                         <th>LUNDI</th>
                         <th>MARDI</th>
                         <th>MERCREDI</th>
@@ -176,7 +178,7 @@ if ($name !== "") {
 
                                         echo "<tr><td><form action='payement.php' method='POST'>
                                         <input type='hidden' name='jour' value='lundi' style='opacity: 0;'>
-                                        <input type='submit' name='h' value='" . $heure . "'></form></td>";
+                                        <input class='btn_rdv' type='submit' name='h' value='" . $heure . "'></form></td>";
                                     } else {
                                         echo "<tr><td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
                                     }
@@ -197,7 +199,7 @@ if ($name !== "") {
                                     } elseif ($row2['mardiam'] == "1") {
                                         echo "<td><form action='payement.php' method='POST'>
                                         <input type='hidden' name='jour' value='mardi' style='opacity: 0;'>
-                                        <input type='submit' name='h' value='" . $heure . "'></form></td>";
+                                        <input class='btn_rdv' type='submit' name='h' value='" . $heure . "'></form></td>";
                                     } else {
                                         echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
                                     }
@@ -218,7 +220,7 @@ if ($name !== "") {
 
                                         echo "<td><form action='payement.php' method='POST'>
                                         <input type='hidden' name='jour' value='mercredi' style='opacity: 0;'>
-                                        <input type='submit' name='h' value='" . $heure . "'></form></td>";
+                                        <input class='btn_rdv' type='submit' name='h' value='" . $heure . "'></form></td>";
                                     } else {
                                         echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
                                     }
@@ -239,7 +241,7 @@ if ($name !== "") {
 
                                         echo "<td><form action='payement.php' method='POST'>
                                         <input type='hidden' name='jour' value='jeudi' style='opacity: 0;'>
-                                        <input type='submit' name='h' value='" . $heure . "'></form></td>";
+                                        <input class='btn_rdv' type='submit' name='h' value='" . $heure . "'></form></td>";
                                     } else {
                                         echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
                                     }
@@ -260,7 +262,7 @@ if ($name !== "") {
 
                                         echo "<td><form action='payement.php' method='POST'>
                                         <input type='hidden' name='jour' value='vendredi' style='opacity: 0;'>
-                                        <input type='submit' name='h' value='" . $heure . "'></form></td>";
+                                        <input class='btn_rdv' type='submit' name='h' value='" . $heure . "'></form></td>";
                                     } else {
                                         echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
                                     }
@@ -280,7 +282,7 @@ if ($name !== "") {
                                     } elseif ($row2['samediam'] == "1") {
                                         echo "<td><form action='payement.php' method='POST'>
                                         <input type='hidden' name='jour' value='samedi' style='opacity: 0;'>
-                                        <input type='submit' name='h' value='" . $heure . "'></form></td></tr>";
+                                        <input class='btn_rdv' type='submit' name='h' value='" . $heure . "'></form></td></tr>";
                                     } else {
                                         echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td></tr>";
                                     }
@@ -301,7 +303,7 @@ if ($name !== "") {
 
                                         echo "<tr><td><form action='payement.php' method='POST'>
                                         <input type='hidden' name='jour' value='lundi' style='opacity: 0;'>
-                                        <input type='submit' name='h' value='" . $heure . "'></form></td>";
+                                        <input class='btn_rdv' type='submit' name='h' value='" . $heure . "'></form></td>";
                                     } else {
                                         echo "<tr><td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
                                     }
@@ -322,7 +324,7 @@ if ($name !== "") {
 
                                         echo "<td><form action='payement.php' method='POST'>
                                         <input type='hidden' name='jour' value='mardi' style='opacity: 0;'>
-                                        <input type='submit' name='h' value='" . $heure . "'></form></td>";
+                                        <input class='btn_rdv' type='submit' name='h' value='" . $heure . "'></form></td>";
                                     } else {
                                         echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
                                     }
@@ -343,7 +345,7 @@ if ($name !== "") {
 
                                         echo "<td><form action='payement.php' method='POST'>
                                         <input type='hidden' name='jour' value='mercredi' style='opacity: 0;'>
-                                        <input type='submit' name='h' value='" . $heure . "'></form></td>";
+                                        <input class='btn_rdv' type='submit' name='h' value='" . $heure . "'></form></td>";
                                     } else {
                                         echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
                                     }
@@ -363,7 +365,7 @@ if ($name !== "") {
                                     } elseif ($row2['jeudipm'] == "1") {
                                         echo "<td><form action='payement.php' method='POST'>
                                         <input type='hidden' name='jour' value='jeudi' style='opacity: 0;'>
-                                        <input type='submit' name='h' value='" . $heure . "'></form></td>";
+                                        <input class='btn_rdv' type='submit' name='h' value='" . $heure . "'></form></td>";
                                     } else {
                                         echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
                                     }
@@ -384,7 +386,7 @@ if ($name !== "") {
 
                                         echo "<td><form action='payement.php' method='POST'>
                                         <input type='hidden' name='jour' value='vendredi' style='opacity: 0;'>
-                                        <input type='submit' name='h' value='" . $heure . "'></form></td>";
+                                        <input class='btn_rdv' type='submit' name='h' value='" . $heure . "'></form></td>";
                                     } else {
                                         echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
                                     }
@@ -405,7 +407,7 @@ if ($name !== "") {
                                         $_SESSION['jour'] = 'samedi';
                                         echo "<td><form action='payement.php' method='POST'>
                                         <input type='hidden' name='jour' value='samedi' style='opacity: 0;'>
-                                        <input type='submit' name='h' value='" . $heure . "'></form></td></tr>";
+                                        <input class='btn_rdv' type='submit' name='h' value='" . $heure . "'></form></td></tr>";
                                     } else {
                                         echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td></tr>";
                                     }
@@ -435,13 +437,14 @@ if ($name !== "") {
                                     $nommed = $rowidmed['nom'];
                                     $prenomed = $rowidmed['prenom'];
                                     $spemed = $rowidmed['spe'];
-                                    echo "<h4>Vous avez rendez vous avec le médecin : " . $nommed . " " . $prenomed . " le " . $row_rdv_cl['date'] . " à " .
-                                        $row_rdv_cl['heure'] . ".<br>Specialité : " . $spemed . "<br>Adresse : " . $row_rdv_cl['adresse'] . "<br>Digicode : " .
-                                        $row_rdv_cl['digicode'] . "<br>Prix de la consultation : " . $row_rdv_cl['prix'] .
-                                        " €<br><br>
-                                    <form action='' method='POST'>
-                                    <input type='submit' name='" . $id_medecin . $row_rdv_cl['date'] . $row_rdv_cl['heure'] . "' value='Annuler le rdv'>
-                                    </form></h4>";
+                                    echo "<table class='aff_rdv'><th>Rendez vous le ".$row_rdv_cl['date']." à ".$row_rdv_cl['heure']."</th>
+                                    <tr><td>Vous avez rendez vous avec le médecin : " . $nommed . " " . $prenomed . " le " . $row_rdv_cl['date'] . " à " .
+                                    $row_rdv_cl['heure'] . ".<br>Specialité : " . $spemed . "<br>Adresse : " . $row_rdv_cl['adresse'] . "<br>Digicode : " .
+                                    $row_rdv_cl['digicode'] . "<br>Prix de la consultation : " . $row_rdv_cl['prix'] .
+                                    " €</td>
+                                    <td><form action='' method='POST'>
+                                    <input class='btn_rdv' type='submit' name='" . $id_medecin . $row_rdv_cl['date'] . $row_rdv_cl['heure'] . "' value='Annuler le rdv'>
+                                    </form></td></tr></table><br>";
                                     if (isset($_POST[$id_medecin . $row_rdv_cl["date"] . $row_rdv_cl["heure"]])) {
                                         //echo "<h2>DELETE FROM `rdv` WHERE `id_cl`=".$_SESSION['id_cl']." AND `id_med`=".$id_medecin." AND `date`='".$row_rdv_cl['date']."' AND `heure`='".$row_rdv_cl['heure']."'</h2>";
                                         $requete_annul = "DELETE FROM `rdv` WHERE `id_cl`=" . $_SESSION['id_cl'] . " AND `id_med`=" . $id_medecin . " AND `date`='" . $row_rdv_cl['date'] . "' AND `heure`='" . $row_rdv_cl['heure'] . "'";
@@ -474,13 +477,14 @@ if ($name !== "") {
                                     }elseif ($spelabo == "gyneco"){
                                         $spelabo = "Gynécologie";
                                     }
-                                    echo "<h4>Vous avez rendez vous au laboratoire : " . $nomlabo . " le " . $row_rdv_clabo['date'] . " à " .
+                                    echo "<table class='aff_rdv'><th>Rendez vous le ".$row_rdv_clabo['date']." à ".$row_rdv_clabo['heure']."</th>
+                                    <tr><td>Vous avez rendez vous au laboratoire : " . $nomlabo . " le " . $row_rdv_clabo['date'] . " à " .
                                         $row_rdv_clabo['heure'] . ".<br>Service : " . $spelabo . "<br>Adresse : " . $row_rdv_clabo['adresse'] . "<br>Digicode : " .
                                         $row_rdv_clabo['digicode'] . "<br>Prix de la consultation : " . $row_rdv_clabo['prix'] .
-                                        " €<br><br>
-                                    <form action='' method='POST'>
-                                    <input type='submit' name='" . $id_labo . $row_rdv_clabo['date'] . $row_rdv_clabo['heure'] . "' value='Annuler le rdv'>
-                                    </form></h4>";
+                                        " €</td>
+                                    <td><form action='' method='POST'>
+                                    <input class='btn_rdv' type='submit' name='" . $id_labo . $row_rdv_clabo['date'] . $row_rdv_clabo['heure'] . "' value='Annuler le rdv'>
+                                    </form></td></tr></table><br><br>";
                                     if (isset($_POST[$id_labo . $row_rdv_clabo["date"] . $row_rdv_clabo["heure"]])) {
                                         //echo "<h2>DELETE FROM `rdv` WHERE `id_cl`=".$_SESSION['id_cl']." AND `id_med`=".$id_medecin." AND `date`='".$row_rdv_cl['date']."' AND `heure`='".$row_rdv_cl['heure']."'</h2>";
                                         $requete_annulabo = "DELETE FROM `rdv_labo` WHERE `id_cl`=" . $_SESSION['id_cl'] . " AND `id_labo`=" . $id_labo . " AND `date`='" . $row_rdv_clabo['date'] . "' AND `heure`='"
@@ -492,15 +496,15 @@ if ($name !== "") {
                                 }
                             }
                         }
-                        echo "<a href='toutParcourir.php'>Prendre un nouveau rendez-vous</a>";
+                        echo "<center><a class='take_rdv' href='toutParcourir.php'>Prendre un nouveau rendez-vous</a></center>";
                     } else {
-                        echo "<h2>Vous n'avez pas encore pris de rendez-vous.<br><a href='toutParcourir.php'>
-                        Vous pouvez prendre un rendez vous ici.</a></h2>";
+                        echo "<center><h2 class='pas_de_rdv'>Vous n'avez pas encore pris de rendez-vous.<br><a href='toutParcourir.php'>
+                        Vous pouvez prendre un rendez vous ici.</a></h2></center>";
                     }
                 }
             } else {
                 //header('Location: verifcompte.php'); //On va sur la page verifcompte.php pour se co
-                echo "<h2><a style='margin-top:50px;' href='verifcompte.php'>Veuillez vous connecter ou créer un compte pour pouvoir prendre un rendez-vous</a></h2>";
+                echo "<center><h2><a style='margin-top:60px;' href='verifcompte.php'>Veuillez vous connecter ou créer un compte pour pouvoir prendre un rendez-vous</a></h2></center>";
             }
             mysqli_close($db); // fermer la connexion
             ?>

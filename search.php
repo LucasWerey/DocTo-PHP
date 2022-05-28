@@ -33,7 +33,10 @@ if (isset($_GET['terme'])) {
                     }
                 }
             }
-        } else {
+        }elseif (strtolower($terme)==strtolower("Laboratoire")){
+            header('Location: labo.php');
+        }
+        else {
             //Retour à la page précédente
             header("Location: " . $referer . "?erreur=1"); // Terme non trouvé dans la table
         }

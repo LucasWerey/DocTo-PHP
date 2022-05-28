@@ -628,7 +628,7 @@
 
                     $requete2 = $con->query("UPDATE `medecins` SET `nom`='" . $name . "',`prenom`='" . $prenom . "',`spe`='" . $spe . "',`salle`='" . $salle . "',`tel`='" . $tel . "',`mail`='" . $mail . "',`photo`='" . $image . "',`lundiam`='" . $LundiAM . "',
             `lundipm`='" . $LundiPM . "',`mardiam`='" . $MardiAM . "',`mardipm`='" . $MardiPM . "',`mercrediam`='" . $MercrediAM . "',`mercredipm`='" . $MercrediPM . "',`jeudiam`='" . $JeudiAM . "',`jeudipm`='" . $JeudiPM . "',`vendrediam`='" . $VendrediAM . "',`vendredipm`='" . $VendrediPM . "',
-            `samediam`='" . $SamediAM . "',`samedipm`='" . $SamediPM . "' WHERE id='" . $res . "' ");
+            `samediam`='" . $SamediAM . "',`samedipm`='" . $SamediPM . "' WHERE id=" . $res . " ");
                 }
             }
 

@@ -37,7 +37,7 @@
           ?>
             <div class="col-lg-4">
               <div class="image">
-                <?php echo '<img src="Images/laboratory-g87594d8b8_640.jpg" width="75%" class="image__img "/> '; ?>
+                <?php echo '<img src="Images\laboratory-g9743d72da_1280.jpg" width="75%" class="image__img "/> '; ?>
                 <div class="img_overlay">
                   <p class="img_desc">
                     <!-- here i am creating a button to open a modal popup  -->
@@ -57,7 +57,7 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                   </div>
                   <div class="modal-body">
-                    <?php echo '<img src="Images/laboratory-g87594d8b8_640.jpg" height="25%" width="25%" alt="IMG Bapt" "/>'; ?>
+                    <?php echo '<img src="Images\laboratory-g9743d72da_1280.jpg" height="70%" width="70%" alt="IMG Laboratory" "/>'; ?>
                     <div id="col" style="margin-top:50px; margin-bottom:50px;">
                       <p> Nom : <?php echo $row['Nom']; ?></p>
                       <p> Salle : <?php echo $row['Salle']; ?></p>

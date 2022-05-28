@@ -109,7 +109,7 @@ if ($id_labo !== "") {
                 //Référence à la page précédente
                 $referer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : 'verifcompte.php';
                 //if ($referer == 'http://localhost:62378/projetweb/services_labo.php') {
-                    if ($referer == 'http://localhost/ProjetWeb/services_labo.php') {
+                if ($referer == 'http://localhost/ProjetWeb/services_labo.php') {
                     /*if ($referer == 'http://localhost/projetweb/services_labo.php') {*/
 
                     //On récupère les horaires pour créer le tableau
@@ -119,33 +119,35 @@ if ($id_labo !== "") {
 
 
                     //On récupère les horaires disponibles du labo par / au service cliqué
-                    $requete2 = "SELECT * FROM `services_labo` WHERE `service`='" . $_SESSION['service']."' AND `Idlabo`=".$_SESSION['Idlabo'];
+                    $requete2 = "SELECT * FROM `services_labo` WHERE `service`='" . $_SESSION['service'] . "' AND `Idlabo`=" . $_SESSION['Idlabo'];
                     $result2 = mysqli_query($db, $requete2) or die(mysqli_error($db)); //infos du labo cliqué
                     $total2 = mysqli_num_rows($result2); //normalement 1 ligne
                     $row2 = mysqli_fetch_array($result2); //tableau à 1 ligne
 
 
                     //On récupère les rdv du médecin déjà booké
-                    $requete_rdv = "SELECT * from `rdv_labo` WHERE `id_labo`=" . $_SESSION['Idlabo']." AND `service`='".$_SESSION['service']."'";
+                    $requete_rdv = "SELECT * from `rdv_labo` WHERE `id_labo`=" . $_SESSION['Idlabo'] . " AND `service`='" . $_SESSION['service'] . "'";
                     $verif_rdv = false;
 
                     if ($total > 0) {
                         if ($total2 > 0) {
-                            echo "<h3>";
-                            if ($_SESSION['service'] == "covid"){
-                                echo "Dépistage Covid"; 
-                            }elseif ($_SESSION['service'] == "bio_prev"){
+                            echo "<h2 class='nom_med_rdv'>";
+                            if ($_SESSION['service'] == "covid") {
+                                echo "Dépistage Covid";
+                            } elseif ($_SESSION['service'] == "bio_prev") {
                                 echo "Biologie préventive";
-                            }elseif ($_SESSION['service'] == "bio_enc"){
+                            } elseif ($_SESSION['service'] == "bio_enc") {
                                 echo "Biologie de la femme enceinte";
-                            }elseif ($_SESSION['service'] == "bio_rout"){
+                            } elseif ($_SESSION['service'] == "bio_rout") {
                                 echo "Biologie de routine";
-                            }elseif ($_SESSION['service'] == "cancer"){
+                            } elseif ($_SESSION['service'] == "cancer") {
                                 echo "Cancérologie";
-                            }elseif ($_SESSION['service'] == "gyneco"){
+                            } elseif ($_SESSION['service'] == "gyneco") {
                                 echo "Gynécologie";
                             }
-                            echo "</h3><br><tr>
+                            echo "</h2><br>
+                            <h5>Pour prendre un rendez-vous, veuillez cliquer sur un rendez-vous disponible (les rendez-vous en rouges ne sont plus disponibles).</h5><br>
+                            <tr>
                         <th>LUNDI</th>
                         <th>MARDI</th>
                         <th>MERCREDI</th>
@@ -171,7 +173,7 @@ if ($id_labo !== "") {
                                     } elseif ($row2['lundiam'] == "1") {
                                         echo "<tr><td><form action='payement_labo.php' method='POST'>
                                         <input type='hidden' name='jour' value='lundi' style='opacity: 0;'>
-                                        <input type='submit' name='h' value='" . $heure . "'></form></td>";
+                                        <input class='btn_rdv' type='submit' name='h' value='" . $heure . "'></form></td>";
                                     } else {
                                         echo "<tr><td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
                                     }
@@ -192,7 +194,7 @@ if ($id_labo !== "") {
                                     } elseif ($row2['mardiam'] == "1") {
                                         echo "<td><form action='payement_labo.php' method='POST'>
                                         <input type='hidden' name='jour' value='mardi' style='opacity: 0;'>
-                                        <input type='submit' name='h' value='" . $heure . "'></form></td>";
+                                        <input class='btn_rdv' type='submit' name='h' value='" . $heure . "'></form></td>";
                                     } else {
                                         echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
                                     }
@@ -213,7 +215,7 @@ if ($id_labo !== "") {
 
                                         echo "<td><form action='payement_labo.php' method='POST'>
                                         <input type='hidden' name='jour' value='mercredi' style='opacity: 0;'>
-                                        <input type='submit' name='h' value='" . $heure . "'></form></td>";
+                                        <input class='btn_rdv' type='submit' name='h' value='" . $heure . "'></form></td>";
                                     } else {
                                         echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
                                     }
@@ -234,7 +236,7 @@ if ($id_labo !== "") {
 
                                         echo "<td><form action='payement_labo.php' method='POST'>
                                         <input type='hidden' name='jour' value='jeudi' style='opacity: 0;'>
-                                        <input type='submit' name='h' value='" . $heure . "'></form></td>";
+                                        <input class='btn_rdv' type='submit' name='h' value='" . $heure . "'></form></td>";
                                     } else {
                                         echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
                                     }
@@ -255,7 +257,7 @@ if ($id_labo !== "") {
 
                                         echo "<td><form action='payement_labo.php' method='POST'>
                                         <input type='hidden' name='jour' value='vendredi' style='opacity: 0;'>
-                                        <input type='submit' name='h' value='" . $heure . "'></form></td>";
+                                        <input class='btn_rdv' type='submit' name='h' value='" . $heure . "'></form></td>";
                                     } else {
                                         echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
                                     }
@@ -275,7 +277,7 @@ if ($id_labo !== "") {
                                     } elseif ($row2['samediam'] == "1") {
                                         echo "<td><form action='payement_labo.php' method='POST'>
                                         <input type='hidden' name='jour' value='samedi' style='opacity: 0;'>
-                                        <input type='submit' name='h' value='" . $heure . "'></form></td></tr>";
+                                        <input class='btn_rdv' type='submit' name='h' value='" . $heure . "'></form></td></tr>";
                                     } else {
                                         echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td></tr>";
                                     }
@@ -296,7 +298,7 @@ if ($id_labo !== "") {
 
                                         echo "<tr><td><form action='payement_labo.php' method='POST'>
                                         <input type='hidden' name='jour' value='lundi' style='opacity: 0;'>
-                                        <input type='submit' name='h' value='" . $heure . "'></form></td>";
+                                        <input class='btn_rdv' type='submit' name='h' value='" . $heure . "'></form></td>";
                                     } else {
                                         echo "<tr><td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
                                     }
@@ -317,7 +319,7 @@ if ($id_labo !== "") {
 
                                         echo "<td><form action='payement_labo.php' method='POST'>
                                         <input type='hidden' name='jour' value='mardi' style='opacity: 0;'>
-                                        <input type='submit' name='h' value='" . $heure . "'></form></td>";
+                                        <input class='btn_rdv' type='submit' name='h' value='" . $heure . "'></form></td>";
                                     } else {
                                         echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
                                     }
@@ -338,7 +340,7 @@ if ($id_labo !== "") {
 
                                         echo "<td><form action='payement_labo.php' method='POST'>
                                         <input type='hidden' name='jour' value='mercredi' style='opacity: 0;'>
-                                        <input type='submit' name='h' value='" . $heure . "'></form></td>";
+                                        <input class='btn_rdv' type='submit' name='h' value='" . $heure . "'></form></td>";
                                     } else {
                                         echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
                                     }
@@ -358,7 +360,7 @@ if ($id_labo !== "") {
                                     } elseif ($row2['jeudipm'] == "1") {
                                         echo "<td><form action='payement_labo.php' method='POST'>
                                         <input type='hidden' name='jour' value='jeudi' style='opacity: 0;'>
-                                        <input type='submit' name='h' value='" . $heure . "'></form></td>";
+                                        <input class='btn_rdv' type='submit' name='h' value='" . $heure . "'></form></td>";
                                     } else {
                                         echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
                                     }
@@ -379,7 +381,7 @@ if ($id_labo !== "") {
 
                                         echo "<td><form action='payement_labo.php' method='POST'>
                                         <input type='hidden' name='jour' value='vendredi' style='opacity: 0;'>
-                                        <input type='submit' name='h' value='" . $heure . "'></form></td>";
+                                        <input class='btn_rdv' type='submit' name='h' value='" . $heure . "'></form></td>";
                                     } else {
                                         echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
                                     }
@@ -400,7 +402,7 @@ if ($id_labo !== "") {
                                         $_SESSION['jour'] = 'samedi';
                                         echo "<td><form action='payement_labo.php' method='POST'>
                                         <input type='hidden' name='jour' value='samedi' style='opacity: 0;'>
-                                        <input type='submit' name='h' value='" . $heure . "'></form></td></tr>";
+                                        <input class='btn_rdv' type='submit' name='h' value='" . $heure . "'></form></td></tr>";
                                     } else {
                                         echo "<td bgcolor='red' bordercolor='red'>" . $heure . "</td></tr>";
                                     }
@@ -410,45 +412,59 @@ if ($id_labo !== "") {
                     }
                 } else {
                     //Affichage des rdv
-                    $requete_rdv_cl = "SELECT * FROM `rdv_labo` WHERE `id_cl`=" . $_SESSION['id_cl'];
-                    $result_rdv_cl = mysqli_query($db, $requete_rdv_cl) or die(mysqli_error($db));
-                    $total_rdv_cl = mysqli_num_rows($result_rdv_cl);
-                    if ($total_rdv_cl > 0) {
-                        while ($row_rdv_cl = mysqli_fetch_array($result_rdv_cl)) {
-                            $id_labo = $row_rdv_cl['id_labo'];
+                    $requete_rdv_clabo = "SELECT * FROM `rdv_labo` WHERE `id_cl`=" . $_SESSION['id_cl'];
+                    $result_rdv_clabo = mysqli_query($db, $requete_rdv_clabo) or die(mysqli_error($db));
+                    $total_rdv_clabo = mysqli_num_rows($result_rdv_clabo);
+                    if ($total_rdv_clabo > 0) {
+                        while ($row_rdv_clabo = mysqli_fetch_array($result_rdv_clabo)) {
+                            $id_labo = $row_rdv_clabo['id_labo'];
+                            $spelabo = $row_rdv_clabo['service'];
                             $reqidlabo = "SELECT * FROM `labo` WHERE `Idlabo`=" . $id_labo;
                             $residlabo = mysqli_query($db, $reqidlabo) or die(mysqli_error($db));
                             $totidlabo = mysqli_num_rows($residlabo);
                             if ($totidlabo > 0) {
                                 $rowidlabo = mysqli_fetch_array($residlabo);
                                 $nomlabo = $rowidlabo['Nom'];
-                                $spelabo = $_SESSION['service'];
-                                echo "<h4>Vous avez rendez vous au laboratoire : " . $nomlabo ." le " . $row_rdv_cl['date'] . " à " .
-                                    $row_rdv_cl['heure'] . ".<br>Specialité : " . $spelabo . "<br>Adresse : " . $row_rdv_cl['adresse'] . "<br>Digicode : " .
-                                    $row_rdv_cl['digicode'] . "<br>Prix de la consultation : " . $row_rdv_cl['prix'] .
-                                    " €<br><br>
-                                    <form action='' method='POST'>
-                                    <input type='submit' name='" . $id_labo . $row_rdv_cl['date'] . $row_rdv_cl['heure'] . "' value='Annuler le rdv'>
-                                    </form></h4>";
-                                if (isset($_POST[$id_labo . $row_rdv_cl["date"] . $row_rdv_cl["heure"]])) {
+                                if ($spelabo == "covid") {
+                                    $spelabo = "Dépistage Covid";
+                                } elseif ($spelabo == "bio_prev") {
+                                    $spelabo = "Biologie préventive";
+                                } elseif ($spelabo == "bio_enc") {
+                                    $spelabo = "Biologie de la femme enceinte";
+                                } elseif ($spelabo == "bio_rout") {
+                                    $spelabo = "Biologie de routine";
+                                } elseif ($spelabo == "cancer") {
+                                    $spelabo = "Cancérologie";
+                                } elseif ($spelabo == "gyneco") {
+                                    $spelabo = "Gynécologie";
+                                }
+                                echo "<table class='aff_rdv'><th>Rendez vous le " . $row_rdv_clabo['date'] . " à " . $row_rdv_clabo['heure'] . "</th>
+                                <tr><td>Vous avez rendez vous au laboratoire : " . $nomlabo . " le " . $row_rdv_clabo['date'] . " à " .
+                                    $row_rdv_clabo['heure'] . ".<br>Service : " . $spelabo . "<br>Adresse : " . $row_rdv_clabo['adresse'] . "<br>Digicode : " .
+                                    $row_rdv_clabo['digicode'] . "<br>Prix de la consultation : " . $row_rdv_clabo['prix'] .
+                                    " €<br>
+                                <form action='' method='POST'>
+                                <input class='btn_rdv' type='submit' name='" . $id_labo . $row_rdv_clabo['date'] . $row_rdv_clabo['heure'] . "' value='Annuler le rdv'>
+                                </form></td></tr></table>";
+                                if (isset($_POST[$id_labo . $row_rdv_clabo["date"] . $row_rdv_clabo["heure"]])) {
                                     //echo "<h2>DELETE FROM `rdv` WHERE `id_cl`=".$_SESSION['id_cl']." AND `id_med`=".$id_medecin." AND `date`='".$row_rdv_cl['date']."' AND `heure`='".$row_rdv_cl['heure']."'</h2>";
-                                    $requete_annul = "DELETE FROM `rdv` WHERE `id_cl`=" . $_SESSION['id_cl'] . " AND `id_labo`=" . $id_labo . " AND `date`='" . $row_rdv_cl['date'] . "' AND `heure`='" 
-                                    . $row_rdv_cl['heure'] . "' AND `service`='".$SESSION['service']."'";
-                                    $result_annul = mysqli_query($db, $requete_annul) or die(mysqli_error($db));
-                                    echo "<script> location.replace('rdv_labo.php'); </script>";
+                                    $requete_annulabo = "DELETE FROM `rdv_labo` WHERE `id_cl`=" . $_SESSION['id_cl'] . " AND `id_labo`=" . $id_labo . " AND `date`='" . $row_rdv_clabo['date'] . "' AND `heure`='"
+                                        . $row_rdv_clabo['heure'] . "' AND `service`='" . $row_rdv_clabo['service'] . "'";
+                                    $result_annulabo = mysqli_query($db, $requete_annulabo) or die(mysqli_error($db));
+                                    echo "<script> location.replace('rdv_med.php'); </script>";
                                     //echo "<h2>Le rdv a bien été annulé</h2>";
                                 }
                             }
                         }
-                        echo "<a href='toutParcourir.php'>Prendre un nouveau rendez-vous</a>";
+                        echo "<center><a class='take_rdv' href='toutParcourir.php'>Prendre un nouveau rendez-vous</a></center>";
                     } else {
-                        echo "<h2>Vous n'avez pas encore pris de rendez-vous.<br><a href='toutParcourir.php'>
-                        Vous pouvez prendre un rendez vous ici.</a></h2>";
+                        echo "<center><h2 class='pas_de_rdv'>Vous n'avez pas encore pris de rendez-vous.<br><a href='toutParcourir.php'>
+                        Vous pouvez prendre un rendez vous ici.</a></h2></center>";
                     }
                 }
             } else {
                 //header('Location: verifcompte.php'); //On va sur la page verifcompte.php pour se co
-                echo "<h2><a style='margin-top:50px;' href='verifcompte.php'>Veuillez vous connecter ou créer un compte pour pouvoir prendre un rendez-vous</a></h2>";
+                echo "<center><h2><a style='margin-top:60px;' href='verifcompte.php'>Veuillez vous connecter ou créer un compte pour pouvoir prendre un rendez-vous</a></h2></center>";
             }
             mysqli_close($db); // fermer la connexion
             ?>

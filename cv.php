@@ -7,20 +7,22 @@
         $con = mysqli_connect('localhost', 'root', 'root', 'omnessante');
         $sql = "SELECT * FROM cv where nom= '".$name."'";
         $result = mysqli_query($con, $sql);
-            if($result->num_rows > 0)
-            { 
-                while ($row = mysqli_fetch_array($result))
-                {
-                    echo "<cv>";
-                    echo "<specialite>$row[Specialite]</specialite>";
-                    echo "<diplome>$row[Diplomes]</diplome>";
-                    echo "<formation>$row[Formation]</formation>";
-                    echo "<experience>$row[Experiences]</experience>";
-                    echo "<nom>$row[Nom]</nom>";
-                    echo "</cv>"; 
-                }              
-            }
-    else{ 
-        echo 'Content not found....'; }
-    echo "</CV>";
+        if($result->num_rows > 0)
+        { 
+            while ($row = mysqli_fetch_array($result))
+               {
+                echo "<cv>";
+                echo "<specialite>$row[Specialite]</specialite>";
+                echo "<diplome>$row[Diplomes]</diplome>";
+                echo "<formation>$row[Formation]</formation>";
+                echo "<experience>$row[Experiences]</experience>";
+                echo "<nom>$row[Nom]</nom>";
+                echo "</cv>"; 
+           }              
+        }
+        else{ 
+            echo 'Content not found....'; 
+        }
+        //echo 'Nom : '.$cv->nom.' | Specialite : '.$cv->specialite.' | Diplome : '.$cv->diplome.' | Formation : '.$cv->formation.' | Experience : '.$cv->experience.'<br>';
+        echo "</CV>";
 ?>

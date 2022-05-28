@@ -581,3 +581,61 @@ opacity: 1;
   height: 35px;
 }
 
+/* Style page des rdv */
+/*Affichage du nom des med ou labo qd on va prendre un rdv*/
+.nom_med_rdv {
+  text-align: center;
+  color: black;
+  font-size: 50px;
+  text-shadow: 3px 2px rgb(204, 197, 197);
+  text-decoration : underline;
+}
+
+/*Style des boutons dans les tableaux pour prendre des rdv*/
+.btn_rdv {
+  text-decoration: none;
+  padding: 10px;
+  font-family: arial;
+  font-size: 1em;
+  color: #000000;
+  background-color: #f2f2f2;
+  border-radius: 9px;
+  -webkit-border-radius: 9px;
+  -moz-border-radius: 9px;
+  border: 0px solid #000000;
+  box-shadow: 3px 3px 9px #444444;
+  -webkit-box-shadow: 3px 3px 9px #444444;
+  -moz-box-shadow: 3px 3px 9px #444444;
+  }
+  
+  
+  .btn_rdv:hover {
+  padding: 9px;
+  background-color: #d8d8d8;
+  box-shadow: 1px 1px 4px #777777;
+  -webkit-box-shadow: 1px 1px 4px #777777;
+  -moz-box-shadow: 1px 1px 4px #777777;
+  }
+
+  /*Affichage des rdv déjà pris lorsqu'on est connecté*/
+
+  .aff_rdv{
+    width: 770px;
+    border: 2px outset #000000;
+    /*height: 600px;*/
+  }
+  .aff_rdv th{
+    font-size:large;
+  font-weight: bold;
+  }
+
+  /*'Prendre un nouveau rdv' sur la page d'affichage des rdv déjà pris*/
+  .take_rdv{
+    /*color: black;*/
+    font-size: 40px;
+  }
+
+  /*Page rendezvous qd on a pas encore pris de rdv*/
+  .pas_de_rdv{
+    color: #000000;
+  }
