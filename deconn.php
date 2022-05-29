@@ -1,3 +1,4 @@
+<!-- Updating the database to set the `conn` column to false. -->
 <?php 
     $db = mysqli_connect('localhost', 'root', 'root','omnessante') or die('could not connect to database');
     $requete = "UPDATE `compte` SET `conn`=false";

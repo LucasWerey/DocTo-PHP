@@ -178,7 +178,7 @@ if ($id_labo !== "") {
                     //On récupère les rdv du médecin déjà booké
                     $requete_rdv = "SELECT * from `rdv_labo` WHERE `id_labo`=" . $_SESSION['Idlabo'] . " AND `service`='" . $_SESSION['service'] . "'";
                     $verif_rdv = false;
-
+                    //tableau des rdv
                     if ($total > 0) {
                         if ($total2 > 0) {
                             echo "<h2 class='nom_med_rdv'>";

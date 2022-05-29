@@ -184,21 +184,14 @@ if (isset($_POST['h']) && isset($_POST['jour'])) {
           </div>
 
         </div>
-
+        <!--detail de la commande-->
         <div class="col-md-6">
           <span>Résumé de votre commande</span>
-
           <div class="card">
-
             <div class="d-flex justify-content-between p-3">
-
               <div class="d-flex flex-column">
-
                 <span>Prix à payer<i class="fa fa-caret-down"></i></span>
-
-
               </div>
-
               <div class="mt-1">
                 <?php
                 $db = mysqli_connect('localhost', 'root', 'root', 'omnessante') or die('could not connect to database');
@@ -259,8 +252,6 @@ if (isset($_POST['h']) && isset($_POST['jour'])) {
               <span>' . $prix . ' €</span>';
                 ?>
               </div>
-
-
               <div class="p-3">
                 <input type='submit' name="pay" class="btn btn-primary btn-block free-button" value='Valider votre paiement'>
               </div>

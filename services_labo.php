@@ -107,6 +107,7 @@
                   </div>
                   <div class="modal-body">
                     
+                  <!--detail des services proposés-->
                     <div style="margin-top:50px; margin-bottom:50px;">
                     <?php 
                     if ($row['service'] == "covid"){
@@ -189,9 +190,7 @@
             $i++;
           }
         }
-
           ?>
-
         </div>
 
       </div>

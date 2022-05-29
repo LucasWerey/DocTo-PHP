@@ -185,7 +185,7 @@ if (isset($_POST['h']) && isset($_POST['jour'])) {
           </div>
 
         </div>
-
+<!--detail de la commande-->
         <div class="col-md-6">
           <span>Votre rendez-vous</span>
           <div class="card">
@@ -279,8 +279,8 @@ if (isset($_POST['h']) && isset($_POST['jour'])) {
     $exp = isset($_POST["exp"]) ? $_POST["exp"] : "";
     $cvv = isset($_POST["cvv"]) ? $_POST["cvv"] : "";
 
+    /* Checking if the user has a card in the database. If not, it will add the card to the database.*/
     if ($nbrow == 0) {
-
       $ajout_carte = "INSERT INTO `banque`(`IdClient`, `typecarte`, `Num carte`, `Nom`, `Exp`, `CVV`) VALUES (" . $_SESSION['id_cl'] .
         ",'" . $typecarte . "','" . $numcard . "','" . $nom_cl . "','" . $exp . "','" . $cvv . "')";
       $result_ajout_carte = mysqli_query($db, $ajout_carte) or die(mysqli_error($db));
@@ -323,54 +323,18 @@ if (isset($_POST['h']) && isset($_POST['jour'])) {
 
 
 
-    // ENVOIE DU MAIL 
+   // MAIL
+/*
+    ini_set('display_errors',1);
+    error_reporting(E_ALL);
+    $from="cinomnes@gmail.com";
+    $to="pevadd@gmail.com";
+    $subject="test";
+    $message="test";
+    $headers="De :";
+    mail($to,$subject,$message,$headers);
+*/
 
-use PHPMailer\PHPMailer\PHPMailer; 
-use PHPMailer\PHPMailer\Exception; 
- 
-require 'PHPMailer/Exception.php'; 
-require 'PHPMailer/PHPMailer.php'; 
-require 'PHPMailer/SMTP.php'; 
- 
-$mail = new PHPMailer; 
- 
-$mail->isSMTP();                      // Set mailer to use SMTP 
-$mail->Host = 'smtp.gmail.com';       // Specify main and backup SMTP servers 
-$mail->SMTPAuth = true;               // Enable SMTP authentication 
-$mail->Username = 'user@gmail.com';   // SMTP username 
-$mail->Password = 'gmail_password';   // SMTP password 
-$mail->SMTPSecure = 'tls';            // Enable TLS encryption, `ssl` also accepted 
-$mail->Port = 587;                    // TCP port to connect to 
- 
-// Sender info 
-$mail->setFrom('sender@codexworld.com', 'CodexWorld'); 
-$mail->addReplyTo('reply@codexworld.com', 'CodexWorld'); 
- 
-// Add a recipient 
-$mail->addAddress('recipient@example.com'); 
- 
-//$mail->addCC('cc@example.com'); 
-//$mail->addBCC('bcc@example.com'); 
- 
-// Set email format to HTML 
-$mail->isHTML(true); 
- 
-// Mail subject 
-$mail->Subject = 'Email from Localhost by CodexWorld'; 
- 
-// Mail body content 
-$bodyContent = '<h1>How to Send Email from Localhost using PHP by CodexWorld</h1>'; 
-$bodyContent .= '<p>This HTML email is sent from the localhost server using PHP by <b>CodexWorld</b></p>'; 
-$mail->Body    = $bodyContent; 
- 
-// Send email 
-if(!$mail->send()) { 
-    echo 'Message could not be sent. Mailer Error: '.$mail->ErrorInfo; 
-} else { 
-    echo 'Message has been sent.'; 
-} 
- 
-?>
 
 
     mysqli_close($db); // fermer la connexion
@@ -382,6 +346,7 @@ if(!$mail->send()) {
     echo "<script> location.replace('verifcompte.php'); </script>";
     //session_destroy();
   }
+  
   ?>
 
 

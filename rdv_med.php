@@ -177,19 +177,19 @@ if ($name !== "") {
                     $referer == 'http://localhost/ProjetWeb/ist.php' ||
                     $referer == 'http://localhost/ProjetWeb/osteopathie.php'
                 ) {
-/*
-                    if (
-                        $referer == 'http://localhost:56275/projetweb/medgenerale.php' ||
-                        $referer == 'http://localhost:56275/projetweb/addictologie.php' ||
-                        $referer == 'http://localhost:56275/projetweb/andrologie.php' ||
-                        $referer == 'http://localhost:56275/projetweb/cardiologie.php' ||
-                        $referer == 'http://localhost:56275/projetweb/dermatologie.php' ||
-                        $referer == 'http://localhost:56275/projetweb/gastro.php' ||
-                        $referer == 'http://localhost:56275/projetweb/gynecologie.php' ||
-                        $referer == 'http://localhost:56275/projetweb/ist.php' ||
-                        $referer == 'http://localhost:56275/projetweb/osteopathie.php'
-                    ) {
-*/
+
+                    /*if (
+                        $referer == __DIR__ ."/medgenerale.php" ||
+                        $referer == __DIR__ ."/addictologie.php" ||
+                        $referer == __DIR__ ."/andrologie.php" ||
+                        $referer == __DIR__ ."/cardiologie.php" ||
+                        $referer == __DIR__ ."/dermatologie.php" ||
+                        $referer == __DIR__ ."/gastro.php" ||
+                        $referer == __DIR__ ."/gynecologie.php" ||
+                        $referer == __DIR__ ."/ist.php" ||
+                        $referer == __DIR__ ."/osteopathie.php"
+                    ) {*/
+
                         //On récupère les horaires pour créer le tableau
                         $requete = "SELECT * FROM `horaire`";
                         $result = mysqli_query($db, $requete) or die(mysqli_error($db));
@@ -206,7 +206,7 @@ if ($name !== "") {
                         //On récupère les rdv du médecin déjà booké
                         $requete_rdv = "SELECT * from `rdv` WHERE `id_med`=" . $_SESSION['id_med'];
                         $verif_rdv = false;
-                        
+                        //tableau des rdv
                         if ($total > 0) {
                             if ($total2 > 0) {
                                 echo "<h2 style='margin-left:-250px'class='nom_med_rdv'>Dr. " . $_SESSION['name'] . " " . $row2['prenom'] . "</h2><br>

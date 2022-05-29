@@ -1,4 +1,6 @@
 <?php
+// Définit le fuseau horaire par défaut à utiliser.
+date_default_timezone_set('UTC');
 session_start();
 if(isset($_SESSION['name_chat'])){
  $text = $_POST['text'];

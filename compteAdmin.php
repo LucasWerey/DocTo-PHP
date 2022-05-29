@@ -69,14 +69,8 @@
             </div>
         </nav>
     </header>
-
-
-
     <div class="container emp-profile">
         <form action="" method="post" enctype="multipart/form-data">
-
-
-
             <div class="row">
                 <div class="col-md-4">
                     <div class="profile-img">
@@ -85,12 +79,8 @@
                 </div>
                 <div class="col-md-6">
                     <div class="profile-head">
-
                         <?php
-
                         echo '<h5> COMPTE ADMINISTRATEUR </h5>
-             
-
       <ul class="nav nav-tabs" id="myTab" role="tablist">
           <li class="nav-item">
               <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Médecins</a>
@@ -193,16 +183,16 @@
                                     </div>
                                     </div>';
 
-                                    $info_cv = $con->query("SELECT * FROM cv WHERE Nom='" . $selected . "'");
-                                    if ($info_cv->num_rows > 0) {
-                                        $cvinfo = $info_cv->fetch_assoc();
-                                    
-                                  echo '<div class="row">
+                            $info_cv = $con->query("SELECT * FROM cv WHERE Nom='" . $selected . "'");
+                            if ($info_cv->num_rows > 0) {
+                                $cvinfo = $info_cv->fetch_assoc();
+
+                                echo '<div class="row">
                                         <div class="col-md-6">
                                             <label> Diplomes (CV) </label>
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="text" value="'.$cvinfo['Diplomes'].'" name="diplome" size=35>
+                                            <input type="text" value="' . $cvinfo['Diplomes'] . '" name="diplome" size=35>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -210,7 +200,7 @@
                                             <label> Formation (CV) </label>
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="text" value="'.$cvinfo['Formation'].'" name="formation" size=35>
+                                            <input type="text" value="' . $cvinfo['Formation'] . '" name="formation" size=35>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -218,10 +208,10 @@
                                             <label> Experience (CV) </label>
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="text" value="'.$cvinfo['Experiences'].'" name="experience" size=35>
+                                            <input type="text" value="' . $cvinfo['Experiences'] . '" name="experience" size=35>
                                         </div>
-                                    </div> '; 
-                                    } ?>
+                                    </div> ';
+                            } ?>
                             <div class="row">
                                 <div class="col-md-6">
                                     <label> Image de profil </label>
@@ -231,19 +221,20 @@
                                 </div>
                             </div>
 
-</form>
-                            <div class="row justify-content-around" style="padding-top:30px;">
-                                <div class="col-4">
-                                   
-        
-    </div>
+        </form>
+        <div class="row justify-content-around" style="padding-top:30px;">
+            <div class="col-4">
 
 
-    <div class="container" style="padding-top:50px; margin-left:-70px;">
-        <div class="row">
-            <div class="col-12">
-                <table class="table table-bordered">
-                    <?php
+            </div>
+
+
+            <div class="container" style="padding-top:50px; margin-left:-70px;">
+                <div class="row">
+                    <div class="col-12">
+                        <!--Creating a table with a class of table table-bordered.-->
+                        <table class="table table-bordered">
+                            <?php
 
                             $selected = "Amaladasse";
                             if (isset($_POST['choix'])) {
@@ -453,80 +444,80 @@
                                 }
                             }
                             echo '  </td>'; ?>
-                    </tr>
+                            </tr>
 
-                    </tbody>
-                </table>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
 
-    <div class="row align-items-start" style="padding-top:50px;">
-        <div class="col"> <input type="submit" value="Supprimer" name="supr"> </div>
-        <div class="col"> <input type="submit" value="Ajouter" name="aj"> </div>
-        <div class="col"> <input type="submit" value="Mettre à jour" name="maj"> </div>
-    </div>
-
-
-
-<?php
-                        }  ?>
-
-</div>
-
-</div>
-
-
-</form>
-
-
-<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-    <div class="row" style="margin-top:-140px">
-
-        <div class="col-md-6">
-
-            <!-- SELECTOR BOX FOR LABS -->
-
-            <form action="" method="post">
-                <select name="selectorlab">
-
-
-                    <?php
-                    $reslab = 'SELECT * FROM labo order by Nom asc';
-                    $nomlab = mysqli_query($con, $reslab);
-
-                    while ($row2 = mysqli_fetch_array($nomlab)) {
-                        echo '<option value="' . $row2['Nom'] . '"> ' . $row2['Nom'] . '</option>';
-                    }
-                    ?>
-
-
-                </select>
-
-                <input type="submit" name="choixlab" value="Voir">
-            </form>
-
-        </div>
-        <div class="col-md-6"></div>
+            <div class="row align-items-start" style="padding-top:50px;">
+                <div class="col"> <input type="submit" value="Supprimer" name="supr"> </div>
+                <div class="col"> <input type="submit" value="Ajouter" name="aj"> </div>
+                <div class="col"> <input type="submit" value="Mettre à jour" name="maj"> </div>
+            </div>
 
 
 
         <?php
-        $selectedlab = "laboratoire de grenelle";
-        if (isset($_POST['choixlab'])) {
-            if (!empty($_POST['selectorlab'])) {
-                $selectedlab = $_POST['selectorlab'];
+                        }  ?>
+
+        </div>
+
+    </div>
+
+
+    </form>
+
+
+    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+        <div class="row" style="margin-top:-140px">
+
+            <div class="col-md-6">
+
+                <!-- SELECTOR BOX FOR LABS -->
+
+                <form action="" method="post">
+                    <select name="selectorlab">
+
+
+                        <?php
+                        $reslab = 'SELECT * FROM labo order by Nom asc';
+                        $nomlab = mysqli_query($con, $reslab);
+
+                        while ($row2 = mysqli_fetch_array($nomlab)) {
+                            echo '<option value="' . $row2['Nom'] . '"> ' . $row2['Nom'] . '</option>';
+                        }
+                        ?>
+
+
+                    </select>
+
+                    <input type="submit" name="choixlab" value="Voir">
+                </form>
+
+            </div>
+            <div class="col-md-6"></div>
+
+
+
+            <?php
+            $selectedlab = "laboratoire de grenelle";
+            if (isset($_POST['choixlab'])) {
+                if (!empty($_POST['selectorlab'])) {
+                    $selectedlab = $_POST['selectorlab'];
+                }
             }
-        }
 
 
-        $query2 = $con->query("SELECT * from labo where Nom='" . $selectedlab . "'");
+            $query2 = $con->query("SELECT * from labo where Nom='" . $selectedlab . "'");
 
-        if ($query2->num_rows > 0) {
-            $cmsData2 = $query2->fetch_assoc();
+            if ($query2->num_rows > 0) {
+                $cmsData2 = $query2->fetch_assoc();
 
 
-            echo   ' <div class="col-md-6">
+                echo   ' <div class="col-md-6">
                     <label>Nom du laboratoire</label>
                 </div>
                 <div class="col-md-6">
@@ -557,231 +548,231 @@
                 <div class="col-md-6">
                 <input type="text" value="' . $cmsData2['Email'] . '" size=35></input>
                 </div>';
-        } ?>
+            } ?>
+        </div>
     </div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</form>
-</div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </form>
+    </div>
 
 
 
-<?php
-    /*AJOUTE PAR CLEM*/    
-    $diplomes=isset($_POST['diplome']) ? $_POST['diplome'] : "";
-    $formations=isset($_POST['formation']) ? $_POST['formation'] : "";
-    $experiences=isset($_POST['experience']) ? $_POST['experience'] : "";
+    <?php
+    /*AJOUTE PAR CLEM*/
+    $diplomes = isset($_POST['diplome']) ? $_POST['diplome'] : "";
+    $formations = isset($_POST['formation']) ? $_POST['formation'] : "";
+    $experiences = isset($_POST['experience']) ? $_POST['experience'] : "";
     /*FIN AJOUTE PAR CLEM*/
 
-// RECUPERER INFO DOCTEURS 
-if (isset($_POST['aj'])) {
+    // RECUPERER INFO DOCTEURS 
+    if (isset($_POST['aj'])) {
 
-    if (!empty($_POST['nom'])) {
-        $name = $_POST['nom'];
-    }
-    if (!empty($_POST['prenom'])) {
-        $prenom = $_POST['prenom'];
-    }
-    if (!empty($_POST['tel'])) {
-        $tel = $_POST['tel'];
-    }
-    if (!empty($_POST['salle'])) {
-        $salle = $_POST['salle'];
-    }
-    if (!empty($_POST['spe'])) {
-        $spe = $_POST['spe'];
-    }
+        if (!empty($_POST['nom'])) {
+            $name = $_POST['nom'];
+        }
+        if (!empty($_POST['prenom'])) {
+            $prenom = $_POST['prenom'];
+        }
+        if (!empty($_POST['tel'])) {
+            $tel = $_POST['tel'];
+        }
+        if (!empty($_POST['salle'])) {
+            $salle = $_POST['salle'];
+        }
+        if (!empty($_POST['spe'])) {
+            $spe = $_POST['spe'];
+        }
 
-    $mail = $prenom.".".$name."@omnessante.fr";
-    // RECUPERER EMPLOI DU TEMPS 
+        $mail = $prenom . "." . $name . "@omnessante.fr";
+        // RECUPERER EMPLOI DU TEMPS 
 
-    if (isset($_POST['LundiAM'])) {
-        $LundiAM = 1;
-    } else $LundiAM = 0;
-    if (isset($_POST['MardiAM'])) {
-        $MardiAM = 1;
-    } else $MardiAM = 0;
-    if (isset($_POST['MercrediAM'])) {
-        $MercrediAM = 1;
-    } else $MercrediAM = 0;
-    if (isset($_POST['JeudiAM'])) {
-        $JeudiAM = 1;
-    } else $JeudiAM = 0;
-    if (isset($_POST['VendrediAM'])) {
-        $VendrediAM = 1;
-    } else $VendrediAM = 0;
-    if (isset($_POST['SamediAM'])) {
-        $SamediAM = 1;
-    } else $SamediAM = 0;
-    if (isset($_POST['LundiPM'])) {
-        $LundiPM = 1;
-    } else $LundiPM = 0;
-    if (isset($_POST['MardiPM'])) {
-        $MardiPM = 1;
-    } else $MardiPM = 0;
-    if (isset($_POST['MercrediPM'])) {
-        $MercrediPM = 1;
-    } else $MercrediPM = 0;
-    if (isset($_POST['JeudiPM'])) {
-        $JeudiPM = 1;
-    } else $JeudiPM = 0;
-    if (isset($_POST['VendrediPM'])) {
-        $VendrediPM = 1;
-    } else $VendrediPM = 0;
-    if (isset($_POST['SamediPM'])) {
-        $SamediPM = 1;
-    } else $SamediPM = 0;
+        if (isset($_POST['LundiAM'])) {
+            $LundiAM = 1;
+        } else $LundiAM = 0;
+        if (isset($_POST['MardiAM'])) {
+            $MardiAM = 1;
+        } else $MardiAM = 0;
+        if (isset($_POST['MercrediAM'])) {
+            $MercrediAM = 1;
+        } else $MercrediAM = 0;
+        if (isset($_POST['JeudiAM'])) {
+            $JeudiAM = 1;
+        } else $JeudiAM = 0;
+        if (isset($_POST['VendrediAM'])) {
+            $VendrediAM = 1;
+        } else $VendrediAM = 0;
+        if (isset($_POST['SamediAM'])) {
+            $SamediAM = 1;
+        } else $SamediAM = 0;
+        if (isset($_POST['LundiPM'])) {
+            $LundiPM = 1;
+        } else $LundiPM = 0;
+        if (isset($_POST['MardiPM'])) {
+            $MardiPM = 1;
+        } else $MardiPM = 0;
+        if (isset($_POST['MercrediPM'])) {
+            $MercrediPM = 1;
+        } else $MercrediPM = 0;
+        if (isset($_POST['JeudiPM'])) {
+            $JeudiPM = 1;
+        } else $JeudiPM = 0;
+        if (isset($_POST['VendrediPM'])) {
+            $VendrediPM = 1;
+        } else $VendrediPM = 0;
+        if (isset($_POST['SamediPM'])) {
+            $SamediPM = 1;
+        } else $SamediPM = 0;
 
-    // RECUPERER IMAGE DOCTEUR 
+        // RECUPERER IMAGE DOCTEUR 
 
-    if (getimagesize($_FILES['imagefile']['tmp_name']) == false) {
-        echo "echec image";
-    } else {
-        $image = $_FILES['imagefile']['tmp_name'];
-        $image = base64_encode(file_get_contents(addslashes($image)));
-    }
+        if (getimagesize($_FILES['imagefile']['tmp_name']) == false) {
+            echo "echec image";
+        } else {
+            $image = $_FILES['imagefile']['tmp_name'];
+            $image = base64_encode(file_get_contents(addslashes($image)));
+        }
 
-    $requete1 = $con->query("INSERT INTO medecins(`nom`, `prenom`, `spe`, `salle`, `tel`, `mail`, `photo`, `lundiam`, `lundipm`, `mardiam`, `mardipm`, `mercrediam`, `mercredipm`, `jeudiam`, `jeudipm`, `vendrediam`, `vendredipm`, `samediam`, `samedipm`) 
-            VALUES  ('" . $name . "','" . $prenom . "','" . $spe . "','" . $salle . "','" . $tel . "','" . $mail . "','" . $image . "','" . $LundiAM . "','" . $LundiPM . "','" . $MardiAM . "','" . $MardiPM . "','" . $MercrediAM . "','" . $MercrediPM 
+        $requete1 = $con->query("INSERT INTO medecins(`nom`, `prenom`, `spe`, `salle`, `tel`, `mail`, `photo`, `lundiam`, `lundipm`, `mardiam`, `mardipm`, `mercrediam`, `mercredipm`, `jeudiam`, `jeudipm`, `vendrediam`, `vendredipm`, `samediam`, `samedipm`) 
+            VALUES  ('" . $name . "','" . $prenom . "','" . $spe . "','" . $salle . "','" . $tel . "','" . $mail . "','" . $image . "','" . $LundiAM . "','" . $LundiPM . "','" . $MardiAM . "','" . $MardiPM . "','" . $MercrediAM . "','" . $MercrediPM
             . "','" . $JeudiAM . "','" . $JeudiPM . "','" . $VendrediAM . "','" . $VendrediPM . "','" . $SamediAM . "','" . $SamediPM . "')");
-                
-//{}
 
-        $req_idmed="SELECT * FROM medecins WHERE nom='".$name."'";
-        $res_idmed=mysqli_query($con,$req_idmed);
+        //{}
+
+        $req_idmed = "SELECT * FROM medecins WHERE nom='" . $name . "'";
+        $res_idmed = mysqli_query($con, $req_idmed);
         $row_idmed = mysqli_fetch_array($res_idmed);
-        $id_med=$row_idmed['id'];
-        $requete_cv = $con->query("INSERT INTO `cv`(`ID`, `Specialite`, `Diplomes`, `Formation`, `Experiences`, `Nom`) VALUES (".
-        $id_med.",'".$spe."','".$diplomes."','".$formations."','".$experiences."','".$name."')");
+        $id_med = $row_idmed['id'];
+        $requete_cv = $con->query("INSERT INTO `cv`(`ID`, `Specialite`, `Diplomes`, `Formation`, `Experiences`, `Nom`) VALUES (" .
+            $id_med . ",'" . $spe . "','" . $diplomes . "','" . $formations . "','" . $experiences . "','" . $name . "')");
 
-        $req_compte= $con->query("INSERT INTO `compte`(`username`, `password`, `type`, `conn`) VALUES (
-            '".$mail."','".$prenom."','medecin',0)");
-        
-    echo "<script> location.replace('CompteAdmin.php'); </script>";
-}
+        $req_compte = $con->query("INSERT INTO `compte`(`username`, `password`, `type`, `conn`) VALUES (
+            '" . $mail . "','" . $prenom . "','medecin',0)");
 
-
-// RECUPERER DONNEES DOCTEURS 
-
-if (isset($_POST['maj'])) {
-
-    if (!empty($_POST['id'])) {
-        $identifiant = $_POST['id'];
-    }
-    if (!empty($_POST['nom'])) {
-        $name = $_POST['nom'];
-    }
-    if (!empty($_POST['prenom'])) {
-        $prenom = $_POST['prenom'];
-    }
-    if (!empty($_POST['tel'])) {
-        $tel = $_POST['tel'];
-    }
-    if (!empty($_POST['salle'])) {
-        $salle = $_POST['salle'];
-    }
-    if (!empty($_POST['mail'])) {
-        $mail = $_POST['mail'];
-    }
-    if (!empty($_POST['spe'])) {
-        $spe = $_POST['spe'];
+        echo "<script> location.replace('CompteAdmin.php'); </script>";
     }
 
-    // RECUPERER EMPLOI DU TEMPS 
 
-    if (isset($_POST['LundiAM'])) {
-        $LundiAM = 1;
-    } else $LundiAM = 0;
-    if (isset($_POST['MardiAM'])) {
-        $MardiAM = 1;
-    } else $MardiAM = 0;
-    if (isset($_POST['MercrediAM'])) {
-        $MercrediAM = 1;
-    } else $MercrediAM = 0;
-    if (isset($_POST['JeudiAM'])) {
-        $JeudiAM = 1;
-    } else $JeudiAM = 0;
-    if (isset($_POST['VendrediAM'])) {
-        $VendrediAM = 1;
-    } else $VendrediAM = 0;
-    if (isset($_POST['SamediAM'])) {
-        $SamediAM = 1;
-    } else $SamediAM = 0;
-    if (isset($_POST['LundiPM'])) {
-        $LundiPM = 1;
-    } else $LundiPM = 0;
-    if (isset($_POST['MardiPM'])) {
-        $MardiPM = 1;
-    } else $MardiPM = 0;
-    if (isset($_POST['MercrediPM'])) {
-        $MercrediPM = 1;
-    } else $MercrediPM = 0;
-    if (isset($_POST['JeudiPM'])) {
-        $JeudiPM = 1;
-    } else $JeudiPM = 0;
-    if (isset($_POST['VendrediPM'])) {
-        $VendrediPM = 1;
-    } else $VendrediPM = 0;
-    if (isset($_POST['SamediPM'])) {
-        $SamediPM = 1;
-    } else $SamediPM = 0;
+    // RECUPERER DONNEES DOCTEURS 
+
+    if (isset($_POST['maj'])) {
+
+        if (!empty($_POST['id'])) {
+            $identifiant = $_POST['id'];
+        }
+        if (!empty($_POST['nom'])) {
+            $name = $_POST['nom'];
+        }
+        if (!empty($_POST['prenom'])) {
+            $prenom = $_POST['prenom'];
+        }
+        if (!empty($_POST['tel'])) {
+            $tel = $_POST['tel'];
+        }
+        if (!empty($_POST['salle'])) {
+            $salle = $_POST['salle'];
+        }
+        if (!empty($_POST['mail'])) {
+            $mail = $_POST['mail'];
+        }
+        if (!empty($_POST['spe'])) {
+            $spe = $_POST['spe'];
+        }
+
+        // RECUPERER EMPLOI DU TEMPS 
+
+        if (isset($_POST['LundiAM'])) {
+            $LundiAM = 1;
+        } else $LundiAM = 0;
+        if (isset($_POST['MardiAM'])) {
+            $MardiAM = 1;
+        } else $MardiAM = 0;
+        if (isset($_POST['MercrediAM'])) {
+            $MercrediAM = 1;
+        } else $MercrediAM = 0;
+        if (isset($_POST['JeudiAM'])) {
+            $JeudiAM = 1;
+        } else $JeudiAM = 0;
+        if (isset($_POST['VendrediAM'])) {
+            $VendrediAM = 1;
+        } else $VendrediAM = 0;
+        if (isset($_POST['SamediAM'])) {
+            $SamediAM = 1;
+        } else $SamediAM = 0;
+        if (isset($_POST['LundiPM'])) {
+            $LundiPM = 1;
+        } else $LundiPM = 0;
+        if (isset($_POST['MardiPM'])) {
+            $MardiPM = 1;
+        } else $MardiPM = 0;
+        if (isset($_POST['MercrediPM'])) {
+            $MercrediPM = 1;
+        } else $MercrediPM = 0;
+        if (isset($_POST['JeudiPM'])) {
+            $JeudiPM = 1;
+        } else $JeudiPM = 0;
+        if (isset($_POST['VendrediPM'])) {
+            $VendrediPM = 1;
+        } else $VendrediPM = 0;
+        if (isset($_POST['SamediPM'])) {
+            $SamediPM = 1;
+        } else $SamediPM = 0;
 
 
-    // RECUPERER IMAGE DOCTEUR 
+        // RECUPERER IMAGE DOCTEUR 
 
-    if (getimagesize($_FILES['imagefile']['tmp_name']) == false) {
-        echo "echec image";
-    } else {
-        $image = $_FILES['imagefile']['tmp_name'];
-        $image = base64_encode(file_get_contents(addslashes($image)));
-    }
+        if (getimagesize($_FILES['imagefile']['tmp_name']) == false) {
+            echo "echec image";
+        } else {
+            $image = $_FILES['imagefile']['tmp_name'];
+            $image = base64_encode(file_get_contents(addslashes($image)));
+        }
 
-    $requete2 = $con->query("UPDATE `medecins` SET `nom`='" . $name . "',`prenom`='" . $prenom . "',`spe`='" . $spe . "',`salle`='" . $salle . "',`tel`='" . $tel . "', `photo`='" . $image . "',`lundiam`='" . $LundiAM . "',
+        $requete2 = $con->query("UPDATE `medecins` SET `nom`='" . $name . "',`prenom`='" . $prenom . "',`spe`='" . $spe . "',`salle`='" . $salle . "',`tel`='" . $tel . "', `photo`='" . $image . "',`lundiam`='" . $LundiAM . "',
         `lundipm`='" . $LundiPM . "',`mardiam`='" . $MardiAM . "',`mardipm`='" . $MardiPM . "',`mercrediam`='" . $MercrediAM . "',`mercredipm`='" . $MercrediPM . "',`jeudiam`='" . $JeudiAM . "',`jeudipm`='" . $JeudiPM . "',`vendrediam`='" . $VendrediAM . "',`vendredipm`='" . $VendrediPM . "',
         `samediam`='" . $SamediAM . "',`samedipm`='" . $SamediPM . "' WHERE id='" . $identifiant . "'");
 
-    $requete_updatecv = $con->query("UPDATE `cv` SET `Specialite`='".$spe."'
-    ,`Diplomes`='".$diplomes."',`Formation`='".$formations."',`Experiences`='".$experiences."',`Nom`='".$name."' WHERE `ID`=".$identifiant);
+        $requete_updatecv = $con->query("UPDATE `cv` SET `Specialite`='" . $spe . "'
+    ,`Diplomes`='" . $diplomes . "',`Formation`='" . $formations . "',`Experiences`='" . $experiences . "',`Nom`='" . $name . "' WHERE `ID`=" . $identifiant);
 
 
-    echo "<script> location.replace('CompteAdmin.php'); </script>";
-}
-
-
-// DELETE  $sql = "DELETE FROM medecins WHERE mail=$mail";
-if (isset($_POST['supr'])) {
-
-    if (!empty($_POST['id'])) {
-        $iden = $_POST['id'];
-    }
-    if (!empty($_POST['mail'])) {
-        $mail = $_POST['mail'];
+        echo "<script> location.replace('CompteAdmin.php'); </script>";
     }
 
-    $del = $con->query("DELETE FROM medecins WHERE id='" . $iden . "'");
-    $delr = $con->query("DELETE FROM rdv WHERE id='" . $iden . "'");
-    $delcv = $con->query("DELETE FROM cv WHERE ID=" . $iden);
-    $delcompte = $con->query("DELETE FROM compte WHERE username='" . $mail ."'");
 
-    echo "<script> location.replace('CompteAdmin.php'); </script>";
-}
+    // DELETE  $sql = "DELETE FROM medecins WHERE mail=$mail";
+    if (isset($_POST['supr'])) {
 
-mysqli_close($con);
+        if (!empty($_POST['id'])) {
+            $iden = $_POST['id'];
+        }
+        if (!empty($_POST['mail'])) {
+            $mail = $_POST['mail'];
+        }
 
-?>
+        $del = $con->query("DELETE FROM medecins WHERE id='" . $iden . "'");
+        $delr = $con->query("DELETE FROM rdv WHERE id='" . $iden . "'");
+        $delcv = $con->query("DELETE FROM cv WHERE ID=" . $iden);
+        $delcompte = $con->query("DELETE FROM compte WHERE username='" . $mail . "'");
 
-<!--FOTTER-->
-<?php include("footer.html"); ?>
+        echo "<script> location.replace('CompteAdmin.php'); </script>";
+    }
 
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    mysqli_close($con);
+
+    ?>
+
+    <!--FOTTER-->
+    <?php include("footer.html"); ?>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 
 </html>

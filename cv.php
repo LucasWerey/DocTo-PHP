@@ -13,6 +13,7 @@
         $xml->openUri("cv.xml");
         $xml->startDocument('1.0', 'utf-8');
         $xml->startElement('CV');
+        /* Creating the xml file. */
         if($result->num_rows > 0)
         { 
             while ($row = mysqli_fetch_array($result))
