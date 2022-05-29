@@ -96,6 +96,10 @@
                            autocomplete="off" required>
                           <i class="input-icon uil uil-lock-alt"></i>
                         </div>
+                        <div class="form-group mt-2" style="margin-left:30px; padding-top:10px;">
+                        <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>
+                          <i class="input-icon uil uil-lock-alt"></i>
+                        </div>
                         <input type="submit" id="submit" class="btn mt-4" value="Se connecter">
                         <?php 
                             if(isset($_GET['erreur'])){ 
@@ -201,6 +205,7 @@
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
   <script src="index.js"></script>
+  <script src='https://www.google.com/recaptcha/api.js'></script>
 </body>
 
 </html>

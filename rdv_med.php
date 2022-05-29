@@ -79,7 +79,7 @@ if ($name !== "") {
         </nav>
     </header>
 
-    <div class="container-fluid" style="margin-top:50px;">
+    <div class="container-fluid"  style="margin-top:50px; margin-left:120px; ">
 
         <table class="tabloclem">
             <?php
@@ -206,11 +206,12 @@ if ($name !== "") {
                         //On récupère les rdv du médecin déjà booké
                         $requete_rdv = "SELECT * from `rdv` WHERE `id_med`=" . $_SESSION['id_med'];
                         $verif_rdv = false;
-
+                        
                         if ($total > 0) {
                             if ($total2 > 0) {
-                                echo "<h2 class='nom_med_rdv'>Dr. " . $_SESSION['name'] . " " . $row2['prenom'] . "</h2><br>
+                                echo "<h2 style='margin-left:-250px'class='nom_med_rdv'>Dr. " . $_SESSION['name'] . " " . $row2['prenom'] . "</h2><br>
                             <h5>Pour prendre un rendez-vous, veuillez cliquer sur un rendez-vous disponible (les rendez-vous en rouges ne sont plus disponibles).</h5><br>
+                            
                         <tr>
                         <th>LUNDI</th>
                         <th>MARDI</th>
@@ -239,7 +240,7 @@ if ($name !== "") {
 
                                             echo "<tr><td><form action='payement.php' method='POST'>
                                         <input type='hidden' name='jour' value='lundi' style='opacity: 0;'>
-                                        <input class='btn_rdv' type='submit' name='h' value='" . $heure . "'></form></td>";
+                                        <input class='btn_rdv' type='submit' name='h' value='" . $heure . "'    ></form></td>";
                                         } else {
                                             echo "<tr><td bgcolor='red' bordercolor='red'>" . $heure . "</td>";
                                         }
@@ -679,7 +680,7 @@ if ($name !== "") {
                 }
             } else {
                 //header('Location: verifcompte.php'); //On va sur la page verifcompte.php pour se co
-                echo "<center><h2><a style='margin-top:60px;' href='verifcompte.php'>Veuillez vous connecter ou créer un compte pour pouvoir prendre un rendez-vous</a></h2></center>";
+                echo "<center><h2><a style='margin-top:60px; margin-left:-190px;' href='verifcompte.php'>Veuillez vous connecter ou créer un compte pour pouvoir prendre un rendez-vous</a></h2></center>";
             }
             mysqli_close($db); // fermer la connexion
             ?>

@@ -594,18 +594,15 @@ opacity: 1;
 /*Style des boutons dans les tableaux pour prendre des rdv*/
 .btn_rdv {
   text-decoration: none;
+  width: 100%;
+  height: 100%;
+  margin-bottom: -17px;
   padding: 10px;
   font-family: arial;
   font-size: 1em;
   color: #000000;
   background-color: #f2f2f2;
-  border-radius: 9px;
-  -webkit-border-radius: 9px;
-  -moz-border-radius: 9px;
   border: 0px solid #000000;
-  box-shadow: 3px 3px 9px #444444;
-  -webkit-box-shadow: 3px 3px 9px #444444;
-  -moz-box-shadow: 3px 3px 9px #444444;
   }
   
   
