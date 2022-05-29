@@ -199,7 +199,7 @@
                                     
                                   echo '<div class="row">
                                         <div class="col-md-6">
-                                            <label> Diplomes </label>
+                                            <label> Diplomes (CV) </label>
                                         </div>
                                         <div class="col-md-6">
                                             <input type="text" value="'.$cvinfo['Diplomes'].'" name="diplome" size=35>
@@ -207,7 +207,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <label> Formation </label>
+                                            <label> Formation (CV) </label>
                                         </div>
                                         <div class="col-md-6">
                                             <input type="text" value="'.$cvinfo['Formation'].'" name="formation" size=35>
@@ -215,7 +215,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <label> Experience </label>
+                                            <label> Experience (CV) </label>
                                         </div>
                                         <div class="col-md-6">
                                             <input type="text" value="'.$cvinfo['Experiences'].'" name="experience" size=35>
@@ -592,13 +592,11 @@ if (isset($_POST['aj'])) {
     if (!empty($_POST['salle'])) {
         $salle = $_POST['salle'];
     }
-    if (!empty($_POST['mail'])) {
-        $mail = $_POST['mail'];
-    }
     if (!empty($_POST['spe'])) {
         $spe = $_POST['spe'];
     }
 
+    $mail = $prenom.".".$name."@omnessante.fr";
     // RECUPERER EMPLOI DU TEMPS 
 
     if (isset($_POST['LundiAM'])) {
@@ -742,12 +740,13 @@ if (isset($_POST['maj'])) {
         $image = base64_encode(file_get_contents(addslashes($image)));
     }
 
-    $requete2 = $con->query("UPDATE `medecins` SET `nom`='" . $name . "',`prenom`='" . $prenom . "',`spe`='" . $spe . "',`salle`='" . $salle . "',`tel`='" . $tel . "',`mail`='" . $mail . "',`photo`='" . $image . "',`lundiam`='" . $LundiAM . "',
+    $requete2 = $con->query("UPDATE `medecins` SET `nom`='" . $name . "',`prenom`='" . $prenom . "',`spe`='" . $spe . "',`salle`='" . $salle . "',`tel`='" . $tel . "', `photo`='" . $image . "',`lundiam`='" . $LundiAM . "',
         `lundipm`='" . $LundiPM . "',`mardiam`='" . $MardiAM . "',`mardipm`='" . $MardiPM . "',`mercrediam`='" . $MercrediAM . "',`mercredipm`='" . $MercrediPM . "',`jeudiam`='" . $JeudiAM . "',`jeudipm`='" . $JeudiPM . "',`vendrediam`='" . $VendrediAM . "',`vendredipm`='" . $VendrediPM . "',
         `samediam`='" . $SamediAM . "',`samedipm`='" . $SamediPM . "' WHERE id='" . $identifiant . "'");
 
     $requete_updatecv = $con->query("UPDATE `cv` SET `Specialite`='".$spe."'
     ,`Diplomes`='".$diplomes."',`Formation`='".$formations."',`Experiences`='".$experiences."',`Nom`='".$name."' WHERE `ID`=".$identifiant);
+
 
     echo "<script> location.replace('CompteAdmin.php'); </script>";
 }
