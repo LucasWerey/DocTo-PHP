@@ -153,7 +153,7 @@ if ($name !== "") {
                     //Référence à la page précédente
                     $referer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : 'verifcompte.php';
                     //Pour lulu
-                    /*if (
+                    if (
                     $referer == 'http://localhost/projetweb/medgenerale.php' ||
                     $referer == 'http://localhost/projetweb/addictologie.php' ||
                     $referer == 'http://localhost/projetweb/andrologie.php' ||
@@ -163,7 +163,7 @@ if ($name !== "") {
                     $referer == 'http://localhost/projetweb/gynecologie.php' ||
                     $referer == 'http://localhost/projetweb/ist.php' ||
                     $referer == 'http://localhost/projetweb/osteopathie.php'
-                ) {*/
+                ) {
                     //Pour clem et lena
 
                     /*   if (
@@ -177,7 +177,7 @@ if ($name !== "") {
                     $referer == 'http://localhost/ProjetWeb/ist.php' ||
                     $referer == 'http://localhost/ProjetWeb/osteopathie.php'
                 ) {*/
-
+/*
                     if (
                         $referer == 'http://localhost:56275/projetweb/medgenerale.php' ||
                         $referer == 'http://localhost:56275/projetweb/addictologie.php' ||
@@ -189,7 +189,7 @@ if ($name !== "") {
                         $referer == 'http://localhost:56275/projetweb/ist.php' ||
                         $referer == 'http://localhost:56275/projetweb/osteopathie.php'
                     ) {
-
+*/
                         //On récupère les horaires pour créer le tableau
                         $requete = "SELECT * FROM `horaire`";
                         $result = mysqli_query($db, $requete) or die(mysqli_error($db));

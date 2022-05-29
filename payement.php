@@ -239,7 +239,7 @@ if (isset($_POST['h']) && isset($_POST['jour'])) {
                   <li>Heure : ".$heure."</li>
                   <li>Digicode : 456A7</li>
                   <li>Adresse : 37 Quai de Grenelle</li>
-                </ul>;
+                </ul>  
               </div>
             </div>
             <hr class='mt-0 line'>
@@ -337,7 +337,7 @@ if (isset($_POST['h']) && isset($_POST['jour'])) {
     mysqli_close($db); // fermer la connexion
 
     //echo "<h2>Enregistrement réalisé avec succès</h2>";
-    //  echo "<script> location.replace('verifcompte.php'); </script>";
+      echo "<script> location.replace('verifcompte.php'); </script>";
     //session_destroy();
   }
   ?>

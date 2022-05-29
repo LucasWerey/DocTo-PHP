@@ -239,7 +239,7 @@ if (isset($_POST['h']) && isset($_POST['jour'])) {
               </div>
               <div class="d-flex">
                 <p> Votre rendez-vous : </p>
-                <ul>
+                <ul style="margin-right:-10px">
                 <li>Laboratoire : '.$nom.'</li>
                   <li>Service : '.$service.'</li>
                   <li>Date : '.ucfirst($date).'</li>

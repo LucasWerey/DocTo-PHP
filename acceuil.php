@@ -51,7 +51,7 @@
         $con = mysqli_connect('localhost', 'root', 'root', 'omnessante') or die('could not connect to database');
         $sql = 'SELECT * FROM compte';
         $result = mysqli_query($con, $sql);
-        $row = mysqli_fetch_array($result);
+
 
         while ($row = mysqli_fetch_array($result)) {
          if($result->num_rows > 0)

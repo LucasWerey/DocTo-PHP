@@ -162,7 +162,7 @@
                         <i class="input-icon uil uil-user"></i>
                       </div>
                       <div class="form-group">
-                        <input type="text" name="logcartev" class="form-style" placeholder="Carte Vitale" id="logcartev"
+                        <input type="text" maxlength="13" minlength="13" name="logcartev" class="form-style" placeholder="Carte Vitale" id="logcartev"
                           autocomplete="off" required>
                         <i class="input-icon uil uil-user"></i>
                       </div>

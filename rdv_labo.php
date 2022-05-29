@@ -98,6 +98,54 @@ if ($id_labo !== "") {
             if ($num_row_compte > 0) {
                 //On récupère l'username (mail) du client
                 $row_compte = mysqli_fetch_array($result_compte); //tableau à 1 ligne
+
+                if ($row_compte['type'] == "medecin") {
+
+                    $_SESSION['user_med'] = $row_compte['username'];
+
+                    $req_medecin = "SELECT * FROM `medecins` WHERE mail='" . $row_compte['username'] . "'";
+                    $res_medecin = mysqli_query($db, $req_medecin) or die(mysqli_error($db));
+                    $row_medecin = mysqli_fetch_array($res_medecin);
+                    $id_med = $row_medecin['id'];
+
+                    $req_rdv = "SELECT * FROM rdv WHERE id_med=" . $id_med;
+                    $res_rdv = mysqli_query($db, $req_rdv) or die(mysqli_error($db));
+                    $num_rdv = mysqli_num_rows($res_rdv);
+
+                    if ($num_rdv > 0) {
+                        while ($row_rdv = mysqli_fetch_array($res_rdv)) {
+                            $id_client = $row_rdv['id_cl'];
+                            $req_client = "SELECT * FROM `clientinf` WHERE `IdCl`=" . $id_client;
+                            $res_client = mysqli_query($db, $req_client) or die(mysqli_error($db));
+                            $tot_client = mysqli_num_rows($res_client);
+                            if ($tot_client > 0) {
+                                $row_client = mysqli_fetch_array($res_client);
+                                $nom_client = $row_client['Nom'];
+                                $prenom_client = $row_client['Prenom'];
+                                $mail_client = $row_client['Mail'];
+                                $id_client = $row_client['IdCl'];
+                                echo "<table class='aff_rdv'><th>Rendez vous le " . $row_rdv['date'] . " à " . $row_rdv['heure'] . "</th>
+                                    <tr><td>Vous avez rendez vous avec le client : " . $nom_client . " " . $prenom_client . " le " . $row_rdv['date'] . " à " .
+                                    $row_rdv['heure'] . ".<br>Mail : " . $mail_client . "<br>Adresse : " . $row_rdv['adresse'] . "<br>Digicode : " .
+                                    $row_rdv['digicode'] . "<br>Prix de la consultation : " . $row_rdv['prix'] .
+                                    " €</td>
+                                    <td><form action='' method='POST'>
+                                    <input class='btn_rdv' type='submit' name='" . $id_med . $row_rdv['date'] . $row_rdv['heure'] . "' value='Annuler le rdv'>
+                                    </form></td></tr></table><br>";
+                                if (isset($_POST[$id_med . $row_rdv["date"] . $row_rdv["heure"]])) {
+                                    //echo "<h2>DELETE FROM `rdv` WHERE `id_cl`=".$_SESSION['id_cl']." AND `id_med`=".$id_medecin." AND `date`='".$row_rdv_cl['date']."' AND `heure`='".$row_rdv_cl['heure']."'</h2>";
+                                    $requete_annul = "DELETE FROM `rdv` WHERE `id_cl`=" . $id_client . " AND `id_med`=" . $id_med . " AND `date`='" . $row_rdv['date'] . "' AND `heure`='" . $row_rdv['heure'] . "'";
+                                    $result_annul = mysqli_query($db, $requete_annul) or die(mysqli_error($db));
+                                    echo "<script> location.replace('rdv_med.php'); </script>";
+                                    //echo "<h2>Le rdv a bien été annulé</h2>";
+                                }
+                            }
+                        }
+                    }else{
+                        //PAS DE RDV
+                        echo "<center><h2 class='pas_de_rdv'>Vous n'avez pas de rendez-vous programmé.</h2></center>";
+                    }
+                }elseif($row_compte['type'] == "client"){
                 $_SESSION['user_cl'] = $row_compte['username'];
 
                 //On récupère l'id du client
@@ -108,11 +156,11 @@ if ($id_labo !== "") {
 
                 //Référence à la page précédente
                 $referer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : 'verifcompte.php';
-                if ($referer == 'http://localhost:56275/projetweb/services_labo.php') {
+               /* if ($referer == 'http://localhost:56275/projetweb/services_labo.php') {*/
                     //Pour clem
                 //if ($referer == 'http://localhost/ProjetWeb/services_labo.php') {
                     //Pour lulu
-                /*if ($referer == 'http://localhost/projetweb/services_labo.php') {*/
+                if ($referer == 'http://localhost/projetweb/services_labo.php') {
 
                     //On récupère les horaires pour créer le tableau
                     $requete = "SELECT * FROM `horaire`";
@@ -462,6 +510,119 @@ if ($id_labo !== "") {
                     } else {
                         echo "<center><h2 class='pas_de_rdv'>Vous n'avez pas encore pris de rendez-vous.<br><a href='toutParcourir.php'>
                         Vous pouvez prendre un rendez vous ici.</a></h2></center>";
+                    }
+                }
+            }elseif($row_compte['type'] == "labo"){
+                $_SESSION['user_lab'] = $row_compte['username'];
+
+                    $req_labo = "SELECT * FROM `labo` WHERE Email='" . $row_compte['username'] . "'";
+                    $res_labo = mysqli_query($db, $req_labo) or die(mysqli_error($db));
+                    $row_labo = mysqli_fetch_array($res_labo);
+                    $id_labo = $row_labo['Idlabo'];
+
+                    $req_rdv = "SELECT * FROM rdv_labo WHERE id_labo=" . $id_labo;
+                    $res_rdv = mysqli_query($db, $req_rdv) or die(mysqli_error($db));
+                    $num_rdv = mysqli_num_rows($res_rdv);
+
+                    if ($num_rdv > 0) {
+                        while ($row_rdv = mysqli_fetch_array($res_rdv)) {
+                            $id_client = $row_rdv['id_cl'];
+                            $req_client = "SELECT * FROM `clientinf` WHERE `IdCl`=" . $id_client;
+                            $res_client = mysqli_query($db, $req_client) or die(mysqli_error($db));
+                            $tot_client = mysqli_num_rows($res_client);
+                            if ($tot_client > 0) {
+                                $row_client = mysqli_fetch_array($res_client);
+                                $nom_client = $row_client['Nom'];
+                                $prenom_client = $row_client['Prenom'];
+                                $mail_client = $row_client['Mail'];
+                                $id_client = $row_client['IdCl'];
+                                echo "<table class='aff_rdv'><th>Rendez vous le " . $row_rdv['date'] . " à " . $row_rdv['heure'] . "</th>
+                                    <tr><td>Vous avez rendez vous avec le client : " . $nom_client . " " . $prenom_client . " le " . $row_rdv['date'] . " à " .
+                                    $row_rdv['heure'] . ".<br>Service : ".$row_rdv['service']."
+                                    <br>Mail : " . $mail_client . "<br>Adresse : " . $row_rdv['adresse'] . "<br>Digicode : " .
+                                    $row_rdv['digicode'] . "<br>Prix de la consultation : " . $row_rdv['prix'] .
+                                    " €</td>
+                                    <td><form action='' method='POST'>
+                                    <input class='btn_rdv' type='submit' name='" . $id_labo . $row_rdv['date'] . $row_rdv['heure'] . "' value='Annuler le rdv'>
+                                    </form></td></tr></table><br>";
+                                if (isset($_POST[$id_labo . $row_rdv["date"] . $row_rdv["heure"]])) {
+                                    //echo "<h2>DELETE FROM `rdv` WHERE `id_cl`=".$_SESSION['id_cl']." AND `id_med`=".$id_medecin." AND `date`='".$row_rdv_cl['date']."' AND `heure`='".$row_rdv_cl['heure']."'</h2>";
+                                    $requete_annul = "DELETE FROM `rdv_labo` WHERE `id_cl`=" . $id_client . " AND `id_labo`=" . $id_labo . " AND `date`='" . $row_rdv['date'] . "' AND `heure`='" . $row_rdv['heure'] . "'";
+                                    $result_annul = mysqli_query($db, $requete_annul) or die(mysqli_error($db));
+                                    echo "<script> location.replace('rdv_med.php'); </script>";
+                                    //echo "<h2>Le rdv a bien été annulé</h2>";
+                                }
+                            }
+                        }
+                    }else{
+                        //PAS DE RDV
+                        echo "<center><h2 class='pas_de_rdv'>Vous n'avez pas de rendez-vous programmé.</h2></center>";
+                    }
+                } else {
+                    //Admin
+                    //Affichage des rdv
+                    $requete_rdv_med = "SELECT * FROM `rdv`";
+                    $result_rdv_med = mysqli_query($db, $requete_rdv_med) or die(mysqli_error($db));
+                    $total_rdv_med = mysqli_num_rows($result_rdv_med);
+
+                    $requete_rdv_labo = "SELECT * FROM `rdv_labo`";
+                    $result_rdv_labo = mysqli_query($db, $requete_rdv_labo) or die(mysqli_error($db));
+                    $total_rdv_labo = mysqli_num_rows($result_rdv_labo);
+
+                    if ($total_rdv_med > 0) {
+                        while ($row_rdv_med = mysqli_fetch_array($result_rdv_med)) {
+                            $id_med=$row_rdv_med['id_med'];
+                            $id_client=$row_rdv_med['id_cl'];
+                            $req_client = "SELECT * FROM `clientinf` WHERE `IdCl`=" . $id_client;
+                            $res_client = mysqli_query($db, $req_client) or die(mysqli_error($db));
+                            $tot_client = mysqli_num_rows($res_client);
+                            $req_med = "SELECT * FROM `medecins` WHERE `id`=" . $id_med;
+                            $res_med = mysqli_query($db, $req_med) or die(mysqli_error($db));
+                            $tot_med = mysqli_num_rows($res_med);
+                            if ($tot_client > 0 && $tot_med > 0) {
+                                $row_client = mysqli_fetch_array($res_client);
+                                $row_med = mysqli_fetch_array($res_med);
+                                $nom_client = $row_client['Nom'];
+                                $prenom_client = $row_client['Prenom'];
+                                $mail_client = $row_client['Mail'];
+                                $nom_med=$row_med['nom'];
+                                $prenom_med=$row_med['prenom'];
+                                $spe_med=$row_med['spe'];
+                                echo "<table class='aff_rdv'><th>Rendez vous le " . $row_rdv_med['date'] . " à " . $row_rdv_med['heure'] . "</th>
+                                    <tr><td>Client : " . $nom_client . " " . $prenom_client . ".<br>Mail : ".$mail_client.
+                                    "<br>Docteur : ".$nom_med." ".$prenom_med."<br>Specialité : ".$spe_med."<br>Adresse : " . 
+                                    $row_rdv_med['adresse'] . "<br>Digicode : " .
+                                    $row_rdv_med['digicode'] . "<br>Prix de la consultation : " . $row_rdv_med['prix'] .
+                                    " €</td></table><br>";
+                                }
+                        }
+                    }
+                    if ($total_rdv_labo > 0) {
+                        while ($row_rdv_labo = mysqli_fetch_array($result_rdv_labo)) {
+                            $id_labo=$row_rdv_labo['id_labo'];
+                            $id_client=$row_rdv_labo['id_cl'];
+                            $req_client = "SELECT * FROM `clientinf` WHERE `IdCl`=" . $id_client;
+                            $res_client = mysqli_query($db, $req_client) or die(mysqli_error($db));
+                            $tot_client = mysqli_num_rows($res_client);
+                            $req_labo = "SELECT * FROM `labo` WHERE `Idlabo`=" . $id_labo;
+                            $res_labo = mysqli_query($db, $req_labo) or die(mysqli_error($db));
+                            $tot_labo = mysqli_num_rows($res_labo);
+                            if ($tot_client > 0 && $tot_labo > 0) {
+                                $row_client = mysqli_fetch_array($res_client);
+                                $row_labo = mysqli_fetch_array($res_labo);
+                                $nom_client = $row_client['Nom'];
+                                $prenom_client = $row_client['Prenom'];
+                                $mail_client = $row_client['Mail'];
+                                $nom_labo=$row_labo['Nom'];
+                                $mail_labo=$row_labo['Email'];
+                                echo "<table class='aff_rdv'><th>Rendez vous le " . $row_rdv_labo['date'] . " à " . $row_rdv_labo['heure'] . "</th>
+                                <tr><td>Client : " . $nom_client . " " . $prenom_client . ".<br>Mail : ".$mail_client.
+                                "<br>Laboratoire : ".$nom_labo."<br>Mail du laboratoire : ".$mail_labo."<br>Service : ".$row_rdv_labo['service'].
+                                "<br>Adresse : " . $row_rdv_labo['adresse'] . "<br>Digicode : " .
+                                $row_rdv_labo['digicode'] . "<br>Prix de la consultation : " . $row_rdv_labo['prix'] .
+                                " €</td></table><br>";
+                                }
+                        }
                     }
                 }
             } else {

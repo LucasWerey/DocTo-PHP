@@ -190,31 +190,68 @@
                                     </div>
                                     <div class="col-md-6">
                                     <input type="text" value="' . $cmsData['mail'] . '"  name="mail" size=35></input>
+                                    </div>
                                     </div>'; ?>
 
+                              <!--      <div class="row">
+                                        <div class="col-md-6">
+                                            <label> Diplomes </label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="text" name="diplome" size=35>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label> Formation </label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="text" name="formation" size=35>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label> Experience </label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="text" name="experience" size=35>
+                                        </div>
+                                    </div> -->
+
+
+
                             <div class="row justify-content-around" style="padding-top:30px;">
-                                <div class="col-4"> <input type="submit" value="Ajouter CV"> </div>
-                                <div class="col-4"> <input type="file" name="imagefile"></div>
-                            </div>
+                                <div class="col-4">
+                                    <!--<form action='' method='POST'> -->
+                                    <!--<label>Diplomes : </label><input type="text" 
 
-                            <div class="container" style="padding-top:50px; margin-left:-70px;">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <table class="table table-bordered">
-                                            <?php
+                                   <label>Formations : </label><input type="text" name="formation">
+                                    <<label>Experiences : </label><input type="text" name="experience">"
+                                    di= <input type="submname="ajoutercv" it" value="Ajouter 
+                                CV"<!-->
+                                    </form>
+                                </div>
+    <div class="col-4"> <input type="file" name="imagefile"></div>
+    </div>
 
-                                            $selected = "Amaladasse";
-                                            if (isset($_POST['choix'])) {
-                                                if (!empty($_POST['selector'])) {
-                                                    $selected = $_POST['selector'];
-                                                }
-                                            }
-                                            $query = $con->query("SELECT * from medecins where nom='" . $selected . "'");
+    <div class="container" style="padding-top:50px; margin-left:-70px;">
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-bordered">
+                    <?php
+
+                            $selected = "Amaladasse";
+                            if (isset($_POST['choix'])) {
+                                if (!empty($_POST['selector'])) {
+                                    $selected = $_POST['selector'];
+                                }
+                            }
+                            $query = $con->query("SELECT * from medecins where nom='" . $selected . "'");
 
 
-                                            if ($query->num_rows > 0) {
-                                                $cmsData = $query->fetch_assoc();
-                                                echo '
+                            if ($query->num_rows > 0) {
+                                $cmsData = $query->fetch_assoc();
+                                echo '
     <thead>
     <tr align="center">
         <th scope="col"></th>
@@ -234,91 +271,91 @@
         </td>
         <td> ';
 
-                                                if ($cmsData['lundiam'] == 1) {
+                                if ($cmsData['lundiam'] == 1) {
 
-                                                    echo '<div class="custom-control custom-checkbox">
+                                    echo '<div class="custom-control custom-checkbox">
     <input type="checkbox" class="custom-control-input" name="LundiAM" id="LundiAM" checked>
     <label class="custom-control-label" for="LundiAM">
 </div>';
-                                                } else {
-                                                    echo '<div class="custom-control custom-checkbox">
+                                } else {
+                                    echo '<div class="custom-control custom-checkbox">
     <input type="checkbox" class="custom-control-input" name="LundiAM"  id="LundiAM">
     <label class="custom-control-label" for="LundiAM">
 </div>';
-                                                }
+                                }
 
 
-                                                echo  '</td>
+                                echo  '</td>
          <td>';
-                                                if ($cmsData['mardiam'] == 1) {
+                                if ($cmsData['mardiam'] == 1) {
 
-                                                    echo '<div class="custom-control custom-checkbox">
+                                    echo '<div class="custom-control custom-checkbox">
                         <input type="checkbox" class="custom-control-input" name="MardiAM" id="MardiAM" checked>
                         <label class="custom-control-label" for="MardiAM">
                         </div>';
-                                                } else {
-                                                    echo '<div class="custom-control custom-checkbox">
+                                } else {
+                                    echo '<div class="custom-control custom-checkbox">
                         <input type="checkbox" class="custom-control-input" name="MardiAM" id="MardiAM">
                         <label class="custom-control-label" for="MardiAM">
                         </div>';
-                                                }
-                                                echo '  </td>
+                                }
+                                echo '  </td>
     <td>';
-                                                if ($cmsData['mercrediam'] == 1) {
+                                if ($cmsData['mercrediam'] == 1) {
 
-                                                    echo '<div class="custom-control custom-checkbox">
+                                    echo '<div class="custom-control custom-checkbox">
                 <input type="checkbox" class="custom-control-input" name="MercrediAM" id="MercrediAM" checked>
                 <label class="custom-control-label" for="MercrediAM">
                 </div>';
-                                                } else {
-                                                    echo '<div class="custom-control custom-checkbox">
+                                } else {
+                                    echo '<div class="custom-control custom-checkbox">
                 <input type="checkbox" class="custom-control-input" name="MercrediAM" id="MercrediAM">
                 <label class="custom-control-label" for="MercrediAM">
                 </div>';
-                                                }
-                                                echo '</td>
+                                }
+                                echo '</td>
     <td>';
-                                                if ($cmsData['jeudiam'] == 1) {
+                                if ($cmsData['jeudiam'] == 1) {
 
-                                                    echo '<div class="custom-control custom-checkbox">
+                                    echo '<div class="custom-control custom-checkbox">
                 <input type="checkbox" class="custom-control-input" name="JeudiAM" id="JeudiAM" checked>
                 <label class="custom-control-label" for="JeudiAM">
                 </div>';
-                                                } else {
-                                                    echo '<div class="custom-control custom-checkbox">
+                                } else {
+                                    echo '<div class="custom-control custom-checkbox">
                 <input type="checkbox" class="custom-control-input" name="JeudiAM" id="JeudiAM">
                 <label class="custom-control-label" for="JeudiAM">
                 </div>';
-                                                }
-                                                echo '  </td>
+                                }
+                                echo '  </td>
     <td>';
-                                                if ($cmsData['vendrediam'] == 1) {
+                                if ($cmsData['vendrediam'] == 1) {
 
-                                                    echo '<div class="custom-control custom-checkbox">
+                                    echo '<div class="custom-control custom-checkbox">
                 <input type="checkbox" class="custom-control-input" name="VendrediAM" id="VendrediAM" checked>
                 <label class="custom-control-label" for="VendrediAM">
                 </div>';
-                                                } else {
-                                                    echo '<div class="custom-control custom-checkbox">
+                                } else {
+                                    echo '<div class="custom-control custom-checkbox">
                 <input type="checkbox" class="custom-control-input" name="VendrediAM" id="VendrediAM">
                 <label class="custom-control-label" for="VendrediAM">
                 </div>';
-                                                }
-                                                echo '</td>
+                                }
+                                echo '</td>
     <td>';
-                                                if ($cmsData['samediam'] == 1) {
+                                if ($cmsData['samediam'] == 1) {
 
-                                                    echo '<div class="custom-control custom-checkbox">
+                                    echo '<div class="custom-control custom-checkbox">
                 <input type="checkbox" class="custom-control-input" name="SamediAM"  id="SamediAM" checked>
                 <label class="custom-control-label" for="SamediAM">
                 </div>';
-                                                } else {
-                                                    echo '<div class="custom-control custom-checkbox">
+                                } else {
+                                    echo '<div class="custom-control custom-checkbox">
                 <input type="checkbox" class="custom-control-input" name="SamediAM"  id="SamediAM">
                 <label class="custom-control-label" for="SamediAM">
                 </div>';
-                                                }
-                                                echo '  </td>
+                                }
+                                echo '  </td>
    
 
 </tr>
@@ -327,164 +364,164 @@
         PM
     </td>
     <td>';
-                                                if ($cmsData['lundipm'] == 1) {
+                                if ($cmsData['lundipm'] == 1) {
 
-                                                    echo '<div class="custom-control custom-checkbox">
+                                    echo '<div class="custom-control custom-checkbox">
                 <input type="checkbox" class="custom-control-input" name="LundiPM" id="LundiPM" checked>
                 <label class="custom-control-label" for="LundiPM">
                 </div>';
-                                                } else {
-                                                    echo '<div class="custom-control custom-checkbox">
+                                } else {
+                                    echo '<div class="custom-control custom-checkbox">
                 <input type="checkbox" class="custom-control-input" name="LundiPM" id="LundiPM">
                 <label class="custom-control-label" for="LundiPM">
                 </div>';
-                                                }
-                                                echo '  </td>
+                                }
+                                echo '  </td>
     <td>';
-                                                if ($cmsData['mardipm'] == 1) {
+                                if ($cmsData['mardipm'] == 1) {
 
-                                                    echo '<div class="custom-control custom-checkbox">
+                                    echo '<div class="custom-control custom-checkbox">
                 <input type="checkbox" class="custom-control-input" name="MardiPM"  id="MardiPM" checked>
                 <label class="custom-control-label" for="MardiPM">
                 </div>';
-                                                } else {
-                                                    echo '<div class="custom-control custom-checkbox">
+                                } else {
+                                    echo '<div class="custom-control custom-checkbox">
                 <input type="checkbox" class="custom-control-input" name="MardiPM"  id="MardiPM">
                 <label class="custom-control-label" for="MardiPM">
                 </div>';
-                                                }
-                                                echo '  </td>
+                                }
+                                echo '  </td>
     <td>';
-                                                if ($cmsData['mercredipm'] == 1) {
+                                if ($cmsData['mercredipm'] == 1) {
 
-                                                    echo '<div class="custom-control custom-checkbox">
+                                    echo '<div class="custom-control custom-checkbox">
                 <input type="checkbox" class="custom-control-input"name="MercrediPM"  id="MercrediPM" checked>
                 <label class="custom-control-label" for="MercrediPM">
                 </div>';
-                                                } else {
-                                                    echo '<div class="custom-control custom-checkbox">
+                                } else {
+                                    echo '<div class="custom-control custom-checkbox">
                 <input type="checkbox" class="custom-control-input" name="MercrediPM"  id="MercrediPM">
                 <label class="custom-control-label" for="MercrediPM">
                 </div>';
-                                                }
-                                                echo '  </td>
+                                }
+                                echo '  </td>
     <td>';
-                                                if ($cmsData['jeudipm'] == 1) {
+                                if ($cmsData['jeudipm'] == 1) {
 
-                                                    echo '<div class="custom-control custom-checkbox">
+                                    echo '<div class="custom-control custom-checkbox">
                 <input type="checkbox" class="custom-control-input" name="JeudiPM" id="JeudiPM" checked>
                 <label class="custom-control-label" for="JeudiPM">
                 </div>';
-                                                } else {
-                                                    echo '<div class="custom-control custom-checkbox">
+                                } else {
+                                    echo '<div class="custom-control custom-checkbox">
                 <input type="checkbox" class="custom-control-input" name="JeudiPM" id="JeudiPM">
                 <label class="custom-control-label" for="JeudiPM">
                 </div>';
-                                                }
-                                                echo '  </td>
+                                }
+                                echo '  </td>
     <td>';
-                                                if ($cmsData['vendredipm'] == 1) {
+                                if ($cmsData['vendredipm'] == 1) {
 
-                                                    echo '<div class="custom-control custom-checkbox">
+                                    echo '<div class="custom-control custom-checkbox">
                 <input type="checkbox" class="custom-control-input" name="VendrediPM"  id="VendrediPM" checked>
                 <label class="custom-control-label" for="VendrediPM">
                 </div>';
-                                                } else {
-                                                    echo '<div class="custom-control custom-checkbox">
+                                } else {
+                                    echo '<div class="custom-control custom-checkbox">
                 <input type="checkbox" class="custom-control-input" name="VendrediPM" id="VendrediPM">
                 <label class="custom-control-label" for="VendrediPM">
                 </div>';
-                                                }
-                                                echo '  </td>
+                                }
+                                echo '  </td>
     <td>';
-                                                if ($cmsData['samedipm'] == 1) {
+                                if ($cmsData['samedipm'] == 1) {
 
-                                                    echo '<div class="custom-control custom-checkbox">
+                                    echo '<div class="custom-control custom-checkbox">
                 <input type="checkbox" class="custom-control-input" name="SamediPM" id="SamediPM" checked>
                 <label class="custom-control-label" for="SamediPM">
                 </div>';
-                                                } else {
-                                                    echo '<div class="custom-control custom-checkbox">
+                                } else {
+                                    echo '<div class="custom-control custom-checkbox">
                 <input type="checkbox" class="custom-control-input" name="SamediPM" id="SamediPM">
                 <label class="custom-control-label" for="SamediPM">
                 </div>';
-                                                }
-                                            }
-                                            echo '  </td>'; ?>
-                                            </tr>
+                                }
+                            }
+                            echo '  </td>'; ?>
+                    </tr>
 
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
-                            <div class="row align-items-start" style="padding-top:50px;">
-                                <div class="col"> <input type="submit" value="Supprimer" name="supr"> </div>
-                                <div class="col"> <input type="submit" value="Ajouter" name="aj"> </div>
-                                <div class="col"> <input type="submit" value="Mettre à jour" name="maj"> </div>
-                            </div>
+    <div class="row align-items-start" style="padding-top:50px;">
+        <div class="col"> <input type="submit" value="Supprimer" name="supr"> </div>
+        <div class="col"> <input type="submit" value="Ajouter" name="aj"> </div>
+        <div class="col"> <input type="submit" value="Mettre à jour" name="maj"> </div>
+    </div>
 
 
 
-                        <?php 
+<?php
                         }  ?>
 
-                    </div>
+</div>
 
-                </div>
-
-
-        </form>
+</div>
 
 
-        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-            <div class="row" style="margin-top:-140px">
-
-                <div class="col-md-6">
-
-                    <!-- SELECTOR BOX FOR LABS -->
-
-                    <form action="" method="post">
-                        <select name="selectorlab">
+</form>
 
 
-                            <?php
-                            $reslab = 'SELECT * FROM labo order by Nom asc';
-                            $nomlab = mysqli_query($con, $reslab);
+<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+    <div class="row" style="margin-top:-140px">
 
-                            while ($row2 = mysqli_fetch_array($nomlab)) {
-                                echo '<option value="' . $row2['Nom'] . '"> ' . $row2['Nom'] . '</option>';
-                            }
-                            ?>
+        <div class="col-md-6">
 
+            <!-- SELECTOR BOX FOR LABS -->
 
-                        </select>
-
-                        <input type="submit" name="choixlab" value="Voir">
-                    </form>
-
-                </div>
-                <div class="col-md-6"></div>
+            <form action="" method="post">
+                <select name="selectorlab">
 
 
+                    <?php
+                    $reslab = 'SELECT * FROM labo order by Nom asc';
+                    $nomlab = mysqli_query($con, $reslab);
 
-                <?php
-                $selectedlab = "laboratoire de grenelle";
-                if (isset($_POST['choixlab'])) {
-                    if (!empty($_POST['selectorlab'])) {
-                        $selectedlab = $_POST['selectorlab'];
+                    while ($row2 = mysqli_fetch_array($nomlab)) {
+                        echo '<option value="' . $row2['Nom'] . '"> ' . $row2['Nom'] . '</option>';
                     }
-                }
+                    ?>
 
 
-                $query2 = $con->query("SELECT * from labo where Nom='" . $selectedlab . "'");
+                </select>
 
-                if ($query2->num_rows > 0) {
-                    $cmsData2 = $query2->fetch_assoc();
+                <input type="submit" name="choixlab" value="Voir">
+            </form>
+
+        </div>
+        <div class="col-md-6"></div>
 
 
-                    echo   ' <div class="col-md-6">
+
+        <?php
+        $selectedlab = "laboratoire de grenelle";
+        if (isset($_POST['choixlab'])) {
+            if (!empty($_POST['selectorlab'])) {
+                $selectedlab = $_POST['selectorlab'];
+            }
+        }
+
+
+        $query2 = $con->query("SELECT * from labo where Nom='" . $selectedlab . "'");
+
+        if ($query2->num_rows > 0) {
+            $cmsData2 = $query2->fetch_assoc();
+
+
+            echo   ' <div class="col-md-6">
                     <label>Nom du laboratoire</label>
                 </div>
                 <div class="col-md-6">
@@ -515,207 +552,222 @@
                 <div class="col-md-6">
                 <input type="text" value="' . $cmsData2['Email'] . '" size=35></input>
                 </div>';
-                } ?>
-            </div>
-        </div>
+        } ?>
     </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    </form>
-    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</form>
+</div>
 
 
 
-    <?php
+<?php
+/*$diplomes="";
+    $formations="";
+    $experiences="";
+    if(isset($_POST['ajoutercv'])){
+        $diplomes=isset($_POST['diplome']) ? $_POST['diplome'] : "";
+        $formations=isset($_POST['formation']) ? $_POST['formation'] : "";
+        $experiences=isset($_POST['experience']) ? $_POST['experience'] : "";
+    }*/
+// RECUPERER INFO DOCTEURS 
+if (isset($_POST['aj'])) {
 
-    // RECUPERER INFO DOCTEURS 
+    if (!empty($_POST['nom'])) {
+        $name = $_POST['nom'];
+    }
+    if (!empty($_POST['prenom'])) {
+        $prenom = $_POST['prenom'];
+    }
+    if (!empty($_POST['tel'])) {
+        $tel = $_POST['tel'];
+    }
+    if (!empty($_POST['salle'])) {
+        $salle = $_POST['salle'];
+    }
+    if (!empty($_POST['mail'])) {
+        $mail = $_POST['mail'];
+    }
+    if (!empty($_POST['spe'])) {
+        $spe = $_POST['spe'];
+    }
 
-    if (isset($_POST['aj'])) {
+    // RECUPERER EMPLOI DU TEMPS 
 
-        if (!empty($_POST['nom'])) {
-            $name = $_POST['nom'];
-        }
-        if (!empty($_POST['prenom'])) {
-            $prenom = $_POST['prenom'];
-        }
-        if (!empty($_POST['tel'])) {
-            $tel = $_POST['tel'];
-        }
-        if (!empty($_POST['salle'])) {
-            $salle = $_POST['salle'];
-        }
-        if (!empty($_POST['mail'])) {
-            $mail = $_POST['mail'];
-        }
-        if (!empty($_POST['spe'])) {
-            $spe = $_POST['spe'];
-        }
+    if (isset($_POST['LundiAM'])) {
+        $LundiAM = 1;
+    } else $LundiAM = 0;
+    if (isset($_POST['MardiAM'])) {
+        $MardiAM = 1;
+    } else $MardiAM = 0;
+    if (isset($_POST['MercrediAM'])) {
+        $MercrediAM = 1;
+    } else $MercrediAM = 0;
+    if (isset($_POST['JeudiAM'])) {
+        $JeudiAM = 1;
+    } else $JeudiAM = 0;
+    if (isset($_POST['VendrediAM'])) {
+        $VendrediAM = 1;
+    } else $VendrediAM = 0;
+    if (isset($_POST['SamediAM'])) {
+        $SamediAM = 1;
+    } else $SamediAM = 0;
+    if (isset($_POST['LundiPM'])) {
+        $LundiPM = 1;
+    } else $LundiPM = 0;
+    if (isset($_POST['MardiPM'])) {
+        $MardiPM = 1;
+    } else $MardiPM = 0;
+    if (isset($_POST['MercrediPM'])) {
+        $MercrediPM = 1;
+    } else $MercrediPM = 0;
+    if (isset($_POST['JeudiPM'])) {
+        $JeudiPM = 1;
+    } else $JeudiPM = 0;
+    if (isset($_POST['VendrediPM'])) {
+        $VendrediPM = 1;
+    } else $VendrediPM = 0;
+    if (isset($_POST['SamediPM'])) {
+        $SamediPM = 1;
+    } else $SamediPM = 0;
 
-        // RECUPERER EMPLOI DU TEMPS 
+    // RECUPERER IMAGE DOCTEUR 
 
-        if (isset($_POST['LundiAM'])) {
-            $LundiAM = 1;
-        } else $LundiAM = 0;
-        if (isset($_POST['MardiAM'])) {
-            $MardiAM = 1;
-        } else $MardiAM = 0;
-        if (isset($_POST['MercrediAM'])) {
-            $MercrediAM = 1;
-        } else $MercrediAM = 0;
-        if (isset($_POST['JeudiAM'])) {
-            $JeudiAM = 1;
-        } else $JeudiAM = 0;
-        if (isset($_POST['VendrediAM'])) {
-            $VendrediAM = 1;
-        } else $VendrediAM = 0;
-        if (isset($_POST['SamediAM'])) {
-            $SamediAM = 1;
-        } else $SamediAM = 0;
-        if (isset($_POST['LundiPM'])) {
-            $LundiPM = 1;
-        } else $LundiPM = 0;
-        if (isset($_POST['MardiPM'])) {
-            $MardiPM = 1;
-        } else $MardiPM = 0;
-        if (isset($_POST['MercrediPM'])) {
-            $MercrediPM = 1;
-        } else $MercrediPM = 0;
-        if (isset($_POST['JeudiPM'])) {
-            $JeudiPM = 1;
-        } else $JeudiPM = 0;
-        if (isset($_POST['VendrediPM'])) {
-            $VendrediPM = 1;
-        } else $VendrediPM = 0;
-        if (isset($_POST['SamediPM'])) {
-            $SamediPM = 1;
-        } else $SamediPM = 0;
+    if (getimagesize($_FILES['imagefile']['tmp_name']) == false) {
+        echo "echec image";
+    } else {
+        $image = $_FILES['imagefile']['tmp_name'];
+        $image = base64_encode(file_get_contents(addslashes($image)));
+    }
 
-        // RECUPERER IMAGE DOCTEUR 
+    /*$requete1 = $con->query("INSERT INTO medecins(`nom`, `prenom`, `spe`, `salle`, `tel`, `mail`, `photo`, `lundiam`, `lundipm`, `mardiam`, `mardipm`, `mercrediam`, `mercredipm`, `jeudiam`, `jeudipm`, `vendrediam`, `vendredipm`, `samediam`, `samedipm`) 
+            VALUES  ('" . $name . "','" . $prenom . "','" . $spe . "','" . $salle . "','" . $tel . "','" . $mail . "','" . $image . "','" . $LundiAM . "','" . $LundiPM . "','" . $MardiAM . "','" . $MardiPM . "','" . $MercrediAM . "','" . $MercrediPM 
+            . "','" . $JeudiAM . "','" . $JeudiPM . "','" . $VendrediAM . "','" . $VendrediPM . "','" . $SamediAM . "','" . $SamediPM . "')");
+                
+{}
 
-        if (getimagesize($_FILES['imagefile']['tmp_name']) == false) {
-            echo "echec image";
-        } else {
-            $image = $_FILES['imagefile']['tmp_name'];
-            $image = base64_encode(file_get_contents(addslashes($image)));
-        }
+        $id_med=$row_idmed['id'];
+         requete_cv = $con->query("INSERT INTO `cv`(`ID`, `Specialite`, `Diplomes`, `Formation`, `Experiences`, `Nom`) VALUES (".
+        $id_med.",'".$spe."','".$diplomes."','".$formations."','".$experiences."','".$name."')");*/
+    $row_idmed = mysqli_fetch_array($req_idmed);
+    echo "<script> location.replace('CompteAdmin.php'); </script>";
+}   // }
 
-        $requete1 = $con->query("INSERT INTO medecins(`nom`, `prenom`, `spe`, `salle`, `tel`, `mail`, `photo`, `lundiam`, `lundipm`, `mardiam`, `mardipm`, `mercrediam`, `mercredipm`, `jeudiam`, `jeudipm`, `vendrediam`, `vendredipm`, `samediam`, `samedipm`) 
-            VALUES  ('" . $name . "','" . $prenom . "','" . $spe . "','" . $salle . "','" . $tel . "','" . $mail . "','" . $image . "','" . $LundiAM . "','" . $LundiPM . "','" . $MardiAM . "','" . $MardiPM . "','" . $MercrediAM . "','" . $MercrediPM . "','" . $JeudiAM . "','" . $JeudiPM . "','" . $VendrediAM . "','" . $VendrediPM . "','" . $SamediAM . "','" . $SamediPM . "')");
 
-        echo "<script> location.replace('CompteAdmin.php'); </script>";
+// RECUPERER DONNEES DOCTEURS 
+
+if (isset($_POST['maj'])) {
+
+    if (!empty($_POST['id'])) {
+        $identifiant = $_POST['id'];
+    }
+    if (!empty($_POST['nom'])) {
+        $name = $_POST['nom'];
+    }
+    if (!empty($_POST['prenom'])) {
+        $prenom = $_POST['prenom'];
+    }
+    if (!empty($_POST['tel'])) {
+        $tel = $_POST['tel'];
+    }
+    if (!empty($_POST['salle'])) {
+        $salle = $_POST['salle'];
+    }
+    if (!empty($_POST['mail'])) {
+        $mail = $_POST['mail'];
+    }
+    if (!empty($_POST['spe'])) {
+        $spe = $_POST['spe'];
+    }
+
+    // RECUPERER EMPLOI DU TEMPS 
+
+    if (isset($_POST['LundiAM'])) {
+        $LundiAM = 1;
+    } else $LundiAM = 0;
+    if (isset($_POST['MardiAM'])) {
+        $MardiAM = 1;
+    } else $MardiAM = 0;
+    if (isset($_POST['MercrediAM'])) {
+        $MercrediAM = 1;
+    } else $MercrediAM = 0;
+    if (isset($_POST['JeudiAM'])) {
+        $JeudiAM = 1;
+    } else $JeudiAM = 0;
+    if (isset($_POST['VendrediAM'])) {
+        $VendrediAM = 1;
+    } else $VendrediAM = 0;
+    if (isset($_POST['SamediAM'])) {
+        $SamediAM = 1;
+    } else $SamediAM = 0;
+    if (isset($_POST['LundiPM'])) {
+        $LundiPM = 1;
+    } else $LundiPM = 0;
+    if (isset($_POST['MardiPM'])) {
+        $MardiPM = 1;
+    } else $MardiPM = 0;
+    if (isset($_POST['MercrediPM'])) {
+        $MercrediPM = 1;
+    } else $MercrediPM = 0;
+    if (isset($_POST['JeudiPM'])) {
+        $JeudiPM = 1;
+    } else $JeudiPM = 0;
+    if (isset($_POST['VendrediPM'])) {
+        $VendrediPM = 1;
+    } else $VendrediPM = 0;
+    if (isset($_POST['SamediPM'])) {
+        $SamediPM = 1;
+    } else $SamediPM = 0;
+
+
+    // RECUPERER IMAGE DOCTEUR 
+
+    if (getimagesize($_FILES['imagefile']['tmp_name']) == false) {
+        echo "echec image";
+    } else {
+        $image = $_FILES['imagefile']['tmp_name'];
+        $image = base64_encode(file_get_contents(addslashes($image)));
     }
 
 
-    // RECUPERER DONNEES DOCTEURS 
 
-    if (isset($_POST['maj'])) {
-
-        if (!empty($_POST['id'])) {
-            $identifiant = $_POST['id'];
-        }
-        if (!empty($_POST['nom'])) {
-            $name = $_POST['nom'];
-        }
-        if (!empty($_POST['prenom'])) {
-            $prenom = $_POST['prenom'];
-        }
-        if (!empty($_POST['tel'])) {
-            $tel = $_POST['tel'];
-        }
-        if (!empty($_POST['salle'])) {
-            $salle = $_POST['salle'];
-        }
-        if (!empty($_POST['mail'])) {
-            $mail = $_POST['mail'];
-        }
-        if (!empty($_POST['spe'])) {
-            $spe = $_POST['spe'];
-        }
-
-        // RECUPERER EMPLOI DU TEMPS 
-
-        if (isset($_POST['LundiAM'])) {
-            $LundiAM = 1;
-        } else $LundiAM = 0;
-        if (isset($_POST['MardiAM'])) {
-            $MardiAM = 1;
-        } else $MardiAM = 0;
-        if (isset($_POST['MercrediAM'])) {
-            $MercrediAM = 1;
-        } else $MercrediAM = 0;
-        if (isset($_POST['JeudiAM'])) {
-            $JeudiAM = 1;
-        } else $JeudiAM = 0;
-        if (isset($_POST['VendrediAM'])) {
-            $VendrediAM = 1;
-        } else $VendrediAM = 0;
-        if (isset($_POST['SamediAM'])) {
-            $SamediAM = 1;
-        } else $SamediAM = 0;
-        if (isset($_POST['LundiPM'])) {
-            $LundiPM = 1;
-        } else $LundiPM = 0;
-        if (isset($_POST['MardiPM'])) {
-            $MardiPM = 1;
-        } else $MardiPM = 0;
-        if (isset($_POST['MercrediPM'])) {
-            $MercrediPM = 1;
-        } else $MercrediPM = 0;
-        if (isset($_POST['JeudiPM'])) {
-            $JeudiPM = 1;
-        } else $JeudiPM = 0;
-        if (isset($_POST['VendrediPM'])) {
-            $VendrediPM = 1;
-        } else $VendrediPM = 0;
-        if (isset($_POST['SamediPM'])) {
-            $SamediPM = 1;
-        } else $SamediPM = 0;
-
-
-        // RECUPERER IMAGE DOCTEUR 
-
-        if (getimagesize($_FILES['imagefile']['tmp_name']) == false) {
-            echo "echec image";
-        } else {
-            $image = $_FILES['imagefile']['tmp_name'];
-            $image = base64_encode(file_get_contents(addslashes($image)));
-        }
-
-
-
-        $requete2 = $con->query("UPDATE `medecins` SET `nom`='" . $name . "',`prenom`='" . $prenom . "',`spe`='" . $spe . "',`salle`='" . $salle . "',`tel`='" . $tel . "',`mail`='" . $mail . "',`photo`='" . $image . "',`lundiam`='" . $LundiAM . "',
+    $requete2 = $con->query("UPDATE `medecins` SET `nom`='" . $name . "',`prenom`='" . $prenom . "',`spe`='" . $spe . "',`salle`='" . $salle . "',`tel`='" . $tel . "',`mail`='" . $mail . "',`photo`='" . $image . "',`lundiam`='" . $LundiAM . "',
         `lundipm`='" . $LundiPM . "',`mardiam`='" . $MardiAM . "',`mardipm`='" . $MardiPM . "',`mercrediam`='" . $MercrediAM . "',`mercredipm`='" . $MercrediPM . "',`jeudiam`='" . $JeudiAM . "',`jeudipm`='" . $JeudiPM . "',`vendrediam`='" . $VendrediAM . "',`vendredipm`='" . $VendrediPM . "',
         `samediam`='" . $SamediAM . "',`samedipm`='" . $SamediPM . "' WHERE id='" . $identifiant . "'");
 
-        echo "<script> location.replace('CompteAdmin.php'); </script>";
+    echo "<script> location.replace('CompteAdmin.php'); </script>";
+}
+
+
+// DELETE  $sql = "DELETE FROM medecins WHERE mail=$mail";
+if (isset($_POST['supr'])) {
+
+    if (!empty($_POST['id'])) {
+        $iden = $_POST['id'];
     }
 
+    $del = $con->query("DELETE FROM medecins WHERE id='" . $iden . "'");
+    $delr = $con->query("DELETE FROM rdv WHERE id='" . $iden . "'");
 
-    // DELETE  $sql = "DELETE FROM medecins WHERE mail=$mail";
-    if (isset($_POST['supr'])) {
+    echo "<script> location.replace('CompteAdmin.php'); </script>";
+}
 
-        if (!empty($_POST['id'])) {
-            $iden = $_POST['id'];
-        }
+mysqli_close($con);
 
-        $del = $con->query("DELETE FROM medecins WHERE id='" . $iden . "'");
-        $delr = $con->query("DELETE FROM rdv WHERE id='" . $iden . "'");
+?>
 
-        echo "<script> location.replace('CompteAdmin.php'); </script>";
-    }
+<!--FOTTER-->
+<?php include("footer.html"); ?>
 
-    mysqli_close($con);
-
-    ?>
-
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 
 </html>

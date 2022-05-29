@@ -38,14 +38,14 @@ if(isset($_POST['logemail']) && isset($_POST['logpass'])&& isset($_POST['logfnam
             echo "Enregistrement 1 realise avec succes";
             header('Location: compte.php');
         }else {
-            echo "Erreur : " . $sql . "<br>" . mysqli_error($conn);
+            echo "Erreur : " . $requete1 . "<br>" . mysqli_error($db);
         }
         
         if (mysqli_query($db,$requete2)){
             echo "Enregistrement 2 realise avec succes";
             header('Location: compte.php');
         }else {
-            echo "Erreur : " . $sql . "<br>" . mysqli_error($conn);
+            echo "Erreur : " . $requete2 . "<br>" . mysqli_error($db);
         }
         /*$exec_requete1 = mysqli_query($db,$requete1);
         $exec_requete2 = mysqli_query($db,$requete2);
