@@ -1,3 +1,4 @@
+<!--verification du statut de la personne qui s'est connectee-->
 <?php 
     $db = mysqli_connect('localhost', 'root', 'root','omnessante') or die('could not connect to database');
     $requete = "SELECT * FROM `compte`";

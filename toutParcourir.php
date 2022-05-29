@@ -26,7 +26,7 @@
 
   <br><br>
 <div class="container marketing">
-
+<!--section medecin generalistes-->
   <div class="row featurette">
     <div class="col-md-7">
       <h2 class="featurette-heading" ><a href="medgenerale.php" style="color: blue;">Médecins généralistes</a></h2>
@@ -38,7 +38,7 @@
   </div>
 
   <hr class="featurette-divider">
-
+<!--liste des differents medecins specialiste-->
   <div class="row featurette">
     <div class="col-md-7 order-md-2">
       <h2 class="featurette-heading">Médecin spécialiste</h2>
@@ -63,7 +63,7 @@
   </div>
 <!-- A horizontal line. -->
 <hr class="featurette-divider">
-
+<!--section des labo-->
 <div class="row featurette">
   <div class="col-md-7">
     <h2 class="featurette-heading"><a href="labo.php" style="color: blue;">Laboratoire de biologie médicale </a></h2>

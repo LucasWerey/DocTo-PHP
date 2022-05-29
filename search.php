@@ -13,6 +13,10 @@ if (isset($_GET['terme'])) {
         $exec_requete = mysqli_query($db, $requete) or die(mysqli_error($db));
         $total = mysqli_num_rows($exec_requete);
 
+        $requete_labo = "SELECT * FROM labo WHERE Nom LIKE '" . $terme . "'";
+        $exec_requete_labo = mysqli_query($db, $requete_labo) or die(mysqli_error($db));
+        $total_labo = mysqli_num_rows($exec_requete_labo);
+
         if ($total > 0) {
             while ($reponse = mysqli_fetch_array($exec_requete)) {
                 $spe = $reponse['spe'];
@@ -33,7 +37,8 @@ if (isset($_GET['terme'])) {
                     }
                 }
             }
-        }elseif (strtolower($terme)==strtolower("Laboratoire")){
+        }
+        elseif (strtolower($terme)==strtolower("Laboratoire") || $total_labo>0){
             header('Location: labo.php');
         }
         else {
