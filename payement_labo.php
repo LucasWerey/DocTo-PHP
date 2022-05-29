@@ -200,37 +200,37 @@ if (isset($_POST['h']) && isset($_POST['jour'])) {
               </div>
 
               <div class="mt-1">
-                <?php 
+                <?php
                 $db = mysqli_connect('localhost', 'root', 'root', 'omnessante') or die('could not connect to database');
                 $req = "SELECT * FROM `labo` WHERE `Idlabo`='" . $_SESSION['Idlabo'] . "'";
-                $res = mysqli_query($db,$req);
+                $res = mysqli_query($db, $req);
                 $row = mysqli_fetch_array($res);
-                $nom=$row['Nom'];
-                $service=$_SESSION['service'];
-                $date=$_SESSION['new_jourrdv'];
-                $heure=$_SESSION['new_hrdv'];
+                $nom = $row['Nom'];
+                $service = $_SESSION['service'];
+                $date = $_SESSION['new_jourrdv'];
+                $heure = $_SESSION['new_hrdv'];
                 $prix = "";
                 if ($_SESSION['service'] == "covid") {
                   $prix = '44';
-                  $service="Dépistage covid";
+                  $service = "Dépistage covid";
                 } elseif ($_SESSION['service'] == "bio_prev") {
                   $prix = '140';
-                  $service="Biologie préventive";
+                  $service = "Biologie préventive";
                 } elseif ($_SESSION['service'] == "bio_enc") {
                   $prix = '43';
-                  $service="Biologie de la femme enceinte";
+                  $service = "Biologie de la femme enceinte";
                 } elseif ($_SESSION['service'] == "bio_rout") {
                   $prix = '21';
-                  $service="Biologie de routine";
+                  $service = "Biologie de routine";
                 } elseif ($_SESSION['service'] == "cancer") {
                   $prix = '32';
-                  $service="Cancérologie";
+                  $service = "Cancérologie";
                 } elseif ($_SESSION['service'] == "gyneco") {
                   $prix = '80';
-                  $service="Gynécologie";
+                  $service = "Gynécologie";
                 }
-            
-                echo'<sup class="super-price">'.$prix.' €</sup>
+
+                echo '<sup class="super-price">' . $prix . ' €</sup>
               </div>
             </div>
             <hr class="mt-0 line">
@@ -240,10 +240,10 @@ if (isset($_POST['h']) && isset($_POST['jour'])) {
               <div class="d-flex">
                 <p> Votre rendez-vous : </p>
                 <ul style="margin-right:-10px">
-                <li>Laboratoire : '.$nom.'</li>
-                  <li>Service : '.$service.'</li>
-                  <li>Date : '.ucfirst($date).'</li>
-                  <li>Heure : '.$heure.'</li>
+                <li>Laboratoire : ' . $nom . '</li>
+                  <li>Service : ' . $service . '</li>
+                  <li>Date : ' . ucfirst($date) . '</li>
+                  <li>Heure : ' . $heure . '</li>
                   <li>Digicode : 456A7</li>
                   <li>Adresse : 37 Quai de Grenelle</li>
                 </ul>
@@ -256,19 +256,19 @@ if (isset($_POST['h']) && isset($_POST['jour'])) {
                 <!--<small>After 30 days $9.59</small>-->
 
               </div>
-              <span>'.$prix.' €</span>';
-              ?>
-            </div>
+              <span>' . $prix . ' €</span>';
+                ?>
+              </div>
 
 
-            <div class="p-3">
-              <input type='submit' name="pay" class="btn btn-primary btn-block free-button" value='Valider votre paiement'>
+              <div class="p-3">
+                <input type='submit' name="pay" class="btn btn-primary btn-block free-button" value='Valider votre paiement'>
+              </div>
             </div>
           </div>
-        </div>
 
+        </div>
       </div>
-    </div>
   </form>
 
   <?php
@@ -285,16 +285,20 @@ if (isset($_POST['h']) && isset($_POST['jour'])) {
     $ligne_infocl = mysqli_fetch_array($result_infocl);
     $nom_cl = $ligne_infocl['Nom'];
 
+    $typecarte = isset($_POST["typecarte"]) ? $_POST["typecarte"] : "";
+    $numcard = isset($_POST["numcard"]) ? $_POST["numcard"] : "";
+    $exp = isset($_POST["exp"]) ? $_POST["exp"] : "";
+    $cvv = isset($_POST["cvv"]) ? $_POST["cvv"] : "";
+
     if ($nbrow == 0) {
-
-      $typecarte = isset($_POST["typecarte"]) ? $_POST["typecarte"] : "";
-      $numcard = isset($_POST["numcard"]) ? $_POST["numcard"] : "";
-      $exp = isset($_POST["exp"]) ? $_POST["exp"] : "";
-      $cvv = isset($_POST["cvv"]) ? $_POST["cvv"] : "";
-
       $ajout_carte = "INSERT INTO `banque`(`IdClient`, `typecarte`, `Num carte`, `Nom`, `Exp`, `CVV`) VALUES (" . $_SESSION['id_cl'] .
         ",'" . $typecarte . "','" . $numcard . "','" . $nom_cl . "','" . $exp . "','" . $cvv . "')";
       $result_ajout_carte = mysqli_query($db, $ajout_carte) or die(mysqli_error($db)); //infos du médecin cliqué
+    } else {
+      $update_carte = "UPDATE `banque` SET `typecarte`='" . $typecarte . "',
+      `Num carte`='" . $numcard . "',`Nom`='" . $nom_cl . "',`Exp`='" . $exp . "',`CVV`='"
+        . $cvv . "' WHERE `IdClient`=" . $_SESSION['id_cl'];
+      $result_updatecard = mysqli_query($db, $update_carte) or die(mysqli_error($db)); //infos du médecin cliqué
     }
 
     $prix = "";
@@ -346,6 +350,8 @@ if (isset($_POST['h']) && isset($_POST['jour'])) {
     }
 
     mysqli_close($db); // fermer la connexion
+
+    echo "<script>alert('Payement réalisé avec succès.');</script>";
 
     //echo "<h2>Enregistrement réalisé avec succès</h2>";
     echo "<script> location.replace('verifcompte.php'); </script>";

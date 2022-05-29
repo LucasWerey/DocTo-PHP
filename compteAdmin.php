@@ -191,14 +191,18 @@
                                     <div class="col-md-6">
                                     <input type="text" value="' . $cmsData['mail'] . '"  name="mail" size=35></input>
                                     </div>
-                                    </div>'; ?>
+                                    </div>';
 
-                            <!--      <div class="row">
+                                    $info_cv = $con->query("SELECT * FROM cv WHERE Nom='" . $selected . "'");
+                                    if ($info_cv->num_rows > 0) {
+                                        $cvinfo = $info_cv->fetch_assoc();
+                                    
+                                  echo '<div class="row">
                                         <div class="col-md-6">
                                             <label> Diplomes </label>
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="text" name="diplome" size=35>
+                                            <input type="text" value="'.$cvinfo['Diplomes'].'" name="diplome" size=35>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -206,7 +210,7 @@
                                             <label> Formation </label>
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="text" name="formation" size=35>
+                                            <input type="text" value="'.$cvinfo['Formation'].'" name="formation" size=35>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -214,9 +218,10 @@
                                             <label> Experience </label>
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="text" name="experience" size=35>
+                                            <input type="text" value="'.$cvinfo['Experiences'].'" name="experience" size=35>
                                         </div>
-                                    </div> -->
+                                    </div> '; 
+                                    } ?>
                             <div class="row">
                                 <div class="col-md-6">
                                     <label> Image de profil </label>
@@ -566,14 +571,12 @@
 
 
 <?php
-/*$diplomes="";
-    $formations="";
-    $experiences="";
-    if(isset($_POST['ajoutercv'])){
-        $diplomes=isset($_POST['diplome']) ? $_POST['diplome'] : "";
-        $formations=isset($_POST['formation']) ? $_POST['formation'] : "";
-        $experiences=isset($_POST['experience']) ? $_POST['experience'] : "";
-    }*/
+    /*AJOUTE PAR CLEM*/    
+    $diplomes=isset($_POST['diplome']) ? $_POST['diplome'] : "";
+    $formations=isset($_POST['formation']) ? $_POST['formation'] : "";
+    $experiences=isset($_POST['experience']) ? $_POST['experience'] : "";
+    /*FIN AJOUTE PAR CLEM*/
+
 // RECUPERER INFO DOCTEURS 
 if (isset($_POST['aj'])) {
 
@@ -644,18 +647,24 @@ if (isset($_POST['aj'])) {
         $image = base64_encode(file_get_contents(addslashes($image)));
     }
 
-    /*$requete1 = $con->query("INSERT INTO medecins(`nom`, `prenom`, `spe`, `salle`, `tel`, `mail`, `photo`, `lundiam`, `lundipm`, `mardiam`, `mardipm`, `mercrediam`, `mercredipm`, `jeudiam`, `jeudipm`, `vendrediam`, `vendredipm`, `samediam`, `samedipm`) 
+    $requete1 = $con->query("INSERT INTO medecins(`nom`, `prenom`, `spe`, `salle`, `tel`, `mail`, `photo`, `lundiam`, `lundipm`, `mardiam`, `mardipm`, `mercrediam`, `mercredipm`, `jeudiam`, `jeudipm`, `vendrediam`, `vendredipm`, `samediam`, `samedipm`) 
             VALUES  ('" . $name . "','" . $prenom . "','" . $spe . "','" . $salle . "','" . $tel . "','" . $mail . "','" . $image . "','" . $LundiAM . "','" . $LundiPM . "','" . $MardiAM . "','" . $MardiPM . "','" . $MercrediAM . "','" . $MercrediPM 
             . "','" . $JeudiAM . "','" . $JeudiPM . "','" . $VendrediAM . "','" . $VendrediPM . "','" . $SamediAM . "','" . $SamediPM . "')");
                 
-{}
+//{}
 
+        $req_idmed="SELECT * FROM medecins WHERE nom='".$name."'";
+        $res_idmed=mysqli_query($con,$req_idmed);
+        $row_idmed = mysqli_fetch_array($res_idmed);
         $id_med=$row_idmed['id'];
-         requete_cv = $con->query("INSERT INTO `cv`(`ID`, `Specialite`, `Diplomes`, `Formation`, `Experiences`, `Nom`) VALUES (".
-        $id_med.",'".$spe."','".$diplomes."','".$formations."','".$experiences."','".$name."')");*/
-    $row_idmed = mysqli_fetch_array($req_idmed);
+        $requete_cv = $con->query("INSERT INTO `cv`(`ID`, `Specialite`, `Diplomes`, `Formation`, `Experiences`, `Nom`) VALUES (".
+        $id_med.",'".$spe."','".$diplomes."','".$formations."','".$experiences."','".$name."')");
+
+        $req_compte= $con->query("INSERT INTO `compte`(`username`, `password`, `type`, `conn`) VALUES (
+            '".$mail."','".$prenom."','medecin',0)");
+        
     echo "<script> location.replace('CompteAdmin.php'); </script>";
-}   // }
+}
 
 
 // RECUPERER DONNEES DOCTEURS 
@@ -733,11 +742,12 @@ if (isset($_POST['maj'])) {
         $image = base64_encode(file_get_contents(addslashes($image)));
     }
 
-
-
     $requete2 = $con->query("UPDATE `medecins` SET `nom`='" . $name . "',`prenom`='" . $prenom . "',`spe`='" . $spe . "',`salle`='" . $salle . "',`tel`='" . $tel . "',`mail`='" . $mail . "',`photo`='" . $image . "',`lundiam`='" . $LundiAM . "',
         `lundipm`='" . $LundiPM . "',`mardiam`='" . $MardiAM . "',`mardipm`='" . $MardiPM . "',`mercrediam`='" . $MercrediAM . "',`mercredipm`='" . $MercrediPM . "',`jeudiam`='" . $JeudiAM . "',`jeudipm`='" . $JeudiPM . "',`vendrediam`='" . $VendrediAM . "',`vendredipm`='" . $VendrediPM . "',
         `samediam`='" . $SamediAM . "',`samedipm`='" . $SamediPM . "' WHERE id='" . $identifiant . "'");
+
+    $requete_updatecv = $con->query("UPDATE `cv` SET `Specialite`='".$spe."'
+    ,`Diplomes`='".$diplomes."',`Formation`='".$formations."',`Experiences`='".$experiences."',`Nom`='".$name."' WHERE `ID`=".$identifiant);
 
     echo "<script> location.replace('CompteAdmin.php'); </script>";
 }
@@ -749,9 +759,14 @@ if (isset($_POST['supr'])) {
     if (!empty($_POST['id'])) {
         $iden = $_POST['id'];
     }
+    if (!empty($_POST['mail'])) {
+        $mail = $_POST['mail'];
+    }
 
     $del = $con->query("DELETE FROM medecins WHERE id='" . $iden . "'");
     $delr = $con->query("DELETE FROM rdv WHERE id='" . $iden . "'");
+    $delcv = $con->query("DELETE FROM cv WHERE ID=" . $iden);
+    $delcompte = $con->query("DELETE FROM compte WHERE username='" . $mail ."'");
 
     echo "<script> location.replace('CompteAdmin.php'); </script>";
 }
