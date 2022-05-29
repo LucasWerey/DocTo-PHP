@@ -193,7 +193,7 @@
                                     </div>
                                     </div>'; ?>
 
-                              <!--      <div class="row">
+                            <!--      <div class="row">
                                         <div class="col-md-6">
                                             <label> Diplomes </label>
                                         </div>
@@ -217,22 +217,22 @@
                                             <input type="text" name="experience" size=35>
                                         </div>
                                     </div> -->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label> Image de profil </label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="file" name="imagefile">
+                                </div>
+                            </div>
 
-
-
+</form>
                             <div class="row justify-content-around" style="padding-top:30px;">
                                 <div class="col-4">
-                                    <!--<form action='' method='POST'> -->
-                                    <!--<label>Diplomes : </label><input type="text" 
-
-                                   <label>Formations : </label><input type="text" name="formation">
-                                    <<label>Experiences : </label><input type="text" name="experience">"
-                                    di= <input type="submname="ajoutercv" it" value="Ajouter 
-                                CV"<!-->
-                                    </form>
-                                </div>
-    <div class="col-4"> <input type="file" name="imagefile"></div>
+                                   
+        
     </div>
+
 
     <div class="container" style="padding-top:50px; margin-left:-70px;">
         <div class="row">
@@ -266,7 +266,7 @@
     
     <tbody align="center">
     <tr>
-        <td>
+        <td style="font-weight:bold;">
             AM
         </td>
         <td> ';
@@ -360,7 +360,7 @@
 
 </tr>
 <tr>
-    <td>
+<td style="font-weight:bold;">
         PM
     </td>
     <td>';

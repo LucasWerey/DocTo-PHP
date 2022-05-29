@@ -336,11 +336,17 @@ if (isset($_POST['h']) && isset($_POST['jour'])) {
 
     mysqli_close($db); // fermer la connexion
 
+
+
+
     //echo "<h2>Enregistrement réalisé avec succès</h2>";
-      echo "<script> location.replace('verifcompte.php'); </script>";
+     echo "<script> location.replace('verifcompte.php'); </script>";
     //session_destroy();
   }
   ?>
+
+
+
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->

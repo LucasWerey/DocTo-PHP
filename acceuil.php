@@ -1,5 +1,6 @@
 
 <style><?php include 'style.css'; ?></style>
+<style><?php include 'loadingpage.css'; ?></style>
 
 <!doctype html>
 <html lang="fr">
@@ -11,7 +12,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="loadingpage.css">
   <!-- The icon of the website. -->
     <link rel="icon" href="Images/logo.png">
 
@@ -19,6 +20,7 @@
  <!-- https://getbootstrap.com/docs/4.0/examples/carousel/ -->
 <body>
 <!-- NavBar -->
+
 
 <header>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-green">
