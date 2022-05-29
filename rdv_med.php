@@ -153,7 +153,7 @@ if ($name !== "") {
                     //Référence à la page précédente
                     $referer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : 'verifcompte.php';
                     //Pour lulu
-                    /*if (
+                    if (
                     $referer == 'http://localhost/projetweb/medgenerale.php' ||
                     $referer == 'http://localhost/projetweb/addictologie.php' ||
                     $referer == 'http://localhost/projetweb/andrologie.php' ||
@@ -163,8 +163,8 @@ if ($name !== "") {
                     $referer == 'http://localhost/projetweb/gynecologie.php' ||
                     $referer == 'http://localhost/projetweb/ist.php' ||
                     $referer == 'http://localhost/projetweb/osteopathie.php'
-                ) {*/
-                    //Pour clem et lena
+                ) {
+                  /* //Pour clem et lena
 
                        if (
                     $referer == 'http://localhost/ProjetWeb/medgenerale.php' ||
@@ -176,7 +176,7 @@ if ($name !== "") {
                     $referer == 'http://localhost/ProjetWeb/gynecologie.php' ||
                     $referer == 'http://localhost/ProjetWeb/ist.php' ||
                     $referer == 'http://localhost/ProjetWeb/osteopathie.php'
-                ) {
+                ) {*/
 
                     /*if (
                         $referer == __DIR__ ."/medgenerale.php" ||
